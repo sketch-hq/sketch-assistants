@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '12.6.0'
       - name: Yarn Install
-        run: yarn --forzen-lockfile
+        run: yarn --frozen-lockfile
       - name: Update PR or Publish
         id: changesets
         uses: changesets/action@master
