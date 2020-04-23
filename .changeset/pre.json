@@ -6,5 +6,7 @@
     "@sketch-hq/sketch-reuse-suggestions-assistant": "0.1.0",
     "@sketch-hq/sketch-tidy-assistant": "0.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "slimy-apples-smoke"
+  ]
 }
