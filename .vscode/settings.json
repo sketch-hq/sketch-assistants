@@ -1,0 +1,7 @@
+{
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "editor.formatOnSave": true,
+  "javascript.validate.enable": true
+}

@@ -1,0 +1,27 @@
+{
+  "name": "sketch-assistants",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "@changesets/cli": "2.6.5",
+    "@types/jest": "25.2.1",
+    "@types/node": "13.13.2",
+    "jest": "25.4.0",
+    "prettier": "2.0.5",
+    "ts-jest": "25.4.0",
+    "typescript": "3.8.3",
+    "webpack": "4.43.0",
+    "webpack-cli": "3.3.11"
+  },
+  "scripts": {
+    "test": "yarn workspaces run test --ci",
+    "build": "yarn workspaces run build",
+    "release": "yarn build && changeset publish",
+    "format": "prettier --check **/*.{ts,js,md,json}"
+  }
+}

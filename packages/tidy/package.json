@@ -1,0 +1,34 @@
+{
+  "name": "@sketch-hq/sketch-tidy-assistant",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "sketch": "dist/sketch.js",
+  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/packages/tidy",
+  "sketch-assistant": {
+    "title": "Tidy",
+    "description": "The rules in this Assistant are all focused on keeping your Sketch documents as clean and tidy as possible",
+    "icon": ""
+  },
+  "keywords": [
+    "sketch",
+    "sketch files",
+    "sketch assistant",
+    "assistant",
+    "design ops"
+  ],
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "rm -rf dist && yarn build:node && yarn build:sketch",
+    "build:node": "tsc",
+    "build:sketch": "webpack --output-library _sketch --output-library assistants --output-library `node -p \"require('./package.json').name\"`",
+    "package-tarball": "yarn build && yarn pack"
+  }
+}

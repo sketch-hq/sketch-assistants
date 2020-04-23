@@ -1,0 +1,28 @@
+name: Changesets
+on:
+  push:
+    branches:
+      - master
+jobs:
+  handle_changesets:
+    name: Handle Changesets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          node-version: '12.6.0'
+      - name: Yarn Install
+        run: yarn --forzen-lockfile
+      - name: Update PR or Publish
+        id: changesets
+        uses: changesets/action@master
+        with:
+          publish: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

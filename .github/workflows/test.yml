@@ -1,0 +1,23 @@
+name: Test
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          node-version: '12.6.0'
+      - name: Yarn Install
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test --ci
+      - name: Format
+        run: yarn format
