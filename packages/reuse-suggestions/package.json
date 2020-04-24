@@ -17,11 +17,11 @@
     "assistant",
     "design ops"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {},
-  "devDependencies": {
-    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.3"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "jest",
     "build": "rm -rf dist && yarn build:node && yarn build:sketch",
