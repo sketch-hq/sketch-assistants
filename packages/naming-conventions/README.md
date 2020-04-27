@@ -16,3 +16,12 @@ to add to Sketch.
 > [XCode](https://add-sketch-assistant.now.sh/api/main?variant=xcode&url=https://registry.npmjs.org/@sketch-hq/sketch-naming-conventions-assistant/-/sketch-naming-conventions-assistant-1.0.0-next.0.tgz)
 
 ## Rules
+
+- [Page Names](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/name-pattern-pages)
+  - must start with an emoji, e.g. `🚧 Work in Progress`
+- [Artboard Layer Names](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/name-pattern-artboards)
+  - must start with an emojii or be numbered. e.g. `1.1 Splash Screen`
+- [Group Layer Names](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/name-pattern-artboards)
+  - default layer names are forbidden
+- [Symbol Layer Names](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/name-pattern-artboards)
+  - names must take advantage of forward-slash grouping, e.g. `Icon/Frog`
