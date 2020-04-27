@@ -6,7 +6,7 @@
   "sketch": "dist/sketch.js",
   "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/packages/reuse-suggestions",
   "sketch-assistant": {
-    "title": "Tidy",
+    "title": "Reuse suggestions",
     "description": "Notices when similar styles and groups could be abstracted into shared styles and symbols respectively",
     "icon": ""
   },

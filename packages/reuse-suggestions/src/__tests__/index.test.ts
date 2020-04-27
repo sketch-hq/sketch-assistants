@@ -1,17 +1,57 @@
 import { resolve } from 'path'
 import { testRule } from '@sketch-hq/sketch-assistant-utils'
+import { Assistant, Violation, PlainRuleError } from '@sketch-hq/sketch-assistant-types'
 
-import Assistant from '..'
+import reuseAssistant from '..'
 
-test('hello-world', async () => {
-  expect.assertions(2)
+const testAllRules = async (file: string, assistant: Assistant) => {
+  const { config } = await assistant({ locale: 'en', platform: 'node' })
+  let allViolations: Violation[] = []
+  let allErrors: PlainRuleError[] = []
+  for (const rule of Object.keys(config.rules)) {
+    const { violations, errors } = await testRule(
+      file,
+      assistant,
+      rule,
+      config.rules[rule] || undefined,
+    )
+    allViolations = [...allViolations, ...violations]
+    allErrors = [...allErrors, ...errors]
+  }
+  return { violations: allViolations, errors: allErrors }
+}
 
-  const { violations, errors } = await testRule(
-    resolve(__dirname, './empty.sketch'),
-    Assistant,
-    '@sketch-hq/sketch-reuse-suggestions-assistant/hello-world',
-  )
+describe('Reuse Assistant', () => {
+  test('produces no errors in empty document', async () => {
+    expect.assertions(2)
+    const { violations, errors } = await testAllRules(
+      resolve(__dirname, './empty.sketch'),
+      reuseAssistant,
+    )
 
-  expect(violations[0].message).toMatchInlineSnapshot(`"Hello world"`)
-  expect(errors).toHaveLength(0)
+    expect(violations).toHaveLength(0)
+    expect(errors).toHaveLength(0)
+  })
+
+  test('produces violations in incorrect document', async () => {
+    expect.assertions(2)
+    const { violations, errors } = await testAllRules(
+      resolve(__dirname, './all-bad.sketch'),
+      reuseAssistant,
+    )
+
+    expect(violations).toHaveLength(4)
+    expect(errors).toHaveLength(0)
+  })
+
+  test('does not produce violations in correct document', async () => {
+    expect.assertions(2)
+    const { violations, errors } = await testAllRules(
+      resolve(__dirname, './all-good.sketch'),
+      reuseAssistant,
+    )
+
+    expect(violations).toHaveLength(0)
+    expect(errors).toHaveLength(0)
+  })
 })
