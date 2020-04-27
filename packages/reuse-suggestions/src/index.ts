@@ -1,23 +1,25 @@
-import type { Assistant } from '@sketch-hq/sketch-assistant-types'
+import { Assistant } from '@sketch-hq/sketch-assistant-types'
+import core from '@sketch-hq/sketch-assistant-core-rules'
 
-const assistant: Assistant = async () => {
+const assistant: Assistant = async (env) => {
+  const coreAssistant = await core(env)
   return {
     name: '@sketch-hq/sketch-reuse-suggestions-assistant',
-    rules: [
-      {
-        rule: async (context) => {
-          context.utils.report({
-            message: 'Hello world',
-          })
-        },
-        name: '@sketch-hq/sketch-reuse-suggestions-assistant/hello-world',
-        title: 'Hello World',
-        description: 'Emits a violation with a hello world message',
-      },
-    ],
+    rules: coreAssistant.rules,
     config: {
       rules: {
-        '@sketch-hq/sketch-reuse-suggestions-assistant/hello-world': { active: true },
+        '@sketch-hq/sketch-assistant-core-rules/text-styles-prefer-shared': {
+          active: true,
+          maxIdentical: 2,
+        },
+        '@sketch-hq/sketch-assistant-core-rules/layer-styles-prefer-shared': {
+          active: true,
+          maxIdentical: 2,
+        },
+        '@sketch-hq/sketch-assistant-core-rules/groups-no-similar': {
+          active: true,
+          maxIdentical: 2,
+        },
       },
     },
   }
