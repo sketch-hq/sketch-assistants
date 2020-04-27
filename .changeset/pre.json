@@ -7,6 +7,9 @@
     "@sketch-hq/sketch-tidy-assistant": "0.1.0"
   },
   "changesets": [
+    "five-ladybugs-tell",
+    "hungry-jeans-eat",
+    "nine-dolls-appear",
     "slimy-apples-smoke"
   ]
 }

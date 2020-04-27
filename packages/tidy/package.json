@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-tidy-assistant",
-  "version": "1.0.0-next.0",
+  "version": "1.0.0-next.1",
   "license": "MIT",
   "main": "dist/index.js",
   "sketch": "dist/sketch.js",
@@ -17,9 +17,7 @@
     "assistant",
     "design ops"
   ],
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
