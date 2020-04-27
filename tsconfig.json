@@ -6,6 +6,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["../../ambient.d.ts"]
+  "exclude": ["node_modules", "dist"]
 }
