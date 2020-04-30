@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-naming-conventions-assistant
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- 5bc93f8: Updated copy from first copy review.
+
 ## 1.0.0-next.2
 
 ### Patch Changes

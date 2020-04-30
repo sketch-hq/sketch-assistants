@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-naming-conventions-assistant",
-  "version": "1.0.0-next.2",
+  "version": "1.0.0-next.3",
   "license": "MIT",
   "main": "dist/index.js",
   "sketch": "dist/sketch.js",
