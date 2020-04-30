@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es2019"],
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declarationMap": true,
+    "declaration": true,
+    "composite": true
+  },
+  "exclude": ["node_modules", "dist"]
+}

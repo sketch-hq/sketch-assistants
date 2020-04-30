@@ -1,0 +1,26 @@
+{
+  "name": "@sketch-hq/sketch-assistant-types",
+  "version": "3.0.0-next.5",
+  "main": "dist/types",
+  "types": "dist/types",
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": "github:sketch-hq/sketch-assistants",
+  "keywords": [
+    "sketch",
+    "sketch files",
+    "sketch assistants",
+    "assistants",
+    "design ops"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Not implemented\""
+  },
+  "files": ["dist"],
+  "dependencies": {
+    "@schemastore/package": "0.0.5",
+    "@sketch-hq/sketch-file-format-ts": "4.0.3",
+    "@types/json-schema": "7.0.4"
+  }
+}

@@ -3,5 +3,6 @@
     "**/node_modules": true
   },
   "editor.formatOnSave": true,
-  "javascript.validate.enable": true
+  "javascript.validate.enable": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,6 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
-const pkg = require('./package.json')
 
 module.exports = {
   target: 'web',

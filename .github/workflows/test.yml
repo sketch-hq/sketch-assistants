@@ -4,7 +4,7 @@ on:
     types: [assigned, opened, synchronize, reopened]
 jobs:
   test:
-    name: Test
+    name: Build and Test Monorepo
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -15,9 +15,9 @@ jobs:
           node-version: '12.6.0'
       - name: Yarn Install
         run: yarn install --frozen-lockfile
-      - name: Build
+      - name: Build Packages
         run: yarn build
-      - name: Test
+      - name: Test Packages
         run: yarn test --ci
-      - name: Format
-        run: yarn format
+      - name: Prettier Check
+        run: yarn prettier-check
