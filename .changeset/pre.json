@@ -7,6 +7,7 @@
     "@sketch-hq/sketch-tidy-assistant": "0.1.0"
   },
   "changesets": [
+    "angry-kids-nail",
     "five-ladybugs-tell",
     "hungry-jeans-eat",
     "nine-dolls-appear",

@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-reuse-suggestions-assistant",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "license": "MIT",
   "main": "dist/index.js",
   "sketch": "dist/sketch.js",
