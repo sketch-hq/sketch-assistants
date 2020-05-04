@@ -1,6 +1,6 @@
 # Sketch Assistants
 
-A TypeScript monorepo for Sketch Assistants related.
+A TypeScript monorepo for Sketch Assistants and related packages.
 
 > ⚠️ This repository is in pre-release mode on the `next` tag until the Assistants are officially
 > released.
