@@ -1,0 +1,35 @@
+{
+  "name": "@sketch-hq/sketch-naming-conventions-assistant",
+  "version": "1.0.0-next.3",
+  "license": "MIT",
+  "main": "dist/index",
+  "types": "dist/index",
+  "sketch": "dist/sketch.js",
+  "repository": "github:sketch-hq/sketch-assistants",
+  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/packages/naming-conventions",
+  "sketch-assistant": {
+    "title": "Naming Conventions",
+    "description": "Naming conventions used by the Sketch design team",
+    "icon": ""
+  },
+  "keywords": [
+    "sketch",
+    "sketch files",
+    "sketch assistant",
+    "assistant",
+    "design ops"
+  ],
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@sketch-hq/sketch-assistant-types": "3.0.0-next.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest",
+    "build": "tsc --build && yarn build:sketch",
+    "build:sketch": "webpack --output-library _sketch --output-library assistants --output-library `node -p \"require('./package.json').name\"`",
+    "package-tarball": "yarn build && yarn pack"
+  }
+}

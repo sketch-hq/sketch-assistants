@@ -4,7 +4,9 @@
   "initialVersions": {
     "@sketch-hq/sketch-naming-conventions-assistant": "0.1.0",
     "@sketch-hq/sketch-reuse-suggestions-assistant": "0.1.0",
-    "@sketch-hq/sketch-tidy-assistant": "0.1.0"
+    "@sketch-hq/sketch-tidy-assistant": "0.1.0",
+    "@sketch-hq/sketch-assistant-types": "2.0.1",
+    "@sketch-hq/sketch-assistant-utils": "4.0.0"
   },
   "changesets": [
     "angry-kids-nail",

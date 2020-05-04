@@ -1,10 +1,9 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "exclude": ["node_modules", "dist"]
+  "files": [],
+  "references": [
+    { "path": "./packages/utils" },
+    { "path": "./packages/utils/tsconfig.esm.json" },
+    { "path": "./packages/types" },
+    { "path": "./assistants/tidy" }
+  ]
 }
