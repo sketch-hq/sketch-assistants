@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-tidy-assistant",
-  "version": "1.0.0-next.2",
+  "version": "4.0.1-next.8",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -19,11 +19,9 @@
     "assistant",
     "design ops"
   ],
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "3.0.0-next.5"
+    "@sketch-hq/sketch-assistant-types": "4.0.1-next.8"
   },
   "devDependencies": {},
   "scripts": {
