@@ -26,3 +26,17 @@ to add to Sketch.
   - Maximum number of identical text styles `2`
 - [Prefer symbols](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/groups-no-similar)
   - Maximum number of identical groups `2`
+
+## Development
+
+This section of the readme deals with development only. If you're just here to install Assistants in
+Sketch you can safely ignore this section.
+
+Ensure you've followed the _Getting Started_ section in the root [README](../../). Having done so
+the following scripts should work in this folder.
+
+| Script                 | Description                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `yarn test`            | Test the Assistant                                                                                              |
+| `yarn build`           | Builds the Assistant                                                                                            |
+| `yarn package-tarball` | Builds the Assistant as a local `*.tgz` tarball suitable for installing via Sketch's _Install from Disk_ option |
