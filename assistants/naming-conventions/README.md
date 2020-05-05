@@ -29,3 +29,17 @@ to add to Sketch.
 - [#](#name-pattern-symbols)
   [Symbol Layer Names](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/name-pattern-symbols)
   - Names must take advantage of forward-slash grouping, e.g. `Icon/Frog`
+
+## Development
+
+This section of the readme deals with development only. If you're just here to install Assistants in
+Sketch you can safely ignore this section.
+
+Ensure you've followed the _Getting Started_ section in the root [README](../../). Having done so
+the following scripts should work in this folder.
+
+| Script                 | Description                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `yarn test`            | Test the Assistant                                                                                              |
+| `yarn build`           | Builds the Assistant                                                                                            |
+| `yarn package-tarball` | Builds the Assistant as a local `*.tgz` tarball suitable for installing via Sketch's _Install from Disk_ option |
