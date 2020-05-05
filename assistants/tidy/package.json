@@ -6,7 +6,7 @@
   "types": "dist/index",
   "sketch": "dist/sketch.js",
   "repository": "github:sketch-hq/sketch-assistants",
-  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/packages/tidy",
+  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/tidy",
   "sketch-assistant": {
     "title": "Tidy",
     "description": "The rules in this Assistant are all focused on keeping your Sketch documents as clean and tidy as possible",

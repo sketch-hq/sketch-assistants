@@ -12,18 +12,17 @@ to add to Sketch.
 > |
 > [Private](https://add-sketch-assistant.now.sh/api/main?variant=private&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
 > |
+> [Internal](https://add-sketch-assistant.now.sh/api/main?variant=internal&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
+> |
 > [Experimental](https://add-sketch-assistant.now.sh/api/main?variant=experimental&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
 > |
 > [XCode](https://add-sketch-assistant.now.sh/api/main?variant=xcode&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
 
 ## Rules
 
-- [#](#layer-styles-prefer-shared)
-  [Prefer shared styles](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/layer-styles-prefer-shared)
+- [Prefer shared styles](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/layer-styles-prefer-shared)
   - Maximum number of identical layer styles `2`
-- [#](#text-styles-prefer-shared)
-  [Prefer shared text styles](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/text-styles-prefer-shared)
+- [Prefer shared text styles](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/text-styles-prefer-shared)
   - Maximum number of identical text styles `2`
-- [#](#groups-no-similar)
-  [Prefer symbols](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/groups-no-similar)
+- [Prefer symbols](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/master/src/rules/groups-no-similar)
   - Maximum number of identical groups `2`
