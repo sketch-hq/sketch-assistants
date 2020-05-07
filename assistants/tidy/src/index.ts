@@ -1,5 +1,5 @@
 import type { AssistantConfig, AssistantPackageExport } from '@sketch-hq/sketch-assistant-types'
-import CoreRulesAssistant from '@sketch-hq/sketch-assistant-core-rules'
+import CoreAssistant from '@sketch-hq/sketch-core-assistant'
 
 export const config: AssistantConfig = {
   rules: {
@@ -51,7 +51,7 @@ export const config: AssistantConfig = {
 }
 
 const assistant: AssistantPackageExport = [
-  CoreRulesAssistant,
+  CoreAssistant,
   async () => {
     return {
       name: '@sketch-hq/sketch-tidy-assistant',

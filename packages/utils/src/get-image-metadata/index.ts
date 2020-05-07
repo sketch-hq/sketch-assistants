@@ -17,13 +17,15 @@ const getImageMetadata: GetImageMetadata = (
     zip.on('error', (error: string): void => reject(error))
     zip.on('ready', (): void => {
       zip.stream(ref, (error, stream): void => {
+        if (!stream) return reject()
         stream.on('end', (): void => zip.close())
         if (error) {
           reject(error)
         } else {
           probeImageSize(stream)
             .then((result): void => {
-              stream.destroy()
+              // @ts-ignore
+              if ('destroy' in stream) stream.destroy()
               resolve({
                 width: result.width,
                 height: result.height,

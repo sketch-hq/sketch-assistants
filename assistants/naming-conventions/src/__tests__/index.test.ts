@@ -1,11 +1,15 @@
 import { resolve } from 'path'
-import { testRule } from '@sketch-hq/sketch-assistant-utils'
-import { Assistant, Violation, PlainRuleError } from '@sketch-hq/sketch-assistant-types'
+import { testRule, prepare } from '@sketch-hq/sketch-assistant-utils'
+import {
+  AssistantPackageExport,
+  Violation,
+  PlainRuleError,
+} from '@sketch-hq/sketch-assistant-types'
 
-import reuseAssistant from '..'
+import Assistant from '..'
 
-const testAllRules = async (file: string, assistant: Assistant) => {
-  const { config } = await assistant({ locale: 'en', platform: 'node' })
+const testAllRules = async (file: string, assistant: AssistantPackageExport) => {
+  const { config } = await prepare(Assistant, { locale: 'en', platform: 'node' })
   let allViolations: Violation[] = []
   let allErrors: PlainRuleError[] = []
   for (const rule of Object.keys(config.rules)) {
@@ -26,7 +30,7 @@ describe('Naming Conventions Assistant', () => {
     expect.assertions(2)
     const { violations, errors } = await testAllRules(
       resolve(__dirname, './empty.sketch'),
-      reuseAssistant,
+      Assistant,
     )
 
     // Page name is by default incorrect
@@ -38,7 +42,7 @@ describe('Naming Conventions Assistant', () => {
     expect.assertions(2)
     const { violations, errors } = await testAllRules(
       resolve(__dirname, './all-bad.sketch'),
-      reuseAssistant,
+      Assistant,
     )
 
     expect(violations).toHaveLength(10)
@@ -49,7 +53,7 @@ describe('Naming Conventions Assistant', () => {
     expect.assertions(2)
     const { violations, errors } = await testAllRules(
       resolve(__dirname, './all-good.sketch'),
-      reuseAssistant,
+      Assistant,
     )
 
     expect(violations).toHaveLength(0)

@@ -1,0 +1,766 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-03-09 17:32+0000\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: zh-Hans\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/rule-helpers.ts:117
+msgid "Layer name matches one of the forbidden patterns"
+msgstr ""
+
+#: src/rule-helpers.ts:124
+msgid "Layer name does not match any of the allowed patterns"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:49
+msgid "Unexpected artboard grid settings"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:56
+msgid "Artboard grid settings should match the conventions"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:57
+msgid "Enforce the consistent and precise usage of specific grid settings across a document, team or project"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:62
+msgid "Grids"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:63
+msgid "List of valid grids"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:67
+msgid "Grid Block Size"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:68
+msgid "Grid block size in pixels"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:72
+msgid "Thick Lines Every"
+msgstr ""
+
+#: src/rules/artboards-grid/index.ts:73
+msgid "Number of blocks between thick grid lines"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:105
+msgid "Unexpected artboard layout settings"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:112
+msgid "Artboard layout settings should match the conventions"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:113
+msgid "Enforce the consistent and precise usage of specific layout settings across a document, team or project"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:118
+msgid "Layouts"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:119
+msgid "List of valid layouts. Each layout object reproduces the options found on the Layout Settings UI in Sketch"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:123
+msgid "Draw Vertical"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:124
+msgid "Enables drawing columns"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:128
+msgid "Total Width"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:129
+msgid "Total width of layout"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:133
+msgid "Horizontal Offset"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:134
+msgid "Horizontal offset of layout"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:138
+msgid "Number of Columns"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:139
+msgid "Number of columns in the layout"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:143
+msgid "Gutters Outside"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:144
+msgid "Draw gutters on the outside"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:148
+msgid "Gutter Width"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:149
+msgid "Gutter width in layout"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:153
+msgid "Column Width"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:154
+msgid "Layout column widths"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:158
+msgid "Draw Horizontal"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:159
+msgid "Enables drawing rows"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:163
+msgid "Gutter Height"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:164
+msgid "Layout gutter height"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:168
+msgid "Row Height Multiplication"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:173
+msgid "Draw Horizontal Lines"
+msgstr ""
+
+#: src/rules/artboards-layout/index.ts:174
+msgid "Draw all horizontal lines"
+msgstr ""
+
+#: src/rules/artboards-max-ungrouped-layers/index.ts:28
+msgid "{nonGroupLayers, plural, one {There is one ungrouped layer within this Artboard} other {There are # ungrouped layers within this Artboard}}"
+msgstr ""
+
+#: src/rules/artboards-max-ungrouped-layers/index.ts:44
+msgid "{maxUngroupedLayers, plural, one {Artboards should only have one ungrouped layers} other {Artboards should have less than # ungrouped layers}}"
+msgstr ""
+
+#: src/rules/artboards-max-ungrouped-layers/index.ts:50
+msgid "Grouping layers within your Artboards will help you stay organized."
+msgstr ""
+
+#: src/rules/artboards-max-ungrouped-layers/index.ts:55
+msgid "Maximum Ungrouped Layers"
+msgstr ""
+
+#: src/rules/artboards-max-ungrouped-layers/index.ts:57
+msgid "The maximum number of ungrouped layers"
+msgstr ""
+
+#: src/rules/borders-no-disabled/index.ts:37
+msgid "There's a disabled border in this layer style"
+msgstr ""
+
+#: src/rules/borders-no-disabled/index.ts:48
+msgid "There's a disabled border in this shared style"
+msgstr ""
+
+#: src/rules/borders-no-disabled/index.ts:58
+msgid "Styles should not have disabled borders"
+msgstr ""
+
+#: src/rules/borders-no-disabled/index.ts:59
+#: src/rules/fills-no-disabled/index.ts:53
+#: src/rules/inner-shadows-no-disabled/index.ts:53
+#: src/rules/shadows-no-disabled/index.ts:53
+msgid "Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help."
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:15
+msgid "Debug all options"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:16
+msgid "Internal debug rule that defines examples of all available option schema types"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:21
+msgid "Number Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:23
+msgid "A number option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:29
+msgid "Integer Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:31
+msgid "An integer option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:37
+msgid "String Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:38
+msgid "A string option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:40
+msgid "Default value"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:46
+msgid "Boolean Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:47
+msgid "A boolean option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:52
+msgid "String Enum Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:53
+msgid "A string enum option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:60
+msgid "String Array Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:61
+msgid "A string array option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:69
+msgid "Object Array Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:70
+msgid "A object array option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:74
+msgid "Object Array Number Option"
+msgstr ""
+
+#: src/rules/debug-all-options/index.ts:75
+msgid "A object array number option"
+msgstr ""
+
+#: src/rules/debug-i18n/index.ts:14
+msgid "Hello world"
+msgstr "世界你好"
+
+#: src/rules/debug-i18n/index.ts:20
+msgid "Debug internationalization"
+msgstr ""
+
+#: src/rules/debug-i18n/index.ts:21
+msgid "Internal debug rule that generates a violation with a translated message"
+msgstr ""
+
+#: src/rules/debug-throws-error/index.ts:17
+msgid "Debug throws error"
+msgstr ""
+
+#: src/rules/debug-throws-error/index.ts:18
+msgid "Internal debug rule that always throws a rule error"
+msgstr ""
+
+#: src/rules/exported-layers-normal-blend-mode/index.ts:30
+msgid "Blend mode found on exported layer, consider flattening the blend mode for consistent export results."
+msgstr ""
+
+#: src/rules/exported-layers-normal-blend-mode/index.ts:40
+msgid "Blend mode found on exported layer, consider flattening the blend modes for consistent export results."
+msgstr ""
+
+#: src/rules/exported-layers-normal-blend-mode/index.ts:50
+msgid "Avoid blend modes on exported layers"
+msgstr ""
+
+#: src/rules/exported-layers-normal-blend-mode/index.ts:51
+msgid "The visual effect of a blend mode is dependant on what's behind the layer, therefore exporting these layers will often not reproduce the desired result in the exported asset. Some teams may wish to flag exported layers with blend modes in case they represent a mistake"
+msgstr ""
+
+#: src/rules/fills-no-disabled/index.ts:31
+msgid "There's a disabled fill in this layer style"
+msgstr ""
+
+#: src/rules/fills-no-disabled/index.ts:42
+msgid "There's a disabled fill in this shared style"
+msgstr ""
+
+#: src/rules/fills-no-disabled/index.ts:52
+msgid "Styles should not have disabled fills"
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:40
+msgid "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:56
+msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:62
+msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:67
+msgid "Maximum Layers"
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:69
+msgid "Maximum layers in a group"
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:74
+msgid "Skip Classes"
+msgstr ""
+
+#: src/rules/groups-max-layers/index.ts:75
+msgid "An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group"
+msgstr ""
+
+#: src/rules/groups-no-empty/index.ts:21
+msgid "This group is empty"
+msgstr ""
+
+#: src/rules/groups-no-empty/index.ts:31
+msgid "Groups should not be empty"
+msgstr ""
+
+#: src/rules/groups-no-empty/index.ts:32
+msgid "Remove empty groups to avoid document organization or usability issues."
+msgstr ""
+
+#: src/rules/groups-no-redundant/index.ts:25
+msgid "This group is redundant"
+msgstr ""
+
+#: src/rules/groups-no-redundant/index.ts:35
+msgid "Groups should not be redundant"
+msgstr ""
+
+#: src/rules/groups-no-redundant/index.ts:36
+msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
+msgstr ""
+
+#: src/rules/groups-no-similar/index.ts:45
+msgid "Group is similar to other groups: {identicalGroupNames}"
+msgstr ""
+
+#: src/rules/groups-no-similar/index.ts:56
+msgid "{maxIdentical, plural, one {Similar groups should be a symbol} other {More than # similar groups should be a symbol}}"
+msgstr ""
+
+#: src/rules/groups-no-similar/index.ts:62
+msgid "Don't allow groups that are too similar. Consider using a Symbol instead."
+msgstr ""
+
+#: src/rules/groups-no-similar/index.ts:66
+#: src/rules/layer-styles-prefer-shared/index.ts:93
+#: src/rules/text-styles-prefer-shared/index.ts:81
+msgid "Max Identical"
+msgstr ""
+
+#: src/rules/groups-no-similar/index.ts:67
+msgid "The maximum number of identical groups allowed in the document"
+msgstr ""
+
+#: src/rules/images-no-outsized/index.ts:54
+msgid "Unexpected oversized image used in image layer, must be no more than {maxRatio}x larger than the layer frame's width or height"
+msgstr ""
+
+#: src/rules/images-no-outsized/index.ts:57
+msgid "Unexpected oversized image used in layer style image fill, must be no more than {maxRatio}x larger than the layer frame's width or height"
+msgstr ""
+
+#: src/rules/images-no-outsized/index.ts:70
+msgid "Images should be no more than {0}x larger than their frame"
+msgstr ""
+
+#: src/rules/images-no-outsized/index.ts:71
+msgid "Image bitmaps much larger than their layer needlessly swell the document size and potentially cause performance problems navigating the document. Some teams may wish to put limits in place to prevent this"
+msgstr ""
+
+#: src/rules/images-no-outsized/index.ts:76
+msgid "Maximum Ratio"
+msgstr ""
+
+#: src/rules/images-no-outsized/index.ts:78
+msgid "How much larger an image can be than its frame and still be considered valid"
+msgstr ""
+
+#: src/rules/images-no-undersized/index.ts:43
+msgid "Unexpected undersized image used in image layer, must fill at least {0}% of the layer frame's width or height"
+msgstr ""
+
+#: src/rules/images-no-undersized/index.ts:46
+msgid "Unexpected undersized image used in layer style image fill, must fill at least {0}% of the layer frame's width or height"
+msgstr ""
+
+#: src/rules/images-no-undersized/index.ts:60
+msgid "Images must be no less than {0}x smaller than their frame"
+msgstr ""
+
+#: src/rules/images-no-undersized/index.ts:61
+msgid "Image bitmaps smaller than their layer might produce poor results in exported graphics. Some teams may wish to put limits in place to prevent this"
+msgstr ""
+
+#: src/rules/images-no-undersized/index.ts:66
+msgid "Minium Allowed Ratio"
+msgstr ""
+
+#: src/rules/images-no-undersized/index.ts:68
+msgid "How much smaller an image can be in relation to its frame and still be considered valid"
+msgstr ""
+
+#: src/rules/inner-shadows-no-disabled/index.ts:31
+msgid "There's a disabled inner shadow in this layer style"
+msgstr ""
+
+#: src/rules/inner-shadows-no-disabled/index.ts:42
+msgid "There's a disabled inner shadow in this shared style"
+msgstr ""
+
+#: src/rules/inner-shadows-no-disabled/index.ts:52
+msgid "Styles should not have disabled inner shadows"
+msgstr ""
+
+#: src/rules/layer-styles-no-dirty/index.ts:44
+msgid "This layer style is different from its shared style"
+msgstr ""
+
+#: src/rules/layer-styles-no-dirty/index.ts:56
+msgid "Layer styles should be the same as their shared style"
+msgstr ""
+
+#: src/rules/layer-styles-no-dirty/index.ts:57
+msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:39
+msgid "Layer styles must be set with the shared styles of a library"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:50
+#: src/rules/text-styles-prefer-library/index.ts:39
+msgid "A shared style from a library is expected"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:63
+#: src/rules/symbols-prefer-library/index.ts:43
+#: src/rules/text-styles-prefer-library/index.ts:52
+msgid "Uses the unauthorized library \"{libraryName}\""
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:75
+#: src/rules/text-styles-prefer-library/index.ts:64
+msgid "Shared style differs from library"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:90
+msgid "Shared styles must come from a library"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:91
+msgid "Shared styles must come from the libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:93
+msgid "Teams may wish to enforce the usage of libraries within a document, and the presence of local shared layer styles represent an opportunity to refactor them into the library"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:97
+#: src/rules/symbols-prefer-library/index.ts:67
+#: src/rules/text-styles-prefer-library/index.ts:86
+msgid "Authorized libraries"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-library/index.ts:98
+#: src/rules/symbols-prefer-library/index.ts:68
+#: src/rules/text-styles-prefer-library/index.ts:87
+msgid "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
+msgstr ""
+
+#: src/rules/layer-styles-prefer-shared/index.ts:69
+msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-shared/index.ts:83
+#: src/rules/text-styles-prefer-shared/index.ts:71
+msgid "{maxIdentical, plural, one {Layer styles should not be identical} other {No more than # layer styles should be identical}}"
+msgstr ""
+
+#: src/rules/layer-styles-prefer-shared/index.ts:89
+msgid "You could simplify things by removing identical shared styles and applying a single style to all the affected layers."
+msgstr ""
+
+#: src/rules/layer-styles-prefer-shared/index.ts:94
+msgid "The maximum allowed number of identical layer styles"
+msgstr ""
+
+#: src/rules/layers-no-hidden/index.ts:21
+msgid "This layer is hidden"
+msgstr ""
+
+#: src/rules/layers-no-hidden/index.ts:31
+msgid "There should be no hidden layers"
+msgstr ""
+
+#: src/rules/layers-no-hidden/index.ts:32
+msgid "Hidden layers may cause uncertainty. Some teams may want to remove them."
+msgstr ""
+
+#: src/rules/layers-no-loose/index.ts:22
+msgid "This layer is not inside an Artboard"
+msgstr ""
+
+#: src/rules/layers-no-loose/index.ts:32
+msgid "Layers should not be outside artboards"
+msgstr ""
+
+#: src/rules/layers-no-loose/index.ts:33
+msgid "Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards."
+msgstr ""
+
+#: src/rules/layers-subpixel-positioning/index.ts:64
+msgid "Unexpected sub-pixel positioning ({x}, {y})"
+msgstr ""
+
+#: src/rules/layers-subpixel-positioning/index.ts:76
+msgid "Layers must be placed on {increments} sub-pixel increments"
+msgstr ""
+
+#: src/rules/layers-subpixel-positioning/index.ts:78
+msgid "Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments."
+msgstr ""
+
+#: src/rules/layers-subpixel-positioning/index.ts:83
+msgid "Scale Factors"
+msgstr ""
+
+#: src/rules/layers-subpixel-positioning/index.ts:84
+msgid "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
+msgstr ""
+
+#: src/rules/name-pattern-artboards/index.ts:7
+msgid "Artboard names should follow the conventions"
+msgstr ""
+
+#: src/rules/name-pattern-artboards/index.ts:8
+#: src/rules/name-pattern-groups/index.ts:8
+#: src/rules/name-pattern-images/index.ts:8
+#: src/rules/name-pattern-pages/index.ts:8
+#: src/rules/name-pattern-shapes/index.ts:16
+#: src/rules/name-pattern-symbols/index.ts:8
+#: src/rules/name-pattern-text/index.ts:8
+msgid "Teams might want to enforce specific naming patterns when it's important that your layers are precisely named."
+msgstr ""
+
+#: src/rules/name-pattern-artboards/index.ts:13
+#: src/rules/name-pattern-groups/index.ts:13
+#: src/rules/name-pattern-images/index.ts:13
+#: src/rules/name-pattern-pages/index.ts:13
+#: src/rules/name-pattern-shapes/index.ts:21
+#: src/rules/name-pattern-symbols/index.ts:13
+#: src/rules/name-pattern-text/index.ts:13
+msgid "Allowable Patterns"
+msgstr ""
+
+#: src/rules/name-pattern-artboards/index.ts:14
+#: src/rules/name-pattern-groups/index.ts:14
+#: src/rules/name-pattern-images/index.ts:14
+#: src/rules/name-pattern-pages/index.ts:14
+#: src/rules/name-pattern-shapes/index.ts:22
+#: src/rules/name-pattern-symbols/index.ts:14
+#: src/rules/name-pattern-text/index.ts:14
+msgid "A list of regular expressions that define which names are allowed"
+msgstr ""
+
+#: src/rules/name-pattern-artboards/index.ts:18
+#: src/rules/name-pattern-groups/index.ts:18
+#: src/rules/name-pattern-images/index.ts:18
+#: src/rules/name-pattern-pages/index.ts:18
+#: src/rules/name-pattern-shapes/index.ts:26
+#: src/rules/name-pattern-symbols/index.ts:18
+#: src/rules/name-pattern-text/index.ts:18
+msgid "Forbidden Patterns"
+msgstr ""
+
+#: src/rules/name-pattern-artboards/index.ts:19
+#: src/rules/name-pattern-groups/index.ts:19
+#: src/rules/name-pattern-images/index.ts:19
+#: src/rules/name-pattern-pages/index.ts:19
+#: src/rules/name-pattern-shapes/index.ts:27
+#: src/rules/name-pattern-symbols/index.ts:19
+#: src/rules/name-pattern-text/index.ts:19
+msgid "A list of regular expressions that define which names are forbidden"
+msgstr ""
+
+#: src/rules/name-pattern-groups/index.ts:7
+msgid "Group names should follow the conventions"
+msgstr ""
+
+#: src/rules/name-pattern-images/index.ts:7
+msgid "Image names should follow the conventions"
+msgstr ""
+
+#: src/rules/name-pattern-pages/index.ts:7
+msgid "Page names should follow the conventions"
+msgstr ""
+
+#: src/rules/name-pattern-shapes/index.ts:15
+msgid "Shape names should follow the conventions"
+msgstr ""
+
+#: src/rules/name-pattern-symbols/index.ts:7
+msgid "Symbol names should follow the conventions"
+msgstr ""
+
+#: src/rules/name-pattern-text/index.ts:7
+msgid "Text names should follow the conventions"
+msgstr ""
+
+#: src/rules/result-messages-include/index.ts:21
+msgid "Unchecked message \"{message}\""
+msgstr ""
+
+#: src/rules/result-messages-include/index.ts:29
+msgid "Checklist messages"
+msgstr ""
+
+#: src/rules/result-messages-include/index.ts:30
+msgid "Define a list of messages to check for"
+msgstr ""
+
+#: src/rules/result-messages-include/index.ts:35
+msgid "Messages"
+msgstr ""
+
+#: src/rules/result-messages-include/index.ts:36
+msgid "An array of messages to check for"
+msgstr ""
+
+#: src/rules/shadows-no-disabled/index.ts:31
+msgid "There's a disabled shadow on this layer style"
+msgstr ""
+
+#: src/rules/shadows-no-disabled/index.ts:42
+msgid "There's a disabled shadow on this shared style"
+msgstr ""
+
+#: src/rules/shadows-no-disabled/index.ts:52
+msgid "Styles should not have disabled shadows"
+msgstr ""
+
+#: src/rules/shared-styles-no-unused/index.ts:42
+msgid "This shared style is unused"
+msgstr ""
+
+#: src/rules/shared-styles-no-unused/index.ts:49
+msgid "All shared styles should be used"
+msgstr ""
+
+#: src/rules/shared-styles-no-unused/index.ts:50
+msgid "Some teams may consider unused shared styles a document organization issue."
+msgstr ""
+
+#: src/rules/symbols-no-unused/index.ts:31
+msgid "This symbol is unused"
+msgstr ""
+
+#: src/rules/symbols-no-unused/index.ts:38
+msgid "All symbols should be in-use"
+msgstr ""
+
+#: src/rules/symbols-no-unused/index.ts:39
+msgid "Some teams may consider unused symbols a document organization issue."
+msgstr ""
+
+#: src/rules/symbols-prefer-library/index.ts:30
+msgid "A symbol from a library is expected"
+msgstr ""
+
+#: src/rules/symbols-prefer-library/index.ts:60
+msgid "Symbols must come from a library"
+msgstr ""
+
+#: src/rules/symbols-prefer-library/index.ts:61
+msgid "Symbols must come from the {authorizedLibraries} libraries"
+msgstr ""
+
+#: src/rules/symbols-prefer-library/index.ts:63
+msgid "Teams may wish to enforce the usage of libraries within a document, and the presence of local symbols can represent an opportunity to refactor them into a library"
+msgstr ""
+
+#: src/rules/text-styles-no-dirty/index.ts:38
+msgid "This text style is different from its shared style"
+msgstr ""
+
+#: src/rules/text-styles-no-dirty/index.ts:50
+msgid "Text styles should be the same as their shared styles"
+msgstr ""
+
+#: src/rules/text-styles-no-dirty/index.ts:51
+msgid "If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles."
+msgstr ""
+
+#: src/rules/text-styles-prefer-library/index.ts:28
+msgid "Text styles must be set with the shared styles of a library"
+msgstr ""
+
+#: src/rules/text-styles-prefer-library/index.ts:79
+msgid "Text styles must come from a library"
+msgstr ""
+
+#: src/rules/text-styles-prefer-library/index.ts:80
+msgid "Text styles must come from the {authorizedLibraries} libraries"
+msgstr ""
+
+#: src/rules/text-styles-prefer-library/index.ts:82
+msgid "Teams may wish to enforce the usage of libraries within a document, and the presence of local shared text styles represent an opportunity to refactor them into the library"
+msgstr ""
+
+#: src/rules/text-styles-prefer-shared/index.ts:57
+msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
+msgstr ""
+
+#: src/rules/text-styles-prefer-shared/index.ts:77
+msgid "You could simplify things by removing identical text styles and applying a single style to all affected text."
+msgstr ""
+
+#: src/rules/text-styles-prefer-shared/index.ts:82
+msgid "The maximum allowed number of identical text styles"
+msgstr ""
