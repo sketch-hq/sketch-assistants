@@ -9,6 +9,7 @@
     "@sketch-hq/sketch-assistant-utils": "4.0.0"
   },
   "changesets": [
+    "afraid-wolves-change",
     "angry-kids-nail",
     "five-ladybugs-tell",
     "hungry-jeans-eat",

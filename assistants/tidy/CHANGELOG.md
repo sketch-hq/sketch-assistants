@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 5.0.0-next.9
+
+### Patch Changes
+
+- fe3d8e8: Fix Assistant homepage values to point into new monorepo structure.
+
 ## 4.0.1-next.8
 
 ### Patch Changes
