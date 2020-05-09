@@ -16,7 +16,7 @@
     "design ops"
   ],
   "scripts": {
-    "build": "tsc --emitDeclarationOnly && yarn i18n:compile && babel ./src --out-dir dist --extensions '.js,.ts'",
+    "build": "tsc --build && yarn i18n:compile && babel ./src --out-dir dist --extensions '.js,.ts'",
     "i18n:compile": "lingui compile",
     "i18n:extract": "lingui extract --clean",
     "test": "jest"
