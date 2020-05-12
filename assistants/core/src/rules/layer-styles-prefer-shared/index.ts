@@ -72,9 +72,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'layer-styles-prefer-shared',
     title: (ruleConfig) => {
       const { maxIdentical } = ruleConfig
+      if (typeof maxIdentical !== 'number') return ''
       return i18n._(
         plural({
-          value: maxIdentical as number,
+          value: maxIdentical,
           one: 'Layer styles should not be identical',
           other: 'No more than # layer styles should be identical',
         }),

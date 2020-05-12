@@ -165,19 +165,19 @@ msgstr ""
 msgid "{nonGroupLayers, plural, one {There is one ungrouped layer within this Artboard} other {There are # ungrouped layers within this Artboard}}"
 msgstr ""
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:44
+#: src/rules/artboards-max-ungrouped-layers/index.ts:46
 msgid "{maxUngroupedLayers, plural, one {Artboards should only have one ungrouped layers} other {Artboards should have less than # ungrouped layers}}"
 msgstr ""
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:50
+#: src/rules/artboards-max-ungrouped-layers/index.ts:52
 msgid "Grouping layers within your Artboards will help you stay organized."
 msgstr ""
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:55
+#: src/rules/artboards-max-ungrouped-layers/index.ts:57
 msgid "Maximum Ungrouped Layers"
 msgstr ""
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:57
+#: src/rules/artboards-max-ungrouped-layers/index.ts:59
 msgid "The maximum number of ungrouped layers"
 msgstr ""
 
@@ -328,27 +328,27 @@ msgstr ""
 msgid "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
 msgstr ""
 
-#: src/rules/groups-max-layers/index.ts:56
+#: src/rules/groups-max-layers/index.ts:58
 msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
 msgstr ""
 
-#: src/rules/groups-max-layers/index.ts:62
+#: src/rules/groups-max-layers/index.ts:64
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
 msgstr ""
 
-#: src/rules/groups-max-layers/index.ts:67
+#: src/rules/groups-max-layers/index.ts:69
 msgid "Maximum Layers"
 msgstr ""
 
-#: src/rules/groups-max-layers/index.ts:69
+#: src/rules/groups-max-layers/index.ts:71
 msgid "Maximum layers in a group"
 msgstr ""
 
-#: src/rules/groups-max-layers/index.ts:74
+#: src/rules/groups-max-layers/index.ts:76
 msgid "Skip Classes"
 msgstr ""
 
-#: src/rules/groups-max-layers/index.ts:75
+#: src/rules/groups-max-layers/index.ts:77
 msgid "An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group"
 msgstr ""
 
@@ -389,8 +389,8 @@ msgid "Don't allow groups that are too similar. Consider using a Symbol instead.
 msgstr ""
 
 #: src/rules/groups-no-similar/index.ts:66
-#: src/rules/layer-styles-prefer-shared/index.ts:93
-#: src/rules/text-styles-prefer-shared/index.ts:81
+#: src/rules/layer-styles-prefer-shared/index.ts:95
+#: src/rules/text-styles-prefer-shared/index.ts:83
 msgid "Max Identical"
 msgstr ""
 
@@ -406,19 +406,19 @@ msgstr ""
 msgid "Unexpected oversized image used in layer style image fill, must be no more than {maxRatio}x larger than the layer frame's width or height"
 msgstr ""
 
-#: src/rules/images-no-outsized/index.ts:70
-msgid "Images should be no more than {0}x larger than their frame"
+#: src/rules/images-no-outsized/index.ts:72
+msgid "Images should be no more than {maxRatio}x larger than their frame"
 msgstr ""
 
-#: src/rules/images-no-outsized/index.ts:71
+#: src/rules/images-no-outsized/index.ts:74
 msgid "Image bitmaps much larger than their layer needlessly swell the document size and potentially cause performance problems navigating the document. Some teams may wish to put limits in place to prevent this"
 msgstr ""
 
-#: src/rules/images-no-outsized/index.ts:76
+#: src/rules/images-no-outsized/index.ts:79
 msgid "Maximum Ratio"
 msgstr ""
 
-#: src/rules/images-no-outsized/index.ts:78
+#: src/rules/images-no-outsized/index.ts:81
 msgid "How much larger an image can be than its frame and still be considered valid"
 msgstr ""
 
@@ -430,19 +430,19 @@ msgstr ""
 msgid "Unexpected undersized image used in layer style image fill, must fill at least {0}% of the layer frame's width or height"
 msgstr ""
 
-#: src/rules/images-no-undersized/index.ts:60
-msgid "Images must be no less than {0}x smaller than their frame"
+#: src/rules/images-no-undersized/index.ts:62
+msgid "Images must be no less than {minRatio}x smaller than their frame"
 msgstr ""
 
-#: src/rules/images-no-undersized/index.ts:61
+#: src/rules/images-no-undersized/index.ts:64
 msgid "Image bitmaps smaller than their layer might produce poor results in exported graphics. Some teams may wish to put limits in place to prevent this"
 msgstr ""
 
-#: src/rules/images-no-undersized/index.ts:66
+#: src/rules/images-no-undersized/index.ts:69
 msgid "Minium Allowed Ratio"
 msgstr ""
 
-#: src/rules/images-no-undersized/index.ts:68
+#: src/rules/images-no-undersized/index.ts:71
 msgid "How much smaller an image can be in relation to its frame and still be considered valid"
 msgstr ""
 
@@ -518,16 +518,16 @@ msgstr ""
 msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
 msgstr ""
 
-#: src/rules/layer-styles-prefer-shared/index.ts:83
-#: src/rules/text-styles-prefer-shared/index.ts:71
+#: src/rules/layer-styles-prefer-shared/index.ts:85
+#: src/rules/text-styles-prefer-shared/index.ts:73
 msgid "{maxIdentical, plural, one {Layer styles should not be identical} other {No more than # layer styles should be identical}}"
 msgstr ""
 
-#: src/rules/layer-styles-prefer-shared/index.ts:89
+#: src/rules/layer-styles-prefer-shared/index.ts:91
 msgid "You could simplify things by removing identical shared styles and applying a single style to all the affected layers."
 msgstr ""
 
-#: src/rules/layer-styles-prefer-shared/index.ts:94
+#: src/rules/layer-styles-prefer-shared/index.ts:96
 msgid "The maximum allowed number of identical layer styles"
 msgstr ""
 
@@ -757,10 +757,10 @@ msgstr ""
 msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
 msgstr ""
 
-#: src/rules/text-styles-prefer-shared/index.ts:77
+#: src/rules/text-styles-prefer-shared/index.ts:79
 msgid "You could simplify things by removing identical text styles and applying a single style to all affected text."
 msgstr ""
 
-#: src/rules/text-styles-prefer-shared/index.ts:82
+#: src/rules/text-styles-prefer-shared/index.ts:84
 msgid "The maximum allowed number of identical text styles"
 msgstr ""

@@ -72,8 +72,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'images-no-outsized',
-    title: (ruleConfig) =>
-      i18n._(t`Images should be no more than ${ruleConfig.maxRatio}x larger than their frame`),
+    title: (ruleConfig) => {
+      const { maxRatio } = ruleConfig
+      return i18n._(t`Images should be no more than ${maxRatio}x larger than their frame`)
+    },
     description: i18n._(
       t`Image bitmaps much larger than their layer needlessly swell the document size and potentially cause performance problems navigating the document. Some teams may wish to put limits in place to prevent this`,
     ),

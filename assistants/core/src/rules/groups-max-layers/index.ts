@@ -50,9 +50,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'groups-max-layers',
     title: (ruleConfig) => {
       const { maxLayers } = ruleConfig
+      if (typeof maxLayers !== 'number') return ''
       return i18n._(
         plural({
-          value: maxLayers as number,
+          value: maxLayers,
           one: 'Groups should only have one layer',
           other: 'Groups should have less than # layers',
         }),

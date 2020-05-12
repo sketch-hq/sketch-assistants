@@ -3,48 +3,48 @@ import CoreAssistant from '@sketch-hq/sketch-core-assistant'
 
 export const config: AssistantConfig = {
   rules: {
-    '@sketch-hq/sketch-assistant-core-rules/artboards-max-ungrouped-layers': {
+    '@sketch-hq/sketch-core-assistant/artboards-max-ungrouped-layers': {
       active: true,
       maxUngroupedLayers: 5,
     },
-    '@sketch-hq/sketch-assistant-core-rules/borders-no-disabled': {
+    '@sketch-hq/sketch-core-assistant/borders-no-disabled': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/fills-no-disabled': {
+    '@sketch-hq/sketch-core-assistant/fills-no-disabled': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/inner-shadows-no-disabled': {
+    '@sketch-hq/sketch-core-assistant/inner-shadows-no-disabled': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/shadows-no-disabled': {
+    '@sketch-hq/sketch-core-assistant/shadows-no-disabled': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/layer-styles-no-dirty': {
+    '@sketch-hq/sketch-core-assistant/layer-styles-no-dirty': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/text-styles-no-dirty': {
+    '@sketch-hq/sketch-core-assistant/text-styles-no-dirty': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/groups-no-empty': {
+    '@sketch-hq/sketch-core-assistant/groups-no-empty': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/groups-no-redundant': {
+    '@sketch-hq/sketch-core-assistant/groups-no-redundant': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/layers-no-hidden': {
+    '@sketch-hq/sketch-core-assistant/layers-no-hidden': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/layers-subpixel-positioning': {
+    '@sketch-hq/sketch-core-assistant/layers-subpixel-positioning': {
       active: true,
       scaleFactors: ['@1x', '@2x'],
     },
-    '@sketch-hq/sketch-assistant-core-rules/shared-styles-no-unused': {
+    '@sketch-hq/sketch-core-assistant/shared-styles-no-unused': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/symbols-no-unused': {
+    '@sketch-hq/sketch-core-assistant/symbols-no-unused': {
       active: true,
     },
-    '@sketch-hq/sketch-assistant-core-rules/layers-no-loose': {
+    '@sketch-hq/sketch-core-assistant/layers-no-loose': {
       active: true,
     },
   },

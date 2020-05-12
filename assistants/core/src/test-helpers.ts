@@ -14,7 +14,7 @@ export const testRule = async (
   await utils.testRule(
     resolve(dirname, fixture),
     assistant,
-    `@sketch-hq/sketch-assistant-core-rules/${ruleId}`,
+    `@sketch-hq/sketch-core-assistant/${ruleId}`,
     config,
     env,
   )
