@@ -1,5 +1,13 @@
 # @sketch-hq/sketch-naming-conventions-assistant
 
+## 5.0.0-next.10
+
+### Patch Changes
+
+- acc8cf6: Add icons to Assistants.
+- Updated dependencies [1c388d9]
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.10
+
 ## 5.0.0-next.9
 
 ### Patch Changes
