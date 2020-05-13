@@ -1,3 +1,7 @@
+// This is the Webpack config used by the Assistants to bundle themselves into a
+// single file for usage in Sketch. Check their `build:sketch` scripts for more
+// usage information.
+
 const path = require('path')
 
 module.exports = {

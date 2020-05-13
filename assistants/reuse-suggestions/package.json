@@ -19,11 +19,16 @@
     "assistant",
     "design ops"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "4.0.1-next.8"
+    "@sketch-hq/sketch-assistant-types": "4.0.1-next.8",
+    "@sketch-hq/sketch-core-assistant": "0.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@sketch-hq/sketch-assistant-utils": "4.0.1-next.8"
+  },
   "scripts": {
     "test": "jest",
     "build": "tsc --build && yarn build:sketch",

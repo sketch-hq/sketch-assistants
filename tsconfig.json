@@ -4,6 +4,9 @@
     { "path": "./packages/utils" },
     { "path": "./packages/utils/tsconfig.esm.json" },
     { "path": "./packages/types" },
-    { "path": "./assistants/tidy" }
+    { "path": "./assistants/core" },
+    { "path": "./assistants/tidy" },
+    { "path": "./assistants/naming-conventions" },
+    { "path": "./assistants/reuse-suggestions" }
   ]
 }

@@ -6,7 +6,7 @@ import Assistant from '..'
 import { config } from '..'
 
 const testCoreRuleWithConfig = async (fixture: string, ruleId: string, numViolations = 1) => {
-  const ruleName = `@sketch-hq/sketch-assistant-core-rules/${ruleId}`
+  const ruleName = `@sketch-hq/sketch-core-assistant/${ruleId}`
   const { violations, errors } = await testRule(
     resolve(__dirname, fixture),
     Assistant,

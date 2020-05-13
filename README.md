@@ -3,7 +3,8 @@
 A TypeScript monorepo for Sketch Assistants and related packages.
 
 > ⚠️ This repository is in pre-release mode on the `next` tag until the Assistants are officially
-> released.
+> released. This means you should install packages with `@next`, and expect any API to change
+> between pre-releases.
 
 ## Contents
 
@@ -34,7 +35,7 @@ Sketch you can safely ignore this section.
 
 1. Clone the repository.
 1. Run `yarn` in the root folder.
-1. Head to the package you wish to work with for additional documentation (linked above).
+1. Head to the package folder you wish to work with for additional documentation (linked above).
 
 ### Monorepo scripts
 
@@ -42,8 +43,8 @@ These scripts operate globally across every package in the monorepo.
 
 | Script                | Description                                   |
 | --------------------- | --------------------------------------------- |
-| `yarn test`           | Test all packages                             |
 | `yarn build`          | Builds all packages                           |
+| `yarn test`           | Test all packages                             |
 | `yarn prettier-check` | Check the format for all code in the monorepo |
 | `yarn release`        | Build and release all packages to npm         |
 

@@ -17,10 +17,12 @@
     "build": "tsc",
     "test": "echo \"Not implemented\""
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@schemastore/package": "0.0.5",
-    "@sketch-hq/sketch-file-format-ts": "4.0.3",
+    "@sketch-hq/sketch-file-format-ts": "4.0.5",
     "@types/json-schema": "7.0.4"
   }
 }

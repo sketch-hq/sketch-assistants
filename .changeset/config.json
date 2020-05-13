@@ -6,6 +6,7 @@
     [
       "@sketch-hq/sketch-naming-conventions-assistant",
       "@sketch-hq/sketch-reuse-suggestions-assistant",
+      "@sketch-hq/sketch-core-assistant",
       "@sketch-hq/sketch-tidy-assistant",
       "@sketch-hq/sketch-assistant-utils",
       "@sketch-hq/sketch-assistant-types"

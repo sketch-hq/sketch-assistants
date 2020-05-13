@@ -5,3 +5,4 @@ dist
 *.lock
 .changeset
 CHANGELOG.md
+assistants/core/src/locale
