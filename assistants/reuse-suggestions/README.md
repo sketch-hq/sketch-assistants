@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/1078571/81808051-0c37ee80-9517-11ea-9bf2-86fc3cf7edcb.png" width="100">
+
 # Reuse Suggestions
 
 Notices when similar styles and groups could be abstracted into shared styles and symbols

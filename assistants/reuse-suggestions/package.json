@@ -10,7 +10,7 @@
   "sketch-assistant": {
     "title": "Reuse Suggestions",
     "description": "Notices when similar styles and groups could be abstracted into shared styles and symbols respectively",
-    "icon": ""
+    "icon": "https://user-images.githubusercontent.com/1078571/81808051-0c37ee80-9517-11ea-9bf2-86fc3cf7edcb.png"
   },
   "keywords": [
     "sketch",

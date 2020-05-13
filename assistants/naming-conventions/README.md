@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/1078571/81808046-0a6e2b00-9517-11ea-9b6c-1c6fa9a377ba.png" width="100">
+
 # Naming Conventions
 
 Naming conventions used by the Sketch design team.
