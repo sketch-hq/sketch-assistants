@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/1078571/81808057-0e01b200-9517-11ea-95ae-8759f54dba13.png" width="100">
+
 # Tidy
 
 The rules in this Assistant are all focused on keeping your Sketch documents as clean and tidy as
