@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-core-assistant",
-  "version": "0.1.0",
+  "version": "5.0.0-next.10",
   "license": "MIT",
   "repository": "github:sketch-hq/sketch-assistants",
   "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/core",
@@ -21,9 +21,7 @@
     "i18n:extract": "lingui extract --clean",
     "test": "jest"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "@lingui/core": "2.9.1",
     "@sketch-hq/sketch-assistant-types": "4.0.1-next.8",
