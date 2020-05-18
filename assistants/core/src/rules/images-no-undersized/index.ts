@@ -23,13 +23,11 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const minRatio = utils.getOption('minRatio')
     assertOption(minRatio)
 
-    const imageProcessor = createImageProcessor(utils.getImageMetadata, utils.nodeToObject)
+    const imageProcessor = createImageProcessor(utils.getImageMetadata)
 
-    await utils.iterateCache({
-      async $layers(node): Promise<void> {
-        imageProcessor.handleLayerImages(node)
-      },
-    })
+    for (const layer of utils.objects.anyLayer) {
+      imageProcessor.handleLayerImages(layer)
+    }
 
     const results = await imageProcessor.getResults()
 
@@ -54,7 +52,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
               break
           }
           utils.report({
-            node: usage.node,
+            object: usage.object,
             message,
           })
         }

@@ -159,18 +159,16 @@ describe('runAssistant', () => {
     expect(errors).toHaveLength(1)
   })
 
-  test('can produce rule errors during cache iteration', async (): Promise<void> => {
+  test('can produce rule errors during iteration', async (): Promise<void> => {
     expect.assertions(2)
     const { errors, violations } = await testRunAssistant(
       createAssistantConfig({ rules: { rule: { active: true } } }),
       createRule({
         name: 'rule',
         rule: async (context) => {
-          await context.utils.iterateCache({
-            page: async () => {
-              throw new Error()
-            },
-          })
+          for (const page of context.utils.objects.page) {
+            throw Error(`Page ${page.name} looks wonky`)
+          }
         },
       }),
     )

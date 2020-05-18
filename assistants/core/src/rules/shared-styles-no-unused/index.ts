@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { RuleContext, RuleFunction, Node, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 
@@ -7,33 +7,28 @@ export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
 
-    const sharedStyles: Node<FileFormat.SharedStyle>[] = []
     const usages: Set<string> = new Set()
 
-    await utils.iterateCache({
-      async sharedStyle(node) {
-        sharedStyles.push(node as Node<FileFormat.SharedStyle>)
-      },
-      async symbolInstance(node) {
-        const obj = utils.nodeToObject<FileFormat.SymbolInstance>(node)
-        obj.overrideValues.forEach((override) => {
-          if (typeof override.value === 'string') usages.add(override.value)
-        })
-      },
-      async $layers(node) {
-        const obj = utils.nodeToObject(node)
-        if ('sharedStyleID' in obj && typeof obj.sharedStyleID === 'string') {
-          usages.add(obj.sharedStyleID)
-        }
-      },
-    })
+    for (const instance of utils.objects.symbolInstance) {
+      instance.overrideValues.forEach((override) => {
+        if (typeof override.value === 'string') usages.add(override.value)
+      })
+    }
 
-    const invalid: Node[] = sharedStyles.filter((node) => !usages.has(node.do_objectID))
+    for (const layer of utils.objects.anyLayer) {
+      if ('sharedStyleID' in layer && typeof layer.sharedStyleID === 'string') {
+        usages.add(layer.sharedStyleID)
+      }
+    }
+
+    const invalid: FileFormat.SharedStyle[] = [...utils.objects.sharedStyle].filter(
+      (style) => !usages.has(style.do_objectID),
+    )
 
     utils.report(
-      invalid.map((node) => ({
+      invalid.map((object) => ({
         message: i18n._(t`This shared style is unused`),
-        node,
+        object,
       })),
     )
   }

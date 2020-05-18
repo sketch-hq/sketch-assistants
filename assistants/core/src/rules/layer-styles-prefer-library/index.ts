@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 import { isCombinedShapeChildLayer } from '../../rule-helpers'
@@ -19,59 +19,56 @@ export const createRule: CreateRuleFunction = (i18n) => {
       new Map(),
     )
     // Reports are done in place, while iterating through cache.
-    await utils.iterateCache({
-      async $layers(node): Promise<void> {
-        const layer = utils.nodeToObject<FileFormat.AnyLayer>(node)
-        if (IGNORE_CLASSES.includes(node._class)) return
-        if (isCombinedShapeChildLayer(node, utils)) return // Ignore layers in combined shapes
-        if (layer._class === 'group' && !layer.style?.shadows?.length) return // Ignore groups with default styles (i.e. no shadows)
-        if (typeof layer.sharedStyleID !== 'string') {
-          // Report immediately if there is no sharedStyleID
+    for (const layer of utils.objects.anyLayer) {
+      if (IGNORE_CLASSES.includes(layer._class)) continue
+      if (isCombinedShapeChildLayer(layer, utils)) continue // Ignore layers in combined shapes
+      if (layer._class === 'group' && !layer.style?.shadows?.length) continue // Ignore groups with default styles (i.e. no shadows)
+      if (typeof layer.sharedStyleID !== 'string') {
+        // Report immediately if there is no sharedStyleID
+        utils.report([
+          {
+            object: layer,
+            message: i18n._(t`Layer styles must be set with the shared styles of a library`),
+          },
+        ])
+        continue // don't process this node further
+      }
+      const library = libraries.get(layer.sharedStyleID)
+      if (!library) {
+        // sharedStyleID does not belong to a library
+        utils.report([
+          {
+            object: layer,
+            message: i18n._(t`A shared style from a library is expected`),
+          },
+        ])
+        continue
+      }
+      const libraryName = library.sourceLibraryName
+      // Determine if the library is one of the allowed libraries
+      if (Array.isArray(authorizedLibraries) && authorizedLibraries.length > 0) {
+        const isAuthorized = authorizedLibraries.indexOf(libraryName) > -1
+        if (!isAuthorized) {
           utils.report([
             {
-              node,
-              message: i18n._(t`Layer styles must be set with the shared styles of a library`),
+              object: layer,
+              message: i18n._(t`Uses the unauthorized library "${libraryName}"`),
             },
           ])
-          return // don't process this node further
+          continue
         }
-        const library = libraries.get(layer.sharedStyleID)
-        if (!library) {
-          // sharedStyleID does not belong to a library
-          utils.report([
-            {
-              node,
-              message: i18n._(t`A shared style from a library is expected`),
-            },
-          ])
-          return
-        }
-        const libraryName = library.sourceLibraryName
-        // Determine if the library is one of the allowed libraries
-        if (Array.isArray(authorizedLibraries) && authorizedLibraries.length > 0) {
-          const isAuthorized = authorizedLibraries.indexOf(libraryName) > -1
-          if (!isAuthorized) {
-            utils.report([
-              {
-                node,
-                message: i18n._(t`Uses the unauthorized library "${libraryName}"`),
-              },
-            ])
-            return
-          }
-        }
-        // Check if the layer styles differ from the library
-        const isStyleEq = utils.styleEq(layer.style, library.localSharedStyle.value)
-        if (!isStyleEq) {
-          utils.report([
-            {
-              node,
-              message: i18n._(t`Shared style differs from library`),
-            },
-          ])
-        }
-      },
-    })
+      }
+      // Check if the layer styles differ from the library
+      const isStyleEq = utils.styleEq(layer.style, library.localSharedStyle.value)
+      if (!isStyleEq) {
+        utils.report([
+          {
+            object: layer,
+            message: i18n._(t`Shared style differs from library`),
+          },
+        ])
+      }
+    }
   }
 
   return {

@@ -1,26 +1,23 @@
 import { t } from '@lingui/macro'
-import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    await utils.iterateCache({
-      async group(node): Promise<void> {
-        const group = utils.nodeToObject<FileFormat.Group>(node)
-        const usesSharedStyle = typeof group.sharedStyleID === 'string'
-        const isStyled = group.style && group.style.shadows && group.style.shadows.length > 0
-        const hasOneChild = group.layers.length === 1
-        const onlyChildIsGroup = hasOneChild && group.layers[0]._class === 'group'
-        if (!usesSharedStyle && !isStyled && hasOneChild && onlyChildIsGroup) {
-          utils.report({
-            node,
-            message: i18n._(t`This group is redundant`),
-          })
-        }
-      },
-    })
+    for (const group of utils.objects.group) {
+      const usesSharedStyle = typeof group.sharedStyleID === 'string'
+      const isStyled = group.style && group.style.shadows && group.style.shadows.length > 0
+      const hasOneChild = group.layers.length === 1
+      const onlyChildIsGroup = hasOneChild && group.layers[0]._class === 'group'
+      if (!usesSharedStyle && !isStyled && hasOneChild && onlyChildIsGroup) {
+        utils.report({
+          object: group,
+          message: i18n._(t`This group is redundant`),
+        })
+      }
+    }
   }
 
   return {

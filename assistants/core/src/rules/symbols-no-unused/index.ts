@@ -1,29 +1,19 @@
 import { t } from '@lingui/macro'
-import { RuleContext, RuleFunction, Node, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    const masters: Node[] = []
-    const instances: Node[] = []
-    await utils.iterateCache({
-      async symbolMaster(node): Promise<void> {
-        masters.push(node)
-      },
-      async symbolInstance(node): Promise<void> {
-        instances.push(node)
-      },
-    })
-    const invalid: Node[] = masters.filter(
-      (master) =>
-        instances.findIndex(
-          (instance) =>
-            utils.nodeToObject<FileFormat.SymbolInstance>(instance).symbolID ===
-            utils.nodeToObject<FileFormat.SymbolMaster>(master).symbolID,
-        ) === -1,
+
+    const masters = Array.from(utils.objects.symbolMaster)
+    const instances = Array.from(utils.objects.symbolInstance)
+
+    const invalid: FileFormat.SymbolMaster[] = masters.filter(
+      (master) => instances.findIndex((instance) => instance.symbolID === master.symbolID) === -1,
     )
+
     utils.report(
       invalid.map((node) => ({
         message: i18n._(t`This symbol is unused`),

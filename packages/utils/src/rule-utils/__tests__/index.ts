@@ -1,29 +1,40 @@
 import { resolve } from 'path'
-
-import { createRuleUtilsCreator, styleEq, textStyleEq } from '..'
-import { process } from '../../process'
-import { fromFile } from '../../from-file'
 import {
-  FileFormat,
   Violation,
   AssistantDefinition,
   RuleUtils,
-  ViolationSeverity,
+  ProcessedSketchFile,
+  FileFormat,
 } from '@sketch-hq/sketch-assistant-types'
-import { getImageMetadata } from '../../get-image-metadata'
-import { createAssistantDefinition, createAssistantConfig, createRule } from '../../test-helpers'
-import { assertNode } from '../../assert'
 
-const buildUtils = async (
-  filepath: string,
-  assistant: AssistantDefinition,
-  ruleName: string,
+import { createRuleUtilsCreator, createIterable, createIterableObjectCache } from '..'
+import { process, createEmptyObjectCache } from '../../process'
+import { fromFile } from '../../from-file'
+import { getImageMetadata } from '../../get-image-metadata'
+import {
+  createDummyRect,
+  createAssistantDefinition,
+  createAssistantConfig,
+  createRule,
+} from '../../test-helpers'
+
+/**
+ * Test helper function for creating a utils object.
+ */
+const createUtils = async (
+  filepath: string = './empty.sketch',
+  assistant: AssistantDefinition = createAssistantDefinition({
+    config: createAssistantConfig({ rules: { foo: { active: true } } }),
+    rules: [createRule({ name: 'foo' })],
+  }),
+  ruleName: string = 'foo',
   violations: Violation[] = [],
-): Promise<{ violations: Violation[]; utils: RuleUtils }> => {
+): Promise<{ violations: Violation[]; utils: RuleUtils; processedFile: ProcessedSketchFile }> => {
   const op = { cancelled: false }
   const file = await fromFile(resolve(__dirname, filepath))
   const processedFile = await process(file, op)
   return {
+    processedFile,
     violations,
     utils: createRuleUtilsCreator(
       processedFile,
@@ -35,11 +46,48 @@ const buildUtils = async (
   }
 }
 
+describe('createIterable', () => {
+  test('can yield file format objects', () => {
+    const iterable = createIterable<FileFormat.Rect>([createDummyRect(), createDummyRect()], {
+      cancelled: false,
+    })
+    expect([...iterable].map((item) => item._class)).toMatchInlineSnapshot(`
+      Array [
+        "rect",
+        "rect",
+      ]
+    `)
+  })
+
+  test('can short-circuit when operation is cancelled', () => {
+    const iterable = createIterable<FileFormat.Rect>([createDummyRect(), createDummyRect()], {
+      cancelled: true,
+    })
+    expect([...iterable]).toHaveLength(0)
+  })
+})
+
+describe('createIterableObjectCache', () => {
+  test('works with an empty cache', () => {
+    const cache = createEmptyObjectCache()
+    const iterableCache = createIterableObjectCache(cache, { cancelled: false })
+    expect([...iterableCache.text]).toHaveLength(0)
+  })
+
+  test('for..of loops work with type safety', () => {
+    const cache = createEmptyObjectCache()
+    cache[FileFormat.ClassValue.Rect] = [createDummyRect(), createDummyRect()]
+    const iterableCache = createIterableObjectCache(cache, { cancelled: false })
+    for (const rect of iterableCache.rect) {
+      expect(rect._class).toBe('rect')
+    }
+  })
+})
+
 describe('createRuleUtilsCreator', () => {
   test('throws when named rule not present in the assistant', async (): Promise<void> => {
-    expect.assertions(1)
     try {
-      await buildUtils(
+      await createUtils(
         './empty.sketch',
         createAssistantDefinition({
           config: createAssistantConfig({ rules: { foo: { active: true } } }),
@@ -58,7 +106,7 @@ describe('createRuleUtilsCreator', () => {
 describe('getOption', () => {
   test('can get an option', async (): Promise<void> => {
     expect.assertions(1)
-    const { utils } = await buildUtils(
+    const { utils } = await createUtils(
       './empty.sketch',
       createAssistantDefinition({
         config: createAssistantConfig({ rules: { foo: { active: true } } }),
@@ -71,7 +119,7 @@ describe('getOption', () => {
 
   test('throws when option missing in config', async (): Promise<void> => {
     expect.assertions(1)
-    const { utils } = await buildUtils(
+    const { utils } = await createUtils(
       './empty.sketch',
       createAssistantDefinition({
         config: createAssistantConfig({ rules: { foo: { active: true } } }),
@@ -90,7 +138,7 @@ describe('getOption', () => {
 
   test("throws when option in config doesn't match rule's schema", async (): Promise<void> => {
     expect.assertions(1)
-    const { utils } = await buildUtils(
+    const { utils } = await createUtils(
       './empty.sketch',
       createAssistantDefinition({
         config: createAssistantConfig({ rules: { foo: { active: true, custom: '1' } } }),
@@ -115,10 +163,28 @@ describe('getOption', () => {
   })
 })
 
-describe('get', () => {
+describe('getObjectParents', () => {
+  test('returns parent objects to the root', async (): Promise<void> => {
+    const { utils, processedFile } = await createUtils(
+      './empty.sketch',
+      createAssistantDefinition({
+        config: createAssistantConfig({ rules: { foo: { active: true } } }),
+        rules: [createRule({ name: 'foo' })],
+      }),
+      'foo',
+    )
+    const style = processedFile.file.contents.document.pages[0].style
+    const parents = utils.getObjectParents(style!)
+    expect(parents[0]).toBe(processedFile.file.contents)
+    expect(parents[1]).toBe(processedFile.file.contents.document)
+    expect(parents[2]).toBe(processedFile.file.contents.document.pages)
+    expect(parents[3]).toBe(processedFile.file.contents.document.pages[0])
+  })
+})
+
+describe('evalPointer', () => {
   test('can resolve file objects by json pointer', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
+    const { utils, processedFile } = await createUtils(
       './empty.sketch',
       createAssistantDefinition({
         config: createAssistantConfig({ rules: { foo: { active: true, custom: '1' } } }),
@@ -126,205 +192,81 @@ describe('get', () => {
       }),
       'foo',
     )
-    const page = utils.get('/document/pages/0')
-    expect(page).toBeDefined()
+    const page = utils.evalPointer('/document/pages/0')
+    expect(page).toBe(processedFile.file.contents.document.pages[0])
   })
 })
 
-describe('parent', () => {
+describe('getObjectParent', () => {
   test('can resolve file object parents by json pointer', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    const pagesArray = utils.parent('/document/pages/0')
-    expect(pagesArray).toBeInstanceOf(Array)
+    const { utils, processedFile } = await createUtils()
+    const parent = utils.getObjectParent(processedFile.file.contents.document)
+    expect(parent).toBe(processedFile.file.contents)
   })
 })
 
-describe('iterateCache', () => {
-  test('can iterate objects in cache', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    const pointers: string[] = []
-    await utils.iterateCache({
-      page: async (node) => {
-        pointers.push(node.$pointer)
-      },
-    })
-    expect(pointers).toMatchInlineSnapshot(`
-      Array [
-        "/document/pages/0",
-      ]
-    `)
+describe('objects', () => {
+  test('exposes iterators for file objects', async (): Promise<void> => {
+    const { utils } = await createUtils()
+    const pages: FileFormat.Page[] = [...utils.objects.page]
+    expect(pages).toHaveLength(1)
+    expect(pages[0]._class).toBe('page')
+  })
+})
+
+describe('foreignObjects', () => {
+  test('exposes iterators for foreign file objects', async (): Promise<void> => {
+    const { utils } = await createUtils('./foreign-symbol.sketch')
+    const symbols: FileFormat.SymbolMaster[] = [...utils.foreignObjects.symbolMaster]
+    expect(symbols).toHaveLength(2)
+    expect(symbols[0]._class).toBe(FileFormat.ClassValue.SymbolMaster)
   })
 })
 
 describe('report', () => {
   test('can report violations', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils, violations } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
+    const { utils, violations } = await createUtils()
+    utils.report(
+      [...utils.objects.page].map((page) => ({ message: "Something isn't right", object: page })),
     )
-    await utils.iterateCache({
-      page: async (node) => {
-        utils.report({ message: "Something isn't right here", node })
-      },
-    })
     expect(violations).toHaveLength(1)
-  })
-
-  test('violations default to config level severity', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils, violations } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({
-          defaultSeverity: ViolationSeverity.info,
-          rules: { foo: { active: true } },
-        }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    await utils.iterateCache({
-      page: async (node) => {
-        utils.report({ message: "Something isn't right here", node })
-      },
-    })
-    expect(violations[0].severity).toBe(ViolationSeverity.info)
-  })
-
-  test('violation severity can be set in rule config', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils, violations } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({
-          rules: { foo: { active: true, severity: ViolationSeverity.info } },
-        }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    await utils.iterateCache({
-      page: async (node) => {
-        utils.report({ message: "Something isn't right here", node })
-      },
-    })
-    expect(violations[0].severity).toBe(ViolationSeverity.info)
-  })
-})
-
-describe('iterateParents', () => {
-  test('can iterate parents', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    const page = utils.get('/document/pages/0')
-    const pointers: string[] = []
-    utils.iterateParents(page, (parent) => {
-      pointers.push(parent.$pointer)
-    })
-    expect(pointers).toMatchInlineSnapshot(`
-      Array [
-        "/document/pages",
-        "/document",
-        "",
-      ]
+    expect(violations[0]).toMatchInlineSnapshot(`
+      Object {
+        "assistantName": "dummy-assistant",
+        "message": "Something isn't right",
+        "objectId": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
+        "pointer": "/document/pages/0",
+        "ruleName": "foo",
+        "severity": 3,
+      }
     `)
-  })
-})
-
-describe('nodeToObject', () => {
-  test('converts nodes to sketch file objects', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    const page = utils.get('/document/pages/0')
-    assertNode(page)
-    expect(utils.nodeToObject(page)).not.toHaveProperty('$pointer')
   })
 })
 
 describe('objectHash', () => {
   test('objects with the same contents produce the same hash', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
+    const { utils } = await createUtils()
     expect(utils.objectHash({ foo: 'bar' })).toBe(utils.objectHash({ foo: 'bar' }))
   })
 
   test('property order does not matter', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
+    const { utils } = await createUtils()
     expect(utils.objectHash({ foo: 'bar', baz: 'qux' })).toBe(
       utils.objectHash({ baz: 'qux', foo: 'bar' }),
     )
   })
 
-  test('$pointer and do_objectID values are ignored by default', async (): Promise<void> => {
-    expect.assertions(1)
-    const { utils } = await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
-    expect(utils.objectHash({ foo: 'bar', $pointer: '1', do_objectID: '1' })).toBe(
-      utils.objectHash({ foo: 'bar', $pointer: '2', do_objectID: '2' }),
+  test('do_objectID values are ignored by default', async (): Promise<void> => {
+    const { utils } = await createUtils()
+    expect(utils.objectHash({ foo: 'bar', do_objectID: '1' })).toBe(
+      utils.objectHash({ foo: 'bar', do_objectID: '2' }),
     )
   })
 })
 
 describe('styleEq', () => {
   test('can test style objects for equality', async (): Promise<void> => {
-    expect.assertions(2)
-    await buildUtils(
+    const { utils } = await createUtils(
       './empty.sketch',
       createAssistantDefinition({
         config: createAssistantConfig({ rules: { foo: { active: true } } }),
@@ -340,32 +282,24 @@ describe('styleEq', () => {
 
     if (style2 && style2.blur) style2.blur.center = '{0.6, 0.5}'
 
-    expect(styleEq(style1, style1)).toBe(true)
-    expect(styleEq(style1, style2)).toBe(false)
+    expect(utils.styleEq(style1, style1)).toBe(true)
+    expect(utils.styleEq(style1, style2)).toBe(false)
   })
 
   test('can test text style objects for equality', async (): Promise<void> => {
-    expect.assertions(2)
-    await buildUtils(
-      './empty.sketch',
-      createAssistantDefinition({
-        config: createAssistantConfig({ rules: { foo: { active: true } } }),
-        rules: [createRule({ name: 'foo' })],
-      }),
-      'foo',
-    )
+    const { utils } = await createUtils()
 
     const file1 = await fromFile(resolve(__dirname, './simple-textstyle.sketch'))
     const file2 = await fromFile(resolve(__dirname, './simple-textstyle.sketch'))
     const style1 = file1.contents.document.pages[0].layers[0].style
     const style2 = file2.contents.document.pages[0].layers[0].style
 
-    expect(textStyleEq(style1, style1)).toBe(true)
+    expect(utils.textStyleEq(style1, style1)).toBe(true)
 
     if (style2 && style2.textStyle) {
       style2.textStyle.encodedAttributes.underlineStyle = 1
     }
 
-    expect(textStyleEq(style1, style2 as FileFormat.Style)).toBe(false)
+    expect(utils.textStyleEq(style1, style2)).toBe(false)
   })
 })

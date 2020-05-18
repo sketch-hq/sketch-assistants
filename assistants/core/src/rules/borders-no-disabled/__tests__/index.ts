@@ -2,7 +2,6 @@ import { testRule } from '../../../test-helpers'
 
 describe('borders-no-disabled', () => {
   test('no violations for enabled borders', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './enabled-border.sketch',
@@ -14,7 +13,6 @@ describe('borders-no-disabled', () => {
   })
 
   test('finds violations for disabled borders', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './disabled-border.sketch',
@@ -26,7 +24,6 @@ describe('borders-no-disabled', () => {
   })
 
   test('no violations for disabled borders in combined shapes', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './disabled-border-combined-shape.sketch',

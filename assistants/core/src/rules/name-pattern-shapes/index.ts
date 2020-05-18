@@ -1,4 +1,5 @@
 import { t } from '@lingui/macro'
+import { FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 import { createNamePatternRuleFunction } from '../../rule-helpers'
@@ -6,13 +7,13 @@ import { createNamePatternRuleFunction } from '../../rule-helpers'
 export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule: createNamePatternRuleFunction(i18n, [
-      'oval',
-      'rectangle',
-      'star',
-      'triangle',
-      'polygon',
-      'shapeGroup',
-      'shapePath',
+      FileFormat.ClassValue.Oval,
+      FileFormat.ClassValue.Rectangle,
+      FileFormat.ClassValue.Star,
+      FileFormat.ClassValue.Triangle,
+      FileFormat.ClassValue.Polygon,
+      FileFormat.ClassValue.ShapeGroup,
+      FileFormat.ClassValue.ShapePath,
     ]),
     name: 'name-pattern-shapes',
     title: i18n._(t`Shape names should follow the conventions`),

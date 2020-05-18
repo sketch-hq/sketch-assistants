@@ -2,68 +2,64 @@ import { t } from '@lingui/macro'
 import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
+import { assertArray } from '../../guards'
+
+type SymbolID = string
 
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
-    const { file, utils } = context
-    // Get the array of authorized libraries
-    const authorizedLibraries = utils.getOption('libraries') || []
-    const doc = file.file.contents.document
-    // libraries is a Map<text style id, library text style>
-    const libraries = doc.foreignTextStyles.reduce(
-      (styleMap, libStyle) => styleMap.set(libStyle.localSharedStyle.do_objectID, libStyle),
-      new Map(),
-    )
-    await utils.iterateCache({
-      async text(node): Promise<void> {
-        const layer = utils.nodeToObject<FileFormat.AnyLayer>(node)
-        if (typeof layer.sharedStyleID !== 'string') {
-          // Report immediately if there is no sharedStyleID
-          utils.report([
-            {
-              node,
-              message: i18n._(t`Text styles must be set with the shared styles of a library`),
-            },
-          ])
-          return // don't process this node further
-        }
-        const library = libraries.get(layer.sharedStyleID)
-        if (!library) {
-          // the sharedStyleID in use does not belong to a library
-          utils.report([
-            {
-              node,
-              message: i18n._(t`A shared style from a library is expected`),
-            },
-          ])
-          return
-        }
-        const libraryName = library.sourceLibraryName
-        // Determine if the library is one of the allowed libraries
-        if (Array.isArray(authorizedLibraries) && authorizedLibraries.length > 0) {
-          const isAuthorized = authorizedLibraries.indexOf(libraryName) > -1
-          if (!isAuthorized) {
-            utils.report([
-              {
-                node,
-                message: i18n._(t`Uses the unauthorized library "${libraryName}"`),
-              },
-            ])
-            return
-          }
-        }
-        // Check if the text styles differ from the library
-        const isStyleEq = utils.textStyleEq(layer.style, library.localSharedStyle.value)
-        if (!isStyleEq) {
-          utils.report([
-            {
-              node,
-              message: i18n._(t`Shared style differs from library`),
-            },
-          ])
-        }
-      },
-    })
+    const { utils } = context
+
+    const authorizedLibraries = utils.getOption('libraries')
+    assertArray(authorizedLibraries)
+
+    const foreignTextStyles: Map<SymbolID, FileFormat.ForeignTextStyle> = new Map()
+    for (const foreignTextStyle of utils.foreignObjects.MSImmutableForeignTextStyle) {
+      foreignTextStyles.set(foreignTextStyle.localSharedStyle.do_objectID, foreignTextStyle)
+    }
+
+    for (const text of utils.objects.text) {
+      if (typeof text.sharedStyleID !== 'string') {
+        utils.report([
+          {
+            object: text,
+            message: i18n._(t`Text styles should use a shared style from a library`),
+          },
+        ])
+        continue
+      }
+
+      const foreignTextStyle = foreignTextStyles.get(text.sharedStyleID)
+      if (!foreignTextStyle) {
+        utils.report([
+          {
+            object: text,
+            message: i18n._(t`Text styles should use a shared style from a library`),
+          },
+        ])
+        continue
+      }
+
+      const libName = foreignTextStyle.sourceLibraryName
+      if (!authorizedLibraries.includes(libName) && authorizedLibraries.length > 0) {
+        utils.report([
+          {
+            object: text,
+            message: i18n._(t`Uses the unauthorized library "${libName}"`),
+          },
+        ])
+        continue
+      }
+
+      if (!utils.textStyleEq(text.style, foreignTextStyle.localSharedStyle.value)) {
+        utils.report([
+          {
+            object: text,
+            message: i18n._(t`Shared text style is out of date with the library`),
+          },
+        ])
+      }
+    }
   }
 
   return {

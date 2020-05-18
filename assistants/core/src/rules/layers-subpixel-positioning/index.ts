@@ -1,12 +1,8 @@
 import { t } from '@lingui/macro'
-import {
-  RuleContext,
-  RuleFunction,
-  PointerValue,
-  FileFormat,
-} from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
+import { isSketchFileObject } from '../../guards'
 
 const INCREMENTS: { [key: string]: string[] } = {
   '@1x': ['0.00'],
@@ -14,8 +10,7 @@ const INCREMENTS: { [key: string]: string[] } = {
   '@3x': ['0.00', '0.33', '0.67'],
 }
 
-const isRotated = (value: PointerValue) =>
-  typeof value === 'object' && 'rotation' in value && value.rotation !== 0
+// const isRotated = (object: unknown) => isSketchFileObject(object) && 'rotation' in object && object.rotation !== 0
 
 const parseIncrements = (scaleFactors: unknown): string[] => {
   if (!scaleFactors || !Array.isArray(scaleFactors)) return []
@@ -36,36 +31,35 @@ export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
     const increments = parseIncrements(utils.getOption('scaleFactors'))
-    await utils.iterateCache({
-      async $layers(node): Promise<void> {
-        const layer = utils.nodeToObject<FileFormat.AnyLayer>(node)
-        if (!('frame' in layer)) return // Narrow type to layers with a `frame` prop
-        // If the current layer or any of its parents have rotation return early
-        let hasRotation = isRotated(node)
-        utils.iterateParents(node, (parent) => {
-          if (isRotated(parent)) {
-            hasRotation = true
-          }
+    for (const layer of utils.objects.anyLayer) {
+      if (!('frame' in layer)) continue // Narrow type to layers with a `frame` prop
+
+      // If the current layer or any of its parents have rotation skip this loop
+      const rotatedLayers = [...utils.getObjectParents(layer), layer]
+        .filter(isSketchFileObject)
+        .filter((object) => 'rotation' in object && object.rotation !== 0)
+      if (rotatedLayers.length > 0) continue
+
+      let { x, y } = layer.frame
+      // Round x,y values to two decimal places to mimick how Sketch normalises
+      // values too. This avoids reporting subpixel violations that don't match
+      // with what Sketch displays in the inspector
+      x = Math.round(x * 100) / 100
+      y = Math.round(y * 100) / 100
+      // Convert x,y values to increment values (e.g `12.5` to `0.50`) and check
+      // to see if they're valid
+      const xValid = increments.includes(Math.abs(x % 1).toFixed(2))
+      const yValid = increments.includes(Math.abs(y % 1).toFixed(2))
+      // console.log(utils.getObjectPointer(layer))
+      // console.log(rotatedParents.length, layer.frame, 'invalid', !xValid || !yValid)
+      if (!xValid || !yValid) {
+        // console.log('report!')
+        utils.report({
+          object: layer,
+          message: i18n._(t`Unexpected sub-pixel positioning (${x}, ${y})`),
         })
-        if (hasRotation) return
-        let { x, y } = layer.frame
-        // Round x,y values to two decimal places to mimick how Sketch normalises
-        // values too. This avoids reporting subpixel violations that don't match
-        // with what Sketch displays in the inspector
-        x = Math.round(x * 100) / 100
-        y = Math.round(y * 100) / 100
-        // Convert x,y values to increment values (e.g `12.5` to `0.50`) and check
-        // to see if they're valid
-        const xValid = increments.includes(Math.abs(x % 1).toFixed(2))
-        const yValid = increments.includes(Math.abs(y % 1).toFixed(2))
-        if (!xValid || !yValid) {
-          utils.report({
-            node,
-            message: i18n._(t`Unexpected sub-pixel positioning (${x}, ${y})`),
-          })
-        }
-      },
-    })
+      }
+    }
   }
 
   return {

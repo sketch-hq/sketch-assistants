@@ -1,11 +1,12 @@
 import { t } from '@lingui/macro'
+import { FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 import { createNamePatternRuleFunction } from '../../rule-helpers'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   return {
-    rule: createNamePatternRuleFunction(i18n, ['artboard']),
+    rule: createNamePatternRuleFunction(i18n, [FileFormat.ClassValue.Artboard]),
     name: 'name-pattern-artboards',
     title: i18n._(t`Artboard names should follow the conventions`),
     description: i18n._(

@@ -1,5 +1,5 @@
 import { t, plural } from '@lingui/macro'
-import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 
@@ -12,24 +12,21 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { utils } = context
     const maxUngroupedLayers = utils.getOption('maxUngroupedLayers')
     assertMaxUngrouped(maxUngroupedLayers)
-    await utils.iterateCache({
-      async artboard(node): Promise<void> {
-        const artboard = utils.nodeToObject<FileFormat.Artboard>(node)
-        const nonGroupLayers = artboard.layers.filter((layer) => layer._class !== 'group').length
-        if (nonGroupLayers > maxUngroupedLayers) {
-          utils.report({
-            node,
-            message: i18n._(
-              plural({
-                value: nonGroupLayers,
-                one: `There is one ungrouped layer within this Artboard`,
-                other: `There are # ungrouped layers within this Artboard`,
-              }),
-            ),
-          })
-        }
-      },
-    })
+    for (const artboard of utils.objects.artboard) {
+      const nonGroupLayers = artboard.layers.filter((layer) => layer._class !== 'group').length
+      if (nonGroupLayers > maxUngroupedLayers) {
+        utils.report({
+          object: artboard,
+          message: i18n._(
+            plural({
+              value: nonGroupLayers,
+              one: `There is one ungrouped layer within this Artboard`,
+              other: `There are # ungrouped layers within this Artboard`,
+            }),
+          ),
+        })
+      }
+    }
   }
 
   return {

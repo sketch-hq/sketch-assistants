@@ -1,49 +1,41 @@
 import { t, plural } from '@lingui/macro'
-import { RuleContext, RuleFunction, Node, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
-
-function assertMaxIdentical(val: unknown): asserts val is number {
-  if (typeof val !== 'number') {
-    throw new Error()
-  }
-}
+import { assertNumber } from '../../guards'
+import { isChildOfClass } from '../../rule-helpers'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    // Gather option value and assert its type
+
     const maxIdentical = utils.getOption('maxIdentical')
-    assertMaxIdentical(maxIdentical)
-    const results: Map<string, Node[]> = new Map()
-    await utils.iterateCache({
-      async text(node): Promise<void> {
-        const layer = utils.nodeToObject<FileFormat.Text>(node)
-        if (typeof layer.sharedStyleID === 'string') return // Ignore layers using a shared style
-        // Determine whether we're inside a symbol instance, if so return early since
-        // duplicate layer styles are to be expected across the docucument in instances
-        const classes: string[] = [node._class]
-        utils.iterateParents(node, (parent) => {
-          if (typeof parent === 'object' && '_class' in parent) classes.push(parent._class)
-        })
-        if (classes.includes('symbolInstance')) return
-        // Get a string hash of the style object.
-        const hash = utils.textStyleHash(layer.style)
-        // Add the style object hash and current node to the result set
-        if (results.has(hash)) {
-          const nodes = results.get(hash)
-          nodes?.push(node)
-        } else {
-          results.set(hash, [node])
-        }
-      },
-    })
+    assertNumber(maxIdentical)
+
+    const results: Map<string, FileFormat.Text[]> = new Map()
+
+    for (const text of utils.objects.text) {
+      if (typeof text.sharedStyleID === 'string') continue // Ignore layers using a shared style
+      // Determine whether we're inside a symbol instance, if so return early since
+      // duplicate layer styles are to be expected across the docucument in instances
+      if (isChildOfClass(text, FileFormat.ClassValue.SymbolInstance, utils)) continue
+      // Get a string hash of the style object.
+      const hash = utils.textStyleHash(text.style)
+      // Add the style object hash and current node to the result set
+      if (results.has(hash)) {
+        const texts = results.get(hash)
+        texts?.push(text)
+      } else {
+        results.set(hash, [text])
+      }
+    }
+
     // Loop the results, generating violations as needed
-    for (const [, nodes] of results) {
-      const numIdentical = nodes.length
+    for (const [, texts] of results) {
+      const numIdentical = texts.length
       if (numIdentical > maxIdentical) {
         utils.report(
-          nodes.map((node) => ({
+          texts.map((node) => ({
             node,
             message: i18n._(
               plural({

@@ -1,6 +1,5 @@
 import {
   FileFormat,
-  Node,
   Assistant,
   RuleOptionsCreator,
   RuleFunction,
@@ -101,14 +100,13 @@ const createAssistant = ({
 } = {}): Assistant => async (): Promise<AssistantDefinition> =>
   createAssistantDefinition({ title, description, name, config, rules })
 
-const createDummyRectNode = (): Node<FileFormat.Rect> => ({
+const createDummyRect = (): FileFormat.Rect => ({
   _class: 'rect',
   constrainProportions: false,
   height: 10,
   width: 10,
   x: 0,
   y: 0,
-  $pointer: '/document/pages/0/layers/0',
 })
 
 export const testRule = async (
@@ -138,7 +136,7 @@ export const testRule = async (
 
 export {
   createRule,
-  createDummyRectNode,
+  createDummyRect,
   createAssistantConfig,
   createAssistant,
   createAssistantDefinition,

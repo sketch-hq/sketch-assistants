@@ -1,29 +1,26 @@
 import {
   FileFormat,
   ImageMetadata,
-  Maybe,
-  Node,
-  NodeCacheVisitor,
   RuleContext,
   RuleFunction,
-  RuleOption,
-  SketchClass,
   RuleUtils,
+  SketchFileObject,
 } from '@sketch-hq/sketch-assistant-types'
 import { I18n } from '@lingui/core'
 import { t } from '@lingui/macro'
+import { isSketchFileObject } from './guards'
 
 type ImageRef = string
 
 export type ImageUsage = {
-  node: Node
+  object: SketchFileObject
   frame: FileFormat.Rect
   type: 'bitmap' | 'fill'
   imageMetadata: ImageMetadata
 }
 
 interface ImageProcessor {
-  handleLayerImages: (node: Node) => void
+  handleLayerImages: (object: FileFormat.AnyLayer) => void
   getResults: () => Promise<Map<ImageRef, ImageUsage[]>>
 }
 
@@ -38,7 +35,6 @@ interface ImageProcessor {
  */
 const createImageProcessor = (
   getImageMetadata: (ref: string) => Promise<ImageMetadata>,
-  getLayer: (n: Node) => FileFormat.AnyLayer,
 ): ImageProcessor => {
   // Create a data structure to hold the results from scanning the document.
   // It's a map keyed by image reference, with the values being an array of
@@ -47,12 +43,12 @@ const createImageProcessor = (
 
   const addResult = async (
     ref: ImageRef,
-    node: Node,
+    object: SketchFileObject,
     frame: FileFormat.Rect,
     type: 'bitmap' | 'fill',
   ): Promise<void> => {
     const usage: ImageUsage = {
-      node,
+      object,
       frame,
       type,
       imageMetadata: await getImageMetadata(ref),
@@ -70,13 +66,12 @@ const createImageProcessor = (
   const promises: Promise<void>[] = []
 
   return {
-    handleLayerImages(node) {
-      const layer = getLayer(node)
+    handleLayerImages(layer: FileFormat.AnyLayer) {
       const { frame } = layer
       // Handle images in bitmap layers
       if (layer._class === 'bitmap') {
         if (layer.image && layer.image._class === 'MSJSONFileReference') {
-          promises.push(addResult(layer.image._ref, node, frame, 'bitmap'))
+          promises.push(addResult(layer.image._ref, layer, frame, 'bitmap'))
         }
       }
       // Handle image fills in layer styles
@@ -87,7 +82,7 @@ const createImageProcessor = (
         if (fill.fillType !== FileFormat.FillType.Pattern) continue
         if (!fill.image) continue
         if (fill.image._class !== 'MSJSONFileReference') continue
-        promises.push(addResult(fill.image._ref, node, frame, 'fill'))
+        promises.push(addResult(fill.image._ref, layer, frame, 'fill'))
       }
     },
     async getResults() {
@@ -105,8 +100,11 @@ const createImageProcessor = (
  * @param i18n I18n instance passed in during normal rule creation
  * @param classes Array of file format `_class` values indicating the types of layers to scan
  */
-const createNamePatternRuleFunction = (i18n: I18n, classes: SketchClass[]): RuleFunction => {
-  function assertOption(value: Maybe<RuleOption>): asserts value is string[] {
+const createNamePatternRuleFunction = (
+  i18n: I18n,
+  classes: FileFormat.ClassValue[],
+): RuleFunction => {
+  function assertOption(value: unknown): asserts value is string[] {
     if (!Array.isArray(value)) {
       throw new Error('Option value is not an array')
     }
@@ -129,47 +127,63 @@ const createNamePatternRuleFunction = (i18n: I18n, classes: SketchClass[]): Rule
     const allowedPatterns = allowed.map((pattern) => new RegExp(pattern))
     const forbiddenPatterns = forbidden.map((pattern) => new RegExp(pattern))
 
-    // Define a generic vistor function
-    const visitor: NodeCacheVisitor = async (node: Node): Promise<void> => {
-      if (!('name' in node)) return // Not interested in Sketch objects without a `name`
+    for (const klass of classes) {
+      for (const object of utils.objects[klass]) {
+        if (!('name' in object)) continue // Not interested in Sketch objects without a `name`
+        // Name is allowed if zero patterns supplied, or name matches _at least one_ of the allowed patterns
+        const isAllowed =
+          allowedPatterns.length === 0 ||
+          allowedPatterns.map((regex) => regex.test(object.name)).includes(true)
+        // Name is forbidden if it matches _any_ of the forbidden patterns
+        const isForbidden = forbiddenPatterns.map((regex) => regex.test(object.name)).includes(true)
 
-      // Name is allowed if zero patterns supplied, or name matches _at least one_ of the allowed patterns
-      const isAllowed =
-        allowedPatterns.length === 0 ||
-        allowedPatterns.map((regex) => regex.test(node.name)).includes(true)
+        if (isForbidden) {
+          utils.report({
+            object,
+            message: i18n._(t`Layer name matches one of the forbidden patterns`),
+          })
+          continue // Contine after reporting name as forbidden, i.e. once a name is forbidden we don't care about the allowed status
+        }
 
-      // Name is forbidden if it matches _any_ of the forbidden patterns
-      const isForbidden = forbiddenPatterns.map((regex) => regex.test(node.name)).includes(true)
-
-      if (isForbidden) {
-        utils.report({
-          node,
-          message: i18n._(t`Layer name matches one of the forbidden patterns`),
-        })
-        return // Return after reporting a name as forbidden, i.e. once a name is forbidden we don't care about the allowed status
-      }
-
-      if (!isAllowed) {
-        utils.report({
-          node,
-          message: i18n._(t`Layer name does not match any of the allowed patterns`),
-        })
+        if (!isAllowed) {
+          utils.report({
+            object,
+            message: i18n._(t`Layer name does not match any of the allowed patterns`),
+          })
+        }
       }
     }
-
-    await utils.iterateCache(classes.reduce((acc, _class) => ({ ...acc, [_class]: visitor }), {}))
   }
 }
 
 /**
- * Indicate whether a given Node is a child layer of a ShapeGroup (aka combined shape).
+ * Indicate whether a given object is a child layer of a ShapeGroup (aka combined shape).
  */
-const isCombinedShapeChildLayer = (node: Node, utils: RuleUtils): boolean => {
-  const parent = utils.parent(node.$pointer)
-  if (!parent || typeof parent !== 'object') return false
-  const grandParent = utils.parent(parent.$pointer)
-  if (!grandParent || typeof grandParent !== 'object' || !('_class' in grandParent)) return false
-  return grandParent._class === 'shapeGroup'
+const isCombinedShapeChildLayer = (object: SketchFileObject, utils: RuleUtils): boolean => {
+  const parents = utils.getObjectParents(object)
+  const grandParent = parents[parents.length - 2]
+  return isSketchFileObject(grandParent) && grandParent._class === FileFormat.ClassValue.ShapeGroup
 }
 
-export { createNamePatternRuleFunction, createImageProcessor, isCombinedShapeChildLayer }
+/**
+ * Determine if an object has a parent with a particular class.
+ */
+const isChildOfClass = (
+  object: SketchFileObject,
+  classValue: FileFormat.ClassValue,
+  utils: RuleUtils,
+): boolean =>
+  [
+    ...utils
+      .getObjectParents(object)
+      .filter(isSketchFileObject)
+      .map((parent) => parent._class),
+    object._class,
+  ].includes(classValue)
+
+export {
+  createNamePatternRuleFunction,
+  createImageProcessor,
+  isCombinedShapeChildLayer,
+  isChildOfClass,
+}

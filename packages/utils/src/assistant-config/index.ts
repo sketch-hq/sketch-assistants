@@ -29,7 +29,7 @@ const getRuleOption = (
   config: AssistantConfig,
   ruleName: string,
   optionKey: string,
-): RuleConfig[keyof RuleConfig] => {
+): null | unknown => {
   const ruleConfig = getRuleConfig(config, ruleName)
   return ruleConfig ? (optionKey in ruleConfig ? ruleConfig[optionKey] : null) : null
 }

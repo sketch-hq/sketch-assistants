@@ -24,6 +24,6 @@
     "test": "yarn workspaces run test --ci",
     "build": "./build.sh",
     "release": "yarn build && changeset publish",
-    "prettier-check": "prettier --check **/*.{ts,js,md,json}"
+    "prettier-check": "prettier --check \"**/*.{ts,js,md,json}\""
   }
 }
