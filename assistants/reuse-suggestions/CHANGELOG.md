@@ -1,5 +1,18 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 5.0.0-next.11
+
+### Major Changes
+
+- 6733a97: Numerous refactors around Sketch file object iteration.
+
+### Patch Changes
+
+- Updated dependencies [6733a97]
+- Updated dependencies [6733a97]
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.11
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.11
+
 ## 5.0.0-next.10
 
 ### Patch Changes

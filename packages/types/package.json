@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-assistant-types",
-  "version": "4.0.1-next.8",
+  "version": "5.0.0-next.11",
   "main": "dist/types",
   "types": "dist/types",
   "sideEffects": false,
@@ -17,9 +17,7 @@
     "build": "tsc",
     "test": "echo \"Not implemented\""
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "@schemastore/package": "0.0.5",
     "@sketch-hq/sketch-file-format-ts": "5.0.0",
