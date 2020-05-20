@@ -5,13 +5,13 @@
 Naming conventions used by the Sketch design team.
 
 👉 Click
-[here](https://add-sketch-assistant.now.sh/api/main?pkg=@sketch-hq/sketch-naming-conventions-assistant)
+[here](https://add-sketch-assistant.now.sh/api/main?pkg=@sketch-hq/sketch-naming-conventions-assistant&version=5.0.0-next.10)
 to add to Sketch.
 
 > Or, add to a Sketch release variant:
-> [Beta](https://add-sketch-assistant.now.sh/api/main?variant=beta&pkg=@sketch-hq/sketch-naming-conventions-assistant)
+> [Beta](https://add-sketch-assistant.now.sh/api/main?variant=beta&pkg=@sketch-hq/sketch-naming-conventions-assistant&version=5.0.0-next.10)
 > |
-> [Private](https://add-sketch-assistant.now.sh/api/main?variant=private&pkg=@sketch-hq/sketch-naming-conventions-assistant)
+> [Private](https://add-sketch-assistant.now.sh/api/main?variant=private&pkg=@sketch-hq/sketch-naming-conventions-assistant&version=5.0.0-next.10)
 > |
 > [Internal](https://add-sketch-assistant.now.sh/api/main?variant=internal&pkg=@sketch-hq/sketch-naming-conventions-assistant)
 > |
