@@ -1,86 +1,319 @@
 import {
-  FileFormat,
-  NodeCache,
+  PointerMap,
   RunOperation,
-  PointerValue,
-  Maybe,
-  Node,
-  NodeArray,
+  ObjectCache,
+  JsonPointer,
+  FileFormat,
   ProcessedSketchFile,
   SketchFile,
 } from '@sketch-hq/sketch-assistant-types'
-import { createCache } from '../file-cache'
 
-const DO_NOT_PROCESS_KEYS = ['foreignLayerStyles', 'foreignSymbols', 'foreignTextStyles']
+const FOREIGN_OBJECT_CONTEXTS = [
+  'foreignLayerStyles',
+  'foreignSymbols',
+  'foreignTextStyles',
+  'foreignSwatches',
+]
 
-const processNode = (
-  input: Maybe<PointerValue>,
-  cache: NodeCache,
-  op: RunOperation,
-  pointer: string,
-): void => {
-  // Bail early if we've been passed a falsey value or the operation is cancelled
-  if (!input || op.cancelled) return
-
-  // Bail early if input is not an object
-  if (typeof input !== 'object') return
-
-  // Inject the current pointer value
-  input.$pointer = pointer
-
-  // Test to see if we've been passed an array and if so process each element
-  // recursively and return
-  if (input.constructor === Array) {
-    const array = input as NodeArray
-    for (let index = 0; index < array.length; index++) {
-      processNode(array[index], cache, op, `${pointer}/${index}`)
+/**
+ * Create an empty ObjectCache object.
+ */
+export const createEmptyObjectCache = (): ObjectCache => ({
+  ...Object.values(FileFormat.ClassValue).reduce<ObjectCache>((acc, curr) => {
+    return {
+      [curr]: [],
+      ...acc,
     }
-    return
-  }
+  }, {} as ObjectCache),
+  ...{ anyGroup: [], anyLayer: [], document: [] },
+})
 
-  const obj = input as Node
-
-  for (const key in input) {
-    // Bail out of this loop iteration early if the key has been excluded
-    // from processing
-    if (DO_NOT_PROCESS_KEYS.includes(key)) continue
-
-    // If the current object has a `_class` prop it means the object should
-    // be cached in the NodeCache
-    if (key === '_class') {
-      if (!cache[obj._class]) cache[obj._class] = []
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      cache[obj._class]!.push(obj)
-
-      // Use presence of `layers` and `frame` props as heuristics to identify
-      // objects with group and layer traits respectively
-      if ('layers' in obj) cache.$groups.push(obj)
-      if ('frame' in obj) cache.$layers.push(obj)
-    }
-
-    // Recurse into the input's sub values
-    processNode(obj[key as keyof FileFormat.AnyObject], cache, op, `${pointer}/${key}`)
+/**
+ * Add a file format object to an ObjectCache instance.
+ */
+export const addObjectToCache = (
+  object: FileFormat.AnyObject | FileFormat.Contents['document'],
+  cache: ObjectCache,
+) => {
+  // Use heuristics to determine whether an object is "groupy" or "layery"
+  // and add to the appropriate cache key if so
+  if ('layers' in object) cache.anyGroup.push(object)
+  if ('frame' in object) cache.anyLayer.push(object)
+  // For each class value available in the file format add the object to cache.
+  // This approach is long-winded but gives near 100% type safety
+  switch (object._class) {
+    case FileFormat.ClassValue.MSImmutableColorAsset:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableFlowConnection:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableForeignLayerStyle:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableForeignSwatch:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableForeignSymbol:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableForeignTextStyle:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableFreeformGroupLayout:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableGradientAsset:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableHotspotLayer:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableInferredGroupLayout:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSImmutableOverrideProperty:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSJSONFileReference:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.MSJSONOriginalDataReference:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Artboard:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.AssetCollection:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.AttributedString:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Bitmap:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Blur:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Border:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.BorderOptions:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Color:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ColorControls:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.CurvePoint:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ExportFormat:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ExportOptions:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Fill:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.FontDescriptor:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.FontReference:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Gradient:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.GradientStop:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.GraphicsContextSettings:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Group:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ImageCollection:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.InnerShadow:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.LayoutGrid:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Oval:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.OverrideValue:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Page:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ParagraphStyle:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Polygon:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Rect:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Rectangle:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.RulerData:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Shadow:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ShapeGroup:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.ShapePath:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SharedStyle:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SharedStyleContainer:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SharedTextStyleContainer:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SimpleGrid:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Slice:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Star:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.StringAttribute:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Style:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Swatch:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SwatchContainer:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SymbolContainer:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SymbolInstance:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.SymbolMaster:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Text:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.TextStyle:
+      cache[object._class].push(object)
+      break
+    case FileFormat.ClassValue.Triangle:
+      cache[object._class].push(object)
+      break
+    case 'document':
+      cache[object._class].push(object)
+      break
+    default:
+      throw Error(
+        `Error adding Sketch file object to ObjectCache, object's _class value "${object._class}" is not recognised`,
+      )
   }
 }
 
 /**
- * Recursively prepare Sketch document data in preparation for performing a lint
- * run. In practice this means performing two things:
- *
- *   1. Augmenting each object in the document data with an RFC 6901 compliant
- *      JSON Pointer string on the `$pointer` key, unlikely to clash with other
- *      object keys. The pointer values enable objects to indicate their location
- *      in the document structure, even when observed in isolation, for example
- *      in a lint rule.
- *   2. Populating a minimal cache of Sketch document objects keyed by their
- *      `_class` prop values, for efficient access and iteration in rule logic.
+ * Recursively traverse a Sketch file, while populating various caches and maps.
+ */
+export const traverse = ({
+  target,
+  op,
+  pointers,
+  objects,
+  foreignObjects,
+  pointer = '',
+  foreignContext = false,
+}: {
+  target?: Record<string, {}>
+  op: RunOperation
+  pointers: PointerMap
+  objects: ObjectCache
+  foreignObjects: ObjectCache
+  pointer?: JsonPointer
+  foreignContext?: boolean
+}) => {
+  // Bail early if we've been passed a falsey value or the operation is cancelled
+  if (!target || op.cancelled) return
+  // Bail early if input is not an object
+  if (typeof target !== 'object') return
+  // If target is an array then traverse into each of its elements
+  if (Array.isArray(target)) {
+    for (let index = 0; index < target.length; index++) {
+      traverse({
+        target: target[index],
+        op,
+        pointers,
+        objects,
+        foreignObjects,
+        pointer: `${pointer}/${index}`,
+        foreignContext,
+      })
+    }
+    return
+  }
+  // If this is a Sketch file object with a `_class` then add it to the pointer maps
+  // and cache it
+  if ('_class' in target!) {
+    pointers.set(target as FileFormat.AnyObject, pointer)
+    addObjectToCache(target as FileFormat.AnyObject, foreignContext ? foreignObjects : objects)
+  }
+  // Loop over its properties
+  for (const key in target!) {
+    traverse({
+      target: target[key],
+      op,
+      pointers,
+      objects,
+      foreignObjects,
+      pointer: `${pointer}/${key}`,
+      foreignContext: foreignContext || FOREIGN_OBJECT_CONTEXTS.includes(key),
+    })
+  }
+}
+
+/**
+ * Generate a ProcessedSketchFile object from a SketchFile object.
  */
 const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFile> => {
-  const cache = createCache()
   return new Promise((resolve, reject) => {
     try {
-      processNode(file.contents as PointerValue, cache, op, '')
-      resolve({ cache, file })
+      const objects = createEmptyObjectCache()
+      const foreignObjects = createEmptyObjectCache()
+      const pointers = new WeakMap()
+      traverse({
+        target: file.contents as Record<string, {}>,
+        op,
+        pointers,
+        objects,
+        foreignObjects,
+      })
+      resolve({ file, objects, foreignObjects, pointers })
     } catch (error) {
       reject(error)
     }

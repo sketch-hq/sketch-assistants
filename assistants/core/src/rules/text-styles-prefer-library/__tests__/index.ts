@@ -2,7 +2,6 @@ import { testRule } from '../../../test-helpers'
 
 describe('text-styles-prefer-library', () => {
   test('finds no violations if only library styles are used', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './all-good.sketch',
@@ -19,7 +18,6 @@ describe('text-styles-prefer-library', () => {
   test('reports violations when a text style differs from its library style', async (): Promise<
     void
   > => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './text-differs.sketch',
@@ -34,7 +32,6 @@ describe('text-styles-prefer-library', () => {
   })
 
   test('reports violations when a text does not have a library style', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './text-no-library.sketch',
@@ -49,7 +46,6 @@ describe('text-styles-prefer-library', () => {
   })
 
   test('reports violations if an unauthorized library is used', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './all-good.sketch',

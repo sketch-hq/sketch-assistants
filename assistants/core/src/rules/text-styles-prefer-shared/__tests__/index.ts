@@ -45,7 +45,10 @@ describe('text-styles-prefer-shared', () => {
       __dirname,
       './layer-styles.sketch',
       'text-styles-prefer-shared',
-      { active: true, maxIdentical: 1 },
+      {
+        active: true,
+        maxIdentical: 1,
+      },
     )
     expect(violations).toHaveLength(0)
     expect(errors).toHaveLength(0)
@@ -71,7 +74,10 @@ describe('text-styles-prefer-shared', () => {
       __dirname,
       './symbols.sketch',
       'text-styles-prefer-shared',
-      { active: true, maxIdentical: 1 },
+      {
+        active: true,
+        maxIdentical: 1,
+      },
     )
     expect(violations).toHaveLength(2)
     expect(errors).toHaveLength(0)

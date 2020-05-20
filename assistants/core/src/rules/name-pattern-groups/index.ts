@@ -1,11 +1,12 @@
 import { t } from '@lingui/macro'
+import { FileFormat } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 import { createNamePatternRuleFunction } from '../../rule-helpers'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   return {
-    rule: createNamePatternRuleFunction(i18n, ['group']),
+    rule: createNamePatternRuleFunction(i18n, [FileFormat.ClassValue.Group]),
     name: 'name-pattern-groups',
     title: i18n._(t`Group names should follow the conventions`),
     description: i18n._(

@@ -1,22 +1,19 @@
 import { t } from '@lingui/macro'
-import { RuleContext, RuleFunction, FileFormat } from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    await utils.iterateCache({
-      async group(node): Promise<void> {
-        const group = utils.nodeToObject<FileFormat.Group>(node)
-        if (group.layers.length === 0) {
-          utils.report({
-            node,
-            message: i18n._(t`This group is empty`),
-          })
-        }
-      },
-    })
+    for (const group of utils.objects.anyGroup) {
+      if (group.layers.length === 0) {
+        utils.report({
+          object: group,
+          message: i18n._(t`This group is empty`),
+        })
+      }
+    }
   }
 
   return {

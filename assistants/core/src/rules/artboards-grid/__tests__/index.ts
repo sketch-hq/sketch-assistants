@@ -8,7 +8,10 @@ describe('artboards-grid', () => {
       __dirname,
       './valid-grid-settings.sketch',
       'artboards-grid',
-      { active: true, grids: [{ gridBlockSize: 5, thickLinesEvery: 10 }] },
+      {
+        active: true,
+        grids: [{ gridBlockSize: 5, thickLinesEvery: 10 }],
+      },
     )
 
     expect(violations).toHaveLength(0)
@@ -22,7 +25,10 @@ describe('artboards-grid', () => {
       __dirname,
       './missing-grid-settings.sketch',
       'artboards-grid',
-      { active: true, grids: [{ gridBlockSize: 5, thickLinesEvery: 10 }] },
+      {
+        active: true,
+        grids: [{ gridBlockSize: 5, thickLinesEvery: 10 }],
+      },
     )
 
     expect(violations).toHaveLength(1)
@@ -36,7 +42,10 @@ describe('artboards-grid', () => {
       __dirname,
       './invalid-grid-settings.sketch',
       'artboards-grid',
-      { active: true, grids: [{ gridBlockSize: 5, thickLinesEvery: 10 }] },
+      {
+        active: true,
+        grids: [{ gridBlockSize: 5, thickLinesEvery: 10 }],
+      },
     )
 
     expect(violations).toHaveLength(1)

@@ -2,7 +2,6 @@ import { testRule } from '../../../test-helpers'
 
 describe('symbols-prefer-library', () => {
   test('finds no violations if only library symbols are used', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './all-good.sketch',
@@ -19,7 +18,6 @@ describe('symbols-prefer-library', () => {
   test('reports violations when a symbol is used that does not belong to a library', async (): Promise<
     void
   > => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './local-symbol.sketch',
@@ -34,7 +32,6 @@ describe('symbols-prefer-library', () => {
   })
 
   test('reports violations if an unauthorized library is used', async (): Promise<void> => {
-    expect.assertions(2)
     const { violations, errors } = await testRule(
       __dirname,
       './all-good.sketch',

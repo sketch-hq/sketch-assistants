@@ -7,7 +7,11 @@ describe('groups-max-layers', () => {
       __dirname,
       './3-layer-group.sketch',
       'groups-max-layers',
-      { active: true, maxLayers: 10, skipClasses: [] },
+      {
+        active: true,
+        maxLayers: 10,
+        skipClasses: [],
+      },
     )
     expect(violations).toHaveLength(0)
     expect(errors).toHaveLength(0)
@@ -19,7 +23,11 @@ describe('groups-max-layers', () => {
       __dirname,
       './11-layer-group.sketch',
       'groups-max-layers',
-      { active: true, maxLayers: 10, skipClasses: [] },
+      {
+        active: true,
+        maxLayers: 10,
+        skipClasses: [],
+      },
     )
     expect(violations).toHaveLength(1)
     expect(errors).toHaveLength(0)
@@ -31,7 +39,11 @@ describe('groups-max-layers', () => {
       __dirname,
       './11-layer-shape-group.sketch',
       'groups-max-layers',
-      { active: true, maxLayers: 10, skipClasses: [] },
+      {
+        active: true,
+        maxLayers: 10,
+        skipClasses: [],
+      },
     )
     expect(violations).toHaveLength(0)
     expect(errors).toHaveLength(0)
@@ -43,7 +55,11 @@ describe('groups-max-layers', () => {
       __dirname,
       './11-layer-shape-group.sketch',
       'groups-max-layers',
-      { active: true, maxLayers: 10, skipClasses: [] },
+      {
+        active: true,
+        maxLayers: 10,
+        skipClasses: [],
+      },
     )
     expect(violations).toHaveLength(0)
     expect(errors).toHaveLength(0)
@@ -55,7 +71,11 @@ describe('groups-max-layers', () => {
       __dirname,
       './6-artboard-page.sketch',
       'groups-max-layers',
-      { active: true, maxLayers: 5, skipClasses: ['artboard'] },
+      {
+        active: true,
+        maxLayers: 5,
+        skipClasses: ['artboard'],
+      },
     )
     expect(violations).toHaveLength(0)
     expect(errors).toHaveLength(0)
@@ -67,7 +87,9 @@ describe('groups-max-layers', () => {
       __dirname,
       './6-artboard-page.sketch',
       'groups-max-layers',
-      { active: true },
+      {
+        active: true,
+      },
     )
     expect(violations).toHaveLength(0)
     expect(errors).toHaveLength(1)

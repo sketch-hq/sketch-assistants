@@ -2,13 +2,14 @@ import { t } from '@lingui/macro'
 import { RuleContext, RuleFunction } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
+import { assertArray } from '../../guards'
 
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    const messages = utils.getOption('messages')
 
-    if (!Array.isArray(messages)) return
+    const messages = utils.getOption('messages')
+    assertArray(messages)
 
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i]

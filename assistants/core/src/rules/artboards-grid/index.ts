@@ -1,9 +1,8 @@
 import {
   RuleFunction,
   RuleContext,
-  Node,
   ReportItem,
-  FileFormat,
+  SketchFileObject,
 } from '@sketch-hq/sketch-assistant-types'
 import { t } from '@lingui/macro'
 
@@ -17,7 +16,7 @@ type GridSpec = {
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    const invalid: Node[] = []
+    const invalid: SketchFileObject[] = []
     // Type safe code to extract relevant options from config
     const grids = utils.getOption('grids')
     if (!Array.isArray(grids) || grids.length === 0) return
@@ -30,31 +29,31 @@ export const createRule: CreateRuleFunction = (i18n) => {
         specs.push({ gridBlockSize, thickLinesEvery })
       }
     }
-    await utils.iterateCache({
-      async artboard(node): Promise<void> {
-        const { grid } = utils.nodeToObject<FileFormat.Artboard>(node)
-        if (!grid) {
-          invalid.push(node) // Treat artboards without grid settings as invalid
-          return
-        }
-        // The artboard's grid much precisely match one of the grids defined in the
-        // options
-        const gridValid = specs
-          .map(
-            (spec) =>
-              grid.gridSize === spec.gridBlockSize && grid.thickGridTimes === spec.thickLinesEvery,
-          )
-          .includes(true)
-        if (!gridValid) {
-          invalid.push(node)
-        }
-      },
-    })
+
+    for (const artboard of utils.objects.artboard) {
+      const { grid } = artboard
+      if (!grid) {
+        invalid.push(artboard) // Treat artboards without grid settings as invalid
+        continue
+      }
+      // The artboard's grid much precisely match one of the grids defined in the
+      // options
+      const gridValid = specs
+        .map(
+          (spec) =>
+            grid.gridSize === spec.gridBlockSize && grid.thickGridTimes === spec.thickLinesEvery,
+        )
+        .includes(true)
+      if (!gridValid) {
+        invalid.push(artboard)
+      }
+    }
+
     utils.report(
       invalid.map(
-        (node): ReportItem => ({
+        (object): ReportItem => ({
           message: i18n._(t`Unexpected artboard grid settings`),
-          node,
+          object,
         }),
       ),
     )

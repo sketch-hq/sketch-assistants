@@ -9,17 +9,14 @@ const isLooseLayer = (layer: FileFormat.AnyLayer) =>
 export const createRule: CreateRuleFunction = (i18n) => {
   const rule: RuleFunction = async (context: RuleContext): Promise<void> => {
     const { utils } = context
-    await utils.iterateCache({
-      async page(node): Promise<void> {
-        const page = utils.nodeToObject<FileFormat.Page>(node)
-        if (page.layers.some(isLooseLayer)) {
-          utils.report({
-            node,
-            message: i18n._(t`This layer is not inside an Artboard`),
-          })
-        }
-      },
-    })
+    for (const page of utils.objects.page) {
+      if (page.layers.some(isLooseLayer)) {
+        utils.report({
+          object: page,
+          message: i18n._(t`This layer is not inside an Artboard`),
+        })
+      }
+    }
   }
 
   return {
