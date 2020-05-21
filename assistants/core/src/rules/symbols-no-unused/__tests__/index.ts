@@ -22,4 +22,14 @@ describe('symbols-no-unsued', () => {
     expect(violations).toHaveLength(1)
     expect(errors).toHaveLength(0)
   })
+
+  test('no violations for symbols used in overrides', async (): Promise<void> => {
+    const { violations, errors } = await testRule(
+      __dirname,
+      './used-in-override.sketch',
+      'symbols-no-unused',
+    )
+    expect(violations).toHaveLength(0)
+    expect(errors).toHaveLength(0)
+  })
 })

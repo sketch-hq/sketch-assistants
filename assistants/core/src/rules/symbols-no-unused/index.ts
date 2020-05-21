@@ -9,10 +9,15 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     const masters = Array.from(utils.objects.symbolMaster)
     const instances = Array.from(utils.objects.symbolInstance)
+    const overrides = Array.from(utils.objects.overrideValue)
 
-    const invalid: FileFormat.SymbolMaster[] = masters.filter(
-      (master) => instances.findIndex((instance) => instance.symbolID === master.symbolID) === -1,
-    )
+    const invalid: FileFormat.SymbolMaster[] = masters.filter((master) => {
+      const noInstances =
+        instances.findIndex((instance) => instance.symbolID === master.symbolID) === -1
+      const noOverrides =
+        overrides.findIndex((override) => override.value === master.symbolID) === -1
+      return noInstances && noOverrides
+    })
 
     utils.report(
       invalid.map((object) => ({
