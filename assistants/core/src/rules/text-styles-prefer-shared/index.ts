@@ -35,8 +35,8 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const numIdentical = texts.length
       if (numIdentical > maxIdentical) {
         utils.report(
-          texts.map((node) => ({
-            node,
+          texts.map((object) => ({
+            object,
             message: i18n._(
               plural({
                 value: maxIdentical,

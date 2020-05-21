@@ -15,9 +15,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
     )
 
     utils.report(
-      invalid.map((node) => ({
+      invalid.map((object) => ({
         message: i18n._(t`This symbol is unused`),
-        node,
+        object,
       })),
     )
   }
