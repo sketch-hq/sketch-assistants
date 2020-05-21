@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-core-assistant
 
+## 5.0.0-next.12
+
+### Patch Changes
+
+- 581554d: Fix a bug where violation objects weren't passed correctly.
+
 ## 5.0.0-next.11
 
 ### Major Changes
