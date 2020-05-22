@@ -16,6 +16,9 @@ Maximum number of child layers within a group.
 ### `skipClasses: string[]`
 
 An array of Sketch file object classes that shouldn't be considered when counting a group's layers.
+The values used should be the value of the `_class` properties found in the Sketch File Format, e.g
+`artboard` for
+[Artboards](https://github.com/sketch-hq/sketch-file-format/blob/661d4d917c9dcfa1beb685cb29c48284b7ddb82d/schema/layers/artboard.schema.yaml#L13).
 
 ## Example configuration
 
@@ -23,6 +26,6 @@ An array of Sketch file object classes that shouldn't be considered when countin
 {
   "active": true,
   "maxLayers": 50,
-  "skipClasses": ["artboards"] // Skips counting artboads on page objects
+  "skipClasses": ["artboard"] // Skips counting artboads on page objects
 }
 ```
