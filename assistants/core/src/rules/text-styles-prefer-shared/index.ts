@@ -59,8 +59,8 @@ export const createRule: CreateRuleFunction = (i18n) => {
       return i18n._(
         plural({
           value: maxIdentical,
-          one: 'Layer styles should not be identical',
-          other: 'No more than # layer styles should be identical',
+          one: 'Text styles should not be identical',
+          other: 'No more than # text styles should be identical',
         }),
       )
     },
