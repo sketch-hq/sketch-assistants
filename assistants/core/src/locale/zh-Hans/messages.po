@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/rule-helpers.ts:116
+#: src/rule-helpers.ts:117
 msgid "Layer name matches one of the forbidden patterns"
 msgstr ""
 
-#: src/rule-helpers.ts:123
+#: src/rule-helpers.ts:124
 msgid "Layer name does not match any of the allowed patterns"
 msgstr ""
 
@@ -296,19 +296,19 @@ msgstr ""
 msgid "Internal debug rule that always throws a rule error"
 msgstr ""
 
-#: src/rules/exported-layers-normal-blend-mode/index.ts:27
+#: src/rules/exported-layers-normal-blend-mode/index.ts:38
 msgid "Blend mode found on exported layer, consider flattening the blend mode for consistent export results."
 msgstr ""
 
-#: src/rules/exported-layers-normal-blend-mode/index.ts:37
+#: src/rules/exported-layers-normal-blend-mode/index.ts:48
 msgid "Blend mode found on exported layer, consider flattening the blend modes for consistent export results."
 msgstr ""
 
-#: src/rules/exported-layers-normal-blend-mode/index.ts:45
+#: src/rules/exported-layers-normal-blend-mode/index.ts:56
 msgid "Avoid blend modes on exported layers"
 msgstr ""
 
-#: src/rules/exported-layers-normal-blend-mode/index.ts:46
+#: src/rules/exported-layers-normal-blend-mode/index.ts:57
 msgid "The visual effect of a blend mode is dependant on what's behind the layer, therefore exporting these layers will often not reproduce the desired result in the exported asset. Some teams may wish to flag exported layers with blend modes in case they represent a mistake"
 msgstr ""
 
@@ -462,11 +462,11 @@ msgstr ""
 msgid "This layer style is different from its shared style"
 msgstr ""
 
-#: src/rules/layer-styles-no-dirty/index.ts:46
+#: src/rules/layer-styles-no-dirty/index.ts:44
 msgid "Layer styles should be the same as their shared style"
 msgstr ""
 
-#: src/rules/layer-styles-no-dirty/index.ts:47
+#: src/rules/layer-styles-no-dirty/index.ts:45
 msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 msgstr ""
 
@@ -515,7 +515,6 @@ msgid "{maxIdentical, plural, one {Expected no identical layer styles in the doc
 msgstr ""
 
 #: src/rules/layer-styles-prefer-shared/index.ts:77
-#: src/rules/text-styles-prefer-shared/index.ts:60
 msgid "{maxIdentical, plural, one {Layer styles should not be identical} other {No more than # layer styles should be identical}}"
 msgstr ""
 
@@ -693,15 +692,15 @@ msgstr ""
 msgid "Some teams may consider unused shared styles a document organization issue."
 msgstr ""
 
-#: src/rules/symbols-no-unused/index.ts:18
+#: src/rules/symbols-no-unused/index.ts:23
 msgid "This symbol is unused"
 msgstr ""
 
-#: src/rules/symbols-no-unused/index.ts:25
+#: src/rules/symbols-no-unused/index.ts:30
 msgid "All symbols should be in-use"
 msgstr ""
 
-#: src/rules/symbols-no-unused/index.ts:26
+#: src/rules/symbols-no-unused/index.ts:31
 msgid "Some teams may consider unused symbols a document organization issue."
 msgstr ""
 
@@ -761,6 +760,10 @@ msgstr ""
 
 #: src/rules/text-styles-prefer-shared/index.ts:44
 msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
+msgstr ""
+
+#: src/rules/text-styles-prefer-shared/index.ts:60
+msgid "{maxIdentical, plural, one {Text styles should not be identical} other {No more than # text styles should be identical}}"
 msgstr ""
 
 #: src/rules/text-styles-prefer-shared/index.ts:66
