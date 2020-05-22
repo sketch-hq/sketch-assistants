@@ -41,9 +41,6 @@ export const config: AssistantConfig = {
     '@sketch-hq/sketch-core-assistant/shared-styles-no-unused': {
       active: true,
     },
-    '@sketch-hq/sketch-core-assistant/symbols-no-unused': {
-      active: true,
-    },
     '@sketch-hq/sketch-core-assistant/layers-no-loose': {
       active: true,
     },

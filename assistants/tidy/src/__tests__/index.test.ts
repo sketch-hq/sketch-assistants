@@ -68,7 +68,3 @@ test('layers-no-loose', async () => {
 test('shared-styles-no-unused', async () => {
   await testCoreRuleWithConfig('./unused-shared-style.sketch', 'shared-styles-no-unused')
 })
-
-test('symbols-no-unused', async () => {
-  await testCoreRuleWithConfig('./unused-symbol.sketch', 'symbols-no-unused')
-})
