@@ -1,62 +1,57 @@
 import { resolve } from 'path'
-import { testRule, prepare } from '@sketch-hq/sketch-assistant-utils'
-import {
-  AssistantPackageExport,
-  Violation,
-  PlainRuleError,
-} from '@sketch-hq/sketch-assistant-types'
+import { testRule } from '@sketch-hq/sketch-assistant-utils'
+import { RuleConfig } from '@sketch-hq/sketch-assistant-types'
 
-import Assistant from '..'
+import Assistant, { config } from '..'
 
-const testAllRules = async (file: string, assistant: AssistantPackageExport) => {
-  const { config } = await prepare(Assistant, { locale: 'en', platform: 'node' })
-  let allViolations: Violation[] = []
-  let allErrors: PlainRuleError[] = []
-  for (const rule of Object.keys(config.rules)) {
-    const { violations, errors } = await testRule(
-      file,
-      assistant,
-      rule,
-      config.rules[rule] || undefined,
-    )
-    allViolations = [...allViolations, ...violations]
-    allErrors = [...allErrors, ...errors]
-  }
-  return { violations: allViolations, errors: allErrors }
+const testCoreRuleWithConfig = async (fixture: string, ruleId: string, numViolations = 1) => {
+  const ruleName = `@sketch-hq/sketch-core-assistant/${ruleId}`
+  const { violations, errors } = await testRule(
+    resolve(__dirname, fixture),
+    Assistant,
+    ruleName,
+    config.rules[ruleName] as RuleConfig,
+  )
+  expect(violations).toHaveLength(numViolations)
+  expect(errors).toHaveLength(0)
 }
 
-describe('Naming Conventions Assistant', () => {
-  test('produces one violation in the default empty document', async () => {
-    expect.assertions(2)
-    const { violations, errors } = await testAllRules(
-      resolve(__dirname, './empty.sketch'),
-      Assistant,
-    )
-
-    // Page name is by default incorrect
-    expect(violations).toHaveLength(1)
-    expect(errors).toHaveLength(0)
+describe('name-pattern-pages', () => {
+  test('no violation for emojis at start', async () => {
+    await testCoreRuleWithConfig('./valid-page-names.sketch', 'name-pattern-pages', 0)
   })
 
-  test('produces violations in incorrect document', async () => {
-    expect.assertions(2)
-    const { violations, errors } = await testAllRules(
-      resolve(__dirname, './all-bad.sketch'),
-      Assistant,
-    )
+  test('violations for no emojis at start', async () => {
+    await testCoreRuleWithConfig('./invalid-page-names.sketch', 'name-pattern-pages', 4)
+  })
+})
 
-    expect(violations).toHaveLength(10)
-    expect(errors).toHaveLength(0)
+describe('name-pattern-artboards', () => {
+  test('no violations for properly numbered artboards', async () => {
+    await testCoreRuleWithConfig('./valid-artboard-names.sketch', 'name-pattern-artboards', 0)
   })
 
-  test('does not produce violations in correct document', async () => {
-    expect.assertions(2)
-    const { violations, errors } = await testAllRules(
-      resolve(__dirname, './all-good.sketch'),
-      Assistant,
-    )
+  test('violations for artboards that haven not been numbered', async () => {
+    await testCoreRuleWithConfig('./invalid-artboard-names.sketch', 'name-pattern-artboards', 3)
+  })
+})
 
-    expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+describe('name-pattern-groups', () => {
+  test('no violations for properly named groups', async () => {
+    await testCoreRuleWithConfig('./valid-group-names.sketch', 'name-pattern-groups', 0)
+  })
+
+  test('violations for groups that haven not been properly named', async () => {
+    await testCoreRuleWithConfig('./invalid-group-names.sketch', 'name-pattern-groups', 2)
+  })
+})
+
+describe('name-pattern-symbols', () => {
+  test('no violations for symbol names using grouping', async () => {
+    await testCoreRuleWithConfig('./valid-symbol-names.sketch', 'name-pattern-symbols', 0)
+  })
+
+  test('violations for symbol names not using grouping', async () => {
+    await testCoreRuleWithConfig('./invalid-symbol-names.sketch', 'name-pattern-symbols', 3)
   })
 })
