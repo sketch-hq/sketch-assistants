@@ -1,5 +1,15 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 5.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [1698a52]
+- Updated dependencies [7a54cbb]
+- Updated dependencies [caba0e1]
+- Updated dependencies [0688585]
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.13
+
 ## 5.0.0-next.12
 
 ### Patch Changes
