@@ -1,5 +1,19 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 5.0.0-next.13
+
+### Minor Changes
+
+- 7a54cbb: Remove `symbols-no-unused` from Tidy Assistant.
+
+### Patch Changes
+
+- Updated dependencies [1698a52]
+- Updated dependencies [7a54cbb]
+- Updated dependencies [caba0e1]
+- Updated dependencies [0688585]
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.13
+
 ## 5.0.0-next.12
 
 ### Patch Changes

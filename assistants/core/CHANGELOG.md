@@ -1,5 +1,15 @@
 # @sketch-hq/sketch-core-assistant
 
+## 5.0.0-next.13
+
+### Patch Changes
+
+- 1698a52: Fix rule title copy in `text-styles-prefer-shared`.
+- 7a54cbb: Count symbols set as override values as used in `symbols-no-unused`.
+- caba0e1: Do not raise violations from the `exported-layers-normal-blend-mode` rule when the layer
+  is only to be exported as some kind of bitmap-based export format.
+- 0688585: Report loose layers, not the parent page in the the `layers-no-loose` rule.
+
 ## 5.0.0-next.12
 
 ### Patch Changes

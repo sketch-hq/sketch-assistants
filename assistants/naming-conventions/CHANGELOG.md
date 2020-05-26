@@ -1,5 +1,17 @@
 # @sketch-hq/sketch-naming-conventions-assistant
 
+## 5.0.0-next.13
+
+### Patch Changes
+
+- 7cf9afe: Fixed a bug where an empty space was passing for an emoji in the `name-pattern-pages`
+  rule.
+- Updated dependencies [1698a52]
+- Updated dependencies [7a54cbb]
+- Updated dependencies [caba0e1]
+- Updated dependencies [0688585]
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.13
+
 ## 5.0.0-next.12
 
 ### Patch Changes

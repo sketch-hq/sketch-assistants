@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-reuse-suggestions-assistant",
-  "version": "5.0.0-next.12",
+  "version": "5.0.0-next.13",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -22,7 +22,7 @@
   "files": ["dist"],
   "dependencies": {
     "@sketch-hq/sketch-assistant-types": "5.0.0-next.11",
-    "@sketch-hq/sketch-core-assistant": "5.0.0-next.12"
+    "@sketch-hq/sketch-core-assistant": "5.0.0-next.13"
   },
   "devDependencies": {
     "@sketch-hq/sketch-assistant-utils": "5.0.0-next.11"
