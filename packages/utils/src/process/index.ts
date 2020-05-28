@@ -231,10 +231,6 @@ export const addObjectToCache = (
     case 'document':
       cache[object._class].push(object)
       break
-    default:
-      throw Error(
-        `Error adding Sketch file object to ObjectCache, object's _class value "${object._class}" is not recognised`,
-      )
   }
 }
 
