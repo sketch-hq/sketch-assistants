@@ -118,11 +118,6 @@ export type IterableObjectCache = {
 }
 
 /**
- * Intersection of a Sketch file object and a pointer string.
- */
-// export type Node = SketchFileObject & { $pointer: JsonPointer }
-
-/**
  * A processed Sketch file collates a SketchFile object along with various data structures suited
  * for efficiently inspecting its contents.
  */
@@ -155,11 +150,65 @@ export type ProcessedSketchFile = {
  * (like cache creation, rule invocation etc.) should exit early as soon as a
  * cancellation is detected.
  */
-export type RunOperation =
-  | {
-      cancelled: boolean
-    }
-  | { cancelled: 1 | 0 }
+export type RunOperation = { cancelled: boolean } | { cancelled: 1 | 0 }
+
+/**
+ * A map of Assistant package exports, keyed by name.
+ */
+export type AssistantMap = { [assistantName: string]: AssistantPackageExport }
+
+/**
+ * Input required for running a group of multiple Assistant packages
+ * against a single Sketch file.
+ */
+export type RunInput = {
+  /**
+   * The Assistants to run.
+   */
+  assistants: AssistantMap
+  /**
+   * Processed Sketch file to run the Assistants against.
+   */
+  processedFile: ProcessedSketchFile
+  /**
+   * GetImageMetadata implmentation.
+   */
+  getImageMetadata: GetImageMetadata
+  /**
+   * Object from the external environment carrying the cancelled flag.
+   */
+  operation: RunOperation
+  /**
+   * Environment.
+   */
+  env: AssistantEnv
+}
+
+/**
+ * The output from running a group of Assistants. Results are grouped by Assistant
+ * name, and indicate either success or error.
+ */
+export type RunOutput = {
+  [assistantName: string]:
+    | { code: 'error'; result: AssistantErrorResult }
+    | { code: 'success'; result: AssistantSuccessResult }
+}
+
+/**
+ * The run has failed to the extent that collating a RunOutput object is not
+ * possible, and the runner function promise rejects instead.
+ */
+export type RunRejection = {
+  /**
+   * Human readable message describing the rejection.
+   */
+  message: string
+  /**
+   * runError: Something unexpected has gone badly wrong.
+   * cancelled: Run cancelled via cancellation signal from outside.
+   */
+  code: 'runError' | 'cancelled'
+}
 
 /**
  * JavaScript errors encountered during rule invocation normalised into plain objects.
@@ -172,17 +221,30 @@ export type PlainRuleError = {
 }
 
 /**
- * The result of running an assistant.
+ * The result of running a single Assistant that errored and did not complete.
  */
-export type AssistantResult = {
+export type AssistantErrorResult = {
+  message: string
+}
+
+/**
+ * The result of successfully running a single assistant to completion. Note that
+ * even if the Assistant encounters some rules that crash and produce `ruleErrors` then that
+ * doesn't invalidate the whole result.
+ */
+export type AssistantSuccessResult = {
+  /**
+   * The Assistant "passed" if there are no ViolationSeverity.error level violations present.
+   */
+  passed: boolean
   /**
    * One or more `violations` implies the assistant’s rules found issues with the Sketch document.
    */
   violations: Violation[]
   /**
-   * One or more `errors` implies that some rules didn’t run because they encountered errors.
+   * One or more `ruleErrors` implies that some rules didn’t run because they encountered errors.
    */
-  errors: PlainRuleError[]
+  ruleErrors: PlainRuleError[]
   /**
    * Metadata relating to the Assistant that produced the result, and the rules that were invoked.
    */
@@ -202,6 +264,10 @@ export type AssistantResult = {
     }
   }
 }
+
+//
+// Rule context
+//
 
 /**
  * Contains all the values and utils exposed to individual rule functions.
@@ -313,6 +379,7 @@ export type Violation = {
   severity: ViolationSeverity
   pointer: string | null
   objectId: string | null
+  objectName: string | null
 }
 
 /**
@@ -325,7 +392,7 @@ export enum ViolationSeverity {
 }
 
 //
-// Assistants
+// Assistant definition
 //
 
 /**
@@ -401,7 +468,10 @@ export type AssistantPackageJson = PackageJson &
 /**
  * Platforms that can run Assistants.
  */
-export type Platform = 'sketch' | 'node'
+export enum Platform {
+  sketch = 'sketch',
+  node = 'node',
+}
 
 /**
  * Ambient environmental information for assistants, typically provided by an outer assistant runner.

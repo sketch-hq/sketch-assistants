@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import * as utils from '@sketch-hq/sketch-assistant-utils'
-import { AssistantEnv, AssistantResult, RuleConfig } from '@sketch-hq/sketch-assistant-types'
+import { AssistantEnv, AssistantSuccessResult, RuleConfig } from '@sketch-hq/sketch-assistant-types'
 
 import assistant from './index'
 
@@ -10,7 +10,7 @@ export const testRule = async (
   ruleId: string,
   config?: RuleConfig,
   env?: AssistantEnv,
-): Promise<AssistantResult> =>
+): Promise<AssistantSuccessResult> =>
   await utils.testRule(
     resolve(dirname, fixture),
     assistant,

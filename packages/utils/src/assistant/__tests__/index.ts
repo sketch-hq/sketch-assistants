@@ -1,5 +1,5 @@
 import { createAssistantDefinition, createRule, createAssistant } from '../../test-helpers'
-import { AssistantEnv, AssistantDefinition } from '@sketch-hq/sketch-assistant-types'
+import { AssistantEnv, AssistantDefinition, Platform } from '@sketch-hq/sketch-assistant-types'
 import { prepare, assign } from '../'
 
 describe('assign', () => {
@@ -96,7 +96,7 @@ describe('assign', () => {
 describe('prepare', () => {
   const env: AssistantEnv = {
     locale: 'en',
-    platform: 'sketch',
+    platform: Platform.sketch,
   }
 
   test('prepares a single assistant function', async () => {

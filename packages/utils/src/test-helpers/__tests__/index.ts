@@ -10,7 +10,7 @@ describe('testRule', () => {
       'rule',
     )
     expect(res.violations).toHaveLength(0)
-    expect(res.errors).toHaveLength(0)
+    expect(res.ruleErrors).toHaveLength(0)
   })
 
   test('can return violations', async (): Promise<void> => {
@@ -28,7 +28,7 @@ describe('testRule', () => {
       'rule',
     )
     expect(res.violations).toHaveLength(1)
-    expect(res.errors).toHaveLength(0)
+    expect(res.ruleErrors).toHaveLength(0)
   })
 
   test('works when passed an array of extendable Assistants', async (): Promise<void> => {
@@ -56,7 +56,7 @@ describe('testRule', () => {
       'rule-a',
     )
     expect(res.violations).toHaveLength(1)
-    expect(res.errors).toHaveLength(0)
+    expect(res.ruleErrors).toHaveLength(0)
   })
 
   test('can return rule errors', async (): Promise<void> => {
@@ -76,7 +76,7 @@ describe('testRule', () => {
       'rule',
     )
     expect(res.violations).toHaveLength(0)
-    expect(res.errors).toHaveLength(1)
+    expect(res.ruleErrors).toHaveLength(1)
   })
 
   test('throws when an unavailable rule is configured', async (): Promise<void> => {

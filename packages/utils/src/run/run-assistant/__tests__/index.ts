@@ -3,38 +3,39 @@ import { resolve } from 'path'
 import {
   AssistantEnv,
   RuleDefinition,
-  AssistantResult,
+  AssistantSuccessResult,
   AssistantConfig,
+  Platform,
 } from '@sketch-hq/sketch-assistant-types'
 import { runAssistant } from '..'
-import { fromFile } from '../../from-file'
-import { process } from '../../process'
-import { createAssistantDefinition, createRule, createAssistantConfig } from '../../test-helpers'
-import { getImageMetadata } from '../../get-image-metadata'
+import { fromFile } from '../../../from-file'
+import { process } from '../../../process'
+import { createAssistantDefinition, createRule, createAssistantConfig } from '../../../test-helpers'
+import { getImageMetadata } from '../../../get-image-metadata'
 
 const testRunAssistant = async (
   config: AssistantConfig,
   rule: RuleDefinition,
-): Promise<AssistantResult> => {
+): Promise<AssistantSuccessResult> => {
   const op = { cancelled: false }
   const file = await fromFile(resolve(__dirname, './empty.sketch'))
   const processedFile = await process(file, op)
   const assistant = createAssistantDefinition({ rules: rule ? [rule] : [], config })
-  const env: AssistantEnv = { locale: '', platform: 'node' }
+  const env: AssistantEnv = { locale: '', platform: Platform.node }
   return await runAssistant(processedFile, assistant, env, op, getImageMetadata)
 }
 
 describe('runAssistant', () => {
   test('skips unconfigured rules', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(createAssistantConfig(), createRule())
+    const { ruleErrors, violations } = await testRunAssistant(createAssistantConfig(), createRule())
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('can produce violations', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(
+    const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({
         rules: {
           rule: { active: true },
@@ -48,12 +49,12 @@ describe('runAssistant', () => {
       }),
     )
     expect(violations).toHaveLength(1)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('skips rules that dont match the current platform', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(
+    const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({
         rules: {
           rule: { active: true },
@@ -61,19 +62,19 @@ describe('runAssistant', () => {
       }),
       createRule({
         name: 'rule',
-        platform: 'sketch',
+        platform: Platform.sketch,
         rule: async (ruleContext) => {
           ruleContext.utils.report({ message: 'Something went wrong' })
         },
       }),
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('includes metadata in the result', async (): Promise<void> => {
     expect.assertions(3)
-    const { errors, metadata } = await testRunAssistant(
+    const { ruleErrors, metadata } = await testRunAssistant(
       createAssistantConfig({
         rules: {
           rule: { active: true },
@@ -87,12 +88,12 @@ describe('runAssistant', () => {
         "rule",
       ]
     `)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('config values can be interpolated into rule metadata', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, metadata } = await testRunAssistant(
+    const { ruleErrors, metadata } = await testRunAssistant(
       createAssistantConfig({
         rules: {
           rule: { active: true, subspaceFrequency: 12 },
@@ -103,7 +104,7 @@ describe('runAssistant', () => {
         title: (ruleConfig) => `Subspace frequency should be ${ruleConfig.subspaceFrequency}Hz`,
       }),
     )
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
     expect(metadata.rules['rule'].title).toMatchInlineSnapshot(
       `"Subspace frequency should be 12Hz"`,
     )
@@ -111,7 +112,7 @@ describe('runAssistant', () => {
 
   test('configs can set a custom title', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, metadata } = await testRunAssistant(
+    const { ruleErrors, metadata } = await testRunAssistant(
       createAssistantConfig({
         rules: {
           rule: { active: true, ruleTitle: 'Warp speed should not exceed 9.9' },
@@ -121,13 +122,13 @@ describe('runAssistant', () => {
         name: 'rule',
       }),
     )
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
     expect(metadata.rules['rule'].title).toMatchInlineSnapshot(`"Warp speed should not exceed 9.9"`)
   })
 
   test('skips inactive rules', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(
+    const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({
         rules: {
           rule: { active: false },
@@ -141,12 +142,12 @@ describe('runAssistant', () => {
       }),
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('can produce rule errors', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(
+    const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({ rules: { rule: { active: true } } }),
       createRule({
         name: 'rule',
@@ -156,12 +157,12 @@ describe('runAssistant', () => {
       }),
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(1)
+    expect(ruleErrors).toHaveLength(1)
   })
 
   test('can produce rule errors during iteration', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(
+    const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({ rules: { rule: { active: true } } }),
       createRule({
         name: 'rule',
@@ -173,12 +174,12 @@ describe('runAssistant', () => {
       }),
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(1)
+    expect(ruleErrors).toHaveLength(1)
   })
 
   test('can produce rule errors for bad config', async (): Promise<void> => {
     expect.assertions(2)
-    const { errors, violations } = await testRunAssistant(
+    const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({ rules: { rule: { active: true } } }),
       createRule({
         name: 'rule',
@@ -188,6 +189,6 @@ describe('runAssistant', () => {
       }),
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(1)
+    expect(ruleErrors).toHaveLength(1)
   })
 })

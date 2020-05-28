@@ -140,6 +140,11 @@ const addReportsToViolations = (
               ? item.object.do_objectID || null
               : null
             : null,
+          objectName: item.object
+            ? 'name' in item.object
+              ? item.object.name || null
+              : null
+            : null,
         }
       },
     ),

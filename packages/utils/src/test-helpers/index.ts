@@ -9,7 +9,7 @@ import {
   ViolationSeverity,
   RuleConfigGroup,
   AssistantEnv,
-  AssistantResult,
+  AssistantSuccessResult,
   Platform,
   RuleConfig,
   AssistantPackageExport,
@@ -17,7 +17,7 @@ import {
 import { fromFile } from '../from-file'
 import { process } from '../process'
 import { prepare, getRuleDefinition } from '../assistant'
-import { runAssistant } from '../run-assistant'
+import { runAssistant } from '../run/run-assistant'
 import { getImageMetadata } from '../get-image-metadata'
 
 /**
@@ -114,8 +114,8 @@ export const testRule = async (
   assistant: AssistantPackageExport,
   ruleName: string,
   ruleConfig: RuleConfig = { active: true },
-  env: AssistantEnv = { locale: 'en', platform: 'node' },
-): Promise<AssistantResult> => {
+  env: AssistantEnv = { locale: 'en', platform: Platform.node },
+): Promise<AssistantSuccessResult> => {
   const file = await fromFile(filepath)
   const op = { cancelled: false }
   const processedFile = await process(file, op)

@@ -3,7 +3,7 @@ import { testRule } from '../../../test-helpers'
 describe('groups-max-layers', () => {
   test('no violations for groups with valid layer counts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './3-layer-group.sketch',
       'groups-max-layers',
@@ -14,12 +14,12 @@ describe('groups-max-layers', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('finds violations for groups with too many layers', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './11-layer-group.sketch',
       'groups-max-layers',
@@ -30,12 +30,12 @@ describe('groups-max-layers', () => {
       },
     )
     expect(violations).toHaveLength(1)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('shape groups are ignored', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './11-layer-shape-group.sketch',
       'groups-max-layers',
@@ -46,12 +46,12 @@ describe('groups-max-layers', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('shape groups are ignored', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './11-layer-shape-group.sketch',
       'groups-max-layers',
@@ -62,12 +62,12 @@ describe('groups-max-layers', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('skip classes option works', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './6-artboard-page.sketch',
       'groups-max-layers',
@@ -78,12 +78,12 @@ describe('groups-max-layers', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('errors for missing config option', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './6-artboard-page.sketch',
       'groups-max-layers',
@@ -92,6 +92,6 @@ describe('groups-max-layers', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(1)
+    expect(ruleErrors).toHaveLength(1)
   })
 })
