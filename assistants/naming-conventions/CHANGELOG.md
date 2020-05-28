@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-naming-conventions-assistant
 
+## 5.0.0-next.14
+
+### Patch Changes
+
+- @sketch-hq/sketch-core-assistant@5.0.0-next.14
+
 ## 5.0.0-next.13
 
 ### Patch Changes

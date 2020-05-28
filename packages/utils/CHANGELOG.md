@@ -1,5 +1,12 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 5.0.0-next.14
+
+### Patch Changes
+
+- a2a4585: Do not throw an error when processing a Sketch file and encountering an unknown object
+  `_class` value.
+
 ## 5.0.0-next.11
 
 ### Major Changes
