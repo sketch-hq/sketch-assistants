@@ -153,9 +153,9 @@ export type ProcessedSketchFile = {
 export type RunOperation = { cancelled: boolean } | { cancelled: 1 | 0 }
 
 /**
- * A map of Assistant package exports, keyed by name.
+ * A map of Assistant packages, keyed by name.
  */
-export type AssistantMap = { [assistantName: string]: AssistantPackageExport }
+export type AssistantPackageMap = { [assistantName: string]: unknown }
 
 /**
  * Input required for running a group of multiple Assistant packages
@@ -165,7 +165,7 @@ export type RunInput = {
   /**
    * The Assistants to run.
    */
-  assistants: AssistantMap
+  assistants: AssistantPackageMap
   /**
    * Processed Sketch file to run the Assistants against.
    */
@@ -259,7 +259,7 @@ export type AssistantSuccessResult = {
         title: string
         description: string
         debug: boolean
-        platform: Platform
+        runtime?: AssistantRuntime
       }
     }
   }
@@ -466,11 +466,12 @@ export type AssistantPackageJson = PackageJson &
   }>
 
 /**
- * Platforms that can run Assistants.
+ * Assistants can run within Node, or the JavaScriptCore runtime provided by Sketch. This type
+ * enumerates the two possibilities.
  */
-export enum Platform {
-  sketch = 'sketch',
-  node = 'node',
+export enum AssistantRuntime {
+  SketchJavaScriptCore = 'SketchJavaScriptCore',
+  Node = 'Node',
 }
 
 /**
@@ -485,9 +486,9 @@ export type AssistantEnv = {
    */
   locale: string | undefined
   /**
-   * Indicates whether the assistant is running in either a Node or Sketch (JavaScriptCore) environment
+   * Indicates whether the assistant is running in Node or Sketch.
    */
-  platform: Platform
+  runtime: AssistantRuntime
 }
 
 /**
@@ -499,13 +500,10 @@ export type AssistantEnv = {
 export type Assistant = (env: AssistantEnv) => Promise<AssistantDefinition>
 
 /**
- * Defines the expected type definition for the export from a 1st or 3rd party assistant package. It
- * allows an assistant to be expressed as either a single assistant or an array of assistants that
- * should be merged before a run operation. Via type recursion arbitrarily nested arrays of
- * assistant functions are supported to allow for incorporation of other assistant packages into
- * the final export.
+ * Defines the expected type for the default export from an assistant package entrypoint. It allows
+ * an assistant to be expressed as either a single assistant or an array of assistants that should be extended and merged before a run operation.
  */
-export type AssistantPackageExport = MaybeESModule<ValueOrArray<MaybeESModule<Assistant>>>
+export type AssistantPackage = ValueOrArray<Assistant>
 
 /**
  * Concrete assistant definition that can be invoked against a Sketch file during a lint run.
@@ -558,9 +556,9 @@ export type RuleDefinition = {
    */
   debug?: boolean
   /**
-   * Indicates rule platform compatibility. For cross-platform rules this property can be omitted.
+   * Indicates rule compatibility. For cross-platform rules this property can be omitted.
    */
-  platform?: Platform
+  runtime?: AssistantRuntime
 }
 
 /**

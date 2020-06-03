@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest"
+    "test": "echo \"Not implemented\""
   },
   "files": [
     "dist"

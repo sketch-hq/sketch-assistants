@@ -5,7 +5,7 @@ import {
   RuleDefinition,
   AssistantSuccessResult,
   AssistantConfig,
-  Platform,
+  AssistantRuntime,
 } from '@sketch-hq/sketch-assistant-types'
 import { runAssistant } from '..'
 import { fromFile } from '../../../from-file'
@@ -21,7 +21,7 @@ const testRunAssistant = async (
   const file = await fromFile(resolve(__dirname, './empty.sketch'))
   const processedFile = await process(file, op)
   const assistant = createAssistantDefinition({ rules: rule ? [rule] : [], config })
-  const env: AssistantEnv = { locale: '', platform: Platform.node }
+  const env: AssistantEnv = { locale: '', runtime: AssistantRuntime.Node }
   return await runAssistant(processedFile, assistant, env, op, getImageMetadata)
 }
 
@@ -62,7 +62,7 @@ describe('runAssistant', () => {
       }),
       createRule({
         name: 'rule',
-        platform: Platform.sketch,
+        runtime: AssistantRuntime.SketchJavaScriptCore,
         rule: async (ruleContext) => {
           ruleContext.utils.report({ message: 'Something went wrong' })
         },

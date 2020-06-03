@@ -71,7 +71,7 @@ const runAssistant = async (
 
   const activeRules = assistant.rules
     .filter((rule) => isRuleActive(assistant.config, rule.name)) // Rule turned on in config
-    .filter((rule) => (rule.platform ? rule.platform === env.platform : true)) // Rule platform is supported
+    .filter((rule) => (rule.runtime ? rule.runtime === env.runtime : true)) // Rule platform is supported
 
   const metadata: AssistantSuccessResult['metadata'] = {
     assistant: {
@@ -100,7 +100,7 @@ const runAssistant = async (
           title,
           description,
           debug: rule.debug,
-          platform: rule.platform,
+          runtime: rule.runtime,
         },
       }
     }, {}),

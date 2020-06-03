@@ -16,9 +16,9 @@ import {
 } from '@sketch-hq/sketch-assistant-utils'
 import {
   FileFormat,
-  Platform,
+  AssistantRuntime,
   RunOutput,
-  AssistantMap,
+  AssistantPackageMap,
   ViolationSeverity,
   SketchFile,
   AssistantConfig,
@@ -195,8 +195,8 @@ const spinnerMessage = (filename: string, message: string) =>
  * Require Assistants for a given workspace. That is, resolve their names to
  * their actual package export values.
  */
-const requireAssistants = (dir: string, workspace: Workspace): AssistantMap =>
-  Object.keys(workspace.dependencies).reduce<AssistantMap>(
+const requireAssistants = (dir: string, workspace: Workspace): AssistantPackageMap =>
+  Object.keys(workspace.dependencies).reduce<AssistantPackageMap>(
     (assistantGroup, pkgName) => ({
       [pkgName]: require(`${dir}/node_modules/${pkgName}`),
       ...assistantGroup,
@@ -230,7 +230,7 @@ const installWorkspace = async (dir: string, workspace: Workspace): Promise<void
 const makeAssistant = async (
   dir: string,
   workspace: WorkspaceWithAssistant,
-): Promise<AssistantMap> => {
+): Promise<AssistantPackageMap> => {
   const assistants = await requireAssistants(dir, workspace)
   const assistantName = `custom/${workspace.name}`
   // @ts-ignore TODO: This code is working, but there's a type error, presumably caused by
@@ -342,7 +342,7 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
     const operation = { cancelled: false }
     const processedFile = await processFile(file, operation)
     const env = {
-      platform: Platform.node,
+      runtime: AssistantRuntime.Node,
       locale: await osLocale(),
     }
 

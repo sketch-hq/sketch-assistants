@@ -1,7 +1,7 @@
 import { testRule } from '../../../test-helpers'
 
 describe('debug-all-options', () => {
-  test('does not errors or violations', async (): Promise<void> => {
+  test('does not error or produce violations', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testRule(
       __dirname,

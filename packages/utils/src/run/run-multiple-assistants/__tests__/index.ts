@@ -5,7 +5,7 @@ import {
   ViolationSeverity,
   Assistant,
   AssistantDefinition,
-  Platform,
+  AssistantRuntime,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { runMultipleAssistants } from '..'
@@ -22,7 +22,7 @@ const testRunMultiple = async (
     assistants = { 'dummy-assistant': createAssistant() },
     operation = { cancelled: false },
     getImageMetadata = getImageMetadataNode,
-    env = { locale: 'en', platform: Platform.node },
+    env = { locale: 'en', runtime: AssistantRuntime.Node },
   }: Partial<RunInput>,
   filename = './empty.sketch',
 ): Promise<RunOutput> => {
@@ -253,11 +253,11 @@ test('can be internationalized', async (): Promise<void> => {
 
   const { 'dummy-assistant': zhRes } = await testRunMultiple({
     assistants,
-    env: { platform: Platform.node, locale: 'zh-Hans' },
+    env: { runtime: AssistantRuntime.Node, locale: 'zh-Hans' },
   })
   const { 'dummy-assistant': enRes } = await testRunMultiple({
     assistants,
-    env: { platform: Platform.node, locale: 'en' },
+    env: { runtime: AssistantRuntime.Node, locale: 'en' },
   })
 
   expect.assertions(2)

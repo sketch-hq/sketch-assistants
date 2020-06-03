@@ -1,15 +1,16 @@
 import { resolve } from 'path'
 import { testRule, prepare } from '@sketch-hq/sketch-assistant-utils'
 import {
-  AssistantPackageExport,
+  AssistantPackage,
   Violation,
   PlainRuleError,
+  Platform,
 } from '@sketch-hq/sketch-assistant-types'
 
 import Assistant from '..'
 
-const testAllRules = async (file: string, assistant: AssistantPackageExport) => {
-  const { config } = await prepare(assistant, { locale: 'en', platform: 'node' })
+const testAllRules = async (file: string, assistant: AssistantPackage) => {
+  const { config } = await prepare(assistant, { locale: 'en', platform: Platform.node })
   let allViolations: Violation[] = []
   let allErrors: PlainRuleError[] = []
   for (const rule of Object.keys(config.rules)) {
@@ -20,7 +21,7 @@ const testAllRules = async (file: string, assistant: AssistantPackageExport) => 
       config.rules[rule] || undefined,
     )
     allViolations = [...allViolations, ...violations]
-    allErrors = [...allErrors, ...errors]
+    allErrors = [...allErrors, ...ruleErrors]
   }
   return { violations: allViolations, errors: allErrors }
 }
@@ -28,34 +29,34 @@ const testAllRules = async (file: string, assistant: AssistantPackageExport) => 
 describe('Reuse Assistant', () => {
   test('produces no errors in empty document', async () => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testAllRules(
+    const { violations, errors } = await testAllRules(
       resolve(__dirname, './empty.sketch'),
       Assistant,
     )
 
     expect(violations).toHaveLength(0)
-    expect(ruleErrors).toHaveLength(0)
+    expect(errors).toHaveLength(0)
   })
 
   test('produces violations in incorrect document', async () => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testAllRules(
+    const { violations, errors } = await testAllRules(
       resolve(__dirname, './all-bad.sketch'),
       Assistant,
     )
 
     expect(violations).toHaveLength(4)
-    expect(ruleErrors).toHaveLength(0)
+    expect(errors).toHaveLength(0)
   })
 
   test('does not produce violations in correct document', async () => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testAllRules(
+    const { violations, errors } = await testAllRules(
       resolve(__dirname, './all-good.sketch'),
       Assistant,
     )
 
     expect(violations).toHaveLength(0)
-    expect(ruleErrors).toHaveLength(0)
+    expect(errors).toHaveLength(0)
   })
 })

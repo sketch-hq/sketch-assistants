@@ -1,5 +1,5 @@
 import {
-  AssistantPackageExport,
+  AssistantPackage,
   RuleDefinition,
   AssistantDefinition,
 } from '@sketch-hq/sketch-assistant-types'
@@ -52,7 +52,7 @@ const SUPPORTED_LOCALES = ['en', 'zh-Hans']
 const FALLBACK_LOCALE = 'en'
 const pkgName = '@sketch-hq/sketch-core-assistant'
 
-const assistant: AssistantPackageExport = async (env) => {
+const assistant: AssistantPackage = async (env) => {
   const i18n: I18n = setupI18n({
     language: SUPPORTED_LOCALES.includes(env.locale!) ? env.locale : FALLBACK_LOCALE,
     catalogs: {
