@@ -100,7 +100,7 @@ describe('assign', () => {
 describe('prepare', () => {
   const env: AssistantEnv = {
     locale: 'en',
-    runtime: AssistantRuntime.SketchJavaScriptCore,
+    runtime: AssistantRuntime.Sketch,
   }
 
   test('prepares a single assistant function', async () => {

@@ -62,7 +62,7 @@ describe('runAssistant', () => {
       }),
       createRule({
         name: 'rule',
-        runtime: AssistantRuntime.SketchJavaScriptCore,
+        runtime: AssistantRuntime.Sketch,
         rule: async (ruleContext) => {
           ruleContext.utils.report({ message: 'Something went wrong' })
         },

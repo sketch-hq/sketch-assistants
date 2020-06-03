@@ -470,7 +470,7 @@ export type AssistantPackageJson = PackageJson &
  * enumerates the two possibilities.
  */
 export enum AssistantRuntime {
-  SketchJavaScriptCore = 'SketchJavaScriptCore',
+  Sketch = 'Sketch',
   Node = 'Node',
 }
 
