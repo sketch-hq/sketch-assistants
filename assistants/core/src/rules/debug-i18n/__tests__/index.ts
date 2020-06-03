@@ -1,4 +1,4 @@
-import { Platform } from '@sketch-hq/sketch-assistant-types'
+import { AssistantRuntime } from '@sketch-hq/sketch-assistant-types'
 import { testRule } from '../../../test-helpers'
 
 describe('debug-i18n', () => {
@@ -11,7 +11,7 @@ describe('debug-i18n', () => {
       {
         active: true,
       },
-      { locale: 'en', platform: Platform.node },
+      { locale: 'en', runtime: AssistantRuntime.Node },
     )
 
     expect(ruleErrors).toHaveLength(0)
@@ -27,7 +27,7 @@ describe('debug-i18n', () => {
       {
         active: true,
       },
-      { locale: 'zh-Hans', platform: Platform.node },
+      { locale: 'zh-Hans', runtime: AssistantRuntime.Node },
     )
 
     expect(ruleErrors).toHaveLength(0)
@@ -43,7 +43,7 @@ describe('debug-i18n', () => {
       {
         active: true,
       },
-      { locale: 'abc', platform: Platform.node },
+      { locale: 'abc', runtime: AssistantRuntime.Node },
     )
 
     expect(ruleErrors).toHaveLength(0)

@@ -7,6 +7,20 @@ You can use this utility to run Assistants against Sketch files outside of Sketc
 It can run whichever Assistants have been added to the file by Sketch, or run a custom set of
 Assistants passed in on the command line.
 
+## Installtion
+
+Until this package is published to npm the only way to invoke it is by building it from source and
+invoking it directly.
+
+In this folder:
+
+```
+yarn build
+./bin/cli.js <args>
+```
+
+TODO: Update this section once this package is published to npm.
+
 ## Usage
 
 Run a Sketch file's configured Assistants.
