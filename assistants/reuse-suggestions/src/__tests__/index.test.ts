@@ -4,13 +4,13 @@ import {
   AssistantPackage,
   Violation,
   PlainRuleError,
-  Platform,
+  AssistantRuntime,
 } from '@sketch-hq/sketch-assistant-types'
 
 import Assistant from '..'
 
 const testAllRules = async (file: string, assistant: AssistantPackage) => {
-  const { config } = await prepare(assistant, { locale: 'en', platform: Platform.node })
+  const { config } = await prepare(assistant, { locale: 'en', runtime: AssistantRuntime.Node })
   let allViolations: Violation[] = []
   let allErrors: PlainRuleError[] = []
   for (const rule of Object.keys(config.rules)) {
