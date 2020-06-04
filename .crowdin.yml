@@ -1,0 +1,5 @@
+project_identifier: sketch-assistants
+base_path: /
+files:
+  - source: /assistants/core/src/locale/en/*.po
+    translation: /assistants/core/src/locale/%locale%/%original_file_name%
