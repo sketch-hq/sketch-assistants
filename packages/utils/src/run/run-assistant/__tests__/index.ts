@@ -44,7 +44,7 @@ describe('runAssistant', () => {
       createRule({
         name: 'rule',
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
     )
@@ -64,7 +64,7 @@ describe('runAssistant', () => {
         name: 'rule',
         runtime: AssistantRuntime.Sketch,
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
     )
@@ -137,7 +137,7 @@ describe('runAssistant', () => {
       createRule({
         name: 'rule',
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
     )

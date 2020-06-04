@@ -293,9 +293,14 @@ export type RuleUtilsCreator = (ruleName: string) => RuleUtils
  */
 export type RuleUtils = {
   /**
-   * Report one or more violations.
+   * Report a violation. The violation message should elaborate on the specific nature of the
+   * problem, interpolating rich information from the Sketch file and configuration option values
+   * where possible, e.g. "Rectangle height ${height}px is greater than ${maxHeight}px". Where the
+   * violation directly pertains to one or more Sketch file objects (i.e. file objects that have a
+   * `_class` value) then these should be listed in the `objects` argument. Where the violation has
+   * more of a global scope then then `objects` argument may be omitted.
    */
-  report: (report: ReportItem | ReportItem[]) => void
+  report: (message: string, objects?: SketchFileObject[]) => void
   /**
    * Contains an iterator for each type of object in the Sketch file.
    */
@@ -361,14 +366,6 @@ export type RuleUtils = {
 }
 
 /**
- * Information a rule needs to supply when reporting a violation.
- */
-export type ReportItem = {
-  message: string
-  object?: SketchFileObject
-}
-
-/**
  * A violation collates all the information about a problem, and is the fundamental way an assistant
  * communicates results to the outer environment.
  */
@@ -377,9 +374,7 @@ export type Violation = {
   assistantName: string
   ruleName: string
   severity: ViolationSeverity
-  pointer: string | null
-  objectId: string | null
-  objectName: string | null
+  objects: Array<{ pointer: string | null; objectId: string | null; objectName: string | null }>
 }
 
 /**

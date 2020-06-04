@@ -14,9 +14,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i]
       if (typeof message === 'string') {
-        utils.report({
-          message: i18n._(t`Unchecked message "${message}"`),
-        })
+        utils.report(i18n._(t`Unchecked message "${message}"`))
       }
     }
   }

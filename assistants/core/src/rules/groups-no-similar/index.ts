@@ -27,17 +27,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       fingerprints.set(fingerprint, similarGroups)
     }
     for (let similar of fingerprints.values()) {
-      if (similar.length > maxIdentical) {
-        similar.forEach((group) => {
-          const identicalGroupNames = similar
-            .filter((n) => n !== group) // new array without current node...
-            .map((n) => n.name) // ...and lists only the node names...
-            .join() // ...converted to a single string
-          utils.report({
-            object: group,
-            message: i18n._(t`Group is similar to other groups: ${identicalGroupNames}`),
-          })
-        })
+      const numSimilar = similar.length
+      if (numSimilar > maxIdentical) {
+        utils.report(
+          i18n._(
+            t`There are ${numSimilar} similar groups like this one, consider converting them to a symbol`,
+          ),
+        )
       }
     }
   }

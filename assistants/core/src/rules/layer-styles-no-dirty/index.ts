@@ -27,10 +27,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const sharedStyle = sharedStyles.get(layer.sharedStyleID)
       if (!sharedStyle) continue // Ignore if shared style not found
       if (!layer.style || !utils.styleEq(layer.style, sharedStyle.value)) {
-        utils.report({
-          object: layer,
-          message: i18n._(t`This layer style is different from its shared style`),
-        })
+        utils.report(i18n._(t`This layer style is different from its shared style`), [layer])
       }
     }
   }

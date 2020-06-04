@@ -81,7 +81,7 @@ indicating the active Assistants. The workspace JSON example below activates two
 #### `--assistant`
 
 Optionally supply a custom Assistant to use on the files. This is an Assistant defined entirely in
-JSON. Assistants to extend, as well as a custom configuration of object can be supplied.
+JSON. Assistants to extend as well as a configuration object can be supplied.
 
 ```sh
 sketch-assistants --assistant=./assistant.json "./path/to/file.sketch"

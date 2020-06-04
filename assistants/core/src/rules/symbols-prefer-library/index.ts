@@ -21,22 +21,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (const instance of utils.objects.symbolInstance) {
       const foreignSymbol = foreignSymbols.get(instance.symbolID)
       if (!foreignSymbol) {
-        utils.report([
-          {
-            object: instance,
-            message: i18n._(t`This symbol instance should come from a library`),
-          },
-        ])
+        utils.report(i18n._(t`This symbol instance should come from a library`), [instance])
         continue
       }
       const libName = foreignSymbol.sourceLibraryName
       if (!authorizedLibraries.includes(libName) && authorizedLibraries.length > 0) {
-        utils.report([
-          {
-            object: instance,
-            message: i18n._(t`Uses the unauthorized library "${libName}"`),
-          },
-        ])
+        utils.report(i18n._(t`Uses the unauthorized library "${libName}"`), [instance])
       }
     }
   }

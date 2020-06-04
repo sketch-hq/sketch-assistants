@@ -12,10 +12,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const hasOneChild = group.layers.length === 1
       const onlyChildIsGroup = hasOneChild && group.layers[0]._class === 'group'
       if (!usesSharedStyle && !isStyled && hasOneChild && onlyChildIsGroup) {
-        utils.report({
-          object: group,
-          message: i18n._(t`This group is redundant`),
-        })
+        utils.report(i18n._(t`This group is redundant`), [group])
       }
     }
   }

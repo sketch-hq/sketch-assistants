@@ -99,7 +99,7 @@ test('can generate violations', async (): Promise<void> => {
         createRule({
           name: 'rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: 'Subspace anomaly detected' })
+            ruleContext.utils.report('Subspace anomaly detected')
           },
         }),
       ],
@@ -128,7 +128,7 @@ test('will pass an assistant if violations not error-level', async (): Promise<v
         createRule({
           name: 'rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: 'Subspace anomaly detected' })
+            ruleContext.utils.report('Subspace anomaly detected')
           },
         }),
       ],
@@ -185,7 +185,7 @@ test('can run mulitple assistants', async (): Promise<void> => {
         createRule({
           name: 'dummy-assistant-1/rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: '' })
+            ruleContext.utils.report('')
           },
         }),
       ],
@@ -201,7 +201,7 @@ test('can run mulitple assistants', async (): Promise<void> => {
         createRule({
           name: 'dummy-assistant-2/rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: '' })
+            ruleContext.utils.report('')
           },
         }),
       ],
@@ -234,9 +234,7 @@ test('can be internationalized', async (): Promise<void> => {
       createRule({
         name: 'rule',
         rule: async (ruleContext): Promise<void> => {
-          ruleContext.utils.report({
-            message: env.locale === 'zh-Hans' ? '世界你好' : 'Hello world',
-          })
+          ruleContext.utils.report(env.locale === 'zh-Hans' ? '世界你好' : 'Hello world')
         },
       }),
     ],

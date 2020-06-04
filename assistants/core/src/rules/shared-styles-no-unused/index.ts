@@ -25,12 +25,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
       (style) => !usages.has(style.do_objectID),
     )
 
-    utils.report(
-      invalid.map((object) => ({
-        message: i18n._(t`This shared style is unused`),
-        object,
-      })),
-    )
+    invalid.forEach((object) => {
+      utils.report(i18n._(t`This shared style is unused`), [object])
+    })
   }
 
   return {

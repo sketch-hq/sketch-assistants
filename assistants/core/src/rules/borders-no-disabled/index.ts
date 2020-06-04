@@ -20,19 +20,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (!layer.style) continue // Narrow type to truthy `style` prop
       if (typeof layer.sharedStyleID === 'string') continue // Ignore layers using a shared style
       if (styleHasDisabledBorder(layer.style)) {
-        utils.report({
-          object: layer,
-          message: i18n._(t`There's a disabled border in this layer style`),
-        })
+        utils.report(i18n._(t`There's a disabled border in this layer style`), [layer])
       }
     }
 
     for (const sharedStyle of utils.objects.sharedStyle) {
       if (styleHasDisabledBorder(sharedStyle.value)) {
-        utils.report({
-          object: sharedStyle,
-          message: i18n._(t`There's a disabled border in this shared style`),
-        })
+        utils.report(i18n._(t`There's a disabled border in this shared style`), [sharedStyle])
       }
     }
   }

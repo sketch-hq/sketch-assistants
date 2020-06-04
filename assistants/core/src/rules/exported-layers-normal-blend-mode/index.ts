@@ -27,12 +27,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
       }, [])
       if (fileFormats.filter((fmt) => NON_BMP_FORMATS.includes(fmt)).length === 0) continue // If layer is only exported as bitmap formats then skip
       if (layer.style?.contextSettings?.blendMode !== FileFormat.BlendMode.Normal) {
-        utils.report({
-          object: layer,
-          message: i18n._(
+        utils.report(
+          i18n._(
             t`Blend mode found on exported layer, consider flattening the blend mode for consistent export results.`,
           ),
-        })
+          [layer],
+        )
         continue
       }
       if (
@@ -41,12 +41,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
         isBlended(layer.style?.shadows) ||
         isBlended(layer.style?.innerShadows)
       ) {
-        utils.report({
-          object: layer,
-          message: i18n._(
+        utils.report(
+          i18n._(
             t`Blend mode found on exported layer, consider flattening the blend modes for consistent export results.`,
           ),
-        })
+          [layer],
+        )
       }
     }
   }

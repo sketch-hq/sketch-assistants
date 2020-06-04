@@ -20,44 +20,24 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const text of utils.objects.text) {
       if (typeof text.sharedStyleID !== 'string') {
-        utils.report([
-          {
-            object: text,
-            message: i18n._(t`Text styles should use a shared style from a library`),
-          },
-        ])
+        utils.report(i18n._(t`Text styles should use a shared style from a library`), [text])
         continue
       }
 
       const foreignTextStyle = foreignTextStyles.get(text.sharedStyleID)
       if (!foreignTextStyle) {
-        utils.report([
-          {
-            object: text,
-            message: i18n._(t`Text styles should use a shared style from a library`),
-          },
-        ])
+        utils.report(i18n._(t`Text styles should use a shared style from a library`), [text])
         continue
       }
 
       const libName = foreignTextStyle.sourceLibraryName
       if (!authorizedLibraries.includes(libName) && authorizedLibraries.length > 0) {
-        utils.report([
-          {
-            object: text,
-            message: i18n._(t`Uses the unauthorized library "${libName}"`),
-          },
-        ])
+        utils.report(i18n._(t`Uses the unauthorized library "${libName}"`), [text])
         continue
       }
 
       if (!utils.textStyleEq(text.style, foreignTextStyle.localSharedStyle.value)) {
-        utils.report([
-          {
-            object: text,
-            message: i18n._(t`Shared text style is out of date with the library`),
-          },
-        ])
+        utils.report(i18n._(t`Shared text style is out of date with the library`), [text])
       }
     }
   }

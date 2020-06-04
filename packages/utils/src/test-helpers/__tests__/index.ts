@@ -21,7 +21,7 @@ describe('testRule', () => {
         rules: [
           createRule({
             name: 'rule',
-            rule: async (context) => context.utils.report({ message: '' }),
+            rule: async (context) => context.utils.report(''),
           }),
         ],
       }),
@@ -40,7 +40,7 @@ describe('testRule', () => {
           rules: [
             createRule({
               name: 'rule-a',
-              rule: async (context) => context.utils.report({ message: '' }),
+              rule: async (context) => context.utils.report(''),
             }),
           ],
         }),
@@ -48,7 +48,7 @@ describe('testRule', () => {
           rules: [
             createRule({
               name: 'rule-b',
-              rule: async (context) => context.utils.report({ message: '' }),
+              rule: async (context) => context.utils.report(''),
             }),
           ],
         }),

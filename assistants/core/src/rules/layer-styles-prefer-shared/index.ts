@@ -45,20 +45,18 @@ export const createRule: CreateRuleFunction = (i18n) => {
       }
     }
     // Loop the results, generating violations as needed
-    for (const [, nodes] of results) {
-      const numIdentical = nodes.length
+    for (const [, objects] of results) {
+      const numIdentical = objects.length
       if (numIdentical > maxIdentical) {
         utils.report(
-          nodes.map((object) => ({
-            object,
-            message: i18n._(
-              plural({
-                value: maxIdentical,
-                one: `Expected no identical layer styles in the document, but found ${numIdentical} matching this layer's style. Consider a shared style instead`,
-                other: `Expected a maximum of # identical layer styles in the document, but found ${numIdentical} instances of this layer's style. Consider a shared style instead`,
-              }),
-            ),
-          })),
+          i18n._(
+            plural({
+              value: maxIdentical,
+              one: `Expected no identical layer styles in the document, but found ${numIdentical} matching the style of these layers. Consider a shared style instead`,
+              other: `Expected a maximum of # identical layer styles in the document, but found ${numIdentical} instances matching the style of these layers. Consider a shared style instead`,
+            }),
+          ),
+          objects,
         )
       }
     }

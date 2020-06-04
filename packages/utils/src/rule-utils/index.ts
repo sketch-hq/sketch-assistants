@@ -2,7 +2,6 @@ import mem from 'mem'
 import {
   FileFormat,
   Violation,
-  ReportItem,
   RuleUtils,
   RunOperation,
   ImageMetadata,
@@ -16,6 +15,7 @@ import {
   ObjectCache,
   IterableObjectCache,
   DocumentObject,
+  SketchFileObject,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { getRuleOption, isRuleConfigValid, getRuleSeverity } from '../assistant-config'
@@ -115,40 +115,28 @@ class InvalidRuleConfigError extends Error {
  * and optionally a Node, whereas violations container richer contextual information therefore this
  * function maps the former to the latter.
  */
-const addReportsToViolations = (
-  report: ReportItem | ReportItem[],
+const addViolation = (
+  message: string,
+  objects: SketchFileObject[],
   violations: Violation[],
   assistant: AssistantDefinition,
   rule: RuleDefinition,
   pointers: PointerMap,
 ): void => {
-  if (Array.isArray(report) && report.length === 0) return
   const { config } = assistant
   const { name: ruleName } = rule
   const severity = getRuleSeverity(config, ruleName)
-  violations.push(
-    ...(Array.isArray(report) ? report : [report]).map(
-      (item): Violation => {
-        return {
-          assistantName: assistant.name,
-          ruleName: rule.name,
-          message: item.message,
-          severity,
-          pointer: item.object ? pointers.get(item.object) || null : null,
-          objectId: item.object
-            ? 'do_objectID' in item.object
-              ? item.object.do_objectID || null
-              : null
-            : null,
-          objectName: item.object
-            ? 'name' in item.object
-              ? item.object.name || null
-              : null
-            : null,
-        }
-      },
-    ),
-  )
+  violations.push({
+    assistantName: assistant.name,
+    ruleName: rule.name,
+    message: message,
+    severity,
+    objects: objects.map((object) => ({
+      pointer: pointers.get(object) || null,
+      objectId: 'do_objectID' in object ? object.do_objectID || null : null,
+      objectName: 'name' in object ? object.name || null : null,
+    })),
+  })
 }
 
 /**
@@ -363,8 +351,8 @@ const createRuleUtilsCreator = (
           ? evalPointer(parentPointer, file.contents)
           : undefined
       },
-      report(items: ReportItem | ReportItem[]): void {
-        addReportsToViolations(items, violations, assistant, rule, pointers)
+      report(message: string, objects: SketchFileObject[] = []): void {
+        addViolation(message, objects, violations, assistant, rule, pointers)
       },
       getImageMetadata: (ref: string): Promise<ImageMetadata> => {
         return memoizedGetImageMetaData(ref, file.filepath || '')

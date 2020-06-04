@@ -233,8 +233,6 @@ const makeAssistant = async (
 ): Promise<AssistantPackageMap> => {
   const assistants = await requireAssistants(dir, workspace)
   const assistantName = `custom/${workspace.name}`
-  // @ts-ignore TODO: This code is working, but there's a type error, presumably caused by
-  // the complexity of the AssistantPackageExport type.
   return {
     [assistantName]: [
       ...workspace.assistant.extends.map((assistantName) => assistants[assistantName]),
@@ -288,9 +286,14 @@ const formatResults = (cliResults: CliResults): string => {
         append(6, `Detail: ${chalk.grey(violation.message)}`)
         append(6, `Severity: ${chalk.grey(ViolationSeverity[violation.severity])}`)
         append(6, `Rule: ${chalk.grey(violation.ruleName)}`)
-        if (violation.objectName) append(6, `Layer: ${chalk.grey(violation.objectName)}`)
-        if (violation.pointer) append(6, `Location: ${chalk.grey(violation.pointer)}`)
-        if (violation.objectId) append(6, `Object: ${chalk.grey(violation.objectId)}`)
+        for (const object of violation.objects) {
+          const locations = []
+          if (object.objectName) locations.push(`Layer : ${object.objectName}`)
+          if (object.pointer) locations.push(`Pointer : ${object.pointer}`)
+          if (object.objectId) locations.push(`Id : ${object.objectId}`)
+          append(6, `Location: ${chalk.grey(locations.join(' | '))}`)
+        }
+
         append()
       }
 

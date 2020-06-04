@@ -15,16 +15,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (const artboard of utils.objects.artboard) {
       const nonGroupLayers = artboard.layers.filter((layer) => layer._class !== 'group').length
       if (nonGroupLayers > maxUngroupedLayers) {
-        utils.report({
-          object: artboard,
-          message: i18n._(
+        utils.report(
+          i18n._(
             plural({
               value: nonGroupLayers,
               one: `There is one ungrouped layer within this Artboard`,
               other: `There are # ungrouped layers within this Artboard`,
             }),
           ),
-        })
+          [artboard],
+        )
       }
     }
   }
