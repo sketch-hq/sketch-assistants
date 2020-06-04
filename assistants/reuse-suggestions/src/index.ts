@@ -1,7 +1,7 @@
-import { AssistantPackageExport } from '@sketch-hq/sketch-assistant-types'
+import { AssistantPackage } from '@sketch-hq/sketch-assistant-types'
 import CoreAssistant from '@sketch-hq/sketch-core-assistant'
 
-const assistant: AssistantPackageExport = [
+const assistant: AssistantPackage = [
   CoreAssistant,
   async () => {
     return {

@@ -1,0 +1,35 @@
+{
+  "name": "@sketch-hq/sketch-assistant-cli",
+  "version": "0.1.0",
+  "bin": {
+    "sketch-assistants": "bin/cli.js"
+  },
+  "license": "MIT",
+  "repository": "github:sketch-hq/sketch-assistants",
+  "keywords": [
+    "sketch",
+    "sketch files",
+    "sketch assistants",
+    "assistants",
+    "design ops",
+    "cli"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "echo \"Not implemented\""
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@sketch-hq/sketch-assistant-types": "5.0.0-next.11",
+    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.14",
+    "chalk": "4.0.0",
+    "conf": "6.2.4",
+    "globby": "11.0.0",
+    "meow": "7.0.1",
+    "ora": "4.0.4",
+    "os-locale": "5.0.0"
+  },
+  "devDependencies": {}
+}

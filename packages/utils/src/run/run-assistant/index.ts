@@ -1,5 +1,4 @@
 import pMap from 'p-map'
-
 import {
   AssistantDefinition,
   RuleContext,
@@ -8,10 +7,22 @@ import {
   Violation,
   RunOperation,
   GetImageMetadata,
-  AssistantResult,
+  AssistantSuccessResult,
+  ViolationSeverity,
 } from '@sketch-hq/sketch-assistant-types'
-import { createRuleUtilsCreator } from '../rule-utils'
-import { isRuleActive, getRuleConfig, getRuleTitle } from '../assistant-config'
+
+import { createRuleUtilsCreator } from '../../rule-utils'
+import { isRuleActive, getRuleConfig, getRuleTitle } from '../../assistant-config'
+
+/**
+ * Given a set of violations, determine if they represent a "pass" or a "fail".
+ * A "fail" means severe error-level violations are present, whereas a "pass"
+ * means only info or warn-level violations are present.
+ */
+const getPassed = (violations: Violation[]): boolean =>
+  !!violations.find((violation): boolean => violation.severity > ViolationSeverity.warn)
+    ? false
+    : true
 
 class RuleInvocationError extends Error {
   public cause: Error
@@ -31,7 +42,7 @@ class RuleInvocationError extends Error {
 }
 
 /**
- * Run an assistant, catching and returning any errors encountered during rule invocation.
+ * Run a single assistant, catching and returning any errors encountered during rule invocation.
  */
 const runAssistant = async (
   file: ProcessedSketchFile,
@@ -39,7 +50,7 @@ const runAssistant = async (
   env: AssistantEnv,
   operation: RunOperation,
   getImageMetadata: GetImageMetadata,
-): Promise<AssistantResult> => {
+): Promise<AssistantSuccessResult> => {
   const violations: Violation[] = []
 
   const createUtils = createRuleUtilsCreator(
@@ -60,9 +71,9 @@ const runAssistant = async (
 
   const activeRules = assistant.rules
     .filter((rule) => isRuleActive(assistant.config, rule.name)) // Rule turned on in config
-    .filter((rule) => (rule.platform ? rule.platform === env.platform : true)) // Rule platform is supported
+    .filter((rule) => (rule.runtime ? rule.runtime === env.runtime : true)) // Rule platform is supported
 
-  const metadata: AssistantResult['metadata'] = {
+  const metadata: AssistantSuccessResult['metadata'] = {
     assistant: {
       name: assistant.name,
       config: assistant.config,
@@ -89,7 +100,7 @@ const runAssistant = async (
           title,
           description,
           debug: rule.debug,
-          platform: rule.platform,
+          runtime: rule.runtime,
         },
       }
     }, {}),
@@ -115,8 +126,9 @@ const runAssistant = async (
     )
   } catch (error) {
     return {
+      passed: getPassed(violations),
       violations,
-      errors: Array.from<RuleInvocationError>(error).map((error) => ({
+      ruleErrors: Array.from<RuleInvocationError>(error).map((error) => ({
         assistantName: error.assistantName,
         ruleName: error.ruleName,
         message: error.cause.message,
@@ -126,8 +138,9 @@ const runAssistant = async (
     }
   }
   return {
+    passed: getPassed(violations),
     violations,
-    errors: [],
+    ruleErrors: [],
     metadata,
   }
 }

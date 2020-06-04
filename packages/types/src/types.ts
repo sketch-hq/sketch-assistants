@@ -118,11 +118,6 @@ export type IterableObjectCache = {
 }
 
 /**
- * Intersection of a Sketch file object and a pointer string.
- */
-// export type Node = SketchFileObject & { $pointer: JsonPointer }
-
-/**
  * A processed Sketch file collates a SketchFile object along with various data structures suited
  * for efficiently inspecting its contents.
  */
@@ -155,11 +150,65 @@ export type ProcessedSketchFile = {
  * (like cache creation, rule invocation etc.) should exit early as soon as a
  * cancellation is detected.
  */
-export type RunOperation =
-  | {
-      cancelled: boolean
-    }
-  | { cancelled: 1 | 0 }
+export type RunOperation = { cancelled: boolean } | { cancelled: 1 | 0 }
+
+/**
+ * A map of Assistant packages, keyed by name.
+ */
+export type AssistantPackageMap = { [assistantName: string]: unknown }
+
+/**
+ * Input required for running a group of multiple Assistant packages
+ * against a single Sketch file.
+ */
+export type RunInput = {
+  /**
+   * The Assistants to run.
+   */
+  assistants: AssistantPackageMap
+  /**
+   * Processed Sketch file to run the Assistants against.
+   */
+  processedFile: ProcessedSketchFile
+  /**
+   * GetImageMetadata implmentation.
+   */
+  getImageMetadata: GetImageMetadata
+  /**
+   * Object from the external environment carrying the cancelled flag.
+   */
+  operation: RunOperation
+  /**
+   * Environment.
+   */
+  env: AssistantEnv
+}
+
+/**
+ * The output from running a group of Assistants. Results are grouped by Assistant
+ * name, and indicate either success or error.
+ */
+export type RunOutput = {
+  [assistantName: string]:
+    | { code: 'error'; result: AssistantErrorResult }
+    | { code: 'success'; result: AssistantSuccessResult }
+}
+
+/**
+ * The run has failed to the extent that collating a RunOutput object is not
+ * possible, and the runner function promise rejects instead.
+ */
+export type RunRejection = {
+  /**
+   * Human readable message describing the rejection.
+   */
+  message: string
+  /**
+   * runError: Something unexpected has gone badly wrong.
+   * cancelled: Run cancelled via cancellation signal from outside.
+   */
+  code: 'runError' | 'cancelled'
+}
 
 /**
  * JavaScript errors encountered during rule invocation normalised into plain objects.
@@ -172,17 +221,30 @@ export type PlainRuleError = {
 }
 
 /**
- * The result of running an assistant.
+ * The result of running a single Assistant that errored and did not complete.
  */
-export type AssistantResult = {
+export type AssistantErrorResult = {
+  message: string
+}
+
+/**
+ * The result of successfully running a single assistant to completion. Note that
+ * even if the Assistant encounters some rules that crash and produce `ruleErrors` then that
+ * doesn't invalidate the whole result.
+ */
+export type AssistantSuccessResult = {
+  /**
+   * The Assistant "passed" if there are no ViolationSeverity.error level violations present.
+   */
+  passed: boolean
   /**
    * One or more `violations` implies the assistant’s rules found issues with the Sketch document.
    */
   violations: Violation[]
   /**
-   * One or more `errors` implies that some rules didn’t run because they encountered errors.
+   * One or more `ruleErrors` implies that some rules didn’t run because they encountered errors.
    */
-  errors: PlainRuleError[]
+  ruleErrors: PlainRuleError[]
   /**
    * Metadata relating to the Assistant that produced the result, and the rules that were invoked.
    */
@@ -197,11 +259,15 @@ export type AssistantResult = {
         title: string
         description: string
         debug: boolean
-        platform: Platform
+        runtime?: AssistantRuntime
       }
     }
   }
 }
+
+//
+// Rule context
+//
 
 /**
  * Contains all the values and utils exposed to individual rule functions.
@@ -313,6 +379,7 @@ export type Violation = {
   severity: ViolationSeverity
   pointer: string | null
   objectId: string | null
+  objectName: string | null
 }
 
 /**
@@ -325,7 +392,7 @@ export enum ViolationSeverity {
 }
 
 //
-// Assistants
+// Assistant definition
 //
 
 /**
@@ -399,9 +466,13 @@ export type AssistantPackageJson = PackageJson &
   }>
 
 /**
- * Platforms that can run Assistants.
+ * Assistants can run within Node, or the JavaScriptCore runtime provided by Sketch. This type
+ * enumerates the two possibilities.
  */
-export type Platform = 'sketch' | 'node'
+export enum AssistantRuntime {
+  Sketch = 'Sketch',
+  Node = 'Node',
+}
 
 /**
  * Ambient environmental information for assistants, typically provided by an outer assistant runner.
@@ -415,9 +486,9 @@ export type AssistantEnv = {
    */
   locale: string | undefined
   /**
-   * Indicates whether the assistant is running in either a Node or Sketch (JavaScriptCore) environment
+   * Indicates whether the assistant is running in Node or Sketch.
    */
-  platform: Platform
+  runtime: AssistantRuntime
 }
 
 /**
@@ -429,13 +500,10 @@ export type AssistantEnv = {
 export type Assistant = (env: AssistantEnv) => Promise<AssistantDefinition>
 
 /**
- * Defines the expected type definition for the export from a 1st or 3rd party assistant package. It
- * allows an assistant to be expressed as either a single assistant or an array of assistants that
- * should be merged before a run operation. Via type recursion arbitrarily nested arrays of
- * assistant functions are supported to allow for incorporation of other assistant packages into
- * the final export.
+ * Defines the expected type for the default export from an assistant package entrypoint. It allows
+ * an assistant to be expressed as either a single assistant or an array of assistants that should be extended and merged before a run operation.
  */
-export type AssistantPackageExport = MaybeESModule<ValueOrArray<MaybeESModule<Assistant>>>
+export type AssistantPackage = ValueOrArray<Assistant>
 
 /**
  * Concrete assistant definition that can be invoked against a Sketch file during a lint run.
@@ -488,9 +556,9 @@ export type RuleDefinition = {
    */
   debug?: boolean
   /**
-   * Indicates rule platform compatibility. For cross-platform rules this property can be omitted.
+   * Indicates rule compatibility. For cross-platform rules this property can be omitted.
    */
-  platform?: Platform
+  runtime?: AssistantRuntime
 }
 
 /**

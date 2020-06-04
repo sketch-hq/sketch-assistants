@@ -235,6 +235,7 @@ describe('report', () => {
         "assistantName": "dummy-assistant",
         "message": "Something isn't right",
         "objectId": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
+        "objectName": "Page 1",
         "pointer": "/document/pages/0",
         "ruleName": "foo",
         "severity": 3,

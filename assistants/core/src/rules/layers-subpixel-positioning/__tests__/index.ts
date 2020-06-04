@@ -2,7 +2,7 @@ import { testRule } from '../../../test-helpers'
 
 describe('layers-subpixel-positioning', () => {
   test('no violations for whitelisted whole pixels', async (): Promise<void> => {
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './whole-pixels.sketch',
       'layers-subpixel-positioning',
@@ -12,11 +12,11 @@ describe('layers-subpixel-positioning', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('no violations for whitelisted half pixels', async (): Promise<void> => {
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './half-pixels.sketch',
       'layers-subpixel-positioning',
@@ -26,11 +26,11 @@ describe('layers-subpixel-positioning', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('no violations for whitelisted third pixels', async (): Promise<void> => {
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './third-pixels.sketch',
       'layers-subpixel-positioning',
@@ -40,11 +40,11 @@ describe('layers-subpixel-positioning', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('finds violations for illegal @2x positioning', async (): Promise<void> => {
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './half-pixels.sketch',
       'layers-subpixel-positioning',
@@ -54,11 +54,11 @@ describe('layers-subpixel-positioning', () => {
       },
     )
     expect(violations).toHaveLength(1)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('finds violations for illegal @3x positioning', async (): Promise<void> => {
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './third-pixels.sketch',
       'layers-subpixel-positioning',
@@ -68,13 +68,13 @@ describe('layers-subpixel-positioning', () => {
       },
     )
     expect(violations).toHaveLength(2)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('no violations for rotated layers or layers with rotated parents', async (): Promise<
     void
   > => {
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './rotated-layers.sketch',
       'layers-subpixel-positioning',
@@ -84,6 +84,6 @@ describe('layers-subpixel-positioning', () => {
       },
     )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 })

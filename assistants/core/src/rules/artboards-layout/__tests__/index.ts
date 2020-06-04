@@ -23,7 +23,7 @@ const config: RuleConfig = {
 describe('artboards-layout', () => {
   test('no violations for artboards with valid layouts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './valid-layout-settings.sketch',
       'artboards-layout',
@@ -31,12 +31,12 @@ describe('artboards-layout', () => {
     )
 
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('finds violations for artboards without layouts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './missing-layout-settings.sketch',
       'artboards-layout',
@@ -44,12 +44,12 @@ describe('artboards-layout', () => {
     )
 
     expect(violations).toHaveLength(1)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
   test('finds violations for invalid artboard layouts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, errors } = await testRule(
+    const { violations, ruleErrors } = await testRule(
       __dirname,
       './invalid-layout-settings.sketch',
       'artboards-layout',
@@ -57,6 +57,6 @@ describe('artboards-layout', () => {
     )
 
     expect(violations).toHaveLength(1)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 })
