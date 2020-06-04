@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 5.0.0-next.15
+
+### Major Changes
+
+- e76fabd: Introduction of the Assistants CLI.
+
 ## 5.0.0-next.11
 
 ### Major Changes
