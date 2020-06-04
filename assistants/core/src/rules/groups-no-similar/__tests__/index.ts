@@ -27,7 +27,7 @@ describe('groups-no-similar', () => {
         maxIdentical: 1,
       },
     )
-    expect(violations).toHaveLength(2) // one violation per similar group
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 

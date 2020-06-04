@@ -9,7 +9,7 @@ describe('text-styles-prefer-shared', () => {
       'text-styles-prefer-shared',
       { active: true, maxIdentical: 1 },
     )
-    expect(violations).toHaveLength(2)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 
@@ -79,7 +79,7 @@ describe('text-styles-prefer-shared', () => {
         maxIdentical: 1,
       },
     )
-    expect(violations).toHaveLength(2)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 })

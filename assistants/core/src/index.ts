@@ -48,7 +48,7 @@ import zhHansMessages from './locale/zh-Hans/messages'
 
 export type CreateRuleFunction = (i18n: I18n) => RuleDefinition
 
-const SUPPORTED_LOCALES = ['en', 'zh-Hans', 'zh-CN']
+const SUPPORTED_LOCALES = ['en', 'zh-Hans']
 const FALLBACK_LOCALE = 'en'
 const pkgName = '@sketch-hq/sketch-core-assistant'
 
@@ -58,7 +58,6 @@ const assistant: AssistantPackage = async (env) => {
     catalogs: {
       en: enMessages,
       'zh-Hans': zhHansMessages,
-      'zh-CN': zhHansMessages,
     },
   })
   const definition: AssistantDefinition = {
