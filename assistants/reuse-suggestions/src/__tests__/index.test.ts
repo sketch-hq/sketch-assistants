@@ -1,62 +1,71 @@
 import { resolve } from 'path'
-import { testRule, prepare } from '@sketch-hq/sketch-assistant-utils'
-import {
-  AssistantPackage,
-  Violation,
-  PlainRuleError,
-  AssistantRuntime,
-} from '@sketch-hq/sketch-assistant-types'
+import { testRuleInAssistant } from '@sketch-hq/sketch-assistant-utils'
 
 import Assistant from '..'
 
-const testAllRules = async (file: string, assistant: AssistantPackage) => {
-  const { config } = await prepare(assistant, { locale: 'en', runtime: AssistantRuntime.Node })
-  let allViolations: Violation[] = []
-  let allErrors: PlainRuleError[] = []
-  for (const rule of Object.keys(config.rules)) {
-    const { violations, ruleErrors } = await testRule(
-      file,
-      assistant,
-      rule,
-      config.rules[rule] || undefined,
-    )
-    allViolations = [...allViolations, ...violations]
-    allErrors = [...allErrors, ...ruleErrors]
-  }
-  return { violations: allViolations, errors: allErrors }
-}
+const testCoreRule = async (fixture: string, ruleName: string) =>
+  await testRuleInAssistant(
+    resolve(__dirname, fixture),
+    Assistant,
+    `@sketch-hq/sketch-core-assistant/${ruleName}`,
+  )
 
-describe('Reuse Assistant', () => {
-  test('produces no errors in empty document', async () => {
-    expect.assertions(2)
-    const { violations, errors } = await testAllRules(
-      resolve(__dirname, './empty.sketch'),
-      Assistant,
+describe('text-styles-prefer-shared', () => {
+  test('no violation for shared text styles', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './shared-text-styles.sketch',
+      'text-styles-prefer-shared',
     )
-
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
-  test('produces violations in incorrect document', async () => {
-    expect.assertions(2)
-    const { violations, errors } = await testAllRules(
-      resolve(__dirname, './all-bad.sketch'),
-      Assistant,
+  test('violations for unshared text styles', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './unshared-text-styles.sketch',
+      'text-styles-prefer-shared',
     )
+    expect(violations).toHaveLength(3)
+    expect(ruleErrors).toHaveLength(0)
+  })
+})
 
-    expect(violations).toHaveLength(4)
-    expect(errors).toHaveLength(0)
+describe('layer-styles-prefer-shared', () => {
+  test('no violation for shared layer styles', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './shared-layer-styles.sketch',
+      'layer-styles-prefer-shared',
+    )
+    expect(violations).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
   })
 
-  test('does not produce violations in correct document', async () => {
-    expect.assertions(2)
-    const { violations, errors } = await testAllRules(
-      resolve(__dirname, './all-good.sketch'),
-      Assistant,
+  test('violations for unshared layer styles', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './unshared-layer-styles.sketch',
+      'layer-styles-prefer-shared',
     )
+    expect(violations).toHaveLength(3)
+    expect(ruleErrors).toHaveLength(0)
+  })
+})
 
+describe('groups-no-similar', () => {
+  test('no violation for dissimilar groups', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './dissimilar-groups.sketch',
+      'groups-no-similar',
+    )
     expect(violations).toHaveLength(0)
-    expect(errors).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
+  })
+
+  test('violations for similar groups', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './similar-groups.sketch',
+      'groups-no-similar',
+    )
+    expect(violations).toHaveLength(3)
+    expect(ruleErrors).toHaveLength(0)
   })
 })

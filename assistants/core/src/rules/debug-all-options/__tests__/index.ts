@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('debug-all-options', () => {
   test('does not error or produce violations', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './empty.sketch',
       'debug-all-options',

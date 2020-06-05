@@ -1,96 +1,81 @@
-import { testRule, createAssistant, createRule } from '..'
+import { testRuleInAssistant, testRule, testAssistant, createAssistant, createRule } from '..'
 import { resolve } from 'path'
 
+describe('testRuleInAssistant', () => {
+  test('can return violations', async () => {
+    const { violations } = await testRuleInAssistant(
+      resolve(__dirname, './empty.sketch'),
+      createAssistant({
+        rules: [
+          createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
+        ],
+        config: {
+          rules: { rule: { active: true } },
+        },
+      }),
+      'rule',
+    )
+    expect(violations).toHaveLength(1)
+  })
+
+  test('rules not under-test are excluded', async () => {
+    const { violations } = await testRuleInAssistant(
+      resolve(__dirname, './empty.sketch'),
+      createAssistant({
+        rules: [
+          createRule({ name: 'rule1', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
+          createRule({ name: 'rule2', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
+        ],
+        config: {
+          rules: { rule1: { active: true }, rule2: { active: true } },
+        },
+      }),
+      'rule1',
+    )
+    expect(violations).toHaveLength(1)
+  })
+
+  test('can be supplied a custom config', async () => {
+    const { violations } = await testRuleInAssistant(
+      resolve(__dirname, './empty.sketch'),
+      createAssistant({
+        rules: [
+          createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
+        ],
+        config: {
+          rules: { rule: { active: true } },
+        },
+      }),
+      'rule',
+      { active: false },
+    )
+    expect(violations).toHaveLength(0)
+  })
+})
+
 describe('testRule', () => {
-  test('runs no-op rule without issues', async (): Promise<void> => {
-    expect.assertions(2)
-    const res = await testRule(
+  test('can return violations', async () => {
+    const { violations } = await testRule(
       resolve(__dirname, './empty.sketch'),
-      createAssistant({ rules: [createRule({ name: 'rule' })] }),
-      'rule',
+      createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
     )
-    expect(res.violations).toHaveLength(0)
-    expect(res.ruleErrors).toHaveLength(0)
+    expect(violations).toHaveLength(1)
   })
+})
 
-  test('can return violations', async (): Promise<void> => {
-    expect.assertions(2)
-    const res = await testRule(
+describe('testAssistant', () => {
+  test('can return violations', async () => {
+    const { violations } = await testAssistant(
       resolve(__dirname, './empty.sketch'),
       createAssistant({
         rules: [
-          createRule({
-            name: 'rule',
-            rule: async (context) => context.utils.report({ message: '' }),
-          }),
+          createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
         ],
+        config: {
+          rules: { rule: { active: true } },
+        },
       }),
-      'rule',
     )
-    expect(res.violations).toHaveLength(1)
-    expect(res.ruleErrors).toHaveLength(0)
-  })
-
-  test('works when passed an array of extendable Assistants', async (): Promise<void> => {
-    expect.assertions(2)
-    const res = await testRule(
-      resolve(__dirname, './empty.sketch'),
-      [
-        createAssistant({
-          rules: [
-            createRule({
-              name: 'rule-a',
-              rule: async (context) => context.utils.report({ message: '' }),
-            }),
-          ],
-        }),
-        createAssistant({
-          rules: [
-            createRule({
-              name: 'rule-b',
-              rule: async (context) => context.utils.report({ message: '' }),
-            }),
-          ],
-        }),
-      ],
-      'rule-a',
-    )
-    expect(res.violations).toHaveLength(1)
-    expect(res.ruleErrors).toHaveLength(0)
-  })
-
-  test('can return rule errors', async (): Promise<void> => {
-    expect.assertions(2)
-    const res = await testRule(
-      resolve(__dirname, './empty.sketch'),
-      createAssistant({
-        rules: [
-          createRule({
-            name: 'rule',
-            rule: async () => {
-              throw new Error()
-            },
-          }),
-        ],
-      }),
-      'rule',
-    )
-    expect(res.violations).toHaveLength(0)
-    expect(res.ruleErrors).toHaveLength(1)
-  })
-
-  test('throws when an unavailable rule is configured', async (): Promise<void> => {
-    expect.assertions(1)
-    try {
-      await testRule(
-        resolve(__dirname, './empty.sketch'),
-        createAssistant({
-          rules: [createRule({ name: 'rule' })],
-        }),
-        'reticulating-splines',
-      )
-    } catch (error) {
-      expect(error).toBeDefined()
-    }
+    expect(violations).toHaveLength(1)
   })
 })

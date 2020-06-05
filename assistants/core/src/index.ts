@@ -2,6 +2,7 @@ import {
   AssistantPackage,
   RuleDefinition,
   AssistantDefinition,
+  AssistantEnv,
 } from '@sketch-hq/sketch-assistant-types'
 import { I18n, setupI18n } from '@lingui/core'
 
@@ -48,18 +49,21 @@ import zhHansMessages from './locale/zh-Hans/messages'
 
 export type CreateRuleFunction = (i18n: I18n) => RuleDefinition
 
-const SUPPORTED_LOCALES = ['en', 'zh-Hans']
-const FALLBACK_LOCALE = 'en'
-const pkgName = '@sketch-hq/sketch-core-assistant'
-
-const assistant: AssistantPackage = async (env) => {
-  const i18n: I18n = setupI18n({
+export const createI18NObject = (env: AssistantEnv): I18n => {
+  const SUPPORTED_LOCALES = ['en', 'zh-Hans']
+  const FALLBACK_LOCALE = 'en'
+  return setupI18n({
     language: SUPPORTED_LOCALES.includes(env.locale!) ? env.locale : FALLBACK_LOCALE,
     catalogs: {
       en: enMessages,
       'zh-Hans': zhHansMessages,
     },
   })
+}
+
+const assistant: AssistantPackage = async (env) => {
+  const i18n: I18n = createI18NObject(env)
+  const pkgName = '@sketch-hq/sketch-core-assistant'
   const definition: AssistantDefinition = {
     name: pkgName,
     rules: [

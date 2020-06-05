@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('result-messages-include', () => {
   test('no violations when whitelisted', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './empty.sketch',
       'result-messages-include',
@@ -18,7 +18,7 @@ describe('result-messages-include', () => {
 
   test('has violations when messages are present', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './empty.sketch',
       'result-messages-include',

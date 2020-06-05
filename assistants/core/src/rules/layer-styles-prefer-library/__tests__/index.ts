@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('layer-styles-prefer-library', () => {
   test('finds no violations if only library styles are used', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all-good.sketch',
       'layer-styles-prefer-library',
@@ -20,7 +20,7 @@ describe('layer-styles-prefer-library', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './layer-differs.sketch',
       'layer-styles-prefer-library',
@@ -35,7 +35,7 @@ describe('layer-styles-prefer-library', () => {
 
   test('reports violations when a layer does not have a library style', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './layer-no-library.sketch',
       'layer-styles-prefer-library',
@@ -50,7 +50,7 @@ describe('layer-styles-prefer-library', () => {
 
   test('reports violations if an unauthorized library is used', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all-good.sketch',
       'layer-styles-prefer-library',

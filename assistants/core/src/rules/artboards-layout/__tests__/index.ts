@@ -1,4 +1,4 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 import { RuleConfig } from '@sketch-hq/sketch-assistant-types'
 
 const config: RuleConfig = {
@@ -23,7 +23,7 @@ const config: RuleConfig = {
 describe('artboards-layout', () => {
   test('no violations for artboards with valid layouts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './valid-layout-settings.sketch',
       'artboards-layout',
@@ -36,7 +36,7 @@ describe('artboards-layout', () => {
 
   test('finds violations for artboards without layouts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './missing-layout-settings.sketch',
       'artboards-layout',
@@ -49,7 +49,7 @@ describe('artboards-layout', () => {
 
   test('finds violations for invalid artboard layouts', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './invalid-layout-settings.sketch',
       'artboards-layout',

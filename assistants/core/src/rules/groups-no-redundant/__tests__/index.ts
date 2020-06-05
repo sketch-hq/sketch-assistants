@@ -1,8 +1,8 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('groups-no-redundant', () => {
   test('no violations for non-redundant groups', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './non-redundant-group.sketch',
       'groups-no-redundant',
@@ -12,7 +12,7 @@ describe('groups-no-redundant', () => {
   })
 
   test('no violations for styled redundant groups', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './styled-redundant-group.sketch',
       'groups-no-redundant',
@@ -22,7 +22,7 @@ describe('groups-no-redundant', () => {
   })
 
   test('no violations for shared styled redundant groups', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './shared-style-redundant-group.sketch',
       'groups-no-redundant',
@@ -32,7 +32,7 @@ describe('groups-no-redundant', () => {
   })
 
   test('finds violations for redundant groups', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './redundant-group.sketch',
       'groups-no-redundant',

@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('inner-shadows-no-disabled', () => {
   test('no violations for enabled inner shadows', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './enabled-inner-shadows.sketch',
       'inner-shadows-no-disabled',
@@ -15,7 +15,7 @@ describe('inner-shadows-no-disabled', () => {
 
   test('finds violations for disabled inner shadows', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './disabled-inner-shadows.sketch',
       'inner-shadows-no-disabled',
@@ -30,7 +30,7 @@ describe('inner-shadows-no-disabled', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './disabled-shared-inner-shadows.sketch',
       'inner-shadows-no-disabled',

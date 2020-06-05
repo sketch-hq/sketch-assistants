@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('fills-no-disabled', () => {
   test('outputs no violations for enabled fills', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './enabled-fill.sketch',
       'fills-no-disabled',
@@ -15,7 +15,7 @@ describe('fills-no-disabled', () => {
 
   test('finds violations for disabled fills', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './disabled-fill.sketch',
       'fills-no-disabled',
@@ -30,7 +30,7 @@ describe('fills-no-disabled', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './disabled-shared-fill.sketch',
       'fills-no-disabled',

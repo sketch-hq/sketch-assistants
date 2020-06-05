@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('shared-styles-no-unused', () => {
   test('no violations for shared style usage', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './used-shared-style.sketch',
       'shared-styles-no-unused',
@@ -14,7 +14,7 @@ describe('shared-styles-no-unused', () => {
 
   test('no violations when shared styles are used in an override', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './used-shared-style-overrides.sketch',
       'shared-styles-no-unused',
@@ -25,7 +25,7 @@ describe('shared-styles-no-unused', () => {
 
   test('finds violations for unused shared styles', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './unused-shared-style.sketch',
       'shared-styles-no-unused',

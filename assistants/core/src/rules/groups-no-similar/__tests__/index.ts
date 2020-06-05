@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('groups-no-similar', () => {
   test('reports no violations for groups without similarity', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all-good.sketch',
       'groups-no-similar',
@@ -18,7 +18,7 @@ describe('groups-no-similar', () => {
 
   test('finds violations for groups that are similar', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './groups-one-similar.sketch',
       'groups-no-similar',
@@ -35,7 +35,7 @@ describe('groups-no-similar', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './groups-one-similar.sketch',
       'groups-no-similar',

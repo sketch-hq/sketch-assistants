@@ -1,70 +1,119 @@
 import { resolve } from 'path'
-import { testRule } from '@sketch-hq/sketch-assistant-utils'
-import type { RuleConfig } from '@sketch-hq/sketch-assistant-types'
+import { testRuleInAssistant } from '@sketch-hq/sketch-assistant-utils'
 
 import Assistant from '..'
-import { config } from '..'
 
-const testCoreRuleWithConfig = async (fixture: string, ruleId: string, numViolations = 1) => {
-  const ruleName = `@sketch-hq/sketch-core-assistant/${ruleId}`
-  const { violations, ruleErrors } = await testRule(
+const testCoreRule = async (fixture: string, ruleName: string) =>
+  await testRuleInAssistant(
     resolve(__dirname, fixture),
     Assistant,
-    ruleName,
-    config.rules[ruleName] as RuleConfig,
+    `@sketch-hq/sketch-core-assistant/${ruleName}`,
   )
-  expect(violations).toHaveLength(numViolations)
-  expect(ruleErrors).toHaveLength(0)
-}
 
 test('borders-no-disabled', async () => {
-  await testCoreRuleWithConfig('./disabled-border.sketch', 'borders-no-disabled')
+  const { violations, ruleErrors } = await testCoreRule(
+    './disabled-border.sketch',
+    'borders-no-disabled',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('fills-no-disabled', async () => {
-  await testCoreRuleWithConfig('./disabled-fill.sketch', 'fills-no-disabled')
+  const { violations, ruleErrors } = await testCoreRule(
+    './disabled-fill.sketch',
+    'fills-no-disabled',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('shadows-no-disabled', async () => {
-  await testCoreRuleWithConfig('./disabled-shadow.sketch', 'shadows-no-disabled')
+  const { violations, ruleErrors } = await testCoreRule(
+    './disabled-shadow.sketch',
+    'shadows-no-disabled',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('inner-shadows-no-disabled', async () => {
-  await testCoreRuleWithConfig('./disabled-inner-shadow.sketch', 'inner-shadows-no-disabled')
+  const { violations, ruleErrors } = await testCoreRule(
+    './disabled-inner-shadow.sketch',
+    'inner-shadows-no-disabled',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('groups-no-empty', async () => {
-  await testCoreRuleWithConfig('./empty-group.sketch', 'groups-no-empty')
+  const { violations, ruleErrors } = await testCoreRule('./empty-group.sketch', 'groups-no-empty')
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('layer-styles-no-dirty', async () => {
-  await testCoreRuleWithConfig('./dirty-style.sketch', 'layer-styles-no-dirty')
+  const { violations, ruleErrors } = await testCoreRule(
+    './dirty-style.sketch',
+    'layer-styles-no-dirty',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('text-styles-no-dirty', async () => {
-  await testCoreRuleWithConfig('./dirty-text-style.sketch', 'text-styles-no-dirty')
+  const { violations, ruleErrors } = await testCoreRule(
+    './dirty-text-style.sketch',
+    'text-styles-no-dirty',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('groups-no-redundant', async () => {
-  await testCoreRuleWithConfig('./redundant-group.sketch', 'groups-no-redundant')
+  const { violations, ruleErrors } = await testCoreRule(
+    './redundant-group.sketch',
+    'groups-no-redundant',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('layers-no-hidden', async () => {
-  await testCoreRuleWithConfig('./hidden-layer.sketch', 'layers-no-hidden')
+  const { violations, ruleErrors } = await testCoreRule('./hidden-layer.sketch', 'layers-no-hidden')
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('layers-subpixel-positioning', async () => {
-  await testCoreRuleWithConfig('./subpixel-positioning.sketch', 'layers-subpixel-positioning')
+  const { violations, ruleErrors } = await testCoreRule(
+    './subpixel-positioning.sketch',
+    'layers-subpixel-positioning',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('artboards-max-ungrouped-layers', async () => {
-  await testCoreRuleWithConfig('./ungrouped-layers.sketch', 'artboards-max-ungrouped-layers')
+  const { violations, ruleErrors } = await testCoreRule(
+    './ungrouped-layers.sketch',
+    'artboards-max-ungrouped-layers',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('layers-no-loose', async () => {
-  await testCoreRuleWithConfig('./loose-layers.sketch', 'layers-no-loose')
+  const { violations, ruleErrors } = await testCoreRule('./loose-layers.sketch', 'layers-no-loose')
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })
 
 test('shared-styles-no-unused', async () => {
-  await testCoreRuleWithConfig('./unused-shared-style.sketch', 'shared-styles-no-unused')
+  const { violations, ruleErrors } = await testCoreRule(
+    './unused-shared-style.sketch',
+    'shared-styles-no-unused',
+  )
+  expect(violations).toHaveLength(1)
+  expect(ruleErrors).toHaveLength(0)
 })

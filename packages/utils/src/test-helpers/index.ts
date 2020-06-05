@@ -109,29 +109,103 @@ const createDummyRect = (): FileFormat.Rect => ({
   y: 0,
 })
 
-export const testRule = async (
+type TestResult = Omit<AssistantSuccessResult, 'metadata'>
+
+/**
+ * Test an Assistant.
+ */
+const testAssistant = async (
   filepath: string,
   assistant: AssistantPackage,
-  ruleName: string,
-  ruleConfig: RuleConfig = { active: true },
   env: AssistantEnv = { locale: 'en', runtime: AssistantRuntime.Node },
-): Promise<AssistantSuccessResult> => {
+): Promise<TestResult> => {
   const file = await fromFile(filepath)
   const op = { cancelled: false }
   const processedFile = await process(file, op)
+  const def = await prepare(assistant, env)
 
-  const assistantDefinition = await prepare(assistant, env)
-  assistantDefinition.config = {
-    rules: {
-      [ruleName]: ruleConfig,
+  const { violations, ruleErrors, passed } = await runAssistant(
+    processedFile,
+    def,
+    env,
+    op,
+    getImageMetadata,
+  )
+
+  return { violations, ruleErrors, passed }
+}
+
+/**
+ * Test a rule by running it against a custom config within the context of a
+ * temporary Assistant.
+ */
+const testRule = async (
+  filepath: string,
+  rule: RuleDefinition,
+  ruleConfig: RuleConfig = { active: true },
+  env: AssistantEnv = { locale: 'en', runtime: AssistantRuntime.Node },
+): Promise<TestResult> => {
+  const file = await fromFile(filepath)
+  const op = { cancelled: false }
+  const processedFile = await process(file, op)
+  const assistant: Assistant = async () => ({
+    name: 'test-assistant',
+    rules: [rule],
+    config: {
+      rules: {
+        [rule.name]: ruleConfig,
+      },
     },
+  })
+  const def = await prepare(assistant, env)
+
+  const { violations, ruleErrors, passed } = await runAssistant(
+    processedFile,
+    def,
+    env,
+    op,
+    getImageMetadata,
+  )
+
+  return { violations, ruleErrors, passed }
+}
+
+/**
+ * Test a rule in isolation within the context of an Assistant. Only the rule under test is
+ * activated, so violations or rule errors from other rules are ignored. A custom rule config can
+ * be supplied, but if omitted the config currently configured in the Assistant is used.
+ */
+const testRuleInAssistant = async (
+  filepath: string,
+  assistant: AssistantPackage,
+  ruleName: string,
+  ruleConfig?: RuleConfig,
+  env: AssistantEnv = { locale: 'en', runtime: AssistantRuntime.Node },
+): Promise<TestResult> => {
+  const file = await fromFile(filepath)
+  const op = { cancelled: false }
+  const processedFile = await process(file, op)
+  const def = await prepare(assistant, env)
+
+  def.rules = def.rules.filter((rule) => rule.name === ruleName)
+
+  if (!getRuleDefinition(def, ruleName)) {
+    throw new Error(`Rule "${ruleName}" not found on Assistant "${def.name}"`)
   }
 
-  if (!getRuleDefinition(assistantDefinition, ruleName)) {
-    throw new Error(`Rule "${ruleName}" not found on Assistant "${assistantDefinition.name}"`)
+  def.config.rules = {
+    [ruleName]: ruleConfig ? ruleConfig : def.config.rules[ruleName],
   }
 
-  return await runAssistant(processedFile, assistantDefinition, env, op, getImageMetadata)
+  const { violations, ruleErrors, passed } = await runAssistant(
+    processedFile,
+    def,
+    env,
+    op,
+    getImageMetadata,
+  )
+
+  return { violations, ruleErrors, passed }
 }
 
 export {
@@ -140,4 +214,7 @@ export {
   createAssistantConfig,
   createAssistant,
   createAssistantDefinition,
+  testRule,
+  testRuleInAssistant,
+  testAssistant,
 }
