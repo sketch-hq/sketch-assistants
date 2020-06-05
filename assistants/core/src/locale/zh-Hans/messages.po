@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-05 16:13\n"
+"PO-Revision-Date: 2020-06-05 17:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -281,7 +281,7 @@ msgstr ""
 
 #: src/rules/debug-i18n/index.ts:14
 msgid "Hello world"
-msgstr ""
+msgstr "世界你好"
 
 #: src/rules/debug-i18n/index.ts:20
 msgid "Debug internationalization"
