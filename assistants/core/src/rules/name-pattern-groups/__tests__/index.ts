@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('name-pattern-groups', () => {
   test('no violations when all layer names are whitelisted', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './named-groups.sketch',
       'name-pattern-groups',
@@ -19,7 +19,7 @@ describe('name-pattern-groups', () => {
 
   test('no violations when layer names are whitelisted', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './named-groups.sketch',
       'name-pattern-groups',
@@ -35,7 +35,7 @@ describe('name-pattern-groups', () => {
 
   test('violations when some layer names are not allowed', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './named-groups.sketch',
       'name-pattern-groups',
@@ -51,7 +51,7 @@ describe('name-pattern-groups', () => {
 
   test('violations when some layer names are forbidden', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './named-groups.sketch',
       'name-pattern-groups',
@@ -67,7 +67,7 @@ describe('name-pattern-groups', () => {
 
   test('forbidden names trump allowed names', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './named-groups.sketch',
       'name-pattern-groups',

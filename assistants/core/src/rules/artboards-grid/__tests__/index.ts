@@ -1,10 +1,10 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('artboards-grid', () => {
   test('no violations for artboards with valid grids', async (): Promise<void> => {
     expect.assertions(2)
 
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './valid-grid-settings.sketch',
       'artboards-grid',
@@ -21,7 +21,7 @@ describe('artboards-grid', () => {
   test('finds violations for artboards with missing grids', async (): Promise<void> => {
     expect.assertions(2)
 
-    const { ruleErrors, violations } = await testRule(
+    const { ruleErrors, violations } = await testCoreRule(
       __dirname,
       './missing-grid-settings.sketch',
       'artboards-grid',
@@ -38,7 +38,7 @@ describe('artboards-grid', () => {
   test('finds violations for artboards with invalid grids', async (): Promise<void> => {
     expect.assertions(2)
 
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './invalid-grid-settings.sketch',
       'artboards-grid',

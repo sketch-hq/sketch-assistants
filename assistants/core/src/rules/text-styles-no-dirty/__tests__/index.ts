@@ -1,11 +1,11 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('text-styles-no-dirty', () => {
   test('outputs no violations for layers that do not differ from their shared style', async (): Promise<
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all_good.sketch',
       'text-styles-no-dirty',
@@ -20,7 +20,7 @@ describe('text-styles-no-dirty', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './no_good.sketch',
       'text-styles-no-dirty',
@@ -34,7 +34,7 @@ describe('text-styles-no-dirty', () => {
 
   test('outputs no violations for artboards and pages', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './artboards-and-pages.sketch',
       'text-styles-no-dirty',
@@ -48,7 +48,7 @@ describe('text-styles-no-dirty', () => {
 
   test('outputs no violations for layers that are not text layers', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './rectangles.sketch',
       'text-styles-no-dirty',
@@ -64,7 +64,7 @@ describe('text-styles-no-dirty', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './groups_bad.sketch',
       'text-styles-no-dirty',

@@ -1,20 +1,20 @@
 import { resolve } from 'path'
-import * as utils from '@sketch-hq/sketch-assistant-utils'
-import { AssistantEnv, AssistantSuccessResult, RuleConfig } from '@sketch-hq/sketch-assistant-types'
+import { testRuleInAssistant } from '@sketch-hq/sketch-assistant-utils'
+import { AssistantEnv, RuleConfig } from '@sketch-hq/sketch-assistant-types'
 
-import assistant from './index'
+import CoreAssistant from './index'
 
-export const testRule = async (
+export const testCoreRule = async (
   dirname: string,
   fixture: string,
-  ruleId: string,
-  config?: RuleConfig,
+  ruleName: string,
+  config: RuleConfig = { active: true },
   env?: AssistantEnv,
-): Promise<AssistantSuccessResult> =>
-  await utils.testRule(
+): Promise<ReturnType<typeof testRuleInAssistant>> =>
+  await testRuleInAssistant(
     resolve(dirname, fixture),
-    assistant,
-    `@sketch-hq/sketch-core-assistant/${ruleId}`,
+    CoreAssistant,
+    `@sketch-hq/sketch-core-assistant/${ruleName}`,
     config,
     env,
   )

@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('layer-styles-prefer-shared', () => {
   test('finds violations for identical layer styles', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './duplicate-layer-styles.sketch',
       'layer-styles-prefer-shared',
@@ -20,7 +20,7 @@ describe('layer-styles-prefer-shared', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './duplicate-layer-styles.sketch',
       'layer-styles-prefer-shared',
@@ -35,7 +35,7 @@ describe('layer-styles-prefer-shared', () => {
 
   test('no violations for artboards and pages', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './artboards-and-pages.sketch',
       'layer-styles-prefer-shared',
@@ -50,7 +50,7 @@ describe('layer-styles-prefer-shared', () => {
 
   test('no violations for text layers', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './text-layers.sketch',
       'layer-styles-prefer-shared',
@@ -65,7 +65,7 @@ describe('layer-styles-prefer-shared', () => {
 
   test('no violations for shared style usage', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './duplicate-shared-styles.sketch',
       'layer-styles-prefer-shared',
@@ -80,7 +80,7 @@ describe('layer-styles-prefer-shared', () => {
 
   test('no violations for groups with default styles', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './groups.sketch',
       'layer-styles-prefer-shared',
@@ -97,7 +97,7 @@ describe('layer-styles-prefer-shared', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './symbols.sketch',
       'layer-styles-prefer-shared',
@@ -112,7 +112,7 @@ describe('layer-styles-prefer-shared', () => {
 
   test('do not generate violations from layers inside combined shapes', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './combined-shape.sketch',
       'layer-styles-prefer-shared',

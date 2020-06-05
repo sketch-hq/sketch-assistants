@@ -1,9 +1,9 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('artboards-max-ungrouped-layers', () => {
   test('no violations when configured to allow max 5 ungrouped layers', async (): Promise<void> => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './5-ungrouped-artboard-layers.sketch',
       'artboards-max-ungrouped-layers',
@@ -20,7 +20,7 @@ describe('artboards-max-ungrouped-layers', () => {
     void
   > => {
     expect.assertions(2)
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './5-ungrouped-artboard-layers.sketch',
       'artboards-max-ungrouped-layers',

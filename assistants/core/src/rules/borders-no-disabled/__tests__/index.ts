@@ -1,8 +1,8 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('borders-no-disabled', () => {
   test('no violations for enabled borders', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './enabled-border.sketch',
       'borders-no-disabled',
@@ -13,7 +13,7 @@ describe('borders-no-disabled', () => {
   })
 
   test('finds violations for disabled borders', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './disabled-border.sketch',
       'borders-no-disabled',
@@ -24,7 +24,7 @@ describe('borders-no-disabled', () => {
   })
 
   test('no violations for disabled borders in combined shapes', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './disabled-border-combined-shape.sketch',
       'borders-no-disabled',

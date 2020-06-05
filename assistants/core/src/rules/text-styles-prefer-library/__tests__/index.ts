@@ -1,8 +1,8 @@
-import { testRule } from '../../../test-helpers'
+import { testCoreRule } from '../../../test-helpers'
 
 describe('text-styles-prefer-library', () => {
   test('finds no violations if only library styles are used', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all-good.sketch',
       'text-styles-prefer-library',
@@ -18,7 +18,7 @@ describe('text-styles-prefer-library', () => {
   test('reports violations when a text style differs from its library style', async (): Promise<
     void
   > => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './text-differs.sketch',
       'text-styles-prefer-library',
@@ -32,7 +32,7 @@ describe('text-styles-prefer-library', () => {
   })
 
   test('reports violations when a text does not have a library style', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './text-no-library.sketch',
       'text-styles-prefer-library',
@@ -46,7 +46,7 @@ describe('text-styles-prefer-library', () => {
   })
 
   test('reports violations if an unauthorized library is used', async (): Promise<void> => {
-    const { violations, ruleErrors } = await testRule(
+    const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all-good.sketch',
       'text-styles-prefer-library',
