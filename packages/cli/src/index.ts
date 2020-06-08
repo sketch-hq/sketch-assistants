@@ -54,6 +54,10 @@ const helpText = `
       When Assistants are installed before a run, they are cached in a temporary
       folder to make future runs faster. Pass this flag to delete the cache
       folder.
+    
+    --profile
+
+      Output statistics instead of results.
 
     --workspace
 
@@ -158,6 +162,10 @@ const cli = meow(helpText, {
     assistant: {
       type: 'string',
       default: '',
+    },
+    profile: {
+      type: 'boolean',
+      default: false,
     },
   },
 })
@@ -383,6 +391,7 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
  */
 const main = async () => {
   const tmpDir = getTmpDirPath()
+  const start = process.uptime()
 
   if (cli.flags.clearCache) {
     await exec(`rm -rf ${tmpDir}`)
@@ -424,6 +433,26 @@ const main = async () => {
 
   if (cli.flags.json) {
     console.log(JSON.stringify(results, null, 2))
+  } else if (cli.flags.profile) {
+    let violations = 0
+    let ruleErrors = 0
+    let numAssistants = 0
+    results.forEach((result) => {
+      if (result.code === 'error') return
+      Object.keys(result.output).forEach((key) => {
+        const assistantResult = result.output[key]
+        numAssistants++
+        if (assistantResult.code === 'error') return
+        violations += assistantResult.result.violations.length
+        ruleErrors += assistantResult.result.ruleErrors.length
+      })
+    })
+    console.log('Num files:', results.length)
+    console.log('Num Assistants:', numAssistants)
+    console.log('Violations:', violations)
+    console.log('Rule errors:', ruleErrors)
+    console.log('Memory used:', `${Math.round(process.memoryUsage().heapTotal / 1024 / 1024)}MB`)
+    console.log('Execution time:', `${(process.uptime() - start).toFixed(2)}s`)
   } else {
     console.log(formatResults(results))
   }
