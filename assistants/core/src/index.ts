@@ -26,8 +26,8 @@ import * as layersNoHidden from './rules/layers-no-hidden'
 import * as layersNoLoose from './rules/layers-no-loose'
 import * as layersSubpixelPositioning from './rules/layers-subpixel-positioning'
 import * as layerStylesNoDirty from './rules/layer-styles-no-dirty'
-import * as layerStylesPreferShared from './rules/layer-styles-prefer-shared'
 import * as layerStylesPreferLibrary from './rules/layer-styles-prefer-library'
+import * as layerStylesPreferShared from './rules/layer-styles-prefer-shared'
 import * as namePatternArtboards from './rules/name-pattern-artboards'
 import * as namePatternGroups from './rules/name-pattern-groups'
 import * as namePatternImages from './rules/name-pattern-images'
@@ -38,6 +38,7 @@ import * as namePatternText from './rules/name-pattern-text'
 import * as resultMessagesInclude from './rules/result-messages-include'
 import * as shadowsNoDisabled from './rules/shadows-no-disabled'
 import * as sharedStylesNoUnused from './rules/shared-styles-no-unused'
+import * as symbolsNoDetached from './rules/symbols-no-detached'
 import * as symbolsNoUnused from './rules/symbols-no-unused'
 import * as symbolsPreferLibrary from './rules/symbols-prefer-library'
 import * as textStylesNoDirty from './rules/text-styles-no-dirty'
@@ -99,6 +100,7 @@ const assistant: AssistantPackage = async (env) => {
       resultMessagesInclude,
       shadowsNoDisabled,
       sharedStylesNoUnused,
+      symbolsNoDetached,
       symbolsNoUnused,
       symbolsPreferLibrary,
       textStylesNoDirty,

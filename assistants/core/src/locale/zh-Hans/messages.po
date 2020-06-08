@@ -538,15 +538,15 @@ msgstr ""
 msgid "Hidden layers may cause uncertainty. Some teams may want to remove them."
 msgstr ""
 
-#: src/rules/layers-no-loose/index.ts:19
+#: src/rules/layers-no-loose/index.ts:20
 msgid "This layer is not inside an Artboard"
 msgstr ""
 
-#: src/rules/layers-no-loose/index.ts:27
+#: src/rules/layers-no-loose/index.ts:29
 msgid "Layers should not be outside artboards"
 msgstr ""
 
-#: src/rules/layers-no-loose/index.ts:28
+#: src/rules/layers-no-loose/index.ts:30
 msgid "Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards."
 msgstr ""
 
@@ -690,6 +690,18 @@ msgstr ""
 
 #: src/rules/shared-styles-no-unused/index.ts:36
 msgid "Some teams may consider unused shared styles a document organization issue."
+msgstr ""
+
+#: src/rules/symbols-no-detached/index.ts:27
+msgid "This group was detached from the symbol named \"{symbolName}\""
+msgstr ""
+
+#: src/rules/symbols-no-detached/index.ts:36
+msgid "Symbols should not be detached"
+msgstr ""
+
+#: src/rules/symbols-no-detached/index.ts:37
+msgid "Detached symbols could indicate an unwanted divergence from a style guide or library."
 msgstr ""
 
 #: src/rules/symbols-no-unused/index.ts:23
