@@ -138,6 +138,19 @@ export type ProcessedSketchFile = {
    * The SketchFile that was processed.
    */
   file: SketchFile
+  /**
+   * Statistics about the processed file.
+   */
+  profile: {
+    /**
+     * Number of Sketch objetcs in the file.
+     */
+    numObjects: number
+    /**
+     * Time taken for processing in milliseconds.
+     */
+    time: number
+  }
 }
 
 //
@@ -189,9 +202,49 @@ export type RunInput = {
  * name, and indicate either success or error.
  */
 export type RunOutput = {
-  [assistantName: string]:
-    | { code: 'error'; result: AssistantErrorResult }
-    | { code: 'success'; result: AssistantSuccessResult }
+  /**
+   * Mirror input in the output, for easier processing of results.
+   */
+  input: RunInput
+  /**
+   * Results per Assistant.
+   * "error": The Assistant run failed entirely.
+   * "success": One or more rules ran successfully.
+   */
+  assistants: {
+    [assistantName: string]:
+      | { code: 'error'; result: AssistantErrorResult }
+      | { code: 'success'; result: AssistantSuccessResult }
+  }
+}
+
+/**
+ * Profiling statistics about a run.
+ */
+export type RunProfile = {
+  [file: string]: {
+    file: {
+      processingTimeMS: number
+      numObjects: number
+      complexityObjPerMB: number
+      sizeMB: number
+      objects: { [key in keyof ObjectCache]?: { count: number } }
+    }
+    assistants: {
+      [assistantName: string]: {
+        runTimeMS: number
+        violations: number
+        ruleErrors: number
+        rules: {
+          [ruleName: string]: {
+            violations: number
+            runTimeMS: number
+            impactMSPerViolation: number
+          }
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -262,6 +315,12 @@ export type AssistantSuccessResult = {
         runtime?: AssistantRuntime
       }
     }
+  }
+  /**
+   * Object containing information about how long each rule took to execute.
+   */
+  profile: {
+    ruleTimings: { [ruleName: string]: number }
   }
 }
 

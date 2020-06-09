@@ -73,6 +73,10 @@ const runAssistant = async (
     .filter((rule) => isRuleActive(assistant.config, rule.name)) // Rule turned on in config
     .filter((rule) => (rule.runtime ? rule.runtime === env.runtime : true)) // Rule platform is supported
 
+  const profile: AssistantSuccessResult['profile'] = {
+    ruleTimings: {},
+  }
+
   const metadata: AssistantSuccessResult['metadata'] = {
     assistant: {
       name: assistant.name,
@@ -116,11 +120,13 @@ const runAssistant = async (
           ...context,
           utils: createUtils(ruleName),
         }
+        const start = Date.now()
         try {
           await ruleFunction(ruleContext)
         } catch (error) {
           throw new RuleInvocationError(error, assistant.name, ruleName)
         }
+        profile.ruleTimings[ruleName] = Date.now() - start
       },
       { concurrency: 1, stopOnError: false },
     )
@@ -135,6 +141,7 @@ const runAssistant = async (
         stack: error.cause.stack || '',
       })),
       metadata,
+      profile,
     }
   }
   return {
@@ -142,6 +149,7 @@ const runAssistant = async (
     violations,
     ruleErrors: [],
     metadata,
+    profile,
   }
 }
 

@@ -22,6 +22,7 @@ import {
   ViolationSeverity,
   SketchFile,
   AssistantConfig,
+  RunProfile,
 } from '@sketch-hq/sketch-assistant-types'
 import crypto from 'crypto'
 import osLocale from 'os-locale'
@@ -175,6 +176,7 @@ const exec = promisify(cp.exec)
 const exists = promisify(fs.exists)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
+const stat = promisify(fs.stat)
 
 /**
  * Return the path to a usable temporary directory that remains consistent between cli runs.
@@ -255,6 +257,58 @@ const makeAssistant = async (
   }
 }
 
+const makeProfileData = async (cliResults: CliResults): Promise<RunProfile> => {
+  const profile: RunProfile = {}
+  for (const cliResult of cliResults) {
+    if (cliResult.code === 'error') continue
+    const processingTimeMS = cliResult.output.input.processedFile.profile.time
+    const numObjects = cliResult.output.input.processedFile.profile.numObjects
+    const sizeMB = (await stat(cliResult.filepath)).size / 1024 / 1024
+    const complexityObjPerMB = numObjects / sizeMB
+    const objects = Object.keys(cliResult.output.input.processedFile.objects).reduce((acc, key) => {
+      return {
+        ...acc,
+        // @ts-ignore
+        [key]: { count: cliResult.output.input.processedFile.objects[key].length },
+      }
+    }, {})
+    profile[cliResult.filepath] = {
+      file: { processingTimeMS, numObjects, sizeMB, complexityObjPerMB, objects },
+      assistants: {},
+    }
+    Object.keys(cliResult.output.assistants).forEach((key) => {
+      const result = cliResult.output.assistants[key]
+      if (result.code === 'error') return
+      const violations = result.result.violations.length
+      const ruleErrors = result.result.ruleErrors.length
+      const ruleTimingsMS = result.result.profile.ruleTimings
+      const runTimeMS = Object.keys(ruleTimingsMS).reduce((acc, key) => acc + ruleTimingsMS[key], 0)
+      const rules = Object.keys(result.result.profile.ruleTimings).reduce((acc, key) => {
+        const runTimeMS = result.result.profile.ruleTimings[key]
+        const violations = result.result.violations.filter(
+          (violation) => violation.ruleName === key,
+        ).length
+        const impactMSPerViolation = runTimeMS / violations
+        return {
+          ...acc,
+          [key]: {
+            runTimeMS,
+            violations,
+            impactMSPerViolation,
+          },
+        }
+      }, {})
+      profile[cliResult.filepath].assistants[result.result.metadata.assistant.name] = {
+        violations,
+        ruleErrors,
+        runTimeMS,
+        rules,
+      }
+    })
+  }
+  return profile
+}
+
 /**
  * Format results as a human readable string.
  */
@@ -280,7 +334,7 @@ const formatResults = (cliResults: CliResults): string => {
       append(2, chalk.red(cliResult.message))
       continue
     }
-    for (const [name, res] of Object.entries(cliResult.output)) {
+    for (const [name, res] of Object.entries(cliResult.output.assistants)) {
       if (res.code === 'error') {
         append(2, `${name}: ${chalk.red(res.result.message)}`)
         continue
@@ -339,7 +393,8 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
   const filename = basename(filepath)
 
   const spinner = ora({
-    stream: cli.flags.json ? fs.createWriteStream('/dev/null') : process.stdout,
+    stream:
+      cli.flags.json || cli.flags.profile ? fs.createWriteStream('/dev/null') : process.stdout,
   })
 
   spinner.start(spinnerMessage(filename, ''))
@@ -391,7 +446,6 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
  */
 const main = async () => {
   const tmpDir = getTmpDirPath()
-  const start = process.uptime()
 
   if (cli.flags.clearCache) {
     await exec(`rm -rf ${tmpDir}`)
@@ -434,25 +488,7 @@ const main = async () => {
   if (cli.flags.json) {
     console.log(JSON.stringify(results, null, 2))
   } else if (cli.flags.profile) {
-    let violations = 0
-    let ruleErrors = 0
-    let numAssistants = 0
-    results.forEach((result) => {
-      if (result.code === 'error') return
-      Object.keys(result.output).forEach((key) => {
-        const assistantResult = result.output[key]
-        numAssistants++
-        if (assistantResult.code === 'error') return
-        violations += assistantResult.result.violations.length
-        ruleErrors += assistantResult.result.ruleErrors.length
-      })
-    })
-    console.log('Num files:', results.length)
-    console.log('Num Assistants:', numAssistants)
-    console.log('Violations:', violations)
-    console.log('Rule errors:', ruleErrors)
-    console.log('Memory used:', `${Math.round(process.memoryUsage().heapTotal / 1024 / 1024)}MB`)
-    console.log('Execution time:', `${(process.uptime() - start).toFixed(2)}s`)
+    console.log(JSON.stringify(await makeProfileData(results), null, 2))
   } else {
     console.log(formatResults(results))
   }
