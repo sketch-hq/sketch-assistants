@@ -109,7 +109,7 @@ const createDummyRect = (): FileFormat.Rect => ({
   y: 0,
 })
 
-type TestResult = Omit<AssistantSuccessResult, 'metadata'>
+type TestResult = Omit<AssistantSuccessResult, 'metadata' | 'profile'>
 
 /**
  * Test an Assistant.

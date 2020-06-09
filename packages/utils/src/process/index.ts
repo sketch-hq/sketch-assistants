@@ -301,7 +301,8 @@ const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFil
     try {
       const objects = createEmptyObjectCache()
       const foreignObjects = createEmptyObjectCache()
-      const pointers = new WeakMap()
+      const pointers = new Map()
+      const start = Date.now()
       traverse({
         target: file.contents as Record<string, {}>,
         op,
@@ -309,7 +310,13 @@ const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFil
         objects,
         foreignObjects,
       })
-      resolve({ file, objects, foreignObjects, pointers })
+      resolve({
+        file,
+        objects,
+        foreignObjects,
+        pointers,
+        profile: { numObjects: pointers.size, time: Date.now() - start },
+      })
     } catch (error) {
       reject(error)
     }

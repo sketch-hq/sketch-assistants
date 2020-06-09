@@ -50,7 +50,10 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
     throw createRunRejection('No Assistants found to run')
   }
 
-  const output: RunOutput = {}
+  const output: RunOutput = {
+    input,
+    assistants: {},
+  }
   const definitions: AssistantDefinition[] = []
 
   // Prepare assistants, that is, resolve the Assistant package exports into
@@ -66,7 +69,7 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
       }
       definitions.push(def)
     } catch (error) {
-      output[assistantName] = {
+      output.assistants[assistantName] = {
         code: 'error',
         result: {
           message: `Assistant preparation failed: ${error.message}`,
@@ -81,12 +84,12 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
 
   for (const assistant of definitions) {
     try {
-      output[assistant.name] = {
+      output.assistants[assistant.name] = {
         code: 'success',
         result: await runAssistant(processedFile, assistant, env, operation, getImageMetadata),
       }
     } catch (error) {
-      output[assistant.name] = {
+      output.assistants[assistant.name] = {
         code: 'error',
         result: {
           message: `Assistant run failed: ${error.message}`,

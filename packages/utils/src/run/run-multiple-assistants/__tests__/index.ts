@@ -48,7 +48,7 @@ test('outputs an error result for a malformed assistant package', async (): Prom
       foo: {},
     },
   })
-  await expect(promise).resolves.toHaveProperty('foo.code', 'error')
+  await expect(promise).resolves.toHaveProperty('assistants.foo.code', 'error')
 })
 
 test('outputs an error result for assistant name mismatch', async (): Promise<void> => {
@@ -57,7 +57,7 @@ test('outputs an error result for assistant name mismatch', async (): Promise<vo
       foo: createAssistant({ name: 'bar' }),
     },
   })
-  await expect(promise).resolves.toHaveProperty('foo.code', 'error')
+  await expect(promise).resolves.toHaveProperty('assistants.foo.code', 'error')
 })
 
 test('bails early if cancelled', async (): Promise<void> => {
@@ -87,9 +87,8 @@ test('works with assistants exported as ESM defaults', async (): Promise<void> =
       ],
     },
   }
-  const res = await testRunMultiple({ assistants })
-  expect(res['assistant-2'].code).toBe('success')
-  expect(res['assistant-2'].code).toBe('success')
+  const output = await testRunMultiple({ assistants })
+  expect(output.assistants['assistant-2'].code).toBe('success')
 })
 
 test('can generate violations', async (): Promise<void> => {
@@ -111,7 +110,8 @@ test('can generate violations', async (): Promise<void> => {
     }),
   }
 
-  const { 'dummy-assistant': res } = await testRunMultiple({ assistants })
+  const output = await testRunMultiple({ assistants })
+  const res = output.assistants['dummy-assistant']
 
   expect.assertions(3)
   expect(res).toHaveProperty('code', 'success')
@@ -140,7 +140,8 @@ test('will pass an assistant if violations not error-level', async (): Promise<v
     }),
   }
 
-  const { 'dummy-assistant': res } = await testRunMultiple({ assistants })
+  const output = await testRunMultiple({ assistants })
+  const res = output.assistants['dummy-assistant']
 
   expect.assertions(3)
   expect(res).toHaveProperty('code', 'success')
@@ -169,7 +170,9 @@ test('can generate rule errors', async (): Promise<void> => {
     }),
   }
 
-  const { 'dummy-assistant': res } = await testRunMultiple({ assistants })
+  const output = await testRunMultiple({ assistants })
+  const res = output.assistants['dummy-assistant']
+
   expect.assertions(2)
   if (res.code === 'success') {
     expect(res.result.violations).toHaveLength(0)
@@ -212,10 +215,10 @@ test('can run mulitple assistants', async (): Promise<void> => {
       }),
     }),
   }
+  const output = await testRunMultiple({ assistants })
+  const res1 = output.assistants['dummy-assistant-1']
+  const res2 = output.assistants['dummy-assistant-2']
 
-  const { 'dummy-assistant-1': res1, 'dummy-assistant-2': res2 } = await testRunMultiple({
-    assistants,
-  })
   expect.assertions(4)
   if (res1.code === 'success') {
     expect(res1.result.violations).toHaveLength(1)
@@ -251,14 +254,17 @@ test('can be internationalized', async (): Promise<void> => {
     'dummy-assistant': assistant,
   }
 
-  const { 'dummy-assistant': zhRes } = await testRunMultiple({
+  const zhOutput = await testRunMultiple({
     assistants,
     env: { runtime: AssistantRuntime.Node, locale: 'zh-Hans' },
   })
-  const { 'dummy-assistant': enRes } = await testRunMultiple({
+  const zhRes = zhOutput.assistants['dummy-assistant']
+
+  const enOutput = await testRunMultiple({
     assistants,
     env: { runtime: AssistantRuntime.Node, locale: 'en' },
   })
+  const enRes = enOutput.assistants['dummy-assistant']
 
   expect.assertions(2)
   if (zhRes.code === 'success' && enRes.code === 'success') {
