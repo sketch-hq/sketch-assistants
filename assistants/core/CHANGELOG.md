@@ -1,5 +1,16 @@
 # @sketch-hq/sketch-core-assistant
 
+## 5.0.0-next.16
+
+### Minor Changes
+
+- 76c8ded: Add the `symbols-no-detached` rule.
+
+### Patch Changes
+
+- Updated dependencies [8351103]
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.16
+
 ## 5.0.0-next.15
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-core-assistant",
-  "version": "5.0.0-next.15",
+  "version": "5.0.0-next.16",
   "license": "MIT",
   "repository": "github:sketch-hq/sketch-assistants",
   "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/core",
@@ -24,7 +24,7 @@
   "files": ["dist"],
   "dependencies": {
     "@lingui/core": "2.9.1",
-    "@sketch-hq/sketch-assistant-types": "5.0.0-next.15",
+    "@sketch-hq/sketch-assistant-types": "5.0.0-next.16",
     "@types/lingui__core": "2.7.0",
     "@types/lingui__macro": "2.7.3"
   },
@@ -34,7 +34,7 @@
     "@babel/core": "7.9.6",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "7.9.6",
-    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.15",
+    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.16",
     "@babel/preset-env": "7.9.6",
     "@babel/preset-typescript": "7.9.0",
     "@changesets/cli": "2.6.5",

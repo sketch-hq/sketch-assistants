@@ -1,5 +1,14 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 5.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies [8351103]
+- Updated dependencies [76c8ded]
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.16
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.16
+
 ## 5.0.0-next.15
 
 ### Major Changes

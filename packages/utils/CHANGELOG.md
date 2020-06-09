@@ -1,5 +1,16 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 5.0.0-next.16
+
+### Minor Changes
+
+- 8351103: Add rule timings to profile data.
+
+### Patch Changes
+
+- Updated dependencies [8351103]
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.16
+
 ## 5.0.0-next.15
 
 ### Major Changes
