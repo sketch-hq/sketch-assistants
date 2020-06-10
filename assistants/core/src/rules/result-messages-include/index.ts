@@ -15,7 +15,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const message = messages[i]
       if (typeof message === 'string') {
         utils.report({
-          message: i18n._(t`Unchecked message "${message}"`),
+          message: i18n._(t`You have an unread message "${message}"`),
         })
       }
     }
@@ -31,7 +31,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         helpers.stringArrayOption({
           name: 'messages',
           title: i18n._(t`Messages`),
-          description: i18n._(t`An array of messages to check for`),
+          description: i18n._(t`A range of messages to check for`),
         }),
       ]
     },

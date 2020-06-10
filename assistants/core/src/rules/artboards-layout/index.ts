@@ -134,7 +134,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     utils.report(
       invalid.map(
         (object): ReportItem => ({
-          message: i18n._(t`Unexpected artboard layout settings`),
+          message: i18n._(t`Unexpected Artboard layout settings`),
           object,
         }),
       ),
@@ -146,7 +146,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'artboards-layout',
     title: i18n._(t`Artboard layout settings should match the conventions`),
     description: i18n._(
-      t`Enforce the consistent and precise usage of specific layout settings across a document, team or project`,
+      t`Keep your specific layout settings consistent across a document, team or project.`,
     ),
     getOptions(helpers) {
       return [
@@ -154,7 +154,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
           name: 'layouts',
           title: i18n._(t`Layouts`),
           description: i18n._(
-            t`List of valid layouts. Each layout object reproduces the options found on the Layout Settings UI in Sketch`,
+            t`A list of valid layouts. Each object will use Sketch's Layout Settings options`,
           ),
           props: [
             helpers.booleanOption({

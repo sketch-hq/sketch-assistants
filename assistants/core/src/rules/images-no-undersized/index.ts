@@ -38,16 +38,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
           switch (usage.type) {
             case 'bitmap':
               message = i18n._(
-                t`Unexpected undersized image used in image layer, must fill at least ${
+                t`There's an undersized image in this layer. Images must fill at least ${
                   minRatio * 100
-                }% of the layer frame's width or height`,
+                }% of the layer frame's width or height.`,
               )
               break
             case 'fill':
               message = i18n._(
-                t`Unexpected undersized image used in layer style image fill, must fill at least ${
+                t`There's an undersized image in this Layer Style image fill. Images must fill at least ${
                   minRatio * 100
-                }% of the layer frame's width or height`,
+                }% of the layer frame's width or height.`,
               )
               break
           }
@@ -65,10 +65,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'images-no-undersized',
     title: (ruleConfig) => {
       const { minRatio } = ruleConfig
-      return i18n._(t`Images must be no less than ${minRatio}x smaller than their frame`)
+      return i18n._(t`Images shouldn't be less than ${minRatio}x bigger than their frame`)
     },
     description: i18n._(
-      t`Image bitmaps smaller than their layer might produce poor results in exported graphics. Some teams may wish to put limits in place to prevent this`,
+      t`Images that are smaller than their layer might result in low-quality exported assets, so some teams might want to limit this.`,
     ),
     getOptions(helpers) {
       return [

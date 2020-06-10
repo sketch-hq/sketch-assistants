@@ -73,19 +73,19 @@ export const createRule: CreateRuleFunction = (i18n) => {
       return i18n._(
         plural({
           value: maxIdentical,
-          one: 'Layer styles should not be identical',
-          other: 'No more than # layer styles should be identical',
+          one: 'Layer Styles should not be identical',
+          other: 'No more than # Layer Styles should be identical',
         }),
       )
     },
     description: i18n._(
-      t`You could simplify things by removing identical shared styles and applying a single style to all the affected layers.`,
+      t`You could simplify things by removing identical shared styles and applying a single Style to all the affected layers.`,
     ),
     getOptions: (helpers) => [
       helpers.integerOption({
         name: 'maxIdentical',
         title: i18n._(t`Max Identical`),
-        description: i18n._(t`The maximum allowed number of identical layer styles`),
+        description: i18n._(t`The maximum allowed number of identical Layer Styles`),
         minimum: 1,
         defaultValue: 1,
       }),

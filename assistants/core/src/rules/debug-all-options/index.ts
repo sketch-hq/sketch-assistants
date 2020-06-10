@@ -62,12 +62,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
         helpers.objectArrayOption({
           name: 'objectArrayOption',
           title: i18n._(t`Object Array Option`),
-          description: i18n._(t`A object array option`),
+          description: i18n._(t`An object array option`),
           props: [
             helpers.numberOption({
               name: 'objectArrayNumberOption',
               title: i18n._(t`Object Array Number Option`),
-              description: i18n._(t`A object array number option`),
+              description: i18n._(t`An object array number option`),
             }),
           ],
         }),
