@@ -1,5 +1,15 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 5.0.0-next.17
+
+### Patch Changes
+
+- c4615bc: Update rule copy
+- Updated dependencies [c4615bc]
+- Updated dependencies [67f62f2]
+  - @sketch-hq/sketch-core-assistant@5.0.0-next.17
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.17
+
 ## 5.0.0-next.16
 
 ### Patch Changes
