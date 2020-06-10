@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 5.0.0-next.17
+
+### Patch Changes
+
+- 67f62f2: Changes to profile data format.
+
 ## 5.0.0-next.16
 
 ### Minor Changes
