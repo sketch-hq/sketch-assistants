@@ -13,6 +13,7 @@ import {
   runMultipleAssistants,
   getImageMetadata,
   process as processFile,
+  makeProfile,
 } from '@sketch-hq/sketch-assistant-utils'
 import {
   FileFormat,
@@ -22,7 +23,7 @@ import {
   ViolationSeverity,
   SketchFile,
   AssistantConfig,
-  RunProfile,
+  RunOutputProfile,
 } from '@sketch-hq/sketch-assistant-types'
 import crypto from 'crypto'
 import osLocale from 'os-locale'
@@ -125,6 +126,13 @@ type CliResults = Array<
 >
 
 /**
+ * Profile output from the CLI.
+ */
+type CliProfile = {
+  [filePath: string]: RunOutputProfile | string
+}
+
+/**
  * Type alias to the Assistant workspace shape. This defines the shape of the
  * JSON optionally passed in via the `--workspace` option.
  */
@@ -176,7 +184,6 @@ const exec = promisify(cp.exec)
 const exists = promisify(fs.exists)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
-const stat = promisify(fs.stat)
 
 /**
  * Return the path to a usable temporary directory that remains consistent between cli runs.
@@ -257,57 +264,14 @@ const makeAssistant = async (
   }
 }
 
-const makeProfileData = async (cliResults: CliResults): Promise<RunProfile> => {
-  const profile: RunProfile = {}
-  for (const cliResult of cliResults) {
-    if (cliResult.code === 'error') continue
-    const processingTimeMS = cliResult.output.input.processedFile.profile.time
-    const numObjects = cliResult.output.input.processedFile.profile.numObjects
-    const sizeMB = (await stat(cliResult.filepath)).size / 1024 / 1024
-    const complexityObjPerMB = numObjects / sizeMB
-    const objects = Object.keys(cliResult.output.input.processedFile.objects).reduce((acc, key) => {
-      return {
-        ...acc,
-        // @ts-ignore
-        [key]: { count: cliResult.output.input.processedFile.objects[key].length },
-      }
-    }, {})
-    profile[cliResult.filepath] = {
-      file: { processingTimeMS, numObjects, sizeMB, complexityObjPerMB, objects },
-      assistants: {},
-    }
-    Object.keys(cliResult.output.assistants).forEach((key) => {
-      const result = cliResult.output.assistants[key]
-      if (result.code === 'error') return
-      const violations = result.result.violations.length
-      const ruleErrors = result.result.ruleErrors.length
-      const ruleTimingsMS = result.result.profile.ruleTimings
-      const runTimeMS = Object.keys(ruleTimingsMS).reduce((acc, key) => acc + ruleTimingsMS[key], 0)
-      const rules = Object.keys(result.result.profile.ruleTimings).reduce((acc, key) => {
-        const runTimeMS = result.result.profile.ruleTimings[key]
-        const violations = result.result.violations.filter(
-          (violation) => violation.ruleName === key,
-        ).length
-        const impactMSPerViolation = runTimeMS / violations
-        return {
-          ...acc,
-          [key]: {
-            runTimeMS,
-            violations,
-            impactMSPerViolation,
-          },
-        }
-      }, {})
-      profile[cliResult.filepath].assistants[result.result.metadata.assistant.name] = {
-        violations,
-        ruleErrors,
-        runTimeMS,
-        rules,
-      }
-    })
-  }
-  return profile
-}
+const makeCliProfile = (cliResults: CliResults): CliProfile =>
+  cliResults.reduce(
+    (acc, result) => ({
+      ...acc,
+      [result.filepath]: result.code === 'error' ? result.message : makeProfile(result.output),
+    }),
+    {},
+  )
 
 /**
  * Format results as a human readable string.
@@ -488,7 +452,7 @@ const main = async () => {
   if (cli.flags.json) {
     console.log(JSON.stringify(results, null, 2))
   } else if (cli.flags.profile) {
-    console.log(JSON.stringify(await makeProfileData(results), null, 2))
+    console.log(JSON.stringify(makeCliProfile(results), null, 2))
   } else {
     console.log(formatResults(results))
   }
