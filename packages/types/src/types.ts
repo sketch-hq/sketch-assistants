@@ -221,26 +221,21 @@ export type RunOutput = {
 /**
  * Profiling statistics about a run.
  */
-export type RunProfile = {
-  [file: string]: {
-    file: {
-      processingTimeMS: number
-      numObjects: number
-      complexityObjPerMB: number
-      sizeMB: number
-      objects: { [key in keyof ObjectCache]?: { count: number } }
-    }
-    assistants: {
-      [assistantName: string]: {
-        runTimeMS: number
-        violations: number
-        ruleErrors: number
-        rules: {
-          [ruleName: string]: {
-            violations: number
-            runTimeMS: number
-            impactMSPerViolation: number
-          }
+export type RunOutputProfile = {
+  file: {
+    time: number
+    totalObjects: number
+    objectCounts: { [key: string]: { count: number } }
+  }
+  assistants: {
+    [assistantName: string]: {
+      time: number
+      violations: number
+      ruleErrors: number
+      rules: {
+        [ruleName: string]: {
+          violations: number
+          time: number
         }
       }
     }
