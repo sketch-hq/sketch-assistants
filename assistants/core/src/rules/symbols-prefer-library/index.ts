@@ -24,7 +24,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         utils.report([
           {
             object: instance,
-            message: i18n._(t`This symbol instance should come from a library`),
+            message: i18n._(t`This Layer should use a Symbol from a Library`),
           },
         ])
         continue
@@ -34,7 +34,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         utils.report([
           {
             object: instance,
-            message: i18n._(t`Uses the unauthorized library "${libName}"`),
+            message: i18n._(t`This uses the unauthorized Library "${libName}"`),
           },
         ])
       }
@@ -48,11 +48,11 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const libraries = Array.isArray(ruleConfig.libraries) ? ruleConfig.libraries : []
       const authorizedLibraries = libraries.join(', ')
       return libraries.length === 0
-        ? i18n._(t`Symbols must come from a library`)
-        : i18n._(t`Symbols must come from the ${authorizedLibraries} libraries`)
+        ? i18n._(t`Symbols must come from a Library`)
+        : i18n._(t`Symbols must come from the ${authorizedLibraries} Libraries`)
     },
     description: i18n._(
-      t`Teams may wish to enforce the usage of libraries within a document, and the presence of local symbols can represent an opportunity to refactor them into a library`,
+      t`If you want everyone to use Libraries in this document, local Symbols should be refactored into a Library.`,
     ),
     getOptions: (helpers) => [
       helpers.stringArrayOption({

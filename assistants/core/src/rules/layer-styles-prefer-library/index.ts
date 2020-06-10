@@ -28,7 +28,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         utils.report([
           {
             object: layer,
-            message: i18n._(t`Layer styles must be set with the shared styles of a library`),
+            message: i18n._(t`Layer Styles must be set with the Shared Styles of a Library`),
           },
         ])
         continue // don't process this node further
@@ -39,7 +39,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         utils.report([
           {
             object: layer,
-            message: i18n._(t`A shared style from a library is expected`),
+            message: i18n._(t`This layer should use a Shared Style from a Library`),
           },
         ])
         continue
@@ -52,7 +52,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
           utils.report([
             {
               object: layer,
-              message: i18n._(t`Uses the unauthorized library "${libraryName}"`),
+              message: i18n._(t`This uses the unauthorized Library "${libraryName}"`),
             },
           ])
           continue
@@ -64,7 +64,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         utils.report([
           {
             object: layer,
-            message: i18n._(t`Shared style differs from library`),
+            message: i18n._(t`This Shared Style isn't in an authorized Library`),
           },
         ])
       }
@@ -78,18 +78,18 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const libraries = Array.isArray(ruleConfig.libraries) ? ruleConfig.libraries : []
       const authorizedLibraries = libraries.join(', ')
       return libraries.length === 0
-        ? i18n._(t`Shared styles must come from a library`)
-        : i18n._(t`Shared styles must come from the libraries: ${authorizedLibraries}`)
+        ? i18n._(t`Shared Styles must come from a Library`)
+        : i18n._(t`Shared Styles must come from the Libraries: ${authorizedLibraries}`)
     },
     description: i18n._(
-      t`Teams may wish to enforce the usage of libraries within a document, and the presence of local shared layer styles represent an opportunity to refactor them into the library`,
+      t`If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library.`,
     ),
     getOptions: (helpers) => [
       helpers.stringArrayOption({
         name: 'libraries',
-        title: i18n._(t`Authorized libraries`),
+        title: i18n._(t`Authorized Libraries`),
         description: i18n._(
-          t`Libraries that are valid to use. An error is shown if a library that does not belong to this list is used.`,
+          t`Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error.`,
         ),
         defaultValue: [],
       }),

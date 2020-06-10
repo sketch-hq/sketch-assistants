@@ -34,7 +34,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'text-styles-no-dirty',
-    title: i18n._(t`Text styles should be the same as their shared styles`),
+    title: i18n._(t`Text Styles should be the same as their Shared Styles`),
     description: i18n._(
       t`If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles.`,
     ),

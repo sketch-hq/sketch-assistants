@@ -22,7 +22,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (styleHasDisabledBorder(layer.style)) {
         utils.report({
           object: layer,
-          message: i18n._(t`There's a disabled border in this layer style`),
+          message: i18n._(t`There's a disabled border in this Style`),
         })
       }
     }
@@ -31,7 +31,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (styleHasDisabledBorder(sharedStyle.value)) {
         utils.report({
           object: sharedStyle,
-          message: i18n._(t`There's a disabled border in this shared style`),
+          message: i18n._(t`There's a disabled border in this Style`),
         })
       }
     }
