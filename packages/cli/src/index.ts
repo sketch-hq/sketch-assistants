@@ -300,7 +300,7 @@ const formatResults = (cliResults: CliResults): string => {
     }
     for (const [name, res] of Object.entries(cliResult.output.assistants)) {
       if (res.code === 'error') {
-        append(2, `${name}: ${chalk.red(res.result.message)}`)
+        append(2, `${name}: ${chalk.red(res.error.message)}`)
         continue
       }
       append(2, `${chalk.inverse(` ${name} `)}\n`)

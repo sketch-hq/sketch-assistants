@@ -71,7 +71,7 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
     } catch (error) {
       output.assistants[assistantName] = {
         code: 'error',
-        result: {
+        error: {
           message: `Assistant preparation failed: ${error.message}`,
         },
       }
@@ -91,7 +91,7 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
     } catch (error) {
       output.assistants[assistant.name] = {
         code: 'error',
-        result: {
+        error: {
           message: `Assistant run failed: ${error.message}`,
         },
       }
