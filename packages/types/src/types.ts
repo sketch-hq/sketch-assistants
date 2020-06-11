@@ -213,7 +213,7 @@ export type RunOutput = {
    */
   assistants: {
     [assistantName: string]:
-      | { code: 'error'; result: AssistantErrorResult }
+      | { code: 'error'; error: AssistantErrorResult }
       | { code: 'success'; result: AssistantSuccessResult }
   }
 }
