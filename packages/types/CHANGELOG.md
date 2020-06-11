@@ -1,5 +1,13 @@
 # @sketch-hq/sketch-assistant-types
 
+## 5.0.0-next.18
+
+### Major Changes
+
+- 2f6f82b: Changed the `RunOutput` type so its shape is more consistent when an Assistant outputs an
+  error or a result. This is so that it plays nicely with Swift Codable, which has trouble decoding
+  JSON derived from TypeScript discriminated unions.
+
 ## 5.0.0-next.17
 
 ### Patch Changes

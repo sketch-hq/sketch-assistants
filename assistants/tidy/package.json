@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-tidy-assistant",
-  "version": "5.0.0-next.17",
+  "version": "5.0.0-next.18",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -21,11 +21,11 @@
   ],
   "files": ["dist"],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "5.0.0-next.17",
-    "@sketch-hq/sketch-core-assistant": "5.0.0-next.17"
+    "@sketch-hq/sketch-assistant-types": "5.0.0-next.18",
+    "@sketch-hq/sketch-core-assistant": "5.0.0-next.18"
   },
   "devDependencies": {
-    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.17"
+    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.18"
   },
   "scripts": {
     "test": "jest",
