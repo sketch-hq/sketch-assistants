@@ -160,10 +160,6 @@ const cli = meow(helpText, {
       type: 'boolean',
       default: false,
     },
-    config: {
-      type: 'string',
-      default: '',
-    },
     workspace: {
       type: 'string',
       default: '',
@@ -250,8 +246,6 @@ const makeAssistant = async (
 ): Promise<AssistantPackageMap> => {
   const assistants = await requireAssistants(dir, workspace)
   const assistantName = `custom/${workspace.name}`
-  // @ts-ignore TODO: This code is working, but there's a type error, presumably caused by
-  // the complexity of the AssistantPackageExport type.
   return {
     [assistantName]: [
       ...workspace.assistant.extends.map((assistantName) => assistants[assistantName]),

@@ -1516,10 +1516,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sketch-hq/sketch-file-format-ts@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-5.0.0.tgz#df5e1a44ea3a08863922ef82b45d52362c2066d5"
-  integrity sha512-O3wtaPaT5PGP43Klw31D22867m77DNvnq97NfDnc//X+a8STqAqXSyHSkypZ6Ygeg4lHygk192EEpH4HDyRWEA==
+"@sketch-hq/sketch-file-format-ts@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-5.1.1.tgz#53b7cdb7ce034486a412791f88061329941a37ee"
+  integrity sha512-VTRCUeggr+fMle7sNtQw+PAe2fRoVL35n+i+Q8etuwJXPPcz9jW08XytlFtQE+qfnNWLrryCGY/SS7Rm9Qz3GA==
 
 "@types/babel__core@^7.1.7":
   version "7.1.7"

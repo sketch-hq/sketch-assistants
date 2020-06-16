@@ -34,7 +34,6 @@ const fromFile = async (filepath: string): Promise<SketchFile> => {
         },
         meta: JSON.parse(archive.entryDataSync('meta.json').toString()),
         user: JSON.parse(archive.entryDataSync('user.json').toString()),
-        // @ts-ignore TODO: Fix this, `assistants` prop should be optional in the file format
         workspace,
       })
     })
