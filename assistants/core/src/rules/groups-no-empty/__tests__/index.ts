@@ -22,4 +22,15 @@ describe('groups-no-empty', () => {
     expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
+
+  test('no violations for an empty document', async (): Promise<void> => {
+    expect.assertions(2)
+    const { violations, ruleErrors } = await testCoreRule(
+      __dirname,
+      './empty.sketch',
+      'groups-no-empty',
+    )
+    expect(violations).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
+  })
 })
