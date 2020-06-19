@@ -9,10 +9,12 @@ import {
   GetImageMetadata,
   AssistantSuccessResult,
   ViolationSeverity,
+  IgnoreConfig,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { createRuleUtilsCreator } from '../../rule-utils'
 import { isRuleActive, getRuleConfig, getRuleTitle } from '../../assistant-config'
+import { isRuleFullIgnored } from '../ignore'
 
 /**
  * Given a set of violations, determine if they represent a "pass" or a "fail".
@@ -50,6 +52,7 @@ const runAssistant = async (
   env: AssistantEnv,
   operation: RunOperation,
   getImageMetadata: GetImageMetadata,
+  ignoreConfig: IgnoreConfig,
 ): Promise<AssistantSuccessResult> => {
   const violations: Violation[] = []
 
@@ -59,6 +62,7 @@ const runAssistant = async (
     assistant,
     operation,
     getImageMetadata,
+    ignoreConfig,
   )
 
   const context = {
@@ -71,6 +75,7 @@ const runAssistant = async (
 
   const activeRules = assistant.rules
     .filter((rule) => isRuleActive(assistant.config, rule.name)) // Rule turned on in config
+    .filter((rule) => !isRuleFullIgnored(ignoreConfig, assistant.name, rule.name)) // Rule not full ignored
     .filter((rule) => (rule.runtime ? rule.runtime === env.runtime : true)) // Rule platform is supported
 
   const profile: AssistantSuccessResult['profile'] = {

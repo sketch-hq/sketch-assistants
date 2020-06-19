@@ -5,17 +5,19 @@ import {
   RuleUtils,
   ProcessedSketchFile,
   FileFormat,
+  IgnoreConfig,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { createRuleUtilsCreator, createIterable, createIterableObjectCache } from '..'
 import { process, createEmptyObjectCache } from '../../process'
-import { fromFile } from '../../from-file'
+import { fromFile } from '../../files'
 import { getImageMetadata } from '../../get-image-metadata'
 import {
   createDummyRect,
   createAssistantDefinition,
   createAssistantConfig,
   createRule,
+  createDummySwatch,
 } from '../../test-helpers'
 
 /**
@@ -29,6 +31,7 @@ const createUtils = async (
   }),
   ruleName: string = 'foo',
   violations: Violation[] = [],
+  ignoreConfig: IgnoreConfig = { pages: [], assistants: {} },
 ): Promise<{ violations: Violation[]; utils: RuleUtils; processedFile: ProcessedSketchFile }> => {
   const op = { cancelled: false }
   const file = await fromFile(resolve(__dirname, filepath))
@@ -42,15 +45,20 @@ const createUtils = async (
       assistant,
       op,
       getImageMetadata,
+      ignoreConfig,
     )(ruleName),
   }
 }
 
 describe('createIterable', () => {
   test('can yield file format objects', () => {
-    const iterable = createIterable<FileFormat.Rect>([createDummyRect(), createDummyRect()], {
-      cancelled: false,
-    })
+    const iterable = createIterable<FileFormat.Rect>(
+      [createDummyRect(), createDummyRect()],
+      {
+        cancelled: false,
+      },
+      [],
+    )
     expect([...iterable].map((item) => item._class)).toMatchInlineSnapshot(`
       Array [
         "rect",
@@ -60,9 +68,13 @@ describe('createIterable', () => {
   })
 
   test('can short-circuit when operation is cancelled', () => {
-    const iterable = createIterable<FileFormat.Rect>([createDummyRect(), createDummyRect()], {
-      cancelled: true,
-    })
+    const iterable = createIterable<FileFormat.Rect>(
+      [createDummyRect(), createDummyRect()],
+      {
+        cancelled: true,
+      },
+      [],
+    )
     expect([...iterable]).toHaveLength(0)
   })
 })
@@ -70,17 +82,26 @@ describe('createIterable', () => {
 describe('createIterableObjectCache', () => {
   test('works with an empty cache', () => {
     const cache = createEmptyObjectCache()
-    const iterableCache = createIterableObjectCache(cache, { cancelled: false })
+    const iterableCache = createIterableObjectCache(cache, { cancelled: false }, [])
     expect([...iterableCache.text]).toHaveLength(0)
   })
 
   test('for..of loops work with type safety', () => {
     const cache = createEmptyObjectCache()
     cache[FileFormat.ClassValue.Rect] = [createDummyRect(), createDummyRect()]
-    const iterableCache = createIterableObjectCache(cache, { cancelled: false })
+    const iterableCache = createIterableObjectCache(cache, { cancelled: false }, [])
     for (const rect of iterableCache.rect) {
       expect(rect._class).toBe('rect')
     }
+  })
+
+  test('objects can be ignored by id', () => {
+    const cache = createEmptyObjectCache()
+    cache[FileFormat.ClassValue.Swatch] = [createDummySwatch('1'), createDummySwatch('2')]
+    const iterableCache = createIterableObjectCache(cache, { cancelled: false }, ['2'])
+    const result = [...iterableCache.swatch]
+    expect(result).toHaveLength(1)
+    expect(result[0]).toHaveProperty('do_objectID', '1')
   })
 })
 
@@ -211,6 +232,25 @@ describe('objects', () => {
     const pages: FileFormat.Page[] = [...utils.objects.page]
     expect(pages).toHaveLength(1)
     expect(pages[0]._class).toBe('page')
+  })
+})
+
+describe('isObjectIgnored', () => {
+  test('returns ignore status of object and rule combinations', async (): Promise<void> => {
+    const swatch1 = createDummySwatch('1')
+    const swatch2 = createDummySwatch('2')
+    const { utils } = await createUtils(
+      './empty.sketch',
+      createAssistantDefinition({
+        name: 'foo',
+        rules: [createRule({ name: 'bar' })],
+      }),
+      'bar',
+      [],
+      { pages: [], assistants: { foo: { rules: { bar: { objects: ['1'] } } } } },
+    )
+    expect(utils.isObjectIgnoredForRule(swatch1)).toBe(true)
+    expect(utils.isObjectIgnoredForRule(swatch2)).toBe(false)
   })
 })
 

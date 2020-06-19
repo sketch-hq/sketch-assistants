@@ -8,6 +8,7 @@ import {
 
 import { prepare } from '../../assistant'
 import { runAssistant } from '../run-assistant'
+import { pruneObjects, pruneAssistants, pruneRules } from '../ignore'
 
 export function isRunRejection(val: unknown): val is RunRejection {
   if (!val) return false
@@ -45,15 +46,16 @@ const exitIfCancelled = (op: RunOperation): void | never => {
  */
 const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> => {
   const { operation, env, processedFile, assistants, getImageMetadata } = input
+  let { ignore } = input
 
   if (Object.keys(assistants).length === 0) {
     throw createRunRejection('No Assistants found to run')
   }
 
-  const output: RunOutput = {
-    input,
-    assistants: {},
-  }
+  ignore = pruneAssistants(ignore, assistants)
+  ignore = pruneObjects(ignore, processedFile)
+
+  const results: RunOutput['assistants'] = {}
   const definitions: AssistantDefinition[] = []
 
   // Prepare assistants, that is, resolve the Assistant package exports into
@@ -69,7 +71,7 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
       }
       definitions.push(def)
     } catch (error) {
-      output.assistants[assistantName] = {
+      results[assistantName] = {
         code: 'error',
         error: {
           message: `Assistant preparation failed: ${error.message}`,
@@ -80,16 +82,30 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
 
   exitIfCancelled(operation)
 
+  // For each definition prune any ignored rules, no longer present in the
+  // Assistant
+
+  for (const assistant of definitions) {
+    ignore = pruneRules(ignore, assistant)
+  }
+
   // Run assistants against the file.
 
   for (const assistant of definitions) {
     try {
-      output.assistants[assistant.name] = {
+      results[assistant.name] = {
         code: 'success',
-        result: await runAssistant(processedFile, assistant, env, operation, getImageMetadata),
+        result: await runAssistant(
+          processedFile,
+          assistant,
+          env,
+          operation,
+          getImageMetadata,
+          ignore,
+        ),
       }
     } catch (error) {
-      output.assistants[assistant.name] = {
+      results[assistant.name] = {
         code: 'error',
         error: {
           message: `Assistant run failed: ${error.message}`,
@@ -100,7 +116,11 @@ const innerRunMultipleAssistants = async (input: RunInput): Promise<RunOutput> =
 
   exitIfCancelled(operation)
 
-  return output
+  return {
+    assistants: results,
+    ignore,
+    input,
+  }
 }
 
 /**

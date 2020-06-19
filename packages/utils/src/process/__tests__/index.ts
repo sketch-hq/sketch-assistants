@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 
-import { fromFile } from '../../from-file'
+import { fromFile } from '../../files'
 import { process } from '..'
 
 describe('process', () => {

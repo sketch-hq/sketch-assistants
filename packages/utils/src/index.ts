@@ -1,6 +1,6 @@
 export * from './assistant'
 export * from './assistant-config'
-export * from './from-file'
+export * from './files'
 export * from './get-image-metadata'
 export * from './object-utils'
 export * from './pointer-utils'
