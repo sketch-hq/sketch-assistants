@@ -15,6 +15,7 @@ import {
   process as processFile,
   makeProfile,
   filterPages,
+  prunePages,
 } from '@sketch-hq/sketch-assistant-utils'
 import {
   AssistantRuntime,
@@ -28,7 +29,6 @@ import {
 } from '@sketch-hq/sketch-assistant-types'
 import crypto from 'crypto'
 import osLocale from 'os-locale'
-import { prunePages } from '@sketch-hq/sketch-assistant-utils/dist/cjs/run/ignore'
 
 const helpText = `
   Usage
