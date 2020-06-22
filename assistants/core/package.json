@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-core-assistant",
-  "version": "5.0.0-next.19",
+  "version": "5.0.0-next.20",
   "license": "MIT",
   "repository": "github:sketch-hq/sketch-assistants",
   "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/core",
@@ -34,7 +34,7 @@
     "@babel/core": "7.9.6",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "7.9.6",
-    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.19",
+    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.20",
     "@babel/preset-env": "7.9.6",
     "@babel/preset-typescript": "7.9.0",
     "@changesets/cli": "2.6.5",
