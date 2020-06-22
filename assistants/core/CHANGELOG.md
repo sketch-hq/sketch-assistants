@@ -1,5 +1,14 @@
 # @sketch-hq/sketch-core-assistant
 
+## 5.0.0-next.19
+
+### Patch Changes
+
+- 04b71a6: Fix `groups-no-empty` flagging an empty document.
+- Updated dependencies [c802b6b]
+- Updated dependencies [a004097]
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.19
+
 ## 5.0.0-next.18
 
 ### Patch Changes
