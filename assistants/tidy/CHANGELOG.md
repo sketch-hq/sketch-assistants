@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 5.0.0-next.20
+
+### Patch Changes
+
+- @sketch-hq/sketch-core-assistant@5.0.0-next.20
+
 ## 5.0.0-next.19
 
 ### Patch Changes

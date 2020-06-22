@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 5.0.0-next.20
+
+### Patch Changes
+
+- 06c0612: Export ignore pruning functions properly.
+
 ## 5.0.0-next.19
 
 ### Minor Changes
