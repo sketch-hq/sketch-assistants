@@ -1,5 +1,15 @@
 # @sketch-hq/sketch-assistant-types
 
+## 5.0.0-next.19
+
+### Minor Changes
+
+- c802b6b: Support an ignore config in the Assistants workspace.
+
+### Patch Changes
+
+- a004097: Update to latest file format and remove some @ts-ignore directives.
+
 ## 5.0.0-next.18
 
 ### Major Changes

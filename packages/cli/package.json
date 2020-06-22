@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-assistant-cli",
-  "version": "5.0.0-next.18",
+  "version": "5.0.0-next.19",
   "bin": {
     "sketch-assistants": "bin/cli.js"
   },
@@ -20,8 +20,8 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "5.0.0-next.18",
-    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.18",
+    "@sketch-hq/sketch-assistant-types": "5.0.0-next.19",
+    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.19",
     "chalk": "4.0.0",
     "conf": "6.2.4",
     "globby": "11.0.0",
