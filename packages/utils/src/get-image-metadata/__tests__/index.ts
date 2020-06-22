@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { getImageMetadata } from '../'
-import { fromFile } from '../../from-file'
+import { fromFile } from '../../files'
 
 describe('getImageMetadata', () => {
   test('extracts image metadata', async (): Promise<void> => {

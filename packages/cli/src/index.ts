@@ -14,9 +14,9 @@ import {
   getImageMetadata,
   process as processFile,
   makeProfile,
+  filterPages,
 } from '@sketch-hq/sketch-assistant-utils'
 import {
-  FileFormat,
   AssistantRuntime,
   RunOutput,
   AssistantPackageMap,
@@ -24,9 +24,11 @@ import {
   SketchFile,
   AssistantConfig,
   RunOutputProfile,
+  Workspace,
 } from '@sketch-hq/sketch-assistant-types'
 import crypto from 'crypto'
 import osLocale from 'os-locale'
+import { prunePages } from '@sketch-hq/sketch-assistant-utils/dist/cjs/run/ignore'
 
 const helpText = `
   Usage
@@ -133,17 +135,10 @@ type CliProfile = {
 }
 
 /**
- * Type alias to the Assistant workspace shape. This defines the shape of the
- * JSON optionally passed in via the `--workspace` option.
- */
-type Workspace = FileFormat.AssistantsWorkspace
-
-/**
  * Describe a custom Assistant using JSON. This defines the shape of the JSON
  * optionally passed in via the `--assistant` option.
  */
 type WorkspaceWithAssistant = Workspace & {
-  name: string
   assistant: {
     extends: string[]
     config?: AssistantConfig
@@ -209,7 +204,7 @@ const spinnerMessage = (filename: string, message: string) =>
  * their actual package export values.
  */
 const requireAssistants = (dir: string, workspace: Workspace): AssistantPackageMap =>
-  Object.keys(workspace.dependencies).reduce<AssistantPackageMap>(
+  Object.keys(workspace.dependencies || {}).reduce<AssistantPackageMap>(
     (assistantGroup, pkgName) => ({
       [pkgName]: require(`${dir}/node_modules/${pkgName}`),
       ...assistantGroup,
@@ -359,16 +354,24 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
   spinner.start(spinnerMessage(filename, 'Processing file…'))
 
   try {
-    const file = await fromFile(filepath)
     const operation = { cancelled: false }
+    let file = await fromFile(filepath)
+    const workspace = await getWorkspace(file)
+    let { ignore = { pages: [], assistants: {} } } = workspace
+
+    ignore = prunePages(ignore, file)
+    file = filterPages(file, ignore.pages)
+
     const processedFile = await processFile(file, operation)
     const env = {
       runtime: AssistantRuntime.Node,
       locale: await osLocale(),
     }
 
-    const workspace = await getWorkspace(file)
-    const workspaceHash = crypto.createHash('md5').update(JSON.stringify(workspace)).digest('hex')
+    const workspaceHash = crypto
+      .createHash('md5')
+      .update(JSON.stringify(workspace.dependencies || {}))
+      .digest('hex')
     const dir = resolve(`${tmpDir}`, workspaceHash)
 
     spinner.start(spinnerMessage(filename, 'Installing workspace…'))
@@ -384,6 +387,7 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
     spinner.start(spinnerMessage(filename, 'Running Assistants…'))
 
     const output = await runMultipleAssistants({
+      ignore,
       assistants,
       processedFile,
       getImageMetadata,

@@ -14,7 +14,7 @@ import {
   AssistantPackage,
   AssistantRuntime,
 } from '@sketch-hq/sketch-assistant-types'
-import { fromFile } from '../from-file'
+import { fromFile } from '../files'
 import { process } from '../process'
 import { prepare, getRuleDefinition } from '../assistant'
 import { runAssistant } from '../run/run-assistant'
@@ -109,6 +109,19 @@ const createDummyRect = (): FileFormat.Rect => ({
   y: 0,
 })
 
+const createDummySwatch = (id = '1'): FileFormat.Swatch => ({
+  _class: 'swatch',
+  do_objectID: id,
+  name: 'dummy-swatch',
+  value: {
+    _class: 'color',
+    alpha: 1,
+    red: 1,
+    blue: 1,
+    green: 1,
+  },
+})
+
 type TestResult = Omit<AssistantSuccessResult, 'metadata' | 'profile'>
 
 /**
@@ -130,6 +143,7 @@ const testAssistant = async (
     env,
     op,
     getImageMetadata,
+    { pages: [], assistants: {} },
   )
 
   return { violations, ruleErrors, passed }
@@ -165,6 +179,7 @@ const testRule = async (
     env,
     op,
     getImageMetadata,
+    { pages: [], assistants: {} },
   )
 
   return { violations, ruleErrors, passed }
@@ -203,6 +218,7 @@ const testRuleInAssistant = async (
     env,
     op,
     getImageMetadata,
+    { pages: [], assistants: {} },
   )
 
   return { violations, ruleErrors, passed }
@@ -211,6 +227,7 @@ const testRuleInAssistant = async (
 export {
   createRule,
   createDummyRect,
+  createDummySwatch,
   createAssistantConfig,
   createAssistant,
   createAssistantDefinition,

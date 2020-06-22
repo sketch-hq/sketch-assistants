@@ -12,7 +12,7 @@ import { runMultipleAssistants } from '..'
 import { createAssistant, createRule, createAssistantConfig } from '../../../test-helpers'
 import { getImageMetadata as getImageMetadataNode } from '../../../get-image-metadata'
 import { process } from '../../../process'
-import { fromFile } from '../../../from-file'
+import { fromFile } from '../../../files'
 
 /**
  * Test helper.
@@ -23,6 +23,7 @@ const testRunMultiple = async (
     operation = { cancelled: false },
     getImageMetadata = getImageMetadataNode,
     env = { locale: 'en', runtime: AssistantRuntime.Node },
+    ignore = { pages: [], assistants: {} },
   }: Partial<RunInput>,
   filename = './empty.sketch',
 ): Promise<RunOutput> => {
@@ -34,6 +35,7 @@ const testRunMultiple = async (
     operation,
     getImageMetadata,
     env,
+    ignore,
   })
 }
 
@@ -270,5 +272,55 @@ test('can be internationalized', async (): Promise<void> => {
   if (zhRes.code === 'success' && enRes.code === 'success') {
     expect(zhRes.result.violations[0].message).toBe('世界你好')
     expect(enRes.result.violations[0].message).toBe('Hello world')
+  }
+})
+
+test('prunes missing assistants from ignore data', async (): Promise<void> => {
+  const { ignore } = await testRunMultiple({
+    ignore: {
+      pages: [],
+      assistants: { 'missing-assistant': { rules: {} }, 'dummy-assistant': { rules: {} } },
+    },
+  })
+  expect(ignore.assistants).not.toHaveProperty('missing-assistant')
+  expect(ignore.assistants).toHaveProperty('dummy-assistant')
+})
+
+test('prunes missing rules from ignore data', async (): Promise<void> => {
+  const { ignore } = await testRunMultiple({
+    assistants: {
+      'dummy-assistant': createAssistant({ rules: [createRule({ name: 'rule' })] }),
+    },
+    ignore: {
+      pages: [],
+      assistants: {
+        'dummy-assistant': { rules: { rule: { allObjects: true }, missing: { allObjects: true } } },
+      },
+    },
+  })
+  expect(ignore.assistants['dummy-assistant'].rules).toHaveProperty('rule')
+  expect(ignore.assistants['dummy-assistant'].rules).not.toHaveProperty('missing')
+})
+
+test('prunes missing objects from ignore data', async (): Promise<void> => {
+  const { ignore } = await testRunMultiple({
+    assistants: {
+      'dummy-assistant': createAssistant({ rules: [createRule({ name: 'rule' })] }),
+    },
+    ignore: {
+      pages: [],
+      assistants: {
+        'dummy-assistant': {
+          rules: { rule: { objects: ['9AD22B94-A05B-4F49-8EDD-A38D62BD6181', 'missing-id'] } },
+        },
+      },
+    },
+  })
+  expect.assertions(2)
+  if ('objects' in ignore.assistants['dummy-assistant'].rules.rule) {
+    expect(ignore.assistants['dummy-assistant'].rules.rule.objects).toContain(
+      '9AD22B94-A05B-4F49-8EDD-A38D62BD6181',
+    )
+    expect(ignore.assistants['dummy-assistant'].rules.rule.objects).not.toContain('missing-id')
   }
 })

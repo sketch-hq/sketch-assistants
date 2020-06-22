@@ -6,6 +6,8 @@ import {
   FileFormat,
   ProcessedSketchFile,
   SketchFile,
+  SketchFileObject,
+  ObjectIdSet,
 } from '@sketch-hq/sketch-assistant-types'
 
 const FOREIGN_OBJECT_CONTEXTS = [
@@ -243,6 +245,7 @@ export const traverse = ({
   pointers,
   objects,
   foreignObjects,
+  objectIds,
   pointer = '',
   foreignContext = false,
 }: {
@@ -251,6 +254,7 @@ export const traverse = ({
   pointers: PointerMap
   objects: ObjectCache
   foreignObjects: ObjectCache
+  objectIds: ObjectIdSet
   pointer?: JsonPointer
   foreignContext?: boolean
 }) => {
@@ -267,17 +271,21 @@ export const traverse = ({
         pointers,
         objects,
         foreignObjects,
+        objectIds,
         pointer: `${pointer}/${index}`,
         foreignContext,
       })
     }
     return
   }
-  // If this is a Sketch file object with a `_class` then add it to the pointer maps
-  // and cache it
+  // If this is a Sketch file object with a `_class` then add it to the pointer map
   if ('_class' in target!) {
     pointers.set(target as FileFormat.AnyObject, pointer)
     addObjectToCache(target as FileFormat.AnyObject, foreignContext ? foreignObjects : objects)
+  }
+  // If this is an object with an id then add the id to the id set
+  if ('do_objectID' in target!) {
+    objectIds.add(target.do_objectID as string)
   }
   // Loop over its properties
   for (const key in target!) {
@@ -287,6 +295,7 @@ export const traverse = ({
       pointers,
       objects,
       foreignObjects,
+      objectIds,
       pointer: `${pointer}/${key}`,
       foreignContext: foreignContext || FOREIGN_OBJECT_CONTEXTS.includes(key),
     })
@@ -296,31 +305,33 @@ export const traverse = ({
 /**
  * Generate a ProcessedSketchFile object from a SketchFile object.
  */
-const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFile> => {
-  return new Promise((resolve, reject) => {
+const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFile> =>
+  new Promise((resolve, reject) => {
     try {
       const objects = createEmptyObjectCache()
       const foreignObjects = createEmptyObjectCache()
-      const pointers = new Map()
+      const pointers = new Map<SketchFileObject, JsonPointer>()
       const start = Date.now()
+      const objectIds = new Set<string>()
       traverse({
         target: file.contents as Record<string, {}>,
         op,
         pointers,
         objects,
         foreignObjects,
+        objectIds,
       })
       resolve({
         file,
         objects,
         foreignObjects,
         pointers,
+        objectIds,
         profile: { numObjects: pointers.size, time: Date.now() - start },
       })
     } catch (error) {
       reject(error)
     }
   })
-}
 
 export { process }
