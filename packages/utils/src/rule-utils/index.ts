@@ -124,6 +124,7 @@ const addReportsToViolations = (
   assistant: AssistantDefinition,
   rule: RuleDefinition,
   pointers: PointerMap,
+  ignoredObjects: string[],
 ): void => {
   if (Array.isArray(report) && report.length === 0) return
   const { config } = assistant
@@ -132,6 +133,13 @@ const addReportsToViolations = (
   violations.push(
     ...(Array.isArray(report) ? report : [report]).map(
       (item): Violation => {
+        if (
+          item.object &&
+          'do_objectID' in item.object &&
+          ignoredObjects.includes(item.object.do_objectID!)
+        ) {
+          throw Error('Attempted to report an ignored object in a violation')
+        }
         return {
           assistantName: assistant.name,
           ruleName: rule.name,
@@ -392,7 +400,7 @@ const createRuleUtilsCreator = (
           : undefined
       },
       report(items: ReportItem | ReportItem[]): void {
-        addReportsToViolations(items, violations, assistant, rule, pointers)
+        addReportsToViolations(items, violations, assistant, rule, pointers, ignoredObjects)
       },
       getImageMetadata: (ref: string): Promise<ImageMetadata> => {
         return memoizedGetImageMetaData(ref, file.filepath || '')
