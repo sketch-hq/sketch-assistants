@@ -82,7 +82,10 @@ export const pruneObjects = (
             ...rules,
             [ruleName]:
               'objects' in ruleIgnore
-                ? { objects: ruleIgnore.objects.filter((id) => processedFile.objectIds.has(id)) }
+                ? {
+                    ...ruleIgnore,
+                    objects: ruleIgnore.objects.filter((id) => processedFile.objectIds.has(id)),
+                  }
                 : ruleIgnore,
           }
         }, {}),
@@ -103,9 +106,9 @@ export const isRuleFullIgnored = (
 ): boolean => {
   if (!(assistantName in ignore.assistants)) return false
   if (!(ruleName in ignore.assistants[assistantName].rules)) return false
-  const ignoreState = ignore.assistants[assistantName].rules[ruleName]
-  if ('allObjects' in ignoreState) {
-    return !!ignoreState.allObjects
+  const ruleIgnore = ignore.assistants[assistantName].rules[ruleName]
+  if ('allObjects' in ruleIgnore) {
+    return !!ruleIgnore.allObjects
   } else {
     return false
   }
