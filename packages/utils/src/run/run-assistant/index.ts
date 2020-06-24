@@ -87,7 +87,7 @@ const runAssistant = async (
       name: assistant.name,
       config: assistant.config,
     },
-    rules: activeRules.reduce((acc, rule) => {
+    rules: assistant.rules.reduce((acc, rule) => {
       const ruleConfig = getRuleConfig(assistant.config, rule.name)
       const configTitle = getRuleTitle(assistant.config, rule.name)
 
