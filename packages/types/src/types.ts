@@ -186,7 +186,11 @@ export type IgnoreConfig = {
   assistants: {
     [assistantName: string]: {
       rules: {
-        [ruleName: string]: { allObjects: true } | { objects: string[] }
+        [ruleName: string]:
+          | { allObjects: true } // Rule full ignored
+          | { allObjects: true; objects: [] } // Rule still full ignored, listed objects may be present in the config but they wont affect the run
+          | { objects: [] } // Rule part ignored for listed objects
+          | {} // Rule not ignored
       }
     }
   }

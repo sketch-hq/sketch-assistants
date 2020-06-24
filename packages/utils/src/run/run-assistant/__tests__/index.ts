@@ -194,7 +194,7 @@ describe('runAssistant', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('ignoring can be handled manually', async (): Promise<void> => {
+  test('isObjectIgnoredForRule works', async (): Promise<void> => {
     const { ruleErrors, violations } = await testRunAssistant(
       createAssistantConfig({
         rules: {
