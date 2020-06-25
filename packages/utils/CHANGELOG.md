@@ -1,5 +1,16 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 5.0.0-next.21
+
+### Patch Changes
+
+- 373503d: Raise a rule error if a rule attempts to report an ignored object.
+- 21de31c: Allow `allObjects` and `objects` to be set at the same time in an ignore config.
+- a3b25f5: Include metadata for all rules in Assistant run result, even if they weren't active in
+  the run.
+- Updated dependencies [21de31c]
+  - @sketch-hq/sketch-assistant-types@5.0.0-next.21
+
 ## 5.0.0-next.20
 
 ### Patch Changes
