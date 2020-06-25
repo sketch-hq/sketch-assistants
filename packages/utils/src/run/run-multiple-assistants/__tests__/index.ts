@@ -182,6 +182,48 @@ test('can generate rule errors', async (): Promise<void> => {
   }
 })
 
+test('generates rule errors when ignored objects are reported', async (): Promise<void> => {
+  const assistants = {
+    'dummy-assistant': createAssistant({
+      rules: [
+        createRule({
+          name: 'rule',
+          rule: async (context) => {
+            context.utils.report({
+              object: context.file.file.contents.document.pages[0],
+              message: '',
+            })
+          },
+        }),
+      ],
+      config: createAssistantConfig({
+        rules: {
+          rule: { active: true },
+        },
+      }),
+    }),
+  }
+
+  const output = await testRunMultiple({
+    assistants,
+    ignore: {
+      pages: [],
+      assistants: {
+        'dummy-assistant': {
+          rules: { rule: { objects: ['9AD22B94-A05B-4F49-8EDD-A38D62BD6181'] } },
+        },
+      },
+    },
+  })
+  const res = output.assistants['dummy-assistant']
+
+  expect.assertions(2)
+  if (res.code === 'success') {
+    expect(res.result.violations).toHaveLength(0)
+    expect(res.result.ruleErrors).toHaveLength(1)
+  }
+})
+
 test('can run mulitple assistants', async (): Promise<void> => {
   const assistants = {
     'dummy-assistant-1': createAssistant({
