@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 5.0.0-next.21
+
+### Patch Changes
+
+- 21de31c: Allow `allObjects` and `objects` to be set at the same time in an ignore config.
+
 ## 5.0.0-next.19
 
 ### Minor Changes
