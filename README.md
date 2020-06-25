@@ -2,10 +2,6 @@
 
 A TypeScript monorepo for Sketch Assistants and related packages.
 
-> ⚠️ This repository is in pre-release mode on the `next` tag until the Assistants are officially
-> released. This means you should install packages with `@next`, and expect any API to change
-> between pre-releases.
-
 ## Contents
 
 ### Assistants

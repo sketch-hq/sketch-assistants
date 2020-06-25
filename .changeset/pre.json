@@ -1,5 +1,5 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "next",
   "initialVersions": {
     "@sketch-hq/sketch-naming-conventions-assistant": "0.1.0",
@@ -22,6 +22,7 @@
     "five-ladybugs-tell",
     "fluffy-pugs-perform",
     "fresh-ghosts-stare",
+    "gold-falcons-ring",
     "gorgeous-days-flow",
     "great-llamas-run",
     "green-coins-breathe",
