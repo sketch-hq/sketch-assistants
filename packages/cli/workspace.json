@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@sketch-hq/sketch-tidy-assistant": "latest",
+    "@sketch-hq/sketch-naming-conventions-assistant": "latest",
+    "@sketch-hq/sketch-reuse-suggestions-assistant": "latest"
+  }
+}

@@ -75,7 +75,6 @@ const runAssistant = async (
 
   const activeRules = assistant.rules
     .filter((rule) => isRuleActive(assistant.config, rule.name)) // Rule turned on in config
-    .filter((rule) => !isRuleFullIgnored(ignoreConfig, assistant.name, rule.name)) // Rule not full ignored
     .filter((rule) => (rule.runtime ? rule.runtime === env.runtime : true)) // Rule platform is supported
 
   const profile: AssistantSuccessResult['profile'] = {
@@ -87,7 +86,7 @@ const runAssistant = async (
       name: assistant.name,
       config: assistant.config,
     },
-    rules: assistant.rules.reduce((acc, rule) => {
+    rules: activeRules.reduce((acc, rule) => {
       const ruleConfig = getRuleConfig(assistant.config, rule.name)
       const configTitle = getRuleTitle(assistant.config, rule.name)
 
@@ -115,9 +114,14 @@ const runAssistant = async (
     }, {}),
   }
 
+  // Filter out ignored rules to find the final set of rules to invoke
+  const rulesToRun = activeRules.filter(
+    (rule) => !isRuleFullIgnored(ignoreConfig, assistant.name, rule.name),
+  )
+
   try {
     await pMap(
-      activeRules,
+      rulesToRun,
       async (rule): Promise<void> => {
         if (operation.cancelled) return
         const { rule: ruleFunction, name: ruleName } = rule
