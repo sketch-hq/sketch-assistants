@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 5.0.0-next.22
+
+### Patch Changes
+
+- 1bcbce7: Do not include unconfigured rules in result metadata.
+
 ## 5.0.0-next.21
 
 ### Patch Changes
