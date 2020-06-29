@@ -6,7 +6,7 @@
   "types": "dist/index",
   "sketch": "dist/sketch.js",
   "repository": "github:sketch-hq/sketch-assistants",
-  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/reuse-suggestions",
+  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/reuse-suggestions",
   "sketch-assistant": {
     "title": "Reuse Suggestions",
     "description": "Notices when similar styles and groups could be abstracted into shared styles and symbols respectively",

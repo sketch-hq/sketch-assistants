@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "license": "MIT",
   "repository": "github:sketch-hq/sketch-assistants",
-  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/core",
+  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/core",
   "main": "dist/index",
   "types": "dist/index",
   "keywords": [

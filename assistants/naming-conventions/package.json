@@ -6,7 +6,7 @@
   "types": "dist/index",
   "sketch": "dist/sketch.js",
   "repository": "github:sketch-hq/sketch-assistants",
-  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/naming-conventions",
+  "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/naming-conventions",
   "sketch-assistant": {
     "title": "Naming Conventions",
     "description": "Naming conventions used by the Sketch design team",

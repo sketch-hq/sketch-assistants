@@ -2,7 +2,8 @@ name: Changesets
 on:
   push:
     branches:
-      - master
+      - main
+      - rc
 jobs:
   handle_changesets:
     name: Handle Changesets

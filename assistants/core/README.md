@@ -104,5 +104,5 @@ the repository, perform the following workflow:
 
 1. Run `yarn i18n:extract` which will update the `.po` files in `src/locale/` with the new strings
    used throughout the source code.
-1. PR and merge these changes to `master`.
+1. PR and merge these changes to `main`.
 1. Translation thereafter happens via [CrowdIn](https://crowdin.com) automation.
