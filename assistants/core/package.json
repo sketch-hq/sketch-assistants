@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-core-assistant",
-  "version": "5.0.0-next.22",
+  "version": "5.0.0",
   "license": "MIT",
   "repository": "github:sketch-hq/sketch-assistants",
   "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/master/assistants/core",
@@ -21,12 +21,10 @@
     "i18n:extract": "lingui extract --clean",
     "test": "jest"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "@lingui/core": "2.9.1",
-    "@sketch-hq/sketch-assistant-types": "5.0.0-next.21",
+    "@sketch-hq/sketch-assistant-types": "5.0.0",
     "@types/lingui__core": "2.7.0",
     "@types/lingui__macro": "2.7.3"
   },
@@ -41,7 +39,7 @@
     "@changesets/cli": "2.9.1",
     "@lingui/cli": "2.9.1",
     "@lingui/macro": "2.9.1",
-    "@sketch-hq/sketch-assistant-utils": "5.0.0-next.22",
+    "@sketch-hq/sketch-assistant-utils": "5.0.0",
     "@types/jest": "25.2.1",
     "@types/node": "13.13.5",
     "babel-core": "7.0.0-bridge.0",

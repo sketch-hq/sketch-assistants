@@ -1,5 +1,46 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 5.0.0
+
+### Major Changes
+
+- 5153cc9: Add rules.
+- 6733a97: Numerous refactors around Sketch file object iteration.
+- e76fabd: Introduction of the Assistants CLI.
+- 9f48eea: Initial release.
+
+### Minor Changes
+
+- 7a54cbb: Remove `symbols-no-unused` from Tidy Assistant.
+
+### Patch Changes
+
+- fe3d8e8: Fix Assistant homepage values to point into new monorepo structure.
+- 5bc93f8: Updated copy from first copy review.
+- c4615bc: Update rule copy
+- acc8cf6: Add icons to Assistants.
+- Updated dependencies [c4615bc]
+- Updated dependencies [1698a52]
+- Updated dependencies [1c388d9]
+- Updated dependencies [8351103]
+- Updated dependencies [67f62f2]
+- Updated dependencies [7a54cbb]
+- Updated dependencies [04b71a6]
+- Updated dependencies [c802b6b]
+- Updated dependencies [caba0e1]
+- Updated dependencies [76c8ded]
+- Updated dependencies [0688585]
+- Updated dependencies [21de31c]
+- Updated dependencies [6733a97]
+- Updated dependencies [581554d]
+- Updated dependencies [a004097]
+- Updated dependencies [e76fabd]
+- Updated dependencies [2f6f82b]
+- Updated dependencies [6733a97]
+- Updated dependencies [bc13811]
+  - @sketch-hq/sketch-core-assistant@5.0.0
+  - @sketch-hq/sketch-assistant-types@5.0.0
+
 ## 5.0.0-next.22
 
 ### Patch Changes
