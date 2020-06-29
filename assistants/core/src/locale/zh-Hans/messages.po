@@ -2,16 +2,21 @@ msgid ""
 msgstr ""
 "POT-Creation-Date: 2020-03-09 17:32+0000\n"
 "Mime-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: zh-Hans\n"
-"Project-Id-Version: \n"
+"Language: zh\n"
+"Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2020-06-29 15:50\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: \n"
+"Language-Team: Chinese Simplified\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: sketch-assistants\n"
+"X-Crowdin-Project-ID: 406142\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /main/assistants/core/src/locale/en/messages.po\n"
+"X-Crowdin-File-ID: 30\n"
 
 #: src/rule-helpers.ts:117
 msgid "Layer name matches one of the forbidden patterns"
@@ -23,31 +28,31 @@ msgstr ""
 
 #: src/rules/artboards-grid/index.ts:45
 msgid "Unexpected Artboard grid settings"
-msgstr ""
+msgstr "画板网格设置情况"
 
 #: src/rules/artboards-grid/index.ts:52
 msgid "Artboard grid settings should match the conventions"
-msgstr ""
+msgstr "画板网格设置应符合规范"
 
 #: src/rules/artboards-grid/index.ts:53
 msgid "Keep your specific grid settings consistent across a document, team or project."
-msgstr ""
+msgstr "在文档，团队或项目中，使特定的网格设置始终保持一致。"
 
 #: src/rules/artboards-grid/index.ts:58
 msgid "Grids"
-msgstr ""
+msgstr "网格"
 
 #: src/rules/artboards-grid/index.ts:59
 msgid "List of valid grids"
-msgstr ""
+msgstr "有效网格列表"
 
 #: src/rules/artboards-grid/index.ts:63
 msgid "Grid Block Size"
-msgstr ""
+msgstr "网格模块尺寸"
 
 #: src/rules/artboards-grid/index.ts:64
 msgid "Grid block size in pixels"
-msgstr ""
+msgstr "基于像素的网格模块尺寸"
 
 #: src/rules/artboards-grid/index.ts:68
 msgid "Thick Lines Every"
@@ -55,31 +60,31 @@ msgstr ""
 
 #: src/rules/artboards-grid/index.ts:69
 msgid "Number of blocks between thick grid lines"
-msgstr ""
+msgstr "网格粗线之间的模块数"
 
 #: src/rules/artboards-layout/index.ts:101
 msgid "Unexpected Artboard layout settings"
-msgstr ""
+msgstr "画板布局设置出现意外情况"
 
 #: src/rules/artboards-layout/index.ts:108
 msgid "Artboard layout settings should match the conventions"
-msgstr ""
+msgstr "画板布局设置应符合规范"
 
 #: src/rules/artboards-layout/index.ts:109
 msgid "Keep your specific layout settings consistent across a document, team or project."
-msgstr ""
+msgstr "在文档，团队或项目中，使特定的布局设置始终保持一致。"
 
 #: src/rules/artboards-layout/index.ts:114
 msgid "Layouts"
-msgstr ""
+msgstr "布局"
 
 #: src/rules/artboards-layout/index.ts:115
 msgid "A list of valid layouts. Each object will use Sketch's Layout Settings options"
-msgstr ""
+msgstr "有效布局列表。相应对象将使用 Sketch 布局设置中的选项。"
 
 #: src/rules/artboards-layout/index.ts:119
 msgid "Draw Vertical"
-msgstr ""
+msgstr "垂直绘制"
 
 #: src/rules/artboards-layout/index.ts:120
 msgid "Enables drawing columns"
