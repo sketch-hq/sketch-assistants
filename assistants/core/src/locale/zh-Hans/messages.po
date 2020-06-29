@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-29 15:50\n"
+"PO-Revision-Date: 2020-06-29 16:54\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Crowdin-Project-ID: 406142\n"
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /main/assistants/core/src/locale/en/messages.po\n"
-"X-Crowdin-File-ID: 30\n"
+"X-Crowdin-File-ID: 44\n"
 
 #: src/rule-helpers.ts:117
 msgid "Layer name matches one of the forbidden patterns"
@@ -787,3 +787,4 @@ msgstr ""
 #: src/rules/text-styles-prefer-shared/index.ts:71
 msgid "The maximum allowed number of identical text styles"
 msgstr ""
+
