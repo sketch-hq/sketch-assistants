@@ -31,20 +31,18 @@ export const createRule: CreateRuleFunction = (i18n) => {
     }
 
     // Loop the results, generating violations as needed
-    for (const [, texts] of results) {
-      const numIdentical = texts.length
+    for (const [, objects] of results) {
+      const numIdentical = objects.length
       if (numIdentical > maxIdentical) {
         utils.report(
-          texts.map((object) => ({
-            object,
-            message: i18n._(
-              plural({
-                value: maxIdentical,
-                one: `Expected no identical text styles in the document, but found ${numIdentical} matching this layer's text style. Consider a shared text style instead`,
-                other: `Expected a maximum of # identical text styles in the document, but found ${numIdentical} instances of this layer's text style. Consider a shared text style instead`,
-              }),
-            ),
-          })),
+          i18n._(
+            plural({
+              value: maxIdentical,
+              one: `Expected no identical text styles in the document, but found ${numIdentical} matching this layer's text style. Consider a shared text style instead`,
+              other: `Expected a maximum of # identical text styles in the document, but found ${numIdentical} instances of this layer's text style. Consider a shared text style instead`,
+            }),
+          ),
+          objects,
         )
       }
     }

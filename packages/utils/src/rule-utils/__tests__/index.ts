@@ -266,17 +266,19 @@ describe('foreignObjects', () => {
 describe('report', () => {
   test('can report violations', async (): Promise<void> => {
     const { utils, violations } = await createUtils()
-    utils.report(
-      [...utils.objects.page].map((page) => ({ message: "Something isn't right", object: page })),
-    )
+    utils.report("Something isn't right", [...utils.objects.page])
     expect(violations).toHaveLength(1)
     expect(violations[0]).toMatchInlineSnapshot(`
       Object {
         "assistantName": "dummy-assistant",
+        "locations": Array [
+          Object {
+            "objectId": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
+            "objectName": "Page 1",
+            "pointer": "/document/pages/0",
+          },
+        ],
         "message": "Something isn't right",
-        "objectId": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
-        "objectName": "Page 1",
-        "pointer": "/document/pages/0",
         "ruleName": "foo",
         "severity": 3,
       }

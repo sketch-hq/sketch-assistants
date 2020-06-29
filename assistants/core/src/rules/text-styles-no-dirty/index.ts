@@ -23,10 +23,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const sharedStyle = sharedStyles.get(text.sharedStyleID)
       if (!sharedStyle) continue
       if (!utils.textStyleEq(text.style, sharedStyle.value)) {
-        utils.report({
-          object: text,
-          message: i18n._(t`This text style is different from its shared style`),
-        })
+        utils.report(i18n._(t`This text style is different from its shared style`), [text])
       }
     }
   }

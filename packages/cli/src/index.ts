@@ -303,9 +303,13 @@ const formatResults = (cliResults: CliResults): string => {
         append(6, `Detail: ${chalk.grey(violation.message)}`)
         append(6, `Severity: ${chalk.grey(ViolationSeverity[violation.severity])}`)
         append(6, `Rule: ${chalk.grey(violation.ruleName)}`)
-        if (violation.objectName) append(6, `Layer: ${chalk.grey(violation.objectName)}`)
-        if (violation.pointer) append(6, `Location: ${chalk.grey(violation.pointer)}`)
-        if (violation.objectId) append(6, `Object: ${chalk.grey(violation.objectId)}`)
+        for (const location of violation.locations) {
+          const locations = []
+          if (location.objectName) locations.push(`Layer : ${location.objectName}`)
+          if (location.pointer) locations.push(`Pointer : ${location.pointer}`)
+          if (location.objectId) locations.push(`Id : ${location.objectId}`)
+          append(6, `Location: ${chalk.grey(locations.join(' | '))}`)
+        }
         append()
       }
 
