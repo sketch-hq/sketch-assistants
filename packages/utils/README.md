@@ -8,10 +8,8 @@ Utility functions and types for Sketch Assistants.
 ## Usage
 
 ```sh
-yarn add @sketch-hq/sketch-assistant-utils@next
+yarn add @sketch-hq/sketch-assistant-utils
 ```
-
-> ⚠️ The repo is in pre-release mode using the `next` tag.
 
 ## Development
 
