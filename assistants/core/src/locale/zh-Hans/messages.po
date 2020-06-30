@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-29 16:54\n"
+"PO-Revision-Date: 2020-06-30 13:29\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/rule-helpers.ts:117
 msgid "Layer name matches one of the forbidden patterns"
-msgstr ""
+msgstr "图层命名使用了一种禁用格式。"
 
 #: src/rule-helpers.ts:124
 msgid "Layer name does not match any of the allowed patterns"
-msgstr ""
+msgstr "图层命名不符合任何一种可用格式。"
 
 #: src/rules/artboards-grid/index.ts:45
 msgid "Unexpected Artboard grid settings"
-msgstr "画板网格设置情况"
+msgstr "画板网格设置出现意外"
 
 #: src/rules/artboards-grid/index.ts:52
 msgid "Artboard grid settings should match the conventions"
@@ -64,7 +64,7 @@ msgstr "网格粗线之间的模块数"
 
 #: src/rules/artboards-layout/index.ts:101
 msgid "Unexpected Artboard layout settings"
-msgstr "画板布局设置出现意外情况"
+msgstr "画板布局设置出现意外"
 
 #: src/rules/artboards-layout/index.ts:108
 msgid "Artboard layout settings should match the conventions"
@@ -88,31 +88,31 @@ msgstr "垂直绘制"
 
 #: src/rules/artboards-layout/index.ts:120
 msgid "Enables drawing columns"
-msgstr ""
+msgstr "启用图列"
 
 #: src/rules/artboards-layout/index.ts:124
 msgid "Total Width"
-msgstr ""
+msgstr "总宽"
 
 #: src/rules/artboards-layout/index.ts:125
 msgid "Total width of layout"
-msgstr ""
+msgstr "布局总宽"
 
 #: src/rules/artboards-layout/index.ts:129
 msgid "Horizontal Offset"
-msgstr ""
+msgstr "水平偏置"
 
 #: src/rules/artboards-layout/index.ts:130
 msgid "Horizontal offset of layout"
-msgstr ""
+msgstr "布局水平偏置"
 
 #: src/rules/artboards-layout/index.ts:134
 msgid "Number of Columns"
-msgstr ""
+msgstr "列数"
 
 #: src/rules/artboards-layout/index.ts:135
 msgid "Number of columns in the layout"
-msgstr ""
+msgstr "布局列数"
 
 #: src/rules/artboards-layout/index.ts:139
 msgid "Gutters Outside"
@@ -124,23 +124,23 @@ msgstr ""
 
 #: src/rules/artboards-layout/index.ts:144
 msgid "Gutter Width"
-msgstr ""
+msgstr "栏间距宽度"
 
 #: src/rules/artboards-layout/index.ts:145
 msgid "Gutter width in layout"
-msgstr ""
+msgstr "布局中的栏间距宽度"
 
 #: src/rules/artboards-layout/index.ts:149
 msgid "Column Width"
-msgstr ""
+msgstr "列宽"
 
 #: src/rules/artboards-layout/index.ts:150
 msgid "Layout column widths"
-msgstr ""
+msgstr "布局列宽"
 
 #: src/rules/artboards-layout/index.ts:154
 msgid "Draw Horizontal"
-msgstr ""
+msgstr "水平绘制"
 
 #: src/rules/artboards-layout/index.ts:155
 msgid "Enables drawing rows"
