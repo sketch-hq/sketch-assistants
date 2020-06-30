@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-30 13:29\n"
+"PO-Revision-Date: 2020-06-30 14:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -88,7 +88,7 @@ msgstr "垂直绘制"
 
 #: src/rules/artboards-layout/index.ts:120
 msgid "Enables drawing columns"
-msgstr "启用图列"
+msgstr "启用绘制列"
 
 #: src/rules/artboards-layout/index.ts:124
 msgid "Total Width"
@@ -144,15 +144,15 @@ msgstr "水平绘制"
 
 #: src/rules/artboards-layout/index.ts:155
 msgid "Enables drawing rows"
-msgstr ""
+msgstr "启用绘制行"
 
 #: src/rules/artboards-layout/index.ts:159
 msgid "Gutter Height"
-msgstr ""
+msgstr "栏间距高度"
 
 #: src/rules/artboards-layout/index.ts:160
 msgid "Layout gutter height"
-msgstr ""
+msgstr "布局栏间距高度"
 
 #: src/rules/artboards-layout/index.ts:164
 msgid "Row Height Multiplication"
@@ -160,11 +160,11 @@ msgstr ""
 
 #: src/rules/artboards-layout/index.ts:169
 msgid "Draw Horizontal Lines"
-msgstr ""
+msgstr "绘制水平线"
 
 #: src/rules/artboards-layout/index.ts:170
 msgid "Draw all horizontal lines"
-msgstr ""
+msgstr "绘制垂直线"
 
 #: src/rules/artboards-max-ungrouped-layers/index.ts:25
 msgid "{nonGroupLayers, plural, one {There is one ungrouped layer within this Artboard} other {There are # ungrouped layers within this Artboard}}"
@@ -176,115 +176,115 @@ msgstr ""
 
 #: src/rules/artboards-max-ungrouped-layers/index.ts:47
 msgid "Grouping layers within your Artboards will help you stay organized."
-msgstr ""
+msgstr "将画板中的图层编组，以保持规范有条理。"
 
 #: src/rules/artboards-max-ungrouped-layers/index.ts:52
 msgid "Maximum Ungrouped Layers"
-msgstr ""
+msgstr "至多未分组图层数"
 
 #: src/rules/artboards-max-ungrouped-layers/index.ts:54
 msgid "The maximum number of ungrouped layers"
-msgstr ""
+msgstr "未分组图层的最大数量"
 
 #: src/rules/borders-no-disabled/index.ts:34
 #: src/rules/borders-no-disabled/index.ts:42
 msgid "There's a disabled border in this Style"
-msgstr ""
+msgstr "该样式中包含一个禁用的边框"
 
 #: src/rules/borders-no-disabled/index.ts:50
 msgid "Styles should not have disabled borders"
-msgstr ""
+msgstr "样式中不允许包含禁用边框"
 
 #: src/rules/borders-no-disabled/index.ts:51
 #: src/rules/fills-no-disabled/index.ts:45
 #: src/rules/inner-shadows-no-disabled/index.ts:45
 #: src/rules/shadows-no-disabled/index.ts:45
 msgid "Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help."
-msgstr ""
+msgstr "基于您所创建的内容，禁用的属性可能会变成团队的不稳定因素。直接移除这些属性可能会比较好。"
 
 #: src/rules/debug-all-options/index.ts:15
 msgid "Debug all options"
-msgstr ""
+msgstr "调试所有选项"
 
 #: src/rules/debug-all-options/index.ts:16
 msgid "Internal debug rule that defines examples of all available option schema types"
-msgstr ""
+msgstr "内部调试规则，用于定义所有可用模式选项的示例"
 
 #: src/rules/debug-all-options/index.ts:21
 msgid "Number Option"
-msgstr ""
+msgstr "数值选项"
 
 #: src/rules/debug-all-options/index.ts:23
 msgid "A number option"
-msgstr ""
+msgstr "数值选项"
 
 #: src/rules/debug-all-options/index.ts:29
 msgid "Integer Option"
-msgstr ""
+msgstr "整数选项"
 
 #: src/rules/debug-all-options/index.ts:31
 msgid "An integer option"
-msgstr ""
+msgstr "整数选项"
 
 #: src/rules/debug-all-options/index.ts:37
 msgid "String Option"
-msgstr ""
+msgstr "字符串选项"
 
 #: src/rules/debug-all-options/index.ts:38
 msgid "A string option"
-msgstr ""
+msgstr "字符串选项"
 
 #: src/rules/debug-all-options/index.ts:40
 msgid "Default value"
-msgstr ""
+msgstr "默认值"
 
 #: src/rules/debug-all-options/index.ts:46
 msgid "Boolean Option"
-msgstr ""
+msgstr "布尔选项"
 
 #: src/rules/debug-all-options/index.ts:47
 msgid "A boolean option"
-msgstr ""
+msgstr "布尔选项"
 
 #: src/rules/debug-all-options/index.ts:52
 msgid "String Enum Option"
-msgstr ""
+msgstr "字符枚举选项"
 
 #: src/rules/debug-all-options/index.ts:53
 msgid "A string enum option"
-msgstr ""
+msgstr "字符枚举选项"
 
 #: src/rules/debug-all-options/index.ts:60
 msgid "String Array Option"
-msgstr ""
+msgstr "字符数组选项"
 
 #: src/rules/debug-all-options/index.ts:61
 msgid "A string array option"
-msgstr ""
+msgstr "字符数组选项"
 
 #: src/rules/debug-all-options/index.ts:69
 msgid "Object Array Option"
-msgstr ""
+msgstr "对象数组选项"
 
 #: src/rules/debug-all-options/index.ts:70
 msgid "An object array option"
-msgstr ""
+msgstr "对象数组选项"
 
 #: src/rules/debug-all-options/index.ts:74
 msgid "Object Array Number Option"
-msgstr ""
+msgstr "对象数组数值选项"
 
 #: src/rules/debug-all-options/index.ts:75
 msgid "An object array number option"
-msgstr ""
+msgstr "对象数组数值选项"
 
 #: src/rules/debug-i18n/index.ts:14
 msgid "Hello world"
-msgstr "世界你好"
+msgstr "你好世界"
 
 #: src/rules/debug-i18n/index.ts:20
 msgid "Debug internationalization"
-msgstr ""
+msgstr "国际化调试"
 
 #: src/rules/debug-i18n/index.ts:21
 msgid "Internal debug rule that generates a violation with a translated message"
