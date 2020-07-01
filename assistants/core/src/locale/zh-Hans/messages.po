@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-01 14:06\n"
+"PO-Revision-Date: 2020-07-01 15:03\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -189,11 +189,11 @@ msgstr "未分组图层的最大数量"
 #: src/rules/borders-no-disabled/index.ts:34
 #: src/rules/borders-no-disabled/index.ts:42
 msgid "There's a disabled border in this Style"
-msgstr "该样式中包含一个禁用的边框"
+msgstr "该样式中包含一个禁用边框"
 
 #: src/rules/borders-no-disabled/index.ts:50
 msgid "Styles should not have disabled borders"
-msgstr "样式中不允许包含禁用边框"
+msgstr "样式中不应包含禁用的边框"
 
 #: src/rules/borders-no-disabled/index.ts:51
 #: src/rules/fills-no-disabled/index.ts:45
@@ -300,28 +300,28 @@ msgstr "总是抛出规则错误的内部调试规则"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:38
 msgid "This exportable layer has a blend mode. Try flattening it for more consistent results."
-msgstr ""
+msgstr "该可导出图层包含一个混合模式。尝试展平它以确保统一性。"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:48
 msgid "This exportable layer has blend modes. Try flattening them for more consistent results."
-msgstr ""
+msgstr "该可导出图层包含多个混合模式。尝试展平它们以确保统一性。"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:56
 msgid "Avoid blend modes on exportable layers"
-msgstr ""
+msgstr "避免在可导出图层上使用混合模式"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:57
 msgid "Blend mode effects depend on what's behind the layer, so exporting layers might not give you the results you want. Some teams might want to flag this to avoid mistakes."
-msgstr ""
+msgstr "混合模式的效果取决于叠加的图层内容，因此实际导出的图层可能无法满足您的期望。一些团队可能会希望做下标记以避免失误。"
 
 #: src/rules/fills-no-disabled/index.ts:28
 #: src/rules/fills-no-disabled/index.ts:36
 msgid "There's a disabled fill in this Style"
-msgstr ""
+msgstr "该样式中包含一个禁用的填充项。"
 
 #: src/rules/fills-no-disabled/index.ts:44
 msgid "Styles should not have disabled fills"
-msgstr ""
+msgstr "样式中不应包含禁用的填充项"
 
 #: src/rules/groups-max-layers/index.ts:26
 msgid "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
@@ -448,11 +448,11 @@ msgstr ""
 #: src/rules/inner-shadows-no-disabled/index.ts:28
 #: src/rules/inner-shadows-no-disabled/index.ts:36
 msgid "There's a disabled inner shadow in this Style"
-msgstr ""
+msgstr "该样式中包含一个禁用的内阴影"
 
 #: src/rules/inner-shadows-no-disabled/index.ts:44
 msgid "Styles should not have disabled inner shadows"
-msgstr ""
+msgstr "样式中不应包含禁用的内阴影"
 
 #: src/rules/layer-styles-no-dirty/index.ts:36
 msgid "This Layers Style is different from its Shared Style"
@@ -662,15 +662,15 @@ msgstr ""
 
 #: src/rules/shadows-no-disabled/index.ts:28
 msgid "There's a disabled shadow on this Layer Style"
-msgstr ""
+msgstr "该样式中包含一个禁用的投影"
 
 #: src/rules/shadows-no-disabled/index.ts:36
 msgid "There's a disabled shadow on this Shared Style"
-msgstr ""
+msgstr "该共享样式中包含一个禁用的投影"
 
 #: src/rules/shadows-no-disabled/index.ts:44
 msgid "Styles should not have disabled shadows"
-msgstr ""
+msgstr "样式中不应包含禁用的投影"
 
 #: src/rules/shared-styles-no-unused/index.ts:28
 msgid "This shared style is unused"
