@@ -322,7 +322,7 @@ const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFil
         objectIds,
       })
       resolve({
-        file,
+        original: file,
         objects,
         foreignObjects,
         pointers,
