@@ -204,7 +204,7 @@ describe('runAssistant', () => {
       createRule({
         name: 'rule',
         rule: async (ruleContext) => {
-          const page = ruleContext.file.file.contents.document.pages[0]
+          const page = ruleContext.file.original.contents.document.pages[0]
           if (!ruleContext.utils.isObjectIgnoredForRule(page)) {
             ruleContext.utils.report({ object: page, message: 'Something went wrong' })
           }

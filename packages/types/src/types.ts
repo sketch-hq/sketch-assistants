@@ -144,9 +144,9 @@ export type ProcessedSketchFile = {
    */
   objectIds: ObjectIdSet
   /**
-   * The SketchFile that was processed.
+   * The original SketchFile object that was processed.
    */
-  file: SketchFile
+  original: SketchFile
   /**
    * Statistics about the processed file.
    */
