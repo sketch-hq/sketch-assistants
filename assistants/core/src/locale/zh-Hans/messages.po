@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-30 14:24\n"
+"PO-Revision-Date: 2020-07-01 14:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -288,15 +288,15 @@ msgstr "国际化调试"
 
 #: src/rules/debug-i18n/index.ts:21
 msgid "Internal debug rule that generates a violation with a translated message"
-msgstr ""
+msgstr "产生了对转译信息的违反的内部调试规则"
 
 #: src/rules/debug-throws-error/index.ts:17
 msgid "Debug throws error"
-msgstr ""
+msgstr "调试抛出错误"
 
 #: src/rules/debug-throws-error/index.ts:18
 msgid "Internal debug rule that always throws a rule error"
-msgstr ""
+msgstr "总是抛出规则错误的内部调试规则"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:38
 msgid "This exportable layer has a blend mode. Try flattening it for more consistent results."
