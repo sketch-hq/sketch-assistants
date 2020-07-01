@@ -364,7 +364,7 @@ const createRuleUtilsCreator = (
   getImageMetadata: GetImageMetadata,
   ignoreConfig: IgnoreConfig,
 ): RuleUtilsCreator => {
-  const { file, pointers, objects, foreignObjects } = processedFile
+  const { original, pointers, objects, foreignObjects } = processedFile
   const memoizedGetImageMetaData = mem(getImageMetadata)
 
   const utilsCreator: RuleUtilsCreator = (ruleName: string): RuleUtils => {
@@ -387,23 +387,23 @@ const createRuleUtilsCreator = (
           pointer = getParentPointer(pointer)
           if (typeof pointer === 'string') parents.push(pointer)
         }
-        return parents.map((ptr) => evalPointer(ptr, file.contents)).reverse()
+        return parents.map((ptr) => evalPointer(ptr, original.contents)).reverse()
       },
       getObjectPointer: (object) => pointers.get(object),
-      evalPointer: (pointer) => evalPointer(pointer, file.contents),
+      evalPointer: (pointer) => evalPointer(pointer, original.contents),
       getObjectParent: (object) => {
         const pointer = pointers.get(object)
         if (typeof pointer !== 'string') return
         const parentPointer = getParentPointer(pointer)
         return typeof parentPointer === 'string'
-          ? evalPointer(parentPointer, file.contents)
+          ? evalPointer(parentPointer, original.contents)
           : undefined
       },
       report(items: ReportItem | ReportItem[]): void {
         addReportsToViolations(items, violations, assistant, rule, pointers, ignoredObjects)
       },
       getImageMetadata: (ref: string): Promise<ImageMetadata> => {
-        return memoizedGetImageMetaData(ref, file.filepath || '')
+        return memoizedGetImageMetaData(ref, original.filepath || '')
       },
       getOption,
       objectHash: stableObjectHash,

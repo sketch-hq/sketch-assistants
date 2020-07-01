@@ -194,12 +194,12 @@ describe('getObjectParents', () => {
       }),
       'foo',
     )
-    const style = processedFile.file.contents.document.pages[0].style
+    const style = processedFile.original.contents.document.pages[0].style
     const parents = utils.getObjectParents(style!)
-    expect(parents[0]).toBe(processedFile.file.contents)
-    expect(parents[1]).toBe(processedFile.file.contents.document)
-    expect(parents[2]).toBe(processedFile.file.contents.document.pages)
-    expect(parents[3]).toBe(processedFile.file.contents.document.pages[0])
+    expect(parents[0]).toBe(processedFile.original.contents)
+    expect(parents[1]).toBe(processedFile.original.contents.document)
+    expect(parents[2]).toBe(processedFile.original.contents.document.pages)
+    expect(parents[3]).toBe(processedFile.original.contents.document.pages[0])
   })
 })
 
@@ -214,15 +214,15 @@ describe('evalPointer', () => {
       'foo',
     )
     const page = utils.evalPointer('/document/pages/0')
-    expect(page).toBe(processedFile.file.contents.document.pages[0])
+    expect(page).toBe(processedFile.original.contents.document.pages[0])
   })
 })
 
 describe('getObjectParent', () => {
   test('can resolve file object parents by json pointer', async (): Promise<void> => {
     const { utils, processedFile } = await createUtils()
-    const parent = utils.getObjectParent(processedFile.file.contents.document)
-    expect(parent).toBe(processedFile.file.contents)
+    const parent = utils.getObjectParent(processedFile.original.contents.document)
+    expect(parent).toBe(processedFile.original.contents)
   })
 })
 

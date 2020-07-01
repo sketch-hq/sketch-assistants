@@ -190,7 +190,7 @@ test('generates rule errors when ignored objects are reported', async (): Promis
           name: 'rule',
           rule: async (context) => {
             context.utils.report({
-              object: context.file.file.contents.document.pages[0],
+              object: context.file.original.contents.document.pages[0],
               message: '',
             })
           },
