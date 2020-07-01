@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-01 15:03\n"
+"PO-Revision-Date: 2020-07-01 16:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -333,51 +333,52 @@ msgstr ""
 
 #: src/rules/groups-max-layers/index.ts:48
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
-msgstr ""
+msgstr "一些编组包含的图层数量很大，有些团队可能会对此抱有文档规范性或可用性方面的顾虑。"
 
 #: src/rules/groups-max-layers/index.ts:53
 msgid "Maximum Layers"
-msgstr ""
+msgstr "最大图层数量"
 
 #: src/rules/groups-max-layers/index.ts:55
 msgid "Maximum layers in a group"
-msgstr ""
+msgstr "编组中的最大图层数量"
 
 #: src/rules/groups-max-layers/index.ts:60
 msgid "Skip Classes"
-msgstr ""
+msgstr "跳过类名"
 
 #: src/rules/groups-max-layers/index.ts:61
 msgid "An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group"
-msgstr ""
+msgstr "一个 Sketch 文件的类名数组值，用以代表在统计编组中的子图层数量时，应被跳过的图层。"
 
 #: src/rules/groups-no-empty/index.ts:18
 msgid "This group is empty"
-msgstr ""
+msgstr "该编组为空"
 
 #: src/rules/groups-no-empty/index.ts:26
 msgid "Groups should not be empty"
-msgstr ""
+msgstr "不应存在为空的编组"
 
 #: src/rules/groups-no-empty/index.ts:27
 msgid "Remove empty groups to avoid document organization or usability issues."
-msgstr ""
+msgstr "移除为空的编组，以避免文档组织性或可用性问题。"
 
 #: src/rules/groups-no-redundant/index.ts:22
 msgid "This group is redundant"
-msgstr ""
+msgstr "这是一个多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:30
 msgid "Groups should not be redundant"
-msgstr ""
+msgstr "不应存在多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:31
 msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
-msgstr ""
+msgstr "移除多余的编组，以避免文档组织性或可用性问题。\n"
+"以下是只包含了一个图层且没有应用任何样式的编组。"
 
 #: src/rules/groups-no-similar/index.ts:40
 msgid "Group is similar to other groups: {identicalGroupNames}"
-msgstr ""
+msgstr "相类似的编组： {identicalGroupNames}"
 
 #: src/rules/groups-no-similar/index.ts:53
 msgid "{maxIdentical, plural, one {Similar groups should be a symbol} other {More than # similar groups should be a symbol}}"
@@ -385,17 +386,17 @@ msgstr ""
 
 #: src/rules/groups-no-similar/index.ts:59
 msgid "Don't allow groups that are too similar. Consider using a Symbol instead."
-msgstr ""
+msgstr "尽量避免相似性太高的编组，做成控件可能更合适。"
 
 #: src/rules/groups-no-similar/index.ts:63
 #: src/rules/layer-styles-prefer-shared/index.ts:87
 #: src/rules/text-styles-prefer-shared/index.ts:70
 msgid "Max Identical"
-msgstr ""
+msgstr "最大相似度"
 
 #: src/rules/groups-no-similar/index.ts:64
 msgid "The maximum number of identical groups allowed in the document"
-msgstr ""
+msgstr "文档中允许存在的同类编组的最大数量"
 
 #: src/rules/images-no-outsized/index.ts:50
 msgid "There's an oversized image in this layer. Images can't be more than {maxRatio}x bigger than the layer frame's width or height."
@@ -574,7 +575,7 @@ msgstr ""
 #: src/rules/name-pattern-symbols/index.ts:9
 #: src/rules/name-pattern-text/index.ts:9
 msgid "Teams might want to enforce specific naming patterns when it's important that your layers are precisely named."
-msgstr ""
+msgstr "若有必要为图层精确命名，有些团队可能会强制执行特定的命名格式。"
 
 #: src/rules/name-pattern-artboards/index.ts:14
 #: src/rules/name-pattern-groups/index.ts:14
@@ -584,7 +585,7 @@ msgstr ""
 #: src/rules/name-pattern-symbols/index.ts:14
 #: src/rules/name-pattern-text/index.ts:14
 msgid "Allowable Patterns"
-msgstr ""
+msgstr "允许的格式"
 
 #: src/rules/name-pattern-artboards/index.ts:15
 #: src/rules/name-pattern-groups/index.ts:15
@@ -594,7 +595,7 @@ msgstr ""
 #: src/rules/name-pattern-symbols/index.ts:15
 #: src/rules/name-pattern-text/index.ts:15
 msgid "A list of regular expressions that define which names are allowed"
-msgstr ""
+msgstr "用于定义允许的命名范围的正则表达式清单"
 
 #: src/rules/name-pattern-artboards/index.ts:19
 #: src/rules/name-pattern-groups/index.ts:19
@@ -604,7 +605,7 @@ msgstr ""
 #: src/rules/name-pattern-symbols/index.ts:19
 #: src/rules/name-pattern-text/index.ts:19
 msgid "Forbidden Patterns"
-msgstr ""
+msgstr "禁用格式"
 
 #: src/rules/name-pattern-artboards/index.ts:20
 #: src/rules/name-pattern-groups/index.ts:20
@@ -614,11 +615,11 @@ msgstr ""
 #: src/rules/name-pattern-symbols/index.ts:20
 #: src/rules/name-pattern-text/index.ts:20
 msgid "A list of regular expressions that define which names are forbidden"
-msgstr ""
+msgstr "用于定义禁用的命名范围的正则表达式清单"
 
 #: src/rules/name-pattern-groups/index.ts:8
 msgid "Group names should follow the conventions"
-msgstr ""
+msgstr "编组应遵守命名规范"
 
 #: src/rules/name-pattern-images/index.ts:8
 msgid "Image names should follow the conventions"
@@ -686,7 +687,7 @@ msgstr ""
 
 #: src/rules/symbols-no-detached/index.ts:27
 msgid "This group was detached from the symbol named \"{symbolName}\""
-msgstr ""
+msgstr "该编组是与控件分离而得的，原控件名为 \"{symbolName}\""
 
 #: src/rules/symbols-no-detached/index.ts:36
 msgid "Symbols should not be detached"
