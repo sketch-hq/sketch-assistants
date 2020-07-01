@@ -12,7 +12,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { file, utils } = context
     // Gather option value and assert its type
     const authorizedLibraries = utils.getOption('libraries') || []
-    const doc = file.file.contents.document
+    const doc = file.original.contents.document
     // libraries is a Map<shared style id strings, library shared styles>
     const libraries = doc.foreignLayerStyles.reduce(
       (styleMap, libStyle) => styleMap.set(libStyle.localSharedStyle.do_objectID, libStyle),
