@@ -1,4 +1,4 @@
-import type { AssistantConfig, AssistantPackage } from '@sketch-hq/sketch-assistant-types'
+import { AssistantConfig, AssistantPackage } from '@sketch-hq/sketch-assistant-types'
 import CoreAssistant from '@sketch-hq/sketch-core-assistant'
 
 export const config: AssistantConfig = {

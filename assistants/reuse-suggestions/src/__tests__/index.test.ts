@@ -20,12 +20,12 @@ describe('text-styles-prefer-shared', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('violations for unshared text styles', async () => {
+  test.only('violations for unshared text styles', async () => {
     const { violations, ruleErrors } = await testCoreRule(
       './unshared-text-styles.sketch',
       'text-styles-prefer-shared',
     )
-    expect(violations).toHaveLength(3)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 })
@@ -45,7 +45,7 @@ describe('layer-styles-prefer-shared', () => {
       './unshared-layer-styles.sketch',
       'layer-styles-prefer-shared',
     )
-    expect(violations).toHaveLength(3)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 })

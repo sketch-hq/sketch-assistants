@@ -400,7 +400,7 @@ export type RuleUtils = {
   /**
    * Report one or more violations.
    */
-  report: (report: ReportItem | ReportItem[]) => void
+  report: (message: string, ...objects: SketchFileObject[]) => void
   /**
    * Contains an iterator for each type of object in the Sketch file.
    */
@@ -473,25 +473,27 @@ export type RuleUtils = {
 }
 
 /**
- * Information a rule needs to supply when reporting a violation.
+ * Information about where in a Sketch file a violation relates to.
  */
-export type ReportItem = {
-  message: string
-  object?: SketchFileObject
+export type ViolationLocation = {
+  pointer: string | null
+  objectId: string | null
+  objectName: string | null
 }
 
 /**
- * A violation collates all the information about a problem, and is the fundamental way an assistant
- * communicates results to the outer environment.
+ * A violation collates all the information about a problem, and is the fundamental way an Assistant
+ * communicates these to the outer environment.
  */
 export type Violation = {
   message: string
   assistantName: string
   ruleName: string
   severity: ViolationSeverity
-  pointer: string | null
-  objectId: string | null
-  objectName: string | null
+  /**
+   * Violations may relate to zero or more locations in a Sketch file.
+   */
+  locations: ViolationLocation[]
 }
 
 /**

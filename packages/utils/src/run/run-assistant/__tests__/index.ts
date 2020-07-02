@@ -46,7 +46,7 @@ describe('runAssistant', () => {
       createRule({
         name: 'rule',
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
     )
@@ -66,7 +66,7 @@ describe('runAssistant', () => {
         name: 'rule',
         runtime: AssistantRuntime.Sketch,
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
     )
@@ -139,7 +139,7 @@ describe('runAssistant', () => {
       createRule({
         name: 'rule',
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
     )
@@ -157,7 +157,7 @@ describe('runAssistant', () => {
       createRule({
         name: 'rule',
         rule: async (ruleContext) => {
-          ruleContext.utils.report({ message: 'Something went wrong' })
+          ruleContext.utils.report('Something went wrong')
         },
       }),
       { pages: [], assistants: { 'dummy-assistant': { rules: { rule: { allObjects: true } } } } },
@@ -177,7 +177,7 @@ describe('runAssistant', () => {
         name: 'rule',
         rule: async (ruleContext) => {
           for (const page of ruleContext.utils.objects.page) {
-            ruleContext.utils.report({ object: page, message: 'Something went wrong' })
+            ruleContext.utils.report('Something went wrong', page)
           }
         },
       }),
@@ -206,7 +206,7 @@ describe('runAssistant', () => {
         rule: async (ruleContext) => {
           const page = ruleContext.file.original.contents.document.pages[0]
           if (!ruleContext.utils.isObjectIgnoredForRule(page)) {
-            ruleContext.utils.report({ object: page, message: 'Something went wrong' })
+            ruleContext.utils.report('Something went wrong', page)
           }
         },
       }),

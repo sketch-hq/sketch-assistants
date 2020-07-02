@@ -21,22 +21,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (const instance of utils.objects.symbolInstance) {
       const foreignSymbol = foreignSymbols.get(instance.symbolID)
       if (!foreignSymbol) {
-        utils.report([
-          {
-            object: instance,
-            message: i18n._(t`This Layer should use a Symbol from a Library`),
-          },
-        ])
+        utils.report(i18n._(t`This Layer should use a Symbol from a Library`), instance)
         continue
       }
       const libName = foreignSymbol.sourceLibraryName
       if (!authorizedLibraries.includes(libName) && authorizedLibraries.length > 0) {
-        utils.report([
-          {
-            object: instance,
-            message: i18n._(t`This uses the unauthorized Library "${libName}"`),
-          },
-        ])
+        utils.report(i18n._(t`This uses the unauthorized Library "${libName}"`), instance)
       }
     }
   }
