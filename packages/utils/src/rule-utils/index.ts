@@ -385,7 +385,7 @@ const createRuleUtilsCreator = (
           ? evalPointer(parentPointer, original.contents)
           : undefined
       },
-      report(message: string, objects: SketchFileObject[] = []): void {
+      report(message: string, ...objects: SketchFileObject[]): void {
         addViolation(message, objects, violations, assistant, rule, pointers, ignoredObjects)
       },
       getImageMetadata: (ref: string): Promise<ImageMetadata> => {

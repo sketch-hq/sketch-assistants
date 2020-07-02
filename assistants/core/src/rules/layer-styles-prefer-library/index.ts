@@ -25,15 +25,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (layer._class === 'group' && !layer.style?.shadows?.length) continue // Ignore groups with default styles (i.e. no shadows)
       if (typeof layer.sharedStyleID !== 'string') {
         // Report immediately if there is no sharedStyleID
-        utils.report(i18n._(t`Layer Styles must be set with the Shared Styles of a Library`), [
-          layer,
-        ])
+        utils.report(i18n._(t`Layer Styles must be set with the Shared Styles of a Library`), layer)
         continue // don't process this node further
       }
       const library = libraries.get(layer.sharedStyleID)
       if (!library) {
         // sharedStyleID does not belong to a library
-        utils.report(i18n._(t`This layer should use a Shared Style from a Library`), [layer])
+        utils.report(i18n._(t`This layer should use a Shared Style from a Library`), layer)
         continue
       }
       const libraryName = library.sourceLibraryName
@@ -41,14 +39,14 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (Array.isArray(authorizedLibraries) && authorizedLibraries.length > 0) {
         const isAuthorized = authorizedLibraries.indexOf(libraryName) > -1
         if (!isAuthorized) {
-          utils.report(i18n._(t`This uses the unauthorized Library "${libraryName}"`), [layer])
+          utils.report(i18n._(t`This uses the unauthorized Library "${libraryName}"`), layer)
           continue
         }
       }
       // Check if the layer styles differ from the library
       const isStyleEq = utils.styleEq(layer.style, library.localSharedStyle.value)
       if (!isStyleEq) {
-        utils.report(i18n._(t`This Shared Style isn't in an authorized Library`), [layer])
+        utils.report(i18n._(t`This Shared Style isn't in an authorized Library`), layer)
       }
     }
   }

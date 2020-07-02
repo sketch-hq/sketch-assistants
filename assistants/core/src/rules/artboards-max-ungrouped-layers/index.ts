@@ -23,7 +23,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
               other: `There are # ungrouped layers within this Artboard`,
             }),
           ),
-          [artboard],
+          artboard,
         )
       }
     }

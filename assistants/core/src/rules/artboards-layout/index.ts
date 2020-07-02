@@ -127,7 +127,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       }
     }
     invalid.forEach((object) => {
-      utils.report(i18n._(t`Unexpected artboard layout settings`), [object])
+      utils.report(i18n._(t`Unexpected artboard layout settings`), object)
     })
   }
 

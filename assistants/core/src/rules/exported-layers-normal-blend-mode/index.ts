@@ -31,7 +31,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
           i18n._(
             t`This exportable layer has a blend mode. Try flattening it for more consistent results.`,
           ),
-          [layer],
+          layer,
         )
         continue
       }
@@ -45,7 +45,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
           i18n._(
             t`This exportable layer has blend modes. Try flattening them for more consistent results.`,
           ),
-          [layer],
+          layer,
         )
       }
     }

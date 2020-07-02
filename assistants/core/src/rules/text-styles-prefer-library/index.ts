@@ -20,24 +20,24 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const text of utils.objects.text) {
       if (typeof text.sharedStyleID !== 'string') {
-        utils.report(i18n._(t`This Layer should use a Text Style from a Library`), [text])
+        utils.report(i18n._(t`This Layer should use a Text Style from a Library`), text)
         continue
       }
 
       const foreignTextStyle = foreignTextStyles.get(text.sharedStyleID)
       if (!foreignTextStyle) {
-        utils.report(i18n._(t`This Layer should use a Text Style from a Library`), [text])
+        utils.report(i18n._(t`This Layer should use a Text Style from a Library`), text)
         continue
       }
 
       const libName = foreignTextStyle.sourceLibraryName
       if (!authorizedLibraries.includes(libName) && authorizedLibraries.length > 0) {
-        utils.report(i18n._(t`This uses the unauthorized Library "${libName}"`), [text])
+        utils.report(i18n._(t`This uses the unauthorized Library "${libName}"`), text)
         continue
       }
 
       if (!utils.textStyleEq(text.style, foreignTextStyle.localSharedStyle.value)) {
-        utils.report(i18n._(t`The Text Style is out of date with the Library`), [text])
+        utils.report(i18n._(t`The Text Style is out of date with the Library`), text)
       }
     }
   }

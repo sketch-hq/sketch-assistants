@@ -8,7 +8,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { utils } = context
     for (const layer of utils.objects.anyLayer) {
       if (layer.isVisible === false) {
-        utils.report(i18n._(t`This layer is hidden`), [layer])
+        utils.report(i18n._(t`This layer is hidden`), layer)
       }
     }
   }

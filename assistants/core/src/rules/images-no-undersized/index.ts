@@ -51,7 +51,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
               )
               break
           }
-          utils.report(message, [usage.object])
+          utils.report(message, usage.object)
         }
       }
     }

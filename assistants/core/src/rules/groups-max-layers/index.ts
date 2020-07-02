@@ -26,7 +26,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
               other: 'There are # layers in this group',
             }),
           ),
-          [group],
+          group,
         )
       }
     }

@@ -33,7 +33,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
             .filter((n) => n !== group) // new array without current node...
             .map((n) => n.name) // ...and lists only the node names...
             .join() // ...converted to a single string
-          utils.report(i18n._(t`Group is similar to other groups: ${identicalGroupNames}`), [group])
+          utils.report(i18n._(t`Group is similar to other groups: ${identicalGroupNames}`), group)
         })
       }
     }

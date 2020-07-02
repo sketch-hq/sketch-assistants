@@ -400,7 +400,7 @@ export type RuleUtils = {
   /**
    * Report one or more violations.
    */
-  report: (message: string, objects?: SketchFileObject[]) => void
+  report: (message: string, ...objects: SketchFileObject[]) => void
   /**
    * Contains an iterator for each type of object in the Sketch file.
    */

@@ -42,7 +42,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
               other: `Expected a maximum of # identical text styles in the document, but found ${numIdentical} instances of this layer's text style. Consider a shared text style instead`,
             }),
           ),
-          objects,
+          ...objects,
         )
       }
     }

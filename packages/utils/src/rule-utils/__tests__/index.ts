@@ -266,7 +266,7 @@ describe('foreignObjects', () => {
 describe('report', () => {
   test('can report violations', async (): Promise<void> => {
     const { utils, violations } = await createUtils()
-    utils.report("Something isn't right", [...utils.objects.page])
+    utils.report("Something isn't right", ...utils.objects.page)
     expect(violations).toHaveLength(1)
     expect(violations[0]).toMatchInlineSnapshot(`
       Object {

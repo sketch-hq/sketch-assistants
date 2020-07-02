@@ -56,7 +56,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
               other: `Expected a maximum of # identical layer styles in the document, but found ${numIdentical} instances of this layer's style. Consider a shared style instead`,
             }),
           ),
-          objects,
+          ...objects,
         )
       }
     }

@@ -189,7 +189,7 @@ test('generates rule errors when ignored objects are reported', async (): Promis
         createRule({
           name: 'rule',
           rule: async (context) => {
-            context.utils.report('', [context.file.original.contents.document.pages[0]])
+            context.utils.report('', context.file.original.contents.document.pages[0])
           },
         }),
       ],
