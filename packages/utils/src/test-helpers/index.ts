@@ -144,6 +144,7 @@ const testAssistant = async (
     op,
     getImageMetadata,
     { pages: [], assistants: {} },
+    Infinity,
   )
 
   return { violations, ruleErrors, passed }
@@ -180,6 +181,7 @@ const testRule = async (
     op,
     getImageMetadata,
     { pages: [], assistants: {} },
+    Infinity,
   )
 
   return { violations, ruleErrors, passed }
@@ -219,6 +221,7 @@ const testRuleInAssistant = async (
     op,
     getImageMetadata,
     { pages: [], assistants: {} },
+    Infinity,
   )
 
   return { violations, ruleErrors, passed }

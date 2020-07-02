@@ -1,6 +1,6 @@
 import {
   PointerMap,
-  RunOperation,
+  CancelToken,
   ObjectCache,
   JsonPointer,
   FileFormat,
@@ -241,7 +241,7 @@ export const addObjectToCache = (
  */
 export const traverse = ({
   target,
-  op,
+  cancelToken,
   pointers,
   objects,
   foreignObjects,
@@ -250,7 +250,7 @@ export const traverse = ({
   foreignContext = false,
 }: {
   target?: Record<string, {}>
-  op: RunOperation
+  cancelToken: CancelToken
   pointers: PointerMap
   objects: ObjectCache
   foreignObjects: ObjectCache
@@ -259,7 +259,7 @@ export const traverse = ({
   foreignContext?: boolean
 }) => {
   // Bail early if we've been passed a falsey value or the operation is cancelled
-  if (!target || op.cancelled) return
+  if (!target || cancelToken.cancelled) return
   // Bail early if input is not an object
   if (typeof target !== 'object') return
   // If target is an array then traverse into each of its elements
@@ -267,7 +267,7 @@ export const traverse = ({
     for (let index = 0; index < target.length; index++) {
       traverse({
         target: target[index],
-        op,
+        cancelToken,
         pointers,
         objects,
         foreignObjects,
@@ -291,7 +291,7 @@ export const traverse = ({
   for (const key in target!) {
     traverse({
       target: target[key],
-      op,
+      cancelToken,
       pointers,
       objects,
       foreignObjects,
@@ -305,7 +305,7 @@ export const traverse = ({
 /**
  * Generate a ProcessedSketchFile object from a SketchFile object.
  */
-const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFile> =>
+const process = (file: SketchFile, cancelToken: CancelToken): Promise<ProcessedSketchFile> =>
   new Promise((resolve, reject) => {
     try {
       const objects = createEmptyObjectCache()
@@ -315,7 +315,7 @@ const process = (file: SketchFile, op: RunOperation): Promise<ProcessedSketchFil
       const objectIds = new Set<string>()
       traverse({
         target: file.contents as Record<string, {}>,
-        op,
+        cancelToken,
         pointers,
         objects,
         foreignObjects,

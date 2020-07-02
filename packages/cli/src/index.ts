@@ -358,7 +358,13 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
   spinner.start(spinnerMessage(filename, 'Processing file…'))
 
   try {
-    const operation = { cancelled: false }
+    const cancelToken = { cancelled: false }
+    const timeBudgets = {
+      totalMs: Infinity,
+      minRuleTimeoutMs: 0,
+      maxRuleTimeoutMs: Infinity,
+    }
+
     let file = await fromFile(filepath)
     const workspace = await getWorkspace(file)
     let { ignore = { pages: [], assistants: {} } } = workspace
@@ -366,7 +372,7 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
     ignore = prunePages(ignore, file)
     file = filterPages(file, ignore.pages)
 
-    const processedFile = await processFile(file, operation)
+    const processedFile = await processFile(file, cancelToken)
     const env = {
       runtime: AssistantRuntime.Node,
       locale: await osLocale(),
@@ -395,8 +401,9 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
       assistants,
       processedFile,
       getImageMetadata,
-      operation,
+      cancelToken,
       env,
+      timeBudgets,
     })
 
     spinner.succeed(spinnerMessage(filename, 'Ready'))
