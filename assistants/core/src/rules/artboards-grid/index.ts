@@ -1,9 +1,4 @@
-import {
-  RuleFunction,
-  RuleContext,
-  ReportItem,
-  SketchFileObject,
-} from '@sketch-hq/sketch-assistant-types'
+import { RuleFunction, RuleContext, SketchFileObject } from '@sketch-hq/sketch-assistant-types'
 import { t } from '@lingui/macro'
 
 import { CreateRuleFunction } from '../..'
@@ -49,14 +44,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
       }
     }
 
-    utils.report(
-      invalid.map(
-        (object): ReportItem => ({
-          message: i18n._(t`Unexpected Artboard grid settings`),
-          object,
-        }),
-      ),
-    )
+    invalid.forEach((object) => {
+      utils.report(i18n._(t`Unexpected artboard grid settings`), object)
+    })
   }
 
   return {

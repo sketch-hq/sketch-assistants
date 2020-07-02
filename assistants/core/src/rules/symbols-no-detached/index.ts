@@ -17,10 +17,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const detachedSymbolID = group?.userInfo?.['com.sketch.detach']?.symbolMaster?.symbolID
       if (symbols.has(detachedSymbolID)) {
         const symbolName = symbols.get(detachedSymbolID)
-        utils.report({
-          message: i18n._(t`This group was detached from the symbol named "${symbolName}"`),
-          object: group,
-        })
+        utils.report(
+          i18n._(t`This group was detached from the symbol named "${symbolName}"`),
+          group,
+        )
       }
     }
   }

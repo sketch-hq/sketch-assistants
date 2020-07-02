@@ -12,7 +12,7 @@ describe('layer-styles-prefer-shared', () => {
         maxIdentical: 1,
       },
     )
-    expect(violations).toHaveLength(2)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 
@@ -106,7 +106,7 @@ describe('layer-styles-prefer-shared', () => {
         maxIdentical: 1,
       },
     )
-    expect(violations).toHaveLength(2)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 
