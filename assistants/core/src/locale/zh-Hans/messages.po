@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-05 08:37\n"
+"PO-Revision-Date: 2020-07-05 13:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -56,7 +56,7 @@ msgstr "基于像素的网格模块尺寸"
 
 #: src/rules/artboards-grid/index.ts:68
 msgid "Thick Lines Every"
-msgstr ""
+msgstr "粗线每隔"
 
 #: src/rules/artboards-grid/index.ts:69
 msgid "Number of blocks between thick grid lines"
