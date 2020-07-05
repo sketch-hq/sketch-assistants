@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-01 16:13\n"
+"PO-Revision-Date: 2020-07-05 04:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -400,19 +400,19 @@ msgstr "文档中允许存在的同类编组的最大数量"
 
 #: src/rules/images-no-outsized/index.ts:50
 msgid "There's an oversized image in this layer. Images can't be more than {maxRatio}x bigger than the layer frame's width or height."
-msgstr ""
+msgstr "该图层中有一张图像尺寸过大。图像尺寸不应超过图层框架宽高的 {maxRatio}。"
 
 #: src/rules/images-no-outsized/index.ts:53
 msgid "There's an oversized image in this layer style image fill. Images can't be more than {maxRatio}x bigger than the layer frame's width or height."
-msgstr ""
+msgstr "该图层的图像填充中有一张图像尺寸过大。图像尺寸不应超过图层框架宽高的 {maxRatio}。"
 
 #: src/rules/images-no-outsized/index.ts:68
 msgid "Images shouldn't be more than {maxRatio}x bigger than their frame"
-msgstr ""
+msgstr "图像尺寸不应超过框架的 {maxRatio}"
 
 #: src/rules/images-no-outsized/index.ts:70
 msgid "Images that are bigger than they need to be swell the document size and could slow things down, so some teams might want to limit this."
-msgstr ""
+msgstr "尺寸过大的图片会导致文档臃肿并拖慢速度，因此有的团队会对此做出限制。"
 
 #: src/rules/images-no-outsized/index.ts:75
 msgid "Maximum Ratio"
