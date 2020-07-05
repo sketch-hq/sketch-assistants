@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-05 13:08\n"
+"PO-Revision-Date: 2020-07-05 14:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -120,15 +120,15 @@ msgstr "外围间距"
 
 #: src/rules/artboards-layout/index.ts:140
 msgid "Draw gutters on the outside"
-msgstr ""
+msgstr "外侧描边"
 
 #: src/rules/artboards-layout/index.ts:144
 msgid "Gutter Width"
-msgstr "栏间距宽度"
+msgstr "间距宽度"
 
 #: src/rules/artboards-layout/index.ts:145
 msgid "Gutter width in layout"
-msgstr "布局中的栏间距宽度"
+msgstr "布局中的间距宽度"
 
 #: src/rules/artboards-layout/index.ts:149
 msgid "Column Width"
@@ -148,15 +148,15 @@ msgstr "启用绘制行"
 
 #: src/rules/artboards-layout/index.ts:159
 msgid "Gutter Height"
-msgstr "栏间距高度"
+msgstr "间距高度"
 
 #: src/rules/artboards-layout/index.ts:160
 msgid "Layout gutter height"
-msgstr "布局栏间距高度"
+msgstr "布局间距高度"
 
 #: src/rules/artboards-layout/index.ts:164
 msgid "Row Height Multiplication"
-msgstr ""
+msgstr "行高复用"
 
 #: src/rules/artboards-layout/index.ts:169
 msgid "Draw Horizontal Lines"
