@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-05 05:37\n"
+"PO-Revision-Date: 2020-07-05 06:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -180,11 +180,11 @@ msgstr "将画板中的图层编组，以保持规范有条理。"
 
 #: src/rules/artboards-max-ungrouped-layers/index.ts:52
 msgid "Maximum Ungrouped Layers"
-msgstr "至多未分组图层数"
+msgstr "至多未编组的图层"
 
 #: src/rules/artboards-max-ungrouped-layers/index.ts:54
 msgid "The maximum number of ungrouped layers"
-msgstr "未分组图层的最大数量"
+msgstr "未编组图层的最大数量"
 
 #: src/rules/borders-no-disabled/index.ts:34
 #: src/rules/borders-no-disabled/index.ts:42
@@ -200,7 +200,7 @@ msgstr "样式中不应包含禁用的边框"
 #: src/rules/inner-shadows-no-disabled/index.ts:45
 #: src/rules/shadows-no-disabled/index.ts:45
 msgid "Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help."
-msgstr "基于您所创建的内容，禁用的属性可能会变成团队的不稳定因素。直接移除这些属性可能会比较好。"
+msgstr "基于您所创建的内容，禁用的属性可能会导致不稳定。直接移除这些属性可能会比较好。"
 
 #: src/rules/debug-all-options/index.ts:15
 msgid "Debug all options"
@@ -288,7 +288,7 @@ msgstr "国际化调试"
 
 #: src/rules/debug-i18n/index.ts:21
 msgid "Internal debug rule that generates a violation with a translated message"
-msgstr "产生了对转译信息的违反的内部调试规则"
+msgstr "内部调试规则，与一条经过翻译的消息产生了冲突"
 
 #: src/rules/debug-throws-error/index.ts:17
 msgid "Debug throws error"
@@ -312,7 +312,7 @@ msgstr "避免在可导出图层上使用混合模式"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:57
 msgid "Blend mode effects depend on what's behind the layer, so exporting layers might not give you the results you want. Some teams might want to flag this to avoid mistakes."
-msgstr "混合模式的效果取决于叠加的图层内容，因此实际导出的图层可能无法满足您的期望。一些团队可能会希望做下标记以避免失误。"
+msgstr "混合模式的效果取决于叠加的图层内容，因此实际导出的图层可能无法满足您的期望。有的团队可能会希望做下标记以避免失误。"
 
 #: src/rules/fills-no-disabled/index.ts:28
 #: src/rules/fills-no-disabled/index.ts:36
@@ -333,15 +333,15 @@ msgstr ""
 
 #: src/rules/groups-max-layers/index.ts:48
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
-msgstr "一些编组包含的图层数量很大，有些团队可能会对此抱有文档规范性或可用性方面的顾虑。"
+msgstr "一些编组包含的图层数量很大，有的团队可能会对此抱有文档规范性或可用性方面的顾虑。"
 
 #: src/rules/groups-max-layers/index.ts:53
 msgid "Maximum Layers"
-msgstr "最大图层数量"
+msgstr "至多图层数"
 
 #: src/rules/groups-max-layers/index.ts:55
 msgid "Maximum layers in a group"
-msgstr "编组中的最大图层数量"
+msgstr "编组中的至多图层数"
 
 #: src/rules/groups-max-layers/index.ts:60
 msgid "Skip Classes"
@@ -396,7 +396,7 @@ msgstr "最大相似度"
 
 #: src/rules/groups-no-similar/index.ts:64
 msgid "The maximum number of identical groups allowed in the document"
-msgstr "文档中允许存在的同类编组的最大数量"
+msgstr "文档中允许存在的重复的编组的最大数量"
 
 #: src/rules/images-no-outsized/index.ts:50
 msgid "There's an oversized image in this layer. Images can't be more than {maxRatio}x bigger than the layer frame's width or height."
@@ -497,11 +497,11 @@ msgstr "如果您希望该文档中的组件库可以被其他人使用，您需
 
 #: src/rules/layer-styles-prefer-library/index.ts:92
 msgid "Authorized Libraries"
-msgstr ""
+msgstr "已授权的组件库"
 
 #: src/rules/layer-styles-prefer-library/index.ts:93
 msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
-msgstr ""
+msgstr "他人可使用的组件库。如果有人所使用的组件库不在当前的列表中，他们会有看到报错信息。"
 
 #: src/rules/layer-styles-prefer-shared/index.ts:61
 msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
@@ -513,59 +513,59 @@ msgstr ""
 
 #: src/rules/layer-styles-prefer-shared/index.ts:83
 msgid "You could simplify things by removing identical shared styles and applying a single Style to all the affected layers."
-msgstr ""
+msgstr "在相应图层上，移除重复的共享样式并替换成一个单一样式，可以让之后的工作更加简单。"
 
 #: src/rules/layer-styles-prefer-shared/index.ts:88
 msgid "The maximum allowed number of identical Layer Styles"
-msgstr ""
+msgstr "允许存在重复图层样式的最大数量"
 
 #: src/rules/layers-no-hidden/index.ts:18
 msgid "This layer is hidden"
-msgstr ""
+msgstr "该图层被隐藏了"
 
 #: src/rules/layers-no-hidden/index.ts:26
 msgid "There should be no hidden layers"
-msgstr ""
+msgstr "不应有隐藏的图层"
 
 #: src/rules/layers-no-hidden/index.ts:27
 msgid "Hidden layers may cause uncertainty. Some teams may want to remove them."
-msgstr ""
+msgstr "隐藏图层可能会引发不确定性。有的团队可能希望希望将其移除。"
 
 #: src/rules/layers-no-loose/index.ts:20
 msgid "This layer is not inside an Artboard"
-msgstr ""
+msgstr "该图层未被归到画板中"
 
 #: src/rules/layers-no-loose/index.ts:29
 msgid "Layers should not be outside artboards"
-msgstr ""
+msgstr "图层不应处于画板之外"
 
 #: src/rules/layers-no-loose/index.ts:30
 msgid "Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards."
-msgstr ""
+msgstr "画板以外的图层在 Cloud 上是不可见的，因此有的团队会希望将所有图层都归到画板中。"
 
 #: src/rules/layers-subpixel-positioning/index.ts:62
 msgid "Unexpected sub-pixel positioning ({x}, {y})"
-msgstr ""
+msgstr "出现意外的亚像素定位 ({x}, {y})"
 
 #: src/rules/layers-subpixel-positioning/index.ts:72
 msgid "Layers must be placed on {increments} sub-pixel increments"
-msgstr ""
+msgstr "图层应置于{increments} 的亚像素增量"
 
 #: src/rules/layers-subpixel-positioning/index.ts:74
 msgid "Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments."
-msgstr ""
+msgstr "有的团队会将放置在亚像素位置上的图层视为文档的组织性问题。像素密度为 @2x 和 @3x 的设计除外，在这种情况下，您可以使用0.5或0.33/0.67的增量。"
 
 #: src/rules/layers-subpixel-positioning/index.ts:79
 msgid "Scale Factors"
-msgstr ""
+msgstr "缩放条件"
 
 #: src/rules/layers-subpixel-positioning/index.ts:80
 msgid "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
-msgstr ""
+msgstr "选择文档支持的缩放条件。允许值为 @1x， @2x 和 @3x，具体为全像素，0.5的增量，以及0.33的增量"
 
 #: src/rules/name-pattern-artboards/index.ts:8
 msgid "Artboard names should follow the conventions"
-msgstr ""
+msgstr "画板命名应遵守规范"
 
 #: src/rules/name-pattern-artboards/index.ts:9
 #: src/rules/name-pattern-groups/index.ts:9
@@ -619,47 +619,47 @@ msgstr "用于定义禁用的命名范围的正则表达式清单"
 
 #: src/rules/name-pattern-groups/index.ts:8
 msgid "Group names should follow the conventions"
-msgstr "编组应遵守命名规范"
+msgstr "编组命名应遵守规范"
 
 #: src/rules/name-pattern-images/index.ts:8
 msgid "Image names should follow the conventions"
-msgstr ""
+msgstr "图像命名应遵守规范"
 
 #: src/rules/name-pattern-pages/index.ts:8
 msgid "Page names should follow the conventions"
-msgstr ""
+msgstr "页面命名应遵守规范"
 
 #: src/rules/name-pattern-shapes/index.ts:16
 msgid "Shape names should follow the conventions"
-msgstr ""
+msgstr "形状命名应遵守规范"
 
 #: src/rules/name-pattern-symbols/index.ts:8
 msgid "Symbol names should follow the conventions"
-msgstr ""
+msgstr "控件命名应遵守规范"
 
 #: src/rules/name-pattern-text/index.ts:8
 msgid "Text names should follow the conventions"
-msgstr ""
+msgstr "字符命名应遵守规范"
 
 #: src/rules/result-messages-include/index.ts:21
 msgid "You have an unread message \"{message}\""
-msgstr ""
+msgstr "您有一条未读消息“{message}”"
 
 #: src/rules/result-messages-include/index.ts:29
 msgid "Checklist messages"
-msgstr ""
+msgstr "核验清单消息"
 
 #: src/rules/result-messages-include/index.ts:30
 msgid "Define a list of messages to check for"
-msgstr ""
+msgstr "定义待核验的消息清单"
 
 #: src/rules/result-messages-include/index.ts:35
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #: src/rules/result-messages-include/index.ts:36
 msgid "A range of messages to check for"
-msgstr ""
+msgstr "一系列待核验的消息"
 
 #: src/rules/shadows-no-disabled/index.ts:28
 msgid "There's a disabled shadow on this Layer Style"
@@ -675,7 +675,7 @@ msgstr "样式中不应包含禁用的投影"
 
 #: src/rules/shared-styles-no-unused/index.ts:28
 msgid "This shared style is unused"
-msgstr ""
+msgstr "该共享样式未被使用"
 
 #: src/rules/shared-styles-no-unused/index.ts:35
 msgid "All Shared Styles should be used"
@@ -787,5 +787,5 @@ msgstr ""
 
 #: src/rules/text-styles-prefer-shared/index.ts:71
 msgid "The maximum allowed number of identical text styles"
-msgstr ""
+msgstr "允许存在重复字符样式的最大数量"
 
