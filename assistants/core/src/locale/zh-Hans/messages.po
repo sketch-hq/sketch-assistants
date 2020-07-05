@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-05 06:40\n"
+"PO-Revision-Date: 2020-07-05 07:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -116,7 +116,7 @@ msgstr "布局列数"
 
 #: src/rules/artboards-layout/index.ts:139
 msgid "Gutters Outside"
-msgstr ""
+msgstr "外围间距"
 
 #: src/rules/artboards-layout/index.ts:140
 msgid "Draw gutters on the outside"
@@ -473,7 +473,7 @@ msgstr "图层样式应使用组件库中共享样式来设置"
 
 #: src/rules/layer-styles-prefer-library/index.ts:47
 msgid "This layer should use a Shared Style from a Library"
-msgstr "该样式应使用组件库中共享样式来设置"
+msgstr "该样式应设置为来自组件库的共享样式"
 
 #: src/rules/layer-styles-prefer-library/index.ts:60
 msgid "This uses the unauthorized Library \"{libraryName}\""
@@ -675,15 +675,15 @@ msgstr "样式中不应包含禁用的投影"
 
 #: src/rules/shared-styles-no-unused/index.ts:28
 msgid "This shared style is unused"
-msgstr "该共享样式未被使用"
+msgstr "该共享样式不在用"
 
 #: src/rules/shared-styles-no-unused/index.ts:35
 msgid "All Shared Styles should be used"
-msgstr ""
+msgstr "所有共享样式都应在用"
 
 #: src/rules/shared-styles-no-unused/index.ts:36
 msgid "Some teams may consider unused Shared Styles a document organization issue."
-msgstr ""
+msgstr "有的团队可能会将不在用的共享样式视为文档的组织性问题。"
 
 #: src/rules/symbols-no-detached/index.ts:27
 msgid "This group was detached from the symbol named \"{symbolName}\""
@@ -691,36 +691,36 @@ msgstr "该编组是与控件分离而得的，原控件名为 \"{symbolName}\""
 
 #: src/rules/symbols-no-detached/index.ts:36
 msgid "Symbols should not be detached"
-msgstr ""
+msgstr "控件不应被解绑"
 
 #: src/rules/symbols-no-detached/index.ts:37
 msgid "Detached symbols could indicate an unwanted divergence from a style guide or library."
-msgstr ""
+msgstr "有控件解绑，表明可能存在与样式规范或组件库之间存在不必要的分歧。"
 
 #: src/rules/symbols-no-unused/index.ts:23
 msgid "This symbol is unused"
-msgstr ""
+msgstr "该控件不在用"
 
 #: src/rules/symbols-no-unused/index.ts:30
 msgid "All symbols should be in-use"
-msgstr ""
+msgstr "所有控件都应在用"
 
 #: src/rules/symbols-no-unused/index.ts:31
 msgid "Some teams may consider unused symbols a document organization issue."
-msgstr ""
+msgstr "有的团队可能会将不在用的控件视为文档的组织性问题。"
 
 #: src/rules/symbols-prefer-library/index.ts:27
 msgid "This Layer should use a Symbol from a Library"
-msgstr ""
+msgstr "该图层应使用来自组件库的控件"
 
 #: src/rules/symbols-prefer-library/index.ts:37
 #: src/rules/text-styles-prefer-library/index.ts:46
 msgid "This uses the unauthorized Library \"{libName}\""
-msgstr ""
+msgstr "使用了未授权的组件库“{libName}”"
 
 #: src/rules/symbols-prefer-library/index.ts:50
 msgid "Symbols must come from a Library"
-msgstr ""
+msgstr "控件必须归属于一个组件库"
 
 #: src/rules/symbols-prefer-library/index.ts:51
 msgid "Symbols must come from the {authorizedLibraries} Libraries"
@@ -755,7 +755,7 @@ msgstr ""
 #: src/rules/text-styles-prefer-library/index.ts:26
 #: src/rules/text-styles-prefer-library/index.ts:36
 msgid "This Layer should use a Text Style from a Library"
-msgstr ""
+msgstr "该图层应使用来自组件库的字符样式"
 
 #: src/rules/text-styles-prefer-library/index.ts:55
 msgid "The Text Style is out of date with the Library"
