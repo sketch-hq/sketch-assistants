@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-05 04:37\n"
+"PO-Revision-Date: 2020-07-05 05:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -412,39 +412,39 @@ msgstr "图像尺寸不应超过框架的 {maxRatio}"
 
 #: src/rules/images-no-outsized/index.ts:70
 msgid "Images that are bigger than they need to be swell the document size and could slow things down, so some teams might want to limit this."
-msgstr "尺寸过大的图片会导致文档臃肿并拖慢速度，因此有的团队会对此做出限制。"
+msgstr "尺寸过大的图像会导致文档臃肿并拖慢速度，因此有的团队会对此做出限制。"
 
 #: src/rules/images-no-outsized/index.ts:75
 msgid "Maximum Ratio"
-msgstr ""
+msgstr "最高比例"
 
 #: src/rules/images-no-outsized/index.ts:77
 msgid "How much larger an image can be than its frame and still be considered valid"
-msgstr ""
+msgstr "图像较之其框架，可被视为有效的最大尺寸比例"
 
 #: src/rules/images-no-undersized/index.ts:39
 msgid "There's an undersized image in this layer. Images must fill at least {0}% of the layer frame's width or height."
-msgstr ""
+msgstr "该图层中有一张图像尺寸小。图像尺寸应至少满足图层框架宽高的 {0}%。"
 
 #: src/rules/images-no-undersized/index.ts:42
 msgid "There's an undersized image in this Layer Style image fill. Images must fill at least {0}% of the layer frame's width or height."
-msgstr ""
+msgstr "该图层的图像填充中有一张图像尺寸过小。图像尺寸至少应满足图层框架宽高的 {0}%。"
 
 #: src/rules/images-no-undersized/index.ts:58
 msgid "Images shouldn't be less than {minRatio}x bigger than their frame"
-msgstr ""
+msgstr "图像尺寸不应小于框架的 {minRatio}"
 
 #: src/rules/images-no-undersized/index.ts:60
 msgid "Images that are smaller than their layer might result in low-quality exported assets, so some teams might want to limit this."
-msgstr ""
+msgstr "尺寸过小的图像作为素材导出后会显得模糊，因此有的团队会对此做出限制。"
 
 #: src/rules/images-no-undersized/index.ts:65
 msgid "Minium Allowed Ratio"
-msgstr ""
+msgstr "最小允许比例"
 
 #: src/rules/images-no-undersized/index.ts:67
 msgid "How much smaller an image can be in relation to its frame and still be considered valid"
-msgstr ""
+msgstr "图像较之其框架，可被视为有效的最小尺寸比例"
 
 #: src/rules/inner-shadows-no-disabled/index.ts:28
 #: src/rules/inner-shadows-no-disabled/index.ts:36
@@ -457,43 +457,43 @@ msgstr "样式中不应包含禁用的内阴影"
 
 #: src/rules/layer-styles-no-dirty/index.ts:36
 msgid "This Layers Style is different from its Shared Style"
-msgstr ""
+msgstr "该图层样式与共享样式不同"
 
 #: src/rules/layer-styles-no-dirty/index.ts:44
 msgid "Layers Styles should be the same as their Shared Style"
-msgstr ""
+msgstr "图层样式应与共享的样式保持一致"
 
 #: src/rules/layer-styles-no-dirty/index.ts:45
 msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
-msgstr ""
+msgstr "如果您所属的团队希望恪守使用共享样式的规范，建议您要么新建一个共享样式，要么直接使用已有的样式。"
 
 #: src/rules/layer-styles-prefer-library/index.ts:36
 msgid "Layer Styles must be set with the Shared Styles of a Library"
-msgstr ""
+msgstr "图层样式应使用组件库中共享样式来设置"
 
 #: src/rules/layer-styles-prefer-library/index.ts:47
 msgid "This layer should use a Shared Style from a Library"
-msgstr ""
+msgstr "该样式应使用组件库中共享样式来设置"
 
 #: src/rules/layer-styles-prefer-library/index.ts:60
 msgid "This uses the unauthorized Library \"{libraryName}\""
-msgstr ""
+msgstr "使用了未授权的组件库“{libraryName}”"
 
 #: src/rules/layer-styles-prefer-library/index.ts:72
 msgid "This Shared Style isn't in an authorized Library"
-msgstr ""
+msgstr "该共享样式不属于授权的组件库"
 
 #: src/rules/layer-styles-prefer-library/index.ts:85
 msgid "Shared Styles must come from a Library"
-msgstr ""
+msgstr "共享样式必须归属于一个组件库"
 
 #: src/rules/layer-styles-prefer-library/index.ts:86
 msgid "Shared Styles must come from the Libraries: {authorizedLibraries}"
-msgstr ""
+msgstr "共享样式必须归属于组件库： {authorizedLibraries}"
 
 #: src/rules/layer-styles-prefer-library/index.ts:88
 msgid "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
-msgstr ""
+msgstr "如果您希望该文档中的组件库可以被其他人使用，您需要将本地的共享图层样式重构到组件库中。"
 
 #: src/rules/layer-styles-prefer-library/index.ts:92
 msgid "Authorized Libraries"
