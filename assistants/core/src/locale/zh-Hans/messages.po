@@ -298,6 +298,18 @@ msgstr "调试抛出错误"
 msgid "Internal debug rule that always throws a rule error"
 msgstr "总是抛出规则错误的内部调试规则"
 
+#: src/rules/debug-timeout/index.ts:14
+msgid "This rule waits 5 seconds after reporting this violation"
+msgstr ""
+
+#: src/rules/debug-timeout/index.ts:18
+msgid "Debug timeout"
+msgstr ""
+
+#: src/rules/debug-timeout/index.ts:19
+msgid "Internal debug rule that times-out"
+msgstr ""
+
 #: src/rules/exported-layers-normal-blend-mode/index.ts:36
 msgid "This exportable layer has a blend mode. Try flattening it for more consistent results."
 msgstr "该可导出图层包含一个混合模式。尝试展平它以确保统一性。"
@@ -373,7 +385,8 @@ msgstr "不应存在多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:28
 msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
-msgstr "移除多余的编组，以避免文档组织性或可用性问题。\n"
+msgstr ""
+"移除多余的编组，以避免文档组织性或可用性问题。\n"
 "以下是只包含了一个图层且没有应用任何样式的编组。"
 
 #: src/rules/groups-no-similar/index.ts:38
@@ -471,35 +484,35 @@ msgstr "如果您所属的团队希望恪守共享样式的使用规范，建议
 msgid "Layer Styles must be set with the Shared Styles of a Library"
 msgstr "图层样式应使用组件库中共享样式来设置"
 
-#: src/rules/layer-styles-prefer-library/index.ts:41
+#: src/rules/layer-styles-prefer-library/index.ts:39
 msgid "This layer should use a Shared Style from a Library"
 msgstr "该样式应设置为来自组件库的共享样式"
 
-#: src/rules/layer-styles-prefer-library/index.ts:49
+#: src/rules/layer-styles-prefer-library/index.ts:47
 msgid "This uses the unauthorized Library \"{libraryName}\""
 msgstr "使用了未授权的组件库“{libraryName}”"
 
-#: src/rules/layer-styles-prefer-library/index.ts:56
+#: src/rules/layer-styles-prefer-library/index.ts:54
 msgid "This Shared Style isn't in an authorized Library"
 msgstr "该共享样式不属于授权的组件库"
 
-#: src/rules/layer-styles-prefer-library/index.ts:67
+#: src/rules/layer-styles-prefer-library/index.ts:65
 msgid "Shared Styles must come from a Library"
 msgstr "共享样式必须归属于一个组件库"
 
-#: src/rules/layer-styles-prefer-library/index.ts:68
+#: src/rules/layer-styles-prefer-library/index.ts:66
 msgid "Shared Styles must come from the Libraries: {authorizedLibraries}"
 msgstr "共享样式必须归属于组件库： {authorizedLibraries}"
 
-#: src/rules/layer-styles-prefer-library/index.ts:70
+#: src/rules/layer-styles-prefer-library/index.ts:68
 msgid "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
 msgstr "如果您希望该文档中的组件库可以被其他人使用，您需要将本地的共享图层样式重构到组件库中。"
 
-#: src/rules/layer-styles-prefer-library/index.ts:74
+#: src/rules/layer-styles-prefer-library/index.ts:72
 msgid "Authorized Libraries"
 msgstr "已授权的组件库"
 
-#: src/rules/layer-styles-prefer-library/index.ts:75
+#: src/rules/layer-styles-prefer-library/index.ts:73
 msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
 msgstr "他人可使用的组件库。如果有人所使用的组件库不在当前的列表中，他们会有看到报错信息。"
 
@@ -543,23 +556,23 @@ msgstr "图层不应处于画板之外"
 msgid "Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards."
 msgstr "画板以外的图层在 Cloud 上是不可见的，因此有的团队会希望将所有图层都归到画板中。"
 
-#: src/rules/layers-subpixel-positioning/index.ts:60
+#: src/rules/layers-subpixel-positioning/index.ts:57
 msgid "Unexpected sub-pixel positioning ({x}, {y})"
 msgstr "出现意外的亚像素定位 ({x}, {y})"
 
-#: src/rules/layers-subpixel-positioning/index.ts:69
+#: src/rules/layers-subpixel-positioning/index.ts:66
 msgid "Layers must be placed on {increments} sub-pixel increments"
 msgstr "图层应置于{increments} 的亚像素增量"
 
-#: src/rules/layers-subpixel-positioning/index.ts:71
+#: src/rules/layers-subpixel-positioning/index.ts:68
 msgid "Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments."
 msgstr "有的团队会将放置在亚像素位置上的图层视为文档的组织性问题。像素密度为 @2x 和 @3x 的设计除外，在这种情况下，您可以使用0.5或0.33/0.67的增量。"
 
-#: src/rules/layers-subpixel-positioning/index.ts:76
+#: src/rules/layers-subpixel-positioning/index.ts:73
 msgid "Scale Factors"
 msgstr "缩放条件"
 
-#: src/rules/layers-subpixel-positioning/index.ts:77
+#: src/rules/layers-subpixel-positioning/index.ts:74
 msgid "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
 msgstr "选择文档支持的缩放条件。允许值为 @1x， @2x 和 @3x，具体为全像素，0.5的增量，以及0.33的增量"
 
@@ -644,17 +657,13 @@ msgstr "字符命名应遵守规范"
 #: src/rules/result-messages-include/index.ts:27
 #: src/rules/result-messages-include/index.ts:33
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #: src/rules/result-messages-include/index.ts:28
 msgid "Define a list of messages to check for"
 msgstr "定义待核验的消息清单"
 
-#: src/rules/result-messages-include/index.ts:35
-msgid "Messages"
-msgstr "消息"
-
-#: src/rules/result-messages-include/index.ts:36
+#: src/rules/result-messages-include/index.ts:34
 msgid "A range of messages to check for"
 msgstr "一系列待核验的消息"
 
@@ -686,11 +695,11 @@ msgstr "有的团队可能会将不在用的共享样式视为文档的组织性
 msgid "This group was detached from the symbol named \"{symbolName}\""
 msgstr "该编组是与控件分离而得的，原控件名为 \"{symbolName}\""
 
-#: src/rules/symbols-no-detached/index.ts:35
+#: src/rules/symbols-no-detached/index.ts:33
 msgid "Symbols should not be detached"
 msgstr "控件不应被解绑"
 
-#: src/rules/symbols-no-detached/index.ts:36
+#: src/rules/symbols-no-detached/index.ts:34
 msgid "Detached symbols could indicate an unwanted divergence from a style guide or library."
 msgstr "有控件解绑，表明可能存在与样式规范或组件库之间存在不必要的分歧。"
 
@@ -785,4 +794,3 @@ msgstr "在相应图层上，移除雷同的字符样式并替换成一个单一
 #: src/rules/text-styles-prefer-shared/index.ts:68
 msgid "The maximum allowed number of identical text styles"
 msgstr "允许存在的雷同字符样式的最大数量"
-
