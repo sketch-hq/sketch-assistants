@@ -189,7 +189,7 @@ export type IgnoreConfig = {
         [ruleName: string]:
           | { allObjects: true } // Rule full ignored
           | { allObjects: true; objects: [] } // Rule still full ignored, listed objects may be present in the config but they wont affect the run
-          | { objects: [] } // Rule part ignored for listed objects
+          | { objects: [] } // Rule ignored only for listed objects
           | {} // Rule not ignored
       }
     }
@@ -202,7 +202,12 @@ export type IgnoreConfig = {
  * (like cache creation, rule invocation etc.) should exit early as soon as a
  * cancellation is detected.
  */
-export type RunOperation = { cancelled: boolean } | { cancelled: 1 | 0 }
+export type CancelToken = { cancelled: boolean } | { cancelled: 1 | 0 }
+
+/**
+ * Contains a flag indicating whether a rule has timed out.
+ */
+export type TimeoutToken = { timedOut: boolean }
 
 /**
  * A map of Assistant packages, keyed by Assistant package name. Since the
@@ -235,11 +240,26 @@ export type RunInput = {
   /**
    * Object from the external environment carrying the cancelled flag.
    */
-  operation: RunOperation
+  cancelToken: CancelToken
   /**
    * Environment.
    */
   env: AssistantEnv
+  timeBudgets: {
+    /**
+     * Time budget in milliseconds for the entire run to complete. During the run this budget is
+     * dividedly evenly between each active rule.
+     */
+    totalMs: number
+    /**
+     * Minimum rule run time in milliseconds, irrespective of its share of the total budget.
+     */
+    minRuleTimeoutMs: number
+    /**
+     * Maximum rule run time in milliseconds, irrespective of its share of the total budget.
+     */
+    maxRuleTimeoutMs: number
+  }
 }
 
 /**
@@ -312,11 +332,12 @@ export type RunRejection = {
 /**
  * JavaScript errors encountered during rule invocation normalised into plain objects.
  */
-export type PlainRuleError = {
+export type RuleError = {
   assistantName: string
   ruleName: string
   message: string
   stack: string
+  code: 'error' | 'timeout'
 }
 
 /**
@@ -333,19 +354,22 @@ export type AssistantErrorResult = {
  */
 export type AssistantSuccessResult = {
   /**
-   * The Assistant "passed" if there are no ViolationSeverity.error level violations present.
+   * Assistant grades the document as follows:
+   *   "pass"          No violations with severity level "error" present
+   *   "fail"          One or more violations with severitu level "error" present
+   *   "unknown"       Grade could not be determined, for example due to one or more rules timing-out
    */
-  passed: boolean
+  grade: 'fail' | 'pass' | 'unknown'
   /**
    * One or more `violations` implies the assistant’s rules found issues with the Sketch document.
    */
   violations: Violation[]
   /**
-   * One or more `ruleErrors` implies that some rules didn’t run because they encountered errors.
+   * One or more `ruleErrors` implies that some rules encountered errors.
    */
-  ruleErrors: PlainRuleError[]
+  ruleErrors: RuleError[]
   /**
-   * Metadata relating to the Assistant that produced the result, and the rules that were invoked.
+   * Metadata relating to the Assistant that produced the result.
    */
   metadata: {
     assistant: {
@@ -381,7 +405,6 @@ export type RuleContext = {
   utils: RuleUtils
   file: ProcessedSketchFile
   assistant: AssistantDefinition
-  operation: RunOperation
   getImageMetadata: GetImageMetadata
   env: AssistantEnv
 }
@@ -389,7 +412,7 @@ export type RuleContext = {
 /**
  * Function for creating a rule utilties object scoped to a specific assistant rule.
  */
-export type RuleUtilsCreator = (ruleName: string) => RuleUtils
+export type RuleUtilsCreator = (ruleName: string, timeoutToken: TimeoutToken) => RuleUtils
 
 /**
  * Object containing utilities passed into rule functions. Where needed the util functions are
@@ -416,7 +439,16 @@ export type RuleUtils = {
    * mechanism to traverse the Sketch file you should manually determine whether an object is ignored
    * before reporting it in a violation.
    */
-  isObjectIgnoredForRule: (object: SketchFileObject) => boolean
+  isObjectIgnored: (object: SketchFileObject) => boolean
+  /**
+   * Rules can be a good Assistant citizen by checking the return value of this function during any
+   * long running calculations - if it returns `true` then the rule should bail out of any further
+   * calculations and exit as soon as possible. This function will return `true` for two reasons -
+   * the run has been cancelled entirely, or the current rule has timed-out. Note: If the rule is
+   * mainly driven by the `utils.objects` and `utils.foreignObjects` iterators then there's no need
+   * to call this function, since these loops will be terminated early if required automatically.
+   */
+  shouldExitEarly: () => boolean
   /**
    * Get a rule option value by name. Should throw if the rule hasn’t been configured properly in
    * the current assistant context, since it’s essential that every rule activated in an assistant is

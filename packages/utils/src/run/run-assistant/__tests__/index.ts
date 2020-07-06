@@ -18,13 +18,22 @@ const testRunAssistant = async (
   config: AssistantConfig,
   rule: RuleDefinition,
   ignoreConfig: IgnoreConfig = { pages: [], assistants: {} },
+  ruleTimeout: number = Infinity,
 ): Promise<AssistantSuccessResult> => {
   const op = { cancelled: false }
   const file = await fromFile(resolve(__dirname, './empty.sketch'))
   const processedFile = await process(file, op)
   const assistant = createAssistantDefinition({ rules: rule ? [rule] : [], config })
   const env: AssistantEnv = { locale: '', runtime: AssistantRuntime.Node }
-  return await runAssistant(processedFile, assistant, env, op, getImageMetadata, ignoreConfig)
+  return await runAssistant(
+    processedFile,
+    assistant,
+    env,
+    op,
+    getImageMetadata,
+    ignoreConfig,
+    ruleTimeout,
+  )
 }
 
 describe('runAssistant', () => {
@@ -205,7 +214,7 @@ describe('runAssistant', () => {
         name: 'rule',
         rule: async (ruleContext) => {
           const page = ruleContext.file.original.contents.document.pages[0]
-          if (!ruleContext.utils.isObjectIgnoredForRule(page)) {
+          if (!ruleContext.utils.isObjectIgnored(page)) {
             ruleContext.utils.report('Something went wrong', page)
           }
         },
@@ -268,5 +277,22 @@ describe('runAssistant', () => {
     )
     expect(violations).toHaveLength(0)
     expect(ruleErrors).toHaveLength(1)
+  })
+
+  test('can produce rule errors from rule timeouts', async (): Promise<void> => {
+    expect.assertions(2)
+    const { ruleErrors, violations } = await testRunAssistant(
+      createAssistantConfig({ rules: { rule: { active: true } } }),
+      createRule({
+        name: 'rule',
+        rule: async () => {
+          await new Promise((resolve) => setTimeout(resolve, 10))
+        },
+      }),
+      { pages: [], assistants: {} },
+      0,
+    )
+    expect(violations).toHaveLength(0)
+    expect(ruleErrors[0]).toHaveProperty('code', 'timeout')
   })
 })

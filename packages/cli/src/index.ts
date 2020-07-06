@@ -293,7 +293,16 @@ const formatResults = (cliResults: CliResults): string => {
         continue
       }
       append(2, `${chalk.inverse(` ${name} `)}\n`)
-      append(4, `Grade: ${res.result.passed ? chalk.green('pass') : chalk.red('fail')}`)
+      append(
+        4,
+        `Grade: ${
+          res.result.grade === 'pass'
+            ? chalk.green('pass')
+            : res.result.grade === 'fail'
+            ? chalk.red('fail')
+            : chalk.gray('unknown')
+        }`,
+      )
       append(4, `Violations: ${res.result.violations.length}`)
       append(4, `Rule errors: ${res.result.ruleErrors.length}\n`)
 
@@ -358,7 +367,13 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
   spinner.start(spinnerMessage(filename, 'Processing file…'))
 
   try {
-    const operation = { cancelled: false }
+    const cancelToken = { cancelled: false }
+    const timeBudgets = {
+      totalMs: Infinity,
+      minRuleTimeoutMs: 0,
+      maxRuleTimeoutMs: Infinity,
+    }
+
     let file = await fromFile(filepath)
     const workspace = await getWorkspace(file)
     let { ignore = { pages: [], assistants: {} } } = workspace
@@ -366,7 +381,7 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
     ignore = prunePages(ignore, file)
     file = filterPages(file, ignore.pages)
 
-    const processedFile = await processFile(file, operation)
+    const processedFile = await processFile(file, cancelToken)
     const env = {
       runtime: AssistantRuntime.Node,
       locale: await osLocale(),
@@ -395,8 +410,9 @@ const runFile = async (filepath: string, tmpDir: string): Promise<RunOutput> => 
       assistants,
       processedFile,
       getImageMetadata,
-      operation,
+      cancelToken,
       env,
+      timeBudgets,
     })
 
     spinner.succeed(spinnerMessage(filename, 'Ready'))

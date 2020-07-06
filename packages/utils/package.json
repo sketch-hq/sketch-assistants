@@ -18,7 +18,9 @@
     "build": "tsc --build tsconfig.json tsconfig.esm.json",
     "test": "jest"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@json-schema-spec/json-pointer": "0.1.2",
     "@sketch-hq/sketch-assistant-types": "5.0.0",
@@ -28,6 +30,7 @@
     "node-stream-zip": "1.10.1",
     "object-hash": "2.0.3",
     "p-map": "4.0.0",
+    "p-timeout": "3.2.0",
     "probe-image-size": "5.0.0"
   },
   "devDependencies": {

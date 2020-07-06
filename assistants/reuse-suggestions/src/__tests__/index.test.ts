@@ -20,7 +20,7 @@ describe('text-styles-prefer-shared', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test.only('violations for unshared text styles', async () => {
+  test('violations for unshared text styles', async () => {
     const { violations, ruleErrors } = await testCoreRule(
       './unshared-text-styles.sketch',
       'text-styles-prefer-shared',

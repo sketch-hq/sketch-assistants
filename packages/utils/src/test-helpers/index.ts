@@ -137,16 +137,17 @@ const testAssistant = async (
   const processedFile = await process(file, op)
   const def = await prepare(assistant, env)
 
-  const { violations, ruleErrors, passed } = await runAssistant(
+  const { violations, ruleErrors, grade } = await runAssistant(
     processedFile,
     def,
     env,
     op,
     getImageMetadata,
     { pages: [], assistants: {} },
+    Infinity,
   )
 
-  return { violations, ruleErrors, passed }
+  return { violations, ruleErrors, grade }
 }
 
 /**
@@ -173,16 +174,17 @@ const testRule = async (
   })
   const def = await prepare(assistant, env)
 
-  const { violations, ruleErrors, passed } = await runAssistant(
+  const { violations, ruleErrors, grade } = await runAssistant(
     processedFile,
     def,
     env,
     op,
     getImageMetadata,
     { pages: [], assistants: {} },
+    Infinity,
   )
 
-  return { violations, ruleErrors, passed }
+  return { violations, ruleErrors, grade }
 }
 
 /**
@@ -212,16 +214,17 @@ const testRuleInAssistant = async (
     [ruleName]: ruleConfig ? ruleConfig : def.config.rules[ruleName],
   }
 
-  const { violations, ruleErrors, passed } = await runAssistant(
+  const { violations, ruleErrors, grade } = await runAssistant(
     processedFile,
     def,
     env,
     op,
     getImageMetadata,
     { pages: [], assistants: {} },
+    Infinity,
   )
 
-  return { violations, ruleErrors, passed }
+  return { violations, ruleErrors, grade }
 }
 
 export {
