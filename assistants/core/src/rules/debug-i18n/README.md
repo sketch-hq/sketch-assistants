@@ -4,7 +4,7 @@
 > generally useful during the typical design workflow.
 
 This rule generates a violation with the message "Hello world". This particular string is guaranteed
-to be translated, for example rendering as "世界你好" in the Simplified Chinese locale `zh-Hans`.
+to be translated, for example rendering as "你好世界" in the Simplified Chinese locale `zh-Hans`.
 
 ## Rationale
 
