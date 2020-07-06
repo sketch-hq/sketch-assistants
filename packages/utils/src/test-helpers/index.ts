@@ -137,7 +137,7 @@ const testAssistant = async (
   const processedFile = await process(file, op)
   const def = await prepare(assistant, env)
 
-  const { violations, ruleErrors, passed } = await runAssistant(
+  const { violations, ruleErrors, grade } = await runAssistant(
     processedFile,
     def,
     env,
@@ -147,7 +147,7 @@ const testAssistant = async (
     Infinity,
   )
 
-  return { violations, ruleErrors, passed }
+  return { violations, ruleErrors, grade }
 }
 
 /**
@@ -174,7 +174,7 @@ const testRule = async (
   })
   const def = await prepare(assistant, env)
 
-  const { violations, ruleErrors, passed } = await runAssistant(
+  const { violations, ruleErrors, grade } = await runAssistant(
     processedFile,
     def,
     env,
@@ -184,7 +184,7 @@ const testRule = async (
     Infinity,
   )
 
-  return { violations, ruleErrors, passed }
+  return { violations, ruleErrors, grade }
 }
 
 /**
@@ -214,7 +214,7 @@ const testRuleInAssistant = async (
     [ruleName]: ruleConfig ? ruleConfig : def.config.rules[ruleName],
   }
 
-  const { violations, ruleErrors, passed } = await runAssistant(
+  const { violations, ruleErrors, grade } = await runAssistant(
     processedFile,
     def,
     env,
@@ -224,7 +224,7 @@ const testRuleInAssistant = async (
     Infinity,
   )
 
-  return { violations, ruleErrors, passed }
+  return { violations, ruleErrors, grade }
 }
 
 export {

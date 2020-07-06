@@ -12,6 +12,7 @@ import {
   IgnoreConfig,
   CancelToken,
   TimeoutToken,
+  RuleError,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { createRuleUtilsCreator } from '../../rule-utils'
@@ -19,15 +20,31 @@ import { isRuleActive, getRuleConfig, getRuleTitle } from '../../assistant-confi
 import { isRuleFullIgnored } from '../ignore'
 
 /**
- * Given a set of violations, determine if they represent a "pass" or a "fail".
- * A "fail" means severe error-level violations are present, whereas a "pass"
- * means only info or warn-level violations are present.
+ * Given a set of violations and rule errors, determine the grade. A "fail"
+ * means severe error-level violations are present, whereas a "pass"
+ * means only info or warn-level violations are present. An "unknown" grade
+ * means an indeterminate result - for example, if one or more rules timed-out
+ * then we can't give a definitive grade.
  */
-const getPassed = (violations: Violation[]): boolean =>
-  !!violations.find((violation): boolean => violation.severity > ViolationSeverity.warn)
-    ? false
-    : true
+const getGrade = (
+  violations: Violation[],
+  ruleErrors: RuleError[],
+): 'pass' | 'fail' | 'unknown' => {
+  const hasTimedOutRules = !!ruleErrors.find((ruleError) => ruleError.code === 'timeout')
+  if (hasTimedOutRules) return 'unknown'
+  const hasErrorLevelViolations = !!violations.find(
+    (violation): boolean => violation.severity === ViolationSeverity.error,
+  )
+  return hasErrorLevelViolations ? 'fail' : 'pass'
+}
 
+/**
+ * Rule invocation errors are errors thrown by rule functions while they are
+ * executing. Rule errors could be thrown by the Assistant architecture code,
+ * or by mistakes in 3rd party rules. In either case, they are caught in the
+ * runAssistant function and collated into plain RuleError objects to be
+ * incorporated into the overall result.
+ */
 class RuleInvocationError extends Error {
   public cause: Error
   public assistantName: string
@@ -164,22 +181,23 @@ const runAssistant = async (
       { concurrency: 1, stopOnError: false },
     )
   } catch (errors) {
+    const ruleErrors = Array.from<RuleInvocationError>(errors).map((error) => ({
+      assistantName: error.assistantName,
+      ruleName: error.ruleName,
+      message: error.cause.message,
+      stack: error.cause.stack || '',
+      code: error.code,
+    }))
     return {
-      passed: getPassed(violations),
+      grade: getGrade(violations, ruleErrors),
       violations,
-      ruleErrors: Array.from<RuleInvocationError>(errors).map((error) => ({
-        assistantName: error.assistantName,
-        ruleName: error.ruleName,
-        message: error.cause.message,
-        stack: error.cause.stack || '',
-        code: error.code,
-      })),
+      ruleErrors,
       metadata,
       profile,
     }
   }
   return {
-    passed: getPassed(violations),
+    grade: getGrade(violations, []),
     violations,
     ruleErrors: [],
     metadata,

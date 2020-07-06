@@ -354,9 +354,12 @@ export type AssistantErrorResult = {
  */
 export type AssistantSuccessResult = {
   /**
-   * The Assistant "passed" if there are no ViolationSeverity.error level violations present.
+   * Assistant grades the document as follows:
+   *   "pass"          No violations with severity level "error" present
+   *   "fail"          One or more violations with severitu level "error" present
+   *   "unknown"       Grade could not be determined, for example due to one or more rules timing-out
    */
-  passed: boolean
+  grade: 'fail' | 'pass' | 'unknown'
   /**
    * One or more `violations` implies the assistant’s rules found issues with the Sketch document.
    */
