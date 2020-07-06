@@ -31,7 +31,7 @@ describe('debug-i18n', () => {
     )
 
     expect(ruleErrors).toHaveLength(0)
-    expect(violations[0].message).toMatchInlineSnapshot(`"世界你好"`)
+    expect(violations[0].message).toMatchInlineSnapshot(`"你好世界"`)
   })
 
   test('unsupported locale fallsback to en', async (): Promise<void> => {
