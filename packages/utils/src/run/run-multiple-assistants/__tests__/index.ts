@@ -282,7 +282,7 @@ test('can be internationalized', async (): Promise<void> => {
         name: 'rule',
         rule: async (ruleContext): Promise<void> => {
           ruleContext.utils.report({
-            message: env.locale === 'zh-Hans' ? '世界你好' : 'Hello world',
+            message: env.locale === 'zh-Hans' ? '你好世界' : 'Hello world',
           })
         },
       }),
@@ -312,7 +312,7 @@ test('can be internationalized', async (): Promise<void> => {
 
   expect.assertions(2)
   if (zhRes.code === 'success' && enRes.code === 'success') {
-    expect(zhRes.result.violations[0].message).toBe('世界你好')
+    expect(zhRes.result.violations[0].message).toBe('你好世界')
     expect(enRes.result.violations[0].message).toBe('Hello world')
   }
 })

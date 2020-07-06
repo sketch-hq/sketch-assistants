@@ -1678,6 +1678,40 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@sketch-hq/sketch-assistant-types@5.0.0-next.21":
+  version "5.0.0-next.21"
+  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-assistant-types/-/sketch-assistant-types-5.0.0-next.21.tgz#58d56c35a26f265fde43fc15f300ce47a7e5980b"
+  integrity sha512-ic/rhHJqgkbmAZYZdn/l4xVU+l6uURHQ/xLIEBts8Py8zuuk88+k4IijoRD/LmMM2ngtqgKi7zw7M5NgwXu93A==
+  dependencies:
+    "@schemastore/package" "0.0.5"
+    "@sketch-hq/sketch-file-format-ts" "5.1.1"
+    "@types/json-schema" "7.0.4"
+
+"@sketch-hq/sketch-assistant-utils@5.0.0-next.22":
+  version "5.0.0-next.22"
+  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-assistant-utils/-/sketch-assistant-utils-5.0.0-next.22.tgz#9426f9eadc2f76868f2bfa52b9ea91399f1938f6"
+  integrity sha512-QrFbS356l+t6BVINAjkDRzqkp2h7b4tLqTI6EZPY0yr21zYqZZpltOE2lhf1TCjRII3URNEllpAmAmGvSx9TTg==
+  dependencies:
+    "@json-schema-spec/json-pointer" "0.1.2"
+    "@sketch-hq/sketch-assistant-types" "5.0.0-next.21"
+    ajv "6.12.2"
+    humps "2.0.1"
+    mem "6.1.0"
+    node-stream-zip "1.10.1"
+    object-hash "2.0.3"
+    p-map "4.0.0"
+    probe-image-size "5.0.0"
+
+"@sketch-hq/sketch-core-assistant@5.0.0-next.22":
+  version "5.0.0-next.22"
+  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-core-assistant/-/sketch-core-assistant-5.0.0-next.22.tgz#de785cc0158fb89c382389f08ee42b9660581018"
+  integrity sha512-3V3RjUKLkHJUxHLXSKlzwiBiOpydSaFhZCEBMb9WBV1w063YdCqQgAnm7zj5V+eSpAhSgpMpvm329ZtigFwuLw==
+  dependencies:
+    "@lingui/core" "2.9.1"
+    "@sketch-hq/sketch-assistant-types" "5.0.0-next.21"
+    "@types/lingui__core" "2.7.0"
+    "@types/lingui__macro" "2.7.3"
+
 "@sketch-hq/sketch-file-format-ts@5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-5.1.1.tgz#53b7cdb7ce034486a412791f88061329941a37ee"
