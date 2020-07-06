@@ -22,8 +22,8 @@ msgid "Layer name does not match any of the allowed patterns"
 msgstr "Layer name does not match any of the allowed patterns"
 
 #: src/rules/artboards-grid/index.ts:45
-msgid "Unexpected artboard grid settings"
-msgstr "Unexpected artboard grid settings"
+msgid "Unexpected Artboard grid settings"
+msgstr "Unexpected Artboard grid settings"
 
 #: src/rules/artboards-grid/index.ts:51
 msgid "Artboard grid settings should match the conventions"
@@ -58,8 +58,8 @@ msgid "Number of blocks between thick grid lines"
 msgstr "Number of blocks between thick grid lines"
 
 #: src/rules/artboards-layout/index.ts:101
-msgid "Unexpected artboard layout settings"
-msgstr "Unexpected artboard layout settings"
+msgid "Unexpected Artboard layout settings"
+msgstr "Unexpected Artboard layout settings"
 
 #: src/rules/artboards-layout/index.ts:107
 msgid "Artboard layout settings should match the conventions"
@@ -293,6 +293,18 @@ msgstr "Debug throws error"
 msgid "Internal debug rule that always throws a rule error"
 msgstr "Internal debug rule that always throws a rule error"
 
+#: src/rules/debug-timeout/index.ts:14
+msgid "This rule waits 5 seconds after reporting this violation"
+msgstr "This rule waits 5 seconds after reporting this violation"
+
+#: src/rules/debug-timeout/index.ts:18
+msgid "Debug timeout"
+msgstr "Debug timeout"
+
+#: src/rules/debug-timeout/index.ts:19
+msgid "Internal debug rule that times-out"
+msgstr "Internal debug rule that times-out"
+
 #: src/rules/exported-layers-normal-blend-mode/index.ts:36
 msgid "This exportable layer has a blend mode. Try flattening it for more consistent results."
 msgstr "This exportable layer has a blend mode. Try flattening it for more consistent results."
@@ -465,35 +477,35 @@ msgstr "If your team wants to strictly use shared styles, you should either crea
 msgid "Layer Styles must be set with the Shared Styles of a Library"
 msgstr "Layer Styles must be set with the Shared Styles of a Library"
 
-#: src/rules/layer-styles-prefer-library/index.ts:41
+#: src/rules/layer-styles-prefer-library/index.ts:39
 msgid "This layer should use a Shared Style from a Library"
 msgstr "This layer should use a Shared Style from a Library"
 
-#: src/rules/layer-styles-prefer-library/index.ts:49
+#: src/rules/layer-styles-prefer-library/index.ts:47
 msgid "This uses the unauthorized Library \"{libraryName}\""
 msgstr "This uses the unauthorized Library \"{libraryName}\""
 
-#: src/rules/layer-styles-prefer-library/index.ts:56
+#: src/rules/layer-styles-prefer-library/index.ts:54
 msgid "This Shared Style isn't in an authorized Library"
 msgstr "This Shared Style isn't in an authorized Library"
 
-#: src/rules/layer-styles-prefer-library/index.ts:67
+#: src/rules/layer-styles-prefer-library/index.ts:65
 msgid "Shared Styles must come from a Library"
 msgstr "Shared Styles must come from a Library"
 
-#: src/rules/layer-styles-prefer-library/index.ts:68
+#: src/rules/layer-styles-prefer-library/index.ts:66
 msgid "Shared Styles must come from the Libraries: {authorizedLibraries}"
 msgstr "Shared Styles must come from the Libraries: {authorizedLibraries}"
 
-#: src/rules/layer-styles-prefer-library/index.ts:70
+#: src/rules/layer-styles-prefer-library/index.ts:68
 msgid "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
 msgstr "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
 
-#: src/rules/layer-styles-prefer-library/index.ts:74
+#: src/rules/layer-styles-prefer-library/index.ts:72
 msgid "Authorized Libraries"
 msgstr "Authorized Libraries"
 
-#: src/rules/layer-styles-prefer-library/index.ts:75
+#: src/rules/layer-styles-prefer-library/index.ts:73
 msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
 msgstr "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
 
@@ -537,23 +549,23 @@ msgstr "Layers should not be outside artboards"
 msgid "Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards."
 msgstr "Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards."
 
-#: src/rules/layers-subpixel-positioning/index.ts:60
+#: src/rules/layers-subpixel-positioning/index.ts:57
 msgid "Unexpected sub-pixel positioning ({x}, {y})"
 msgstr "Unexpected sub-pixel positioning ({x}, {y})"
 
-#: src/rules/layers-subpixel-positioning/index.ts:69
+#: src/rules/layers-subpixel-positioning/index.ts:66
 msgid "Layers must be placed on {increments} sub-pixel increments"
 msgstr "Layers must be placed on {increments} sub-pixel increments"
 
-#: src/rules/layers-subpixel-positioning/index.ts:71
+#: src/rules/layers-subpixel-positioning/index.ts:68
 msgid "Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments."
 msgstr "Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments."
 
-#: src/rules/layers-subpixel-positioning/index.ts:76
+#: src/rules/layers-subpixel-positioning/index.ts:73
 msgid "Scale Factors"
 msgstr "Scale Factors"
 
-#: src/rules/layers-subpixel-positioning/index.ts:77
+#: src/rules/layers-subpixel-positioning/index.ts:74
 msgid "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
 msgstr "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
 
@@ -676,11 +688,11 @@ msgstr "Some teams may consider unused Shared Styles a document organization iss
 msgid "This group was detached from the symbol named \"{symbolName}\""
 msgstr "This group was detached from the symbol named \"{symbolName}\""
 
-#: src/rules/symbols-no-detached/index.ts:35
+#: src/rules/symbols-no-detached/index.ts:33
 msgid "Symbols should not be detached"
 msgstr "Symbols should not be detached"
 
-#: src/rules/symbols-no-detached/index.ts:36
+#: src/rules/symbols-no-detached/index.ts:34
 msgid "Detached symbols could indicate an unwanted divergence from a style guide or library."
 msgstr "Detached symbols could indicate an unwanted divergence from a style guide or library."
 
