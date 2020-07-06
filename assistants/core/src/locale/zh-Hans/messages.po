@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/rules/debug-i18n/index.ts:14
 msgid "Hello world"
-msgstr "世界你好"
+msgstr "你好世界"
 
 #: src/rules/debug-i18n/index.ts:20
 msgid "Debug internationalization"
