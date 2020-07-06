@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-05 14:08\n"
+"PO-Revision-Date: 2020-07-06 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -329,7 +329,7 @@ msgstr "{numLayers, plural, one {编组中的一个图层} other {该编组中�
 
 #: src/rules/groups-max-layers/index.ts:42
 msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
-msgstr "{maxLayers, plural, one {包含一个图层的编组} other {编组中应至少包含#个图层}}"
+msgstr "{maxLayers, plural, one {包含一个图层的编组} other {编组中应至少包含 # 个图层}}"
 
 #: src/rules/groups-max-layers/index.ts:48
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
