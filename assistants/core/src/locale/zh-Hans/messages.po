@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-07 01:45\n"
+"PO-Revision-Date: 2020-07-07 08:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Crowdin-Project-ID: 406142\n"
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /rc/assistants/core/src/locale/en/messages.po\n"
-"X-Crowdin-File-ID: 58\n"
+"X-Crowdin-File-ID: 72\n"
 
 #: src/rule-helpers.ts:115
 msgid "Layer name matches one of the forbidden patterns"
@@ -300,15 +300,15 @@ msgstr "总是抛出规则错误的内部调试规则"
 
 #: src/rules/debug-timeout/index.ts:14
 msgid "This rule waits 5 seconds after reporting this violation"
-msgstr "该规则在报告违规后等待5秒"
+msgstr ""
 
 #: src/rules/debug-timeout/index.ts:18
 msgid "Debug timeout"
-msgstr "调试超时"
+msgstr ""
 
 #: src/rules/debug-timeout/index.ts:19
 msgid "Internal debug rule that times-out"
-msgstr "超时的内部调试规则"
+msgstr ""
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:36
 msgid "This exportable layer has a blend mode. Try flattening it for more consistent results."
