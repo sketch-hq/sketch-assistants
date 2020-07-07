@@ -8,15 +8,15 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-06 13:28\n"
+"PO-Revision-Date: 2020-07-07 09:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: sketch-assistants\n"
 "X-Crowdin-Project-ID: 406142\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /main/assistants/core/src/locale/en/messages.po\n"
-"X-Crowdin-File-ID: 44\n"
+"X-Crowdin-File: /rc/assistants/core/src/locale/en/messages.po\n"
+"X-Crowdin-File-ID: 72\n"
 
 #: src/rule-helpers.ts:115
 msgid "Layer name matches one of the forbidden patterns"
@@ -300,15 +300,15 @@ msgstr "总是抛出规则错误的内部调试规则"
 
 #: src/rules/debug-timeout/index.ts:14
 msgid "This rule waits 5 seconds after reporting this violation"
-msgstr ""
+msgstr "该规则在报告违规后等待5秒"
 
 #: src/rules/debug-timeout/index.ts:18
 msgid "Debug timeout"
-msgstr ""
+msgstr "调试超时"
 
 #: src/rules/debug-timeout/index.ts:19
 msgid "Internal debug rule that times-out"
-msgstr ""
+msgstr "超时的内部调试规则"
 
 #: src/rules/exported-layers-normal-blend-mode/index.ts:36
 msgid "This exportable layer has a blend mode. Try flattening it for more consistent results."
@@ -385,8 +385,7 @@ msgstr "不应存在多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:28
 msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
-msgstr ""
-"移除多余的编组，以避免文档组织性或可用性问题。\n"
+msgstr "移除多余的编组，以避免文档组织性或可用性问题。\n"
 "以下是只包含了一个图层且没有应用任何样式的编组。"
 
 #: src/rules/groups-no-similar/index.ts:38
@@ -794,3 +793,4 @@ msgstr "在相应图层上，移除雷同的字符样式并替换成一个单一
 #: src/rules/text-styles-prefer-shared/index.ts:68
 msgid "The maximum allowed number of identical text styles"
 msgstr "允许存在的雷同字符样式的最大数量"
+
