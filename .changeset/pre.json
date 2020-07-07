@@ -10,5 +10,11 @@
     "@sketch-hq/sketch-assistant-types": "5.0.0",
     "@sketch-hq/sketch-assistant-utils": "5.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "breezy-worms-play",
+    "eleven-clouds-flow",
+    "giant-geese-clean",
+    "great-socks-visit",
+    "mighty-students-greet"
+  ]
 }
