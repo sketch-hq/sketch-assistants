@@ -1,5 +1,17 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 6.0.0-rc.1
+
+### Major Changes
+
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
+### Patch Changes
+
+- Updated dependencies [0b479bc]
+  - @sketch-hq/sketch-core-assistant@6.0.0-rc.1
+  - @sketch-hq/sketch-assistant-types@6.0.0-rc.1
+
 ## 6.0.0-rc.0
 
 ### Major Changes
