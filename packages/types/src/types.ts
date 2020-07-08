@@ -505,15 +505,6 @@ export type RuleUtils = {
 }
 
 /**
- * Information about where in a Sketch file a violation relates to.
- */
-export type ViolationLocation = {
-  pointer: string | null
-  objectId: string | null
-  objectName: string | null
-}
-
-/**
  * A violation collates all the information about a problem, and is the fundamental way an Assistant
  * communicates these to the outer environment.
  */
@@ -522,10 +513,14 @@ export type Violation = {
   assistantName: string
   ruleName: string
   severity: ViolationSeverity
-  /**
-   * Violations may relate to zero or more locations in a Sketch file.
-   */
-  locations: ViolationLocation[]
+  objects: Array<
+    Partial<{
+      id: string
+      pointer: string
+      name: string
+      class: string
+    }>
+  >
 }
 
 /**
