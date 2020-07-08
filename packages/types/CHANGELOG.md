@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 6.0.0-rc.1
+
+### Major Changes
+
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
 ## 6.0.0-rc.0
 
 ### Major Changes
