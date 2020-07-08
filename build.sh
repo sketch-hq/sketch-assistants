@@ -7,6 +7,8 @@
 # Solution: implement an i18n approach in the core assistant that doesn't
 # introduce a requirement to build its TypeScript with Babel.
 
+set -e
+
 yarn workspace @sketch-hq/sketch-assistant-types run build
 yarn workspace @sketch-hq/sketch-assistant-utils run build
 yarn workspace @sketch-hq/sketch-assistant-cli run build
