@@ -141,10 +141,11 @@ const addViolation = (
     ruleName: rule.name,
     message: message,
     severity,
-    locations: objects.map((object) => ({
-      pointer: pointers.get(object) || null,
-      objectId: 'do_objectID' in object ? object.do_objectID || null : null,
-      objectName: 'name' in object ? object.name || null : null,
+    objects: objects.map((object) => ({
+      pointer: pointers.get(object),
+      id: 'do_objectID' in object ? object.do_objectID : undefined,
+      name: 'name' in object ? object.name : undefined,
+      class: '_class' in object ? object._class : undefined,
     })),
   })
 }

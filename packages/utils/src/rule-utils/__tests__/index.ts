@@ -290,14 +290,15 @@ describe('report', () => {
     expect(violations[0]).toMatchInlineSnapshot(`
       Object {
         "assistantName": "dummy-assistant",
-        "locations": Array [
+        "message": "Something isn't right",
+        "objects": Array [
           Object {
-            "objectId": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
-            "objectName": "Page 1",
+            "class": "page",
+            "id": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
+            "name": "Page 1",
             "pointer": "/document/pages/0",
           },
         ],
-        "message": "Something isn't right",
         "ruleName": "foo",
         "severity": 3,
       }
