@@ -5,16 +5,15 @@
 The rules in this Assistant are all focused on keeping your Sketch documents as clean and tidy as
 possible.
 
-👉 Click
-[here](https://add-sketch-assistant.now.sh/api/main?pkg=@sketch-hq/sketch-tidy-assistant&version=5.0.0-next.10)
+👉 Click [here](https://add-sketch-assistant.now.sh/api/main?pkg=@sketch-hq/sketch-tidy-assistant)
 to add to Sketch.
 
 > Or, add to a Sketch release variant:
-> [Beta](https://add-sketch-assistant.now.sh/api/main?variant=beta&pkg=@sketch-hq/sketch-tidy-assistant&version=5.0.0-next.10)
+> [Beta](https://add-sketch-assistant.now.sh/api/main?variant=beta&pkg=@sketch-hq/sketch-tidy-assistant)
 > |
-> [Private](https://add-sketch-assistant.now.sh/api/main?variant=private&pkg=@sketch-hq/sketch-tidy-assistant&version=5.0.0-next.10)
+> [Private](https://add-sketch-assistant.now.sh/api/main?variant=private&pkg=@sketch-hq/sketch-tidy-assistant)
 > |
-> [Internal](https://add-sketch-assistant.now.sh/api/main?variant=internal&pkg=@sketch-hq/sketch-tidy-assistant&version=5.0.0-next.10)
+> [Internal](https://add-sketch-assistant.now.sh/api/main?variant=internal&pkg=@sketch-hq/sketch-tidy-assistant)
 > |
 > [Experimental](https://add-sketch-assistant.now.sh/api/main?variant=experimental&pkg=@sketch-hq/sketch-tidy-assistant)
 > |
