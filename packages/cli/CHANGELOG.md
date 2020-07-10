@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-cli
 
+## 6.0.0-rc.2
+
+### Patch Changes
+
+- 0aff579: Fix build error.
+
 ## 6.0.0-rc.1
 
 ### Major Changes
