@@ -7,9 +7,9 @@ respectively.
 
 👉 Click
 [here](https://add-sketch-assistant.now.sh/api/main?pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
-to add to Sketch.
+to add to your Sketch document.
 
-> Or, add to a Sketch release variant:
+> Or, add using a Sketch release variant:
 > [Beta](https://add-sketch-assistant.now.sh/api/main?variant=beta&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
 > |
 > [Private](https://add-sketch-assistant.now.sh/api/main?variant=private&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
