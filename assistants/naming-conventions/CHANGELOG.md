@@ -1,5 +1,24 @@
 # @sketch-hq/sketch-naming-conventions-assistant
 
+## 6.0.0
+
+### Major Changes
+
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
+### Patch Changes
+
+- da8e34c: Add `public` keyword to package.json.
+- 1c36951: Finalised translations.
+- Updated dependencies [f8a0829]
+- Updated dependencies [532eef0]
+- Updated dependencies [81a6e61]
+- Updated dependencies [1c36951]
+- Updated dependencies [f155f44]
+- Updated dependencies [0b479bc]
+  - @sketch-hq/sketch-core-assistant@6.0.0
+  - @sketch-hq/sketch-assistant-types@6.0.0
+
 ## 6.0.0-rc.3
 
 ### Patch Changes

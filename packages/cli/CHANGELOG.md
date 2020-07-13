@@ -1,5 +1,23 @@
 # @sketch-hq/sketch-assistant-cli
 
+## 6.0.0
+
+### Major Changes
+
+- f8a0829: Support for reporting violations that reference multiple Sketch file objects.
+- 81a6e61: Add timeouts to rules.
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
+### Patch Changes
+
+- 0aff579: Fix build error.
+- Updated dependencies [f8a0829]
+- Updated dependencies [81a6e61]
+- Updated dependencies [f155f44]
+- Updated dependencies [0b479bc]
+  - @sketch-hq/sketch-assistant-types@6.0.0
+  - @sketch-hq/sketch-assistant-utils@6.0.0
+
 ## 6.0.0-rc.2
 
 ### Patch Changes
