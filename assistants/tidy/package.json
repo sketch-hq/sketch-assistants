@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-tidy-assistant",
-  "version": "6.0.0-rc.1",
+  "version": "6.0.0-rc.3",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
