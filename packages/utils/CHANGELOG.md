@@ -1,5 +1,22 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 6.0.0
+
+### Major Changes
+
+- f8a0829: Support for reporting violations that reference multiple Sketch file objects.
+- 81a6e61: Add timeouts to rules.
+- f155f44: Renamed `file` prop in `ProcessedSketchFile` to `original`.
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
+### Patch Changes
+
+- Updated dependencies [f8a0829]
+- Updated dependencies [81a6e61]
+- Updated dependencies [f155f44]
+- Updated dependencies [0b479bc]
+  - @sketch-hq/sketch-assistant-types@6.0.0
+
 ## 6.0.0-rc.1
 
 ### Major Changes
