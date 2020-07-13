@@ -20,22 +20,24 @@ import { fromFile } from '../../../files'
 const testRunMultiple = async (
   {
     assistants = { 'dummy-assistant': createAssistant() },
-    operation = { cancelled: false },
+    cancelToken = { cancelled: false },
     getImageMetadata = getImageMetadataNode,
     env = { locale: 'en', runtime: AssistantRuntime.Node },
     ignore = { pages: [], assistants: {} },
+    timeBudgets = { totalMs: Infinity, minRuleTimeoutMs: 0, maxRuleTimeoutMs: Infinity },
   }: Partial<RunInput>,
   filename = './empty.sketch',
 ): Promise<RunOutput> => {
   const file = await fromFile(resolve(__dirname, filename))
-  const processedFile = await process(file, operation)
+  const processedFile = await process(file, cancelToken)
   return await runMultipleAssistants({
     assistants,
     processedFile,
-    operation,
+    cancelToken,
     getImageMetadata,
     env,
     ignore,
+    timeBudgets,
   })
 }
 
@@ -63,7 +65,7 @@ test('outputs an error result for assistant name mismatch', async (): Promise<vo
 })
 
 test('bails early if cancelled', async (): Promise<void> => {
-  await expect(testRunMultiple({ operation: { cancelled: true } })).rejects.toHaveProperty(
+  await expect(testRunMultiple({ cancelToken: { cancelled: true } })).rejects.toHaveProperty(
     'code',
     'cancelled',
   )
@@ -100,7 +102,7 @@ test('can generate violations', async (): Promise<void> => {
         createRule({
           name: 'rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: 'Subspace anomaly detected' })
+            ruleContext.utils.report('Subspace anomaly detected')
           },
         }),
       ],
@@ -130,7 +132,7 @@ test('will pass an assistant if violations not error-level', async (): Promise<v
         createRule({
           name: 'rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: 'Subspace anomaly detected' })
+            ruleContext.utils.report('Subspace anomaly detected')
           },
         }),
       ],
@@ -189,10 +191,7 @@ test('generates rule errors when ignored objects are reported', async (): Promis
         createRule({
           name: 'rule',
           rule: async (context) => {
-            context.utils.report({
-              object: context.file.file.contents.document.pages[0],
-              message: '',
-            })
+            context.utils.report('', context.file.original.contents.document.pages[0])
           },
         }),
       ],
@@ -224,6 +223,42 @@ test('generates rule errors when ignored objects are reported', async (): Promis
   }
 })
 
+test.only('budget can be used to timeout rules', async (): Promise<void> => {
+  const assistants = {
+    'dummy-assistant': createAssistant({
+      rules: [
+        createRule({
+          name: 'rule',
+          rule: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 100))
+          },
+        }),
+      ],
+      config: createAssistantConfig({
+        rules: {
+          rule: { active: true },
+        },
+      }),
+    }),
+  }
+
+  const output = await testRunMultiple({
+    assistants,
+    timeBudgets: {
+      totalMs: Infinity,
+      minRuleTimeoutMs: 0,
+      maxRuleTimeoutMs: 10,
+    },
+  })
+  const res = output.assistants['dummy-assistant']
+
+  expect.assertions(2)
+  if (res.code === 'success') {
+    expect(res.result.violations).toHaveLength(0)
+    expect(res.result.ruleErrors).toHaveLength(1)
+  }
+})
+
 test('can run mulitple assistants', async (): Promise<void> => {
   const assistants = {
     'dummy-assistant-1': createAssistant({
@@ -232,7 +267,7 @@ test('can run mulitple assistants', async (): Promise<void> => {
         createRule({
           name: 'dummy-assistant-1/rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: '' })
+            ruleContext.utils.report('')
           },
         }),
       ],
@@ -248,7 +283,7 @@ test('can run mulitple assistants', async (): Promise<void> => {
         createRule({
           name: 'dummy-assistant-2/rule',
           rule: async (ruleContext): Promise<void> => {
-            ruleContext.utils.report({ message: '' })
+            ruleContext.utils.report('')
           },
         }),
       ],
@@ -281,9 +316,7 @@ test('can be internationalized', async (): Promise<void> => {
       createRule({
         name: 'rule',
         rule: async (ruleContext): Promise<void> => {
-          ruleContext.utils.report({
-            message: env.locale === 'zh-Hans' ? '你好世界' : 'Hello world',
-          })
+          ruleContext.utils.report(env.locale === 'zh-Hans' ? '你好世界' : 'Hello world')
         },
       }),
     ],

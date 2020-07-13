@@ -6,9 +6,7 @@ describe('testRuleInAssistant', () => {
     const { violations } = await testRuleInAssistant(
       resolve(__dirname, './empty.sketch'),
       createAssistant({
-        rules: [
-          createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
-        ],
+        rules: [createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report('') })],
         config: {
           rules: { rule: { active: true } },
         },
@@ -23,8 +21,8 @@ describe('testRuleInAssistant', () => {
       resolve(__dirname, './empty.sketch'),
       createAssistant({
         rules: [
-          createRule({ name: 'rule1', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
-          createRule({ name: 'rule2', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
+          createRule({ name: 'rule1', rule: async (ctx) => ctx.utils.report('') }),
+          createRule({ name: 'rule2', rule: async (ctx) => ctx.utils.report('') }),
         ],
         config: {
           rules: { rule1: { active: true }, rule2: { active: true } },
@@ -39,9 +37,7 @@ describe('testRuleInAssistant', () => {
     const { violations } = await testRuleInAssistant(
       resolve(__dirname, './empty.sketch'),
       createAssistant({
-        rules: [
-          createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
-        ],
+        rules: [createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report('') })],
         config: {
           rules: { rule: { active: true } },
         },
@@ -57,7 +53,7 @@ describe('testRule', () => {
   test('can return violations', async () => {
     const { violations } = await testRule(
       resolve(__dirname, './empty.sketch'),
-      createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
+      createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report('') }),
     )
     expect(violations).toHaveLength(1)
   })
@@ -68,9 +64,7 @@ describe('testAssistant', () => {
     const { violations } = await testAssistant(
       resolve(__dirname, './empty.sketch'),
       createAssistant({
-        rules: [
-          createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report({ message: '' }) }),
-        ],
+        rules: [createRule({ name: 'rule', rule: async (ctx) => ctx.utils.report('') })],
         config: {
           rules: { rule: { active: true } },
         },

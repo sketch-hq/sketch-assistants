@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-naming-conventions-assistant",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -16,16 +16,17 @@
     "sketch",
     "sketch files",
     "sketch assistant",
+    "public",
     "assistant",
     "design ops"
   ],
   "files": ["dist"],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "5.0.0",
-    "@sketch-hq/sketch-core-assistant": "5.0.0"
+    "@sketch-hq/sketch-assistant-types": "6.0.0",
+    "@sketch-hq/sketch-core-assistant": "6.0.0"
   },
   "devDependencies": {
-    "@sketch-hq/sketch-assistant-utils": "5.0.0"
+    "@sketch-hq/sketch-assistant-utils": "6.0.0"
   },
   "scripts": {
     "test": "jest",

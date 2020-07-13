@@ -11,11 +11,8 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { utils } = context
     for (const page of utils.objects.page) {
       for (const layer of page.layers) {
-        if (isLooseLayer(layer)) {
-          utils.report({
-            object: layer,
-            message: i18n._(t`This layer is not inside an Artboard`),
-          })
+        if (isLooseLayer(layer) && !utils.isObjectIgnored(layer)) {
+          utils.report(i18n._(t`This layer is not inside an Artboard`), layer)
         }
       }
     }

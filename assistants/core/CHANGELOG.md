@@ -1,5 +1,50 @@
 # @sketch-hq/sketch-core-assistant
 
+## 6.0.0
+
+### Major Changes
+
+- f8a0829: Support for reporting violations that reference multiple Sketch file objects.
+- 81a6e61: Add timeouts to rules.
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
+### Patch Changes
+
+- 532eef0: Add manual ignore check in `layers-no-loose` rule.
+- 1c36951: Finalised translations.
+- Updated dependencies [f8a0829]
+- Updated dependencies [81a6e61]
+- Updated dependencies [f155f44]
+- Updated dependencies [0b479bc]
+  - @sketch-hq/sketch-assistant-types@6.0.0
+
+## 6.0.0-rc.1
+
+### Major Changes
+
+- 0b479bc: Refactored violation `locations` to `objects` and added a `class` value.
+
+### Patch Changes
+
+- Updated dependencies [0b479bc]
+  - @sketch-hq/sketch-assistant-types@6.0.0-rc.1
+
+## 6.0.0-rc.0
+
+### Major Changes
+
+- f8a0829: Support for reporting violations that reference multiple Sketch file objects.
+- 81a6e61: Add timeouts to rules.
+
+### Patch Changes
+
+- 532eef0: Add manual ignore check in `layers-no-loose` rule.
+- 1c36951: Finalised translations.
+- Updated dependencies [f8a0829]
+- Updated dependencies [81a6e61]
+- Updated dependencies [f155f44]
+  - @sketch-hq/sketch-assistant-types@6.0.0-rc.0
+
 ## 5.0.0
 
 ### Major Changes

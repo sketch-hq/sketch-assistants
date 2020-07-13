@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-assistant-utils",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "module": "dist/esm/index",
   "main": "dist/cjs/index",
   "types": "dist/cjs/index",
@@ -21,13 +21,14 @@
   "files": ["dist"],
   "dependencies": {
     "@json-schema-spec/json-pointer": "0.1.2",
-    "@sketch-hq/sketch-assistant-types": "5.0.0",
+    "@sketch-hq/sketch-assistant-types": "6.0.0",
     "ajv": "6.12.2",
     "humps": "2.0.1",
     "mem": "6.1.0",
     "node-stream-zip": "1.10.1",
     "object-hash": "2.0.3",
     "p-map": "4.0.0",
+    "p-timeout": "3.2.0",
     "probe-image-size": "5.0.0"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ import {
   ProcessedSketchFile,
   FileFormat,
   IgnoreConfig,
+  TimeoutToken,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { createRuleUtilsCreator, createIterable, createIterableObjectCache } from '..'
@@ -32,6 +33,7 @@ const createUtils = async (
   ruleName: string = 'foo',
   violations: Violation[] = [],
   ignoreConfig: IgnoreConfig = { pages: [], assistants: {} },
+  timeoutToken: TimeoutToken = { timedOut: false },
 ): Promise<{ violations: Violation[]; utils: RuleUtils; processedFile: ProcessedSketchFile }> => {
   const op = { cancelled: false }
   const file = await fromFile(resolve(__dirname, filepath))
@@ -46,7 +48,7 @@ const createUtils = async (
       op,
       getImageMetadata,
       ignoreConfig,
-    )(ruleName),
+    )(ruleName, timeoutToken),
   }
 }
 
@@ -57,6 +59,7 @@ describe('createIterable', () => {
       {
         cancelled: false,
       },
+      { timedOut: false },
       [],
     )
     expect([...iterable].map((item) => item._class)).toMatchInlineSnapshot(`
@@ -73,6 +76,7 @@ describe('createIterable', () => {
       {
         cancelled: true,
       },
+      { timedOut: false },
       [],
     )
     expect([...iterable]).toHaveLength(0)
@@ -82,14 +86,24 @@ describe('createIterable', () => {
 describe('createIterableObjectCache', () => {
   test('works with an empty cache', () => {
     const cache = createEmptyObjectCache()
-    const iterableCache = createIterableObjectCache(cache, { cancelled: false }, [])
+    const iterableCache = createIterableObjectCache(
+      cache,
+      { cancelled: false },
+      { timedOut: false },
+      [],
+    )
     expect([...iterableCache.text]).toHaveLength(0)
   })
 
   test('for..of loops work with type safety', () => {
     const cache = createEmptyObjectCache()
     cache[FileFormat.ClassValue.Rect] = [createDummyRect(), createDummyRect()]
-    const iterableCache = createIterableObjectCache(cache, { cancelled: false }, [])
+    const iterableCache = createIterableObjectCache(
+      cache,
+      { cancelled: false },
+      { timedOut: false },
+      [],
+    )
     for (const rect of iterableCache.rect) {
       expect(rect._class).toBe('rect')
     }
@@ -98,7 +112,12 @@ describe('createIterableObjectCache', () => {
   test('objects can be ignored by id', () => {
     const cache = createEmptyObjectCache()
     cache[FileFormat.ClassValue.Swatch] = [createDummySwatch('1'), createDummySwatch('2')]
-    const iterableCache = createIterableObjectCache(cache, { cancelled: false }, ['2'])
+    const iterableCache = createIterableObjectCache(
+      cache,
+      { cancelled: false },
+      { timedOut: false },
+      ['2'],
+    )
     const result = [...iterableCache.swatch]
     expect(result).toHaveLength(1)
     expect(result[0]).toHaveProperty('do_objectID', '1')
@@ -194,12 +213,12 @@ describe('getObjectParents', () => {
       }),
       'foo',
     )
-    const style = processedFile.file.contents.document.pages[0].style
+    const style = processedFile.original.contents.document.pages[0].style
     const parents = utils.getObjectParents(style!)
-    expect(parents[0]).toBe(processedFile.file.contents)
-    expect(parents[1]).toBe(processedFile.file.contents.document)
-    expect(parents[2]).toBe(processedFile.file.contents.document.pages)
-    expect(parents[3]).toBe(processedFile.file.contents.document.pages[0])
+    expect(parents[0]).toBe(processedFile.original.contents)
+    expect(parents[1]).toBe(processedFile.original.contents.document)
+    expect(parents[2]).toBe(processedFile.original.contents.document.pages)
+    expect(parents[3]).toBe(processedFile.original.contents.document.pages[0])
   })
 })
 
@@ -214,15 +233,15 @@ describe('evalPointer', () => {
       'foo',
     )
     const page = utils.evalPointer('/document/pages/0')
-    expect(page).toBe(processedFile.file.contents.document.pages[0])
+    expect(page).toBe(processedFile.original.contents.document.pages[0])
   })
 })
 
 describe('getObjectParent', () => {
   test('can resolve file object parents by json pointer', async (): Promise<void> => {
     const { utils, processedFile } = await createUtils()
-    const parent = utils.getObjectParent(processedFile.file.contents.document)
-    expect(parent).toBe(processedFile.file.contents)
+    const parent = utils.getObjectParent(processedFile.original.contents.document)
+    expect(parent).toBe(processedFile.original.contents)
   })
 })
 
@@ -249,8 +268,8 @@ describe('isObjectIgnored', () => {
       [],
       { pages: [], assistants: { foo: { rules: { bar: { objects: ['1'] } } } } },
     )
-    expect(utils.isObjectIgnoredForRule(swatch1)).toBe(true)
-    expect(utils.isObjectIgnoredForRule(swatch2)).toBe(false)
+    expect(utils.isObjectIgnored(swatch1)).toBe(true)
+    expect(utils.isObjectIgnored(swatch2)).toBe(false)
   })
 })
 
@@ -266,17 +285,20 @@ describe('foreignObjects', () => {
 describe('report', () => {
   test('can report violations', async (): Promise<void> => {
     const { utils, violations } = await createUtils()
-    utils.report(
-      [...utils.objects.page].map((page) => ({ message: "Something isn't right", object: page })),
-    )
+    utils.report("Something isn't right", ...utils.objects.page)
     expect(violations).toHaveLength(1)
     expect(violations[0]).toMatchInlineSnapshot(`
       Object {
         "assistantName": "dummy-assistant",
         "message": "Something isn't right",
-        "objectId": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
-        "objectName": "Page 1",
-        "pointer": "/document/pages/0",
+        "objects": Array [
+          Object {
+            "class": "page",
+            "id": "9AD22B94-A05B-4F49-8EDD-A38D62BD6181",
+            "name": "Page 1",
+            "pointer": "/document/pages/0",
+          },
+        ],
         "ruleName": "foo",
         "severity": 3,
       }
