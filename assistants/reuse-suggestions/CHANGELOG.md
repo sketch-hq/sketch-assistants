@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 6.0.0-rc.3
+
+### Patch Changes
+
+- da8e34c: Add `public` keyword to package.json.
+
 ## 6.0.0-rc.1
 
 ### Major Changes
