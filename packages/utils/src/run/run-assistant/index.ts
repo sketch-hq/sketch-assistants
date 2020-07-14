@@ -1,15 +1,18 @@
 import pMap from 'p-map'
+import pTimeout, { TimeoutError } from 'p-timeout'
 import {
   AssistantDefinition,
   RuleContext,
   ProcessedSketchFile,
   AssistantEnv,
   Violation,
-  RunOperation,
   GetImageMetadata,
   AssistantSuccessResult,
   ViolationSeverity,
   IgnoreConfig,
+  CancelToken,
+  TimeoutToken,
+  RuleError,
 } from '@sketch-hq/sketch-assistant-types'
 
 import { createRuleUtilsCreator } from '../../rule-utils'
@@ -17,21 +20,43 @@ import { isRuleActive, getRuleConfig, getRuleTitle } from '../../assistant-confi
 import { isRuleFullIgnored } from '../ignore'
 
 /**
- * Given a set of violations, determine if they represent a "pass" or a "fail".
- * A "fail" means severe error-level violations are present, whereas a "pass"
- * means only info or warn-level violations are present.
+ * Given a set of violations and rule errors, determine the grade. A "fail"
+ * means severe error-level violations are present, whereas a "pass"
+ * means only info or warn-level violations are present. An "unknown" grade
+ * means an indeterminate result - for example, if one or more rules timed-out
+ * then we can't give a definitive grade.
  */
-const getPassed = (violations: Violation[]): boolean =>
-  !!violations.find((violation): boolean => violation.severity > ViolationSeverity.warn)
-    ? false
-    : true
+const getGrade = (
+  violations: Violation[],
+  ruleErrors: RuleError[],
+): 'pass' | 'fail' | 'unknown' => {
+  const hasTimedOutRules = !!ruleErrors.find((ruleError) => ruleError.code === 'timeout')
+  if (hasTimedOutRules) return 'unknown'
+  const hasErrorLevelViolations = !!violations.find(
+    (violation): boolean => violation.severity === ViolationSeverity.error,
+  )
+  return hasErrorLevelViolations ? 'fail' : 'pass'
+}
 
+/**
+ * Rule invocation errors are errors thrown by rule functions while they are
+ * executing. Rule errors could be thrown by the Assistant architecture code,
+ * or by mistakes in 3rd party rules. In either case, they are caught in the
+ * runAssistant function and collated into plain RuleError objects to be
+ * incorporated into the overall result.
+ */
 class RuleInvocationError extends Error {
   public cause: Error
   public assistantName: string
   public ruleName: string
+  public code: 'error' | 'timeout'
 
-  public constructor(cause: Error, assistantName: string, ruleName: string) {
+  public constructor(
+    cause: Error,
+    assistantName: string,
+    ruleName: string,
+    code: 'error' | 'timeout',
+  ) {
     super(
       `Error thrown during invocation of rule "${ruleName}" on assistant "${assistantName}": ${cause.message}`,
     )
@@ -39,10 +64,10 @@ class RuleInvocationError extends Error {
     this.assistantName = assistantName
     this.ruleName = ruleName
     this.name = 'RuleInvocationError'
+    this.code = code
     Object.setPrototypeOf(this, new.target.prototype)
   }
 }
-
 /**
  * Run a single assistant, catching and returning any errors encountered during rule invocation.
  */
@@ -50,9 +75,10 @@ const runAssistant = async (
   file: ProcessedSketchFile,
   assistant: AssistantDefinition,
   env: AssistantEnv,
-  operation: RunOperation,
+  cancelToken: CancelToken,
   getImageMetadata: GetImageMetadata,
   ignoreConfig: IgnoreConfig,
+  ruleTimeout: number,
 ): Promise<AssistantSuccessResult> => {
   const violations: Violation[] = []
 
@@ -60,7 +86,7 @@ const runAssistant = async (
     file,
     violations,
     assistant,
-    operation,
+    cancelToken,
     getImageMetadata,
     ignoreConfig,
   )
@@ -69,7 +95,7 @@ const runAssistant = async (
     env,
     file,
     assistant,
-    operation,
+    cancelToken,
     getImageMetadata,
   }
 
@@ -123,38 +149,55 @@ const runAssistant = async (
     await pMap(
       rulesToRun,
       async (rule): Promise<void> => {
-        if (operation.cancelled) return
+        if (cancelToken.cancelled) return
+        const timeoutToken: TimeoutToken = { timedOut: false }
         const { rule: ruleFunction, name: ruleName } = rule
         const ruleContext: RuleContext = {
           ...context,
-          utils: createUtils(ruleName),
+          utils: createUtils(ruleName, timeoutToken),
         }
         const start = Date.now()
         try {
-          await ruleFunction(ruleContext)
+          const rulePromise = ruleFunction(ruleContext)
+          await (ruleTimeout === Infinity
+            ? rulePromise
+            : pTimeout(
+                rulePromise,
+                ruleTimeout,
+                `Rule timed-out after ${ruleTimeout} milliseconds`,
+              ))
         } catch (error) {
-          throw new RuleInvocationError(error, assistant.name, ruleName)
+          const timedOut = error instanceof TimeoutError
+          timeoutToken.timedOut = timedOut
+          throw new RuleInvocationError(
+            error,
+            assistant.name,
+            ruleName,
+            timedOut ? 'timeout' : 'error',
+          )
         }
         profile.ruleTimings[ruleName] = Date.now() - start
       },
       { concurrency: 1, stopOnError: false },
     )
-  } catch (error) {
+  } catch (errors) {
+    const ruleErrors = Array.from<RuleInvocationError>(errors).map((error) => ({
+      assistantName: error.assistantName,
+      ruleName: error.ruleName,
+      message: error.cause.message,
+      stack: error.cause.stack || '',
+      code: error.code,
+    }))
     return {
-      passed: getPassed(violations),
+      grade: getGrade(violations, ruleErrors),
       violations,
-      ruleErrors: Array.from<RuleInvocationError>(error).map((error) => ({
-        assistantName: error.assistantName,
-        ruleName: error.ruleName,
-        message: error.cause.message,
-        stack: error.cause.stack || '',
-      })),
+      ruleErrors,
       metadata,
       profile,
     }
   }
   return {
-    passed: getPassed(violations),
+    grade: getGrade(violations, []),
     violations,
     ruleErrors: [],
     metadata,
@@ -162,4 +205,4 @@ const runAssistant = async (
   }
 }
 
-export { runAssistant, RuleInvocationError }
+export { runAssistant }

@@ -15,8 +15,8 @@ msgstr ""
 "X-Crowdin-Project: sketch-assistants\n"
 "X-Crowdin-Project-ID: 406142\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /main/assistants/core/src/locale/en/messages.po\n"
-"X-Crowdin-File-ID: 44\n"
+"X-Crowdin-File: /rc/assistants/core/src/locale/en/messages.po\n"
+"X-Crowdin-File-ID: 72\n"
 
 #: src/rule-helpers.ts:115
 msgid "Layer name matches one of the forbidden patterns"

@@ -1,10 +1,5 @@
 import { t } from '@lingui/macro'
-import {
-  RuleContext,
-  RuleFunction,
-  ReportItem,
-  SketchFileObject,
-} from '@sketch-hq/sketch-assistant-types'
+import { RuleContext, RuleFunction, SketchFileObject } from '@sketch-hq/sketch-assistant-types'
 
 import { CreateRuleFunction } from '../..'
 
@@ -131,14 +126,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
         invalid.push(artboard)
       }
     }
-    utils.report(
-      invalid.map(
-        (object): ReportItem => ({
-          message: i18n._(t`Unexpected Artboard layout settings`),
-          object,
-        }),
-      ),
-    )
+    invalid.forEach((object) => {
+      utils.report(i18n._(t`Unexpected Artboard layout settings`), object)
+    })
   }
 
   return {

@@ -50,14 +50,8 @@ export const createRule: CreateRuleFunction = (i18n) => {
       // to see if they're valid
       const xValid = increments.includes(Math.abs(x % 1).toFixed(2))
       const yValid = increments.includes(Math.abs(y % 1).toFixed(2))
-      // console.log(utils.getObjectPointer(layer))
-      // console.log(rotatedParents.length, layer.frame, 'invalid', !xValid || !yValid)
       if (!xValid || !yValid) {
-        // console.log('report!')
-        utils.report({
-          object: layer,
-          message: i18n._(t`Unexpected sub-pixel positioning (${x}, ${y})`),
-        })
+        utils.report(i18n._(t`Unexpected sub-pixel positioning (${x}, ${y})`), layer)
       }
     }
   }

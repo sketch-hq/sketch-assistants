@@ -19,12 +19,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
       return noInstances && noOverrides
     })
 
-    utils.report(
-      invalid.map((object) => ({
-        message: i18n._(t`This symbol is unused`),
-        object,
-      })),
-    )
+    invalid.forEach((object) => {
+      utils.report(i18n._(t`This symbol is unused`), object)
+    })
   }
 
   return {

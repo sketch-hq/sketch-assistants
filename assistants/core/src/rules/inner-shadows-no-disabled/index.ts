@@ -18,19 +18,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (typeof layer.sharedStyleID === 'string') continue // Ignore layers using a shared style
 
       if (styleHasDisabledInnerShadows(layer.style)) {
-        utils.report({
-          object: layer,
-          message: i18n._(t`There's a disabled inner shadow in this Style`),
-        })
+        utils.report(i18n._(t`There's a disabled inner shadow in this Style`), layer)
       }
     }
 
     for (const sharedStyle of utils.objects.sharedStyle) {
       if (styleHasDisabledInnerShadows(sharedStyle.value)) {
-        utils.report({
-          object: sharedStyle,
-          message: i18n._(t`There's a disabled inner shadow in this Style`),
-        })
+        utils.report(i18n._(t`There's a disabled inner shadow in this Style`), sharedStyle)
       }
     }
   }

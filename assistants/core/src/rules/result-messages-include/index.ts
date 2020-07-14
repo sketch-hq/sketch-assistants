@@ -14,9 +14,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i]
       if (typeof message === 'string') {
-        utils.report({
-          message: i18n._(t`You have an unread message "${message}"`),
-        })
+        utils.report(message)
       }
     }
   }
@@ -24,7 +22,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'result-messages-include',
-    title: i18n._(t`Checklist messages`),
+    title: i18n._(t`Messages`),
     description: i18n._(t`Define a list of messages to check for`),
     getOptions(helpers) {
       return [

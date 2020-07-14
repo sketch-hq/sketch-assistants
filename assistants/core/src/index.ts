@@ -13,6 +13,7 @@ import * as bordersNoDisabled from './rules/borders-no-disabled'
 import * as debugAllOptions from './rules/debug-all-options'
 import * as debugI18n from './rules/debug-i18n'
 import * as debugThrowsError from './rules/debug-throws-error'
+import * as debugTimeout from './rules/debug-timeout'
 import * as exportedLayersNormalBlendMode from './rules/exported-layers-normal-blend-mode'
 import * as fillsNoDisabled from './rules/fills-no-disabled'
 import * as groupsMaxLayers from './rules/groups-max-layers'
@@ -75,6 +76,7 @@ const assistant: AssistantPackage = async (env) => {
       debugAllOptions,
       debugI18n,
       debugThrowsError,
+      debugTimeout,
       exportedLayersNormalBlendMode,
       fillsNoDisabled,
       groupsMaxLayers,

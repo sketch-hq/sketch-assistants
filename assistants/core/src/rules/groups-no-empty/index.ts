@@ -8,10 +8,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { utils } = context
     for (const group of utils.objects.group) {
       if (group.layers.length === 0) {
-        utils.report({
-          object: group,
-          message: i18n._(t`This group is empty`),
-        })
+        utils.report(i18n._(t`This group is empty`), group)
       }
     }
   }
