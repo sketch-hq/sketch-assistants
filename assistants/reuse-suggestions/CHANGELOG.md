@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 6.0.1
+
+### Patch Changes
+
+- 49cb0b9: Update Assistant metadata and readmes to play nicely when featured on sketch.com.
+
 ## 6.0.0
 
 ### Major Changes
