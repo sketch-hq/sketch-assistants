@@ -17,7 +17,7 @@ to add to your Sketch document.
 > |
 > [Experimental](https://add-sketch-assistant.now.sh/api/main?variant=experimental&pkg=@sketch-hq/sketch-naming-conventions-assistant)
 > |
-> [XCode](https://add-sketch-assistant.now.sh/api/main?variant=xcode&pkg=@sketch-hq/sketch-naming-conventions-assistant)
+> [Xcode](https://add-sketch-assistant.now.sh/api/main?variant=xcode&pkg=@sketch-hq/sketch-naming-conventions-assistant)
 
 ## Rules
 
