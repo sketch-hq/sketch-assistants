@@ -12,6 +12,10 @@
     "description": "Notices when similar styles and groups could be abstracted into shared styles and symbols respectively",
     "icon": "https://user-images.githubusercontent.com/1078571/81808051-0c37ee80-9517-11ea-9bf2-86fc3cf7edcb.png"
   },
+  "author": {
+    "name": "Sketch",
+    "url": "https://www.sketch.com"
+  },
   "keywords": [
     "sketch",
     "sketch files",
