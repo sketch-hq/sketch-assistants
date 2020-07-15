@@ -18,7 +18,7 @@ to add to your Sketch document.
 > |
 > [Experimental](https://add-sketch-assistant.now.sh/api/main?variant=experimental&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
 > |
-> [XCode](https://add-sketch-assistant.now.sh/api/main?variant=xcode&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
+> [Xcode](https://add-sketch-assistant.now.sh/api/main?variant=xcode&pkg=@sketch-hq/sketch-reuse-suggestions-assistant)
 
 ## Rules
 
