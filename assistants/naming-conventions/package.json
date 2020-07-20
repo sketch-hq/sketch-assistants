@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-naming-conventions-assistant",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -11,6 +11,10 @@
     "title": "Naming Conventions",
     "description": "Naming conventions used by the Sketch design team",
     "icon": "https://user-images.githubusercontent.com/1078571/81808046-0a6e2b00-9517-11ea-9b6c-1c6fa9a377ba.png"
+  },
+  "author": {
+    "name": "Sketch",
+    "url": "https://www.sketch.com"
   },
   "keywords": [
     "sketch",

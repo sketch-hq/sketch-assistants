@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-reuse-suggestions-assistant",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -11,6 +11,10 @@
     "title": "Reuse Suggestions",
     "description": "Notices when similar styles and groups could be abstracted into shared styles and symbols respectively",
     "icon": "https://user-images.githubusercontent.com/1078571/81808051-0c37ee80-9517-11ea-9bf2-86fc3cf7edcb.png"
+  },
+  "author": {
+    "name": "Sketch",
+    "url": "https://www.sketch.com"
   },
   "keywords": [
     "sketch",
