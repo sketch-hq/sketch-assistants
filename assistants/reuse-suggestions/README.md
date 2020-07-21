@@ -1,10 +1,10 @@
 ## Rules
 
-- [Prefer shared styles](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/main/src/rules/layer-styles-prefer-shared)
+- [Prefer shared styles](https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/core/src/rules/layer-styles-prefer-shared)
   - Maximum number of identical layer styles `2`
-- [Prefer shared text styles](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/main/src/rules/text-styles-prefer-shared)
+- [Prefer shared text styles](https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/core/src/rules/text-styles-prefer-shared)
   - Maximum number of identical text styles `2`
-- [Prefer symbols](https://github.com/sketch-hq/sketch-assistant-core-rules/tree/main/src/rules/groups-no-similar)
+- [Prefer symbols](https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/core/src/rules/groups-no-similar)
   - Maximum number of identical groups `2`
 
 👉 Click
