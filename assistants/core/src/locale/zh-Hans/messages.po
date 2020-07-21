@@ -340,8 +340,8 @@ msgid "{numLayers, plural, one {There is one layer in this group} other {There a
 msgstr "{numLayers, plural, one {编组中的一个图层} other {该编组中有#个图层}}"
 
 #: src/rules/groups-max-layers/index.ts:39
-msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
-msgstr "{maxLayers, plural, one {包含一个图层的编组} other {编组中应至少包含 # 个图层}}"
+msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
+msgstr ""
 
 #: src/rules/groups-max-layers/index.ts:45
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
@@ -793,4 +793,3 @@ msgstr "在相应图层上，移除雷同的字符样式并替换成一个单一
 #: src/rules/text-styles-prefer-shared/index.ts:68
 msgid "The maximum allowed number of identical text styles"
 msgstr "允许存在的雷同字符样式的最大数量"
-

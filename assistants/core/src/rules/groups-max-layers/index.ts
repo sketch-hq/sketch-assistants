@@ -42,7 +42,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         plural({
           value: maxLayers,
           one: 'Groups should only have one layer',
-          other: 'Groups should have less than # layers',
+          other: 'Groups should have no more than # layers',
         }),
       )
     },

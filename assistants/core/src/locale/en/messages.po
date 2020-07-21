@@ -335,8 +335,8 @@ msgid "{numLayers, plural, one {There is one layer in this group} other {There a
 msgstr "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
 
 #: src/rules/groups-max-layers/index.ts:39
-msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
-msgstr "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
+msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
+msgstr "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
 
 #: src/rules/groups-max-layers/index.ts:45
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
