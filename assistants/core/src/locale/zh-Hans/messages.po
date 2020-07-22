@@ -8,15 +8,15 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-13 13:10\n"
+"PO-Revision-Date: 2020-07-22 13:42\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: sketch-assistants\n"
 "X-Crowdin-Project-ID: 406142\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /rc/assistants/core/src/locale/en/messages.po\n"
-"X-Crowdin-File-ID: 72\n"
+"X-Crowdin-File: /main/assistants/core/src/locale/en/messages.po\n"
+"X-Crowdin-File-ID: 44\n"
 
 #: src/rule-helpers.ts:115
 msgid "Layer name matches one of the forbidden patterns"
@@ -340,8 +340,8 @@ msgid "{numLayers, plural, one {There is one layer in this group} other {There a
 msgstr "{numLayers, plural, one {编组中的一个图层} other {该编组中有#个图层}}"
 
 #: src/rules/groups-max-layers/index.ts:39
-msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
-msgstr "{maxLayers, plural, one {包含一个图层的编组} other {编组中应至少包含 # 个图层}}"
+msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
+msgstr ""
 
 #: src/rules/groups-max-layers/index.ts:45
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
