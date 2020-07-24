@@ -385,7 +385,8 @@ msgstr "不应存在多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:28
 msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
-msgstr "移除多余的编组，以避免文档组织性或可用性问题。\n"
+msgstr ""
+"移除多余的编组，以避免文档组织性或可用性问题。\n"
 "以下是只包含了一个图层且没有应用任何样式的编组。"
 
 #: src/rules/groups-no-similar/index.ts:38
@@ -479,42 +480,6 @@ msgstr "图层样式应与共享的样式保持一致"
 msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 msgstr "如果您所属的团队希望恪守共享样式的使用规范，建议您要么新建一个共享样式，要么直接使用已有的样式。"
 
-#: src/rules/layer-styles-prefer-library/index.ts:33
-msgid "Layer Styles must be set with the Shared Styles of a Library"
-msgstr "图层样式应使用组件库中共享样式来设置"
-
-#: src/rules/layer-styles-prefer-library/index.ts:39
-msgid "This layer should use a Shared Style from a Library"
-msgstr "该样式应设置为来自组件库的共享样式"
-
-#: src/rules/layer-styles-prefer-library/index.ts:47
-msgid "This uses the unauthorized Library \"{libraryName}\""
-msgstr "使用了未授权的组件库“{libraryName}”"
-
-#: src/rules/layer-styles-prefer-library/index.ts:54
-msgid "This Shared Style isn't in an authorized Library"
-msgstr "该共享样式不属于授权的组件库"
-
-#: src/rules/layer-styles-prefer-library/index.ts:65
-msgid "Shared Styles must come from a Library"
-msgstr "共享样式必须归属于一个组件库"
-
-#: src/rules/layer-styles-prefer-library/index.ts:66
-msgid "Shared Styles must come from the Libraries: {authorizedLibraries}"
-msgstr "共享样式必须归属于组件库： {authorizedLibraries}"
-
-#: src/rules/layer-styles-prefer-library/index.ts:68
-msgid "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
-msgstr "如果您希望该文档中的组件库可以被其他人使用，您需要将本地的共享图层样式重构到组件库中。"
-
-#: src/rules/layer-styles-prefer-library/index.ts:72
-msgid "Authorized Libraries"
-msgstr "已授权的组件库"
-
-#: src/rules/layer-styles-prefer-library/index.ts:73
-msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
-msgstr "他人可使用的组件库。如果有人所使用的组件库不在当前的列表中，他们会有看到报错信息。"
-
 #: src/rules/layer-styles-prefer-shared/index.ts:59
 msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
 msgstr "{maxIdentical, plural, one {期望文档中没有雷同的图层样式，实际发现{numIdentical}个雷同样式，建议直接使用同一个图层样式} other {期望文档中雷同的图层样式至多为#个，实际发现{numIdentical}个使用相同样式的实例，建议直接使用共享样式}}"
@@ -574,6 +539,72 @@ msgstr "缩放条件"
 #: src/rules/layers-subpixel-positioning/index.ts:74
 msgid "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
 msgstr "选择文档支持的缩放条件。允许值为 @1x， @2x 和 @3x，具体为全像素，0.5的增量，以及0.33的增量"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:41
+msgid "Symbol Style Override is using a Library Style from the library \"{libraryName}\". If using a Library Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:60
+msgid "Layer is using a Library Style from the library \"{libraryName}\". If using a Library Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:69
+msgid "Library Layer Styles must come from the Libraries {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:71
+msgid "When standardization is important teams may wish to enforce that Library Styles come from a list of authorized libraries."
+msgstr ""
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:75
+#: src/rules/library-text-styles-allowed-libraries/index.ts:65
+msgid "Authorized Libraries"
+msgstr "已授权的组件库"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:76
+#: src/rules/library-text-styles-allowed-libraries/index.ts:66
+msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
+msgstr "他人可使用的组件库。如果有人所使用的组件库不在当前的列表中，他们会有看到报错信息。"
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:33
+msgid "Symbol Override is using a Library Symbol from the library \"{libraryName}\". If using a Library Symbol it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:41
+msgid "Symbol is from the library \"{libraryName}\". If using a Library Symbol it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:51
+msgid "Library Symbols must come from the Libraries {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:53
+msgid "When standardization is important teams may wish to enforce that Library Symbols come from a list of authorized libraries."
+msgstr ""
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:57
+msgid "Authorized libraries"
+msgstr "已授权的组件库"
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:58
+msgid "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
+msgstr "可供使用的组件库。如果使用了不在列表的组件库，会出现错误提示。"
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:33
+msgid "Symbol Text Style Override is using a Library Text Style from the library \"{libraryName}\". If using a Library Text Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:50
+msgid "Layer is using a Library Text Style from the library \"{libraryName}\". If using a Library Text Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:59
+msgid "Library Text Styles must come from the Libraries {authorizedLibraries}"
+msgstr ""
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:61
+msgid "When standardization is important teams may wish to enforce that Library Text Styles come from a list of authorized libraries."
+msgstr ""
 
 #: src/rules/name-pattern-artboards/index.ts:8
 msgid "Artboard names should follow the conventions"
@@ -714,37 +745,6 @@ msgstr "所有控件都应在用"
 msgid "Some teams may consider unused symbols a document organization issue."
 msgstr "有的团队可能会将不在用的控件视为文档的组织性问题。"
 
-#: src/rules/symbols-prefer-library/index.ts:24
-msgid "This Layer should use a Symbol from a Library"
-msgstr "该图层应使用来自组件库的控件"
-
-#: src/rules/symbols-prefer-library/index.ts:29
-#: src/rules/text-styles-prefer-library/index.ts:33
-msgid "This uses the unauthorized Library \"{libName}\""
-msgstr "使用了未授权的组件库“{libName}”"
-
-#: src/rules/symbols-prefer-library/index.ts:40
-msgid "Symbols must come from a Library"
-msgstr "控件必须归属于一个组件库"
-
-#: src/rules/symbols-prefer-library/index.ts:41
-msgid "Symbols must come from the {authorizedLibraries} Libraries"
-msgstr "控件必须归属于组件库 {authorizedLibraries}"
-
-#: src/rules/symbols-prefer-library/index.ts:43
-msgid "If you want everyone to use Libraries in this document, local Symbols should be refactored into a Library."
-msgstr "如果您希望该文档中的组件库可以被其他人使用，您需要将本地的控件重构到组件库中。"
-
-#: src/rules/symbols-prefer-library/index.ts:47
-#: src/rules/text-styles-prefer-library/index.ts:55
-msgid "Authorized libraries"
-msgstr "已授权的组件库"
-
-#: src/rules/symbols-prefer-library/index.ts:48
-#: src/rules/text-styles-prefer-library/index.ts:56
-msgid "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
-msgstr "可供使用的组件库。如果使用了不在列表的组件库，会出现错误提示。"
-
 #: src/rules/text-styles-no-dirty/index.ts:27
 msgid "This text style is different from its shared style"
 msgstr "该字符样式与共享样式不同"
@@ -756,27 +756,6 @@ msgstr "字符样式应与共享的样式保持一致"
 #: src/rules/text-styles-no-dirty/index.ts:35
 msgid "If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles."
 msgstr "如果您所属的团队希望恪守共享字符样式的使用规范，建议您要么新建一个共享样式，要么直接使用已有的字符样式。"
-
-#: src/rules/text-styles-prefer-library/index.ts:23
-#: src/rules/text-styles-prefer-library/index.ts:28
-msgid "This Layer should use a Text Style from a Library"
-msgstr "该图层应使用来自组件库的字符样式"
-
-#: src/rules/text-styles-prefer-library/index.ts:37
-msgid "The Text Style is out of date with the Library"
-msgstr "组件库中的字符样式已过期"
-
-#: src/rules/text-styles-prefer-library/index.ts:48
-msgid "Text Styles must come from a Library"
-msgstr "字符样式必须归属于一个组件库"
-
-#: src/rules/text-styles-prefer-library/index.ts:49
-msgid "Text Styles must come from the {authorizedLibraries} Libraries"
-msgstr "字符样式必须归属于组件库 {authorizedLibraries}"
-
-#: src/rules/text-styles-prefer-library/index.ts:51
-msgid "If you want everyone to use Libraries in this document, local Shared Text Styles should be refactored into a Library."
-msgstr "如果您希望该文档中的组件库可以被其他人使用，您需要将本地的字符样式重构到组件库中。"
 
 #: src/rules/text-styles-prefer-shared/index.ts:42
 msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
