@@ -27,8 +27,10 @@ import * as layersNoHidden from './rules/layers-no-hidden'
 import * as layersNoLoose from './rules/layers-no-loose'
 import * as layersSubpixelPositioning from './rules/layers-subpixel-positioning'
 import * as layerStylesNoDirty from './rules/layer-styles-no-dirty'
-import * as layerStylesPreferLibrary from './rules/layer-styles-prefer-library'
 import * as layerStylesPreferShared from './rules/layer-styles-prefer-shared'
+import * as libraryLayerStylesAllowedLibraries from './rules/library-layer-styles-allowed-libraries'
+import * as librarySymbolsAllowedLibraries from './rules/library-symbols-allowed-libraries'
+import * as libraryTextStylesAllowedLibraries from './rules/library-text-styles-allowed-libraries'
 import * as namePatternArtboards from './rules/name-pattern-artboards'
 import * as namePatternGroups from './rules/name-pattern-groups'
 import * as namePatternImages from './rules/name-pattern-images'
@@ -41,9 +43,7 @@ import * as shadowsNoDisabled from './rules/shadows-no-disabled'
 import * as sharedStylesNoUnused from './rules/shared-styles-no-unused'
 import * as symbolsNoDetached from './rules/symbols-no-detached'
 import * as symbolsNoUnused from './rules/symbols-no-unused'
-import * as symbolsPreferLibrary from './rules/symbols-prefer-library'
 import * as textStylesNoDirty from './rules/text-styles-no-dirty'
-import * as textStylesPreferLibrary from './rules/text-styles-prefer-library'
 import * as textStylesPreferShared from './rules/text-styles-prefer-shared'
 
 import enMessages from './locale/en/messages'
@@ -91,7 +91,9 @@ const assistant: AssistantPackage = async (env) => {
       layersSubpixelPositioning,
       layerStylesNoDirty,
       layerStylesPreferShared,
-      layerStylesPreferLibrary,
+      libraryLayerStylesAllowedLibraries,
+      librarySymbolsAllowedLibraries,
+      libraryTextStylesAllowedLibraries,
       namePatternArtboards,
       namePatternGroups,
       namePatternImages,
@@ -104,9 +106,7 @@ const assistant: AssistantPackage = async (env) => {
       sharedStylesNoUnused,
       symbolsNoDetached,
       symbolsNoUnused,
-      symbolsPreferLibrary,
       textStylesNoDirty,
-      textStylesPreferLibrary,
       textStylesPreferShared,
     ].map((mod) => {
       const rule = mod.createRule(i18n)

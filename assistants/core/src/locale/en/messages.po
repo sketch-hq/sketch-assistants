@@ -335,8 +335,8 @@ msgid "{numLayers, plural, one {There is one layer in this group} other {There a
 msgstr "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
 
 #: src/rules/groups-max-layers/index.ts:39
-msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
-msgstr "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have less than # layers}}"
+msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
+msgstr "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
 
 #: src/rules/groups-max-layers/index.ts:45
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
@@ -473,42 +473,6 @@ msgstr "Layers Styles should be the same as their Shared Style"
 msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 msgstr "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 
-#: src/rules/layer-styles-prefer-library/index.ts:33
-msgid "Layer Styles must be set with the Shared Styles of a Library"
-msgstr "Layer Styles must be set with the Shared Styles of a Library"
-
-#: src/rules/layer-styles-prefer-library/index.ts:39
-msgid "This layer should use a Shared Style from a Library"
-msgstr "This layer should use a Shared Style from a Library"
-
-#: src/rules/layer-styles-prefer-library/index.ts:47
-msgid "This uses the unauthorized Library \"{libraryName}\""
-msgstr "This uses the unauthorized Library \"{libraryName}\""
-
-#: src/rules/layer-styles-prefer-library/index.ts:54
-msgid "This Shared Style isn't in an authorized Library"
-msgstr "This Shared Style isn't in an authorized Library"
-
-#: src/rules/layer-styles-prefer-library/index.ts:65
-msgid "Shared Styles must come from a Library"
-msgstr "Shared Styles must come from a Library"
-
-#: src/rules/layer-styles-prefer-library/index.ts:66
-msgid "Shared Styles must come from the Libraries: {authorizedLibraries}"
-msgstr "Shared Styles must come from the Libraries: {authorizedLibraries}"
-
-#: src/rules/layer-styles-prefer-library/index.ts:68
-msgid "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
-msgstr "If you want everyone to use Libraries in this document, local shared Layer Styles should be refactored into a Library."
-
-#: src/rules/layer-styles-prefer-library/index.ts:72
-msgid "Authorized Libraries"
-msgstr "Authorized Libraries"
-
-#: src/rules/layer-styles-prefer-library/index.ts:73
-msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
-msgstr "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
-
 #: src/rules/layer-styles-prefer-shared/index.ts:59
 msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
 msgstr "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
@@ -568,6 +532,72 @@ msgstr "Scale Factors"
 #: src/rules/layers-subpixel-positioning/index.ts:74
 msgid "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
 msgstr "Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:41
+msgid "Symbol Style Override is using a Library Style from the library \"{libraryName}\". If using a Library Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr "Symbol Style Override is using a Library Style from the library \"{libraryName}\". If using a Library Style it must come from one of the authorized libraries: {authorizedLibraries}"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:60
+msgid "Layer is using a Library Style from the library \"{libraryName}\". If using a Library Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr "Layer is using a Library Style from the library \"{libraryName}\". If using a Library Style it must come from one of the authorized libraries: {authorizedLibraries}"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:69
+msgid "Library Layer Styles must come from the Libraries {authorizedLibraries}"
+msgstr "Library Layer Styles must come from the Libraries {authorizedLibraries}"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:71
+msgid "When standardization is important teams may wish to enforce that Library Styles come from a list of authorized libraries."
+msgstr "When standardization is important teams may wish to enforce that Library Styles come from a list of authorized libraries."
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:75
+#: src/rules/library-text-styles-allowed-libraries/index.ts:65
+msgid "Authorized Libraries"
+msgstr "Authorized Libraries"
+
+#: src/rules/library-layer-styles-allowed-libraries/index.ts:76
+#: src/rules/library-text-styles-allowed-libraries/index.ts:66
+msgid "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
+msgstr "Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error."
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:33
+msgid "Symbol Override is using a Library Symbol from the library \"{libraryName}\". If using a Library Symbol it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr "Symbol Override is using a Library Symbol from the library \"{libraryName}\". If using a Library Symbol it must come from one of the authorized libraries: {authorizedLibraries}"
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:41
+msgid "Symbol is from the library \"{libraryName}\". If using a Library Symbol it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr "Symbol is from the library \"{libraryName}\". If using a Library Symbol it must come from one of the authorized libraries: {authorizedLibraries}"
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:51
+msgid "Library Symbols must come from the Libraries {authorizedLibraries}"
+msgstr "Library Symbols must come from the Libraries {authorizedLibraries}"
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:53
+msgid "When standardization is important teams may wish to enforce that Library Symbols come from a list of authorized libraries."
+msgstr "When standardization is important teams may wish to enforce that Library Symbols come from a list of authorized libraries."
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:57
+msgid "Authorized libraries"
+msgstr "Authorized libraries"
+
+#: src/rules/library-symbols-allowed-libraries/index.ts:58
+msgid "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
+msgstr "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:33
+msgid "Symbol Text Style Override is using a Library Text Style from the library \"{libraryName}\". If using a Library Text Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr "Symbol Text Style Override is using a Library Text Style from the library \"{libraryName}\". If using a Library Text Style it must come from one of the authorized libraries: {authorizedLibraries}"
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:50
+msgid "Layer is using a Library Text Style from the library \"{libraryName}\". If using a Library Text Style it must come from one of the authorized libraries: {authorizedLibraries}"
+msgstr "Layer is using a Library Text Style from the library \"{libraryName}\". If using a Library Text Style it must come from one of the authorized libraries: {authorizedLibraries}"
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:59
+msgid "Library Text Styles must come from the Libraries {authorizedLibraries}"
+msgstr "Library Text Styles must come from the Libraries {authorizedLibraries}"
+
+#: src/rules/library-text-styles-allowed-libraries/index.ts:61
+msgid "When standardization is important teams may wish to enforce that Library Text Styles come from a list of authorized libraries."
+msgstr "When standardization is important teams may wish to enforce that Library Text Styles come from a list of authorized libraries."
 
 #: src/rules/name-pattern-artboards/index.ts:8
 msgid "Artboard names should follow the conventions"
@@ -708,37 +738,6 @@ msgstr "All symbols should be in-use"
 msgid "Some teams may consider unused symbols a document organization issue."
 msgstr "Some teams may consider unused symbols a document organization issue."
 
-#: src/rules/symbols-prefer-library/index.ts:24
-msgid "This Layer should use a Symbol from a Library"
-msgstr "This Layer should use a Symbol from a Library"
-
-#: src/rules/symbols-prefer-library/index.ts:29
-#: src/rules/text-styles-prefer-library/index.ts:33
-msgid "This uses the unauthorized Library \"{libName}\""
-msgstr "This uses the unauthorized Library \"{libName}\""
-
-#: src/rules/symbols-prefer-library/index.ts:40
-msgid "Symbols must come from a Library"
-msgstr "Symbols must come from a Library"
-
-#: src/rules/symbols-prefer-library/index.ts:41
-msgid "Symbols must come from the {authorizedLibraries} Libraries"
-msgstr "Symbols must come from the {authorizedLibraries} Libraries"
-
-#: src/rules/symbols-prefer-library/index.ts:43
-msgid "If you want everyone to use Libraries in this document, local Symbols should be refactored into a Library."
-msgstr "If you want everyone to use Libraries in this document, local Symbols should be refactored into a Library."
-
-#: src/rules/symbols-prefer-library/index.ts:47
-#: src/rules/text-styles-prefer-library/index.ts:55
-msgid "Authorized libraries"
-msgstr "Authorized libraries"
-
-#: src/rules/symbols-prefer-library/index.ts:48
-#: src/rules/text-styles-prefer-library/index.ts:56
-msgid "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
-msgstr "Libraries that are valid to use. An error is shown if a library that does not belong to this list is used."
-
 #: src/rules/text-styles-no-dirty/index.ts:27
 msgid "This text style is different from its shared style"
 msgstr "This text style is different from its shared style"
@@ -750,27 +749,6 @@ msgstr "Text Styles should be the same as their Shared Styles"
 #: src/rules/text-styles-no-dirty/index.ts:35
 msgid "If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles."
 msgstr "If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles."
-
-#: src/rules/text-styles-prefer-library/index.ts:23
-#: src/rules/text-styles-prefer-library/index.ts:28
-msgid "This Layer should use a Text Style from a Library"
-msgstr "This Layer should use a Text Style from a Library"
-
-#: src/rules/text-styles-prefer-library/index.ts:37
-msgid "The Text Style is out of date with the Library"
-msgstr "The Text Style is out of date with the Library"
-
-#: src/rules/text-styles-prefer-library/index.ts:48
-msgid "Text Styles must come from a Library"
-msgstr "Text Styles must come from a Library"
-
-#: src/rules/text-styles-prefer-library/index.ts:49
-msgid "Text Styles must come from the {authorizedLibraries} Libraries"
-msgstr "Text Styles must come from the {authorizedLibraries} Libraries"
-
-#: src/rules/text-styles-prefer-library/index.ts:51
-msgid "If you want everyone to use Libraries in this document, local Shared Text Styles should be refactored into a Library."
-msgstr "If you want everyone to use Libraries in this document, local Shared Text Styles should be refactored into a Library."
 
 #: src/rules/text-styles-prefer-shared/index.ts:42
 msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"

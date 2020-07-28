@@ -34,7 +34,7 @@ describe('debug-i18n', () => {
     expect(violations[0].message).toMatchInlineSnapshot(`"你好世界"`)
   })
 
-  test('unsupported locale fallsback to en', async (): Promise<void> => {
+  test('unsupported locale falls-back to en', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,

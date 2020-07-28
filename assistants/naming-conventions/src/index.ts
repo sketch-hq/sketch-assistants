@@ -19,7 +19,7 @@ const assistant: AssistantPackage = [
             active: true,
             forbidden: [],
             allowed: ['^(\\d+\\.?)+ .*'],
-            ruleTitle: 'Artboard names should start with numbers',
+            ruleTitle: 'Artboard names should start with numbers followed by a space',
           },
           '@sketch-hq/sketch-core-assistant/name-pattern-groups': {
             active: true,
