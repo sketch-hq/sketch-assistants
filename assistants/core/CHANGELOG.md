@@ -1,5 +1,16 @@
 # @sketch-hq/sketch-core-assistant
 
+## 6.1.0
+
+### Minor Changes
+
+- e9e06af: Reworked all three `*-prefer-library` rules to `*-allowed-libraries` rules.
+
+### Patch Changes
+
+- 0ea0381: Improve wording of groups-max-layers rule title.
+- e2264d2: Add Chinese localisation for recently added rule strings.
+
 ## 6.0.0
 
 ### Major Changes

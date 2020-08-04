@@ -1,5 +1,15 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 6.1.0
+
+### Patch Changes
+
+- d39da72: Added keywords for listing on Sketch site
+- Updated dependencies [0ea0381]
+- Updated dependencies [e9e06af]
+- Updated dependencies [e2264d2]
+  - @sketch-hq/sketch-core-assistant@6.1.0
+
 ## 6.0.1
 
 ### Patch Changes
