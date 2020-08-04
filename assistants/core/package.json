@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-core-assistant",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "license": "MIT",
   "repository": "github:sketch-hq/sketch-assistants",
   "homepage": "https://github.com/sketch-hq/sketch-assistants/tree/main/assistants/core",
