@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 6.1.1
+
+### Patch Changes
+
+- fe68137: Update readmes for better display on the Sketch Assistant directory
+
 ## 6.1.0
 
 ### Patch Changes
