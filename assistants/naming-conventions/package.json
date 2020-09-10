@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-naming-conventions-assistant",
-  "version": "6.0.1",
+  "version": "6.1.1",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -17,6 +17,7 @@
     "url": "https://www.sketch.com"
   },
   "keywords": [
+    "guidelines",
     "sketch",
     "sketch files",
     "sketch assistant",
@@ -27,7 +28,7 @@
   "files": ["dist"],
   "dependencies": {
     "@sketch-hq/sketch-assistant-types": "6.0.0",
-    "@sketch-hq/sketch-core-assistant": "6.0.0"
+    "@sketch-hq/sketch-core-assistant": "6.1.0"
   },
   "devDependencies": {
     "@sketch-hq/sketch-assistant-utils": "6.0.0"
