@@ -202,6 +202,29 @@ msgstr "样式中不应包含禁用的边框"
 msgid "Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help."
 msgstr "基于您所创建的内容，禁用的属性可能会导致不稳定。直接移除这些属性可能会比较好。"
 
+#: src/rules/colors-prefer-variable/index.ts:107
+msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
+msgstr ""
+
+#: src/rules/colors-prefer-variable/index.ts:121
+msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
+msgstr ""
+
+#: src/rules/colors-prefer-variable/index.ts:128
+msgid "You could simplify things by using color variables instead."
+msgstr ""
+
+#: src/rules/colors-prefer-variable/index.ts:132
+#: src/rules/groups-no-similar/index.ts:60
+#: src/rules/layer-styles-prefer-shared/index.ts:84
+#: src/rules/text-styles-prefer-shared/index.ts:67
+msgid "Max Identical"
+msgstr "最大相似度"
+
+#: src/rules/colors-prefer-variable/index.ts:133
+msgid "The maximum allowed number of identical colors"
+msgstr ""
+
 #: src/rules/debug-all-options/index.ts:15
 msgid "Debug all options"
 msgstr "调试所有选项"
@@ -400,12 +423,6 @@ msgstr "{maxIdentical, plural, one {相似的编组应设为控件} other {超�
 #: src/rules/groups-no-similar/index.ts:56
 msgid "Don't allow groups that are too similar. Consider using a Symbol instead."
 msgstr "尽量避免相似性太高的编组，做成控件可能更合适。"
-
-#: src/rules/groups-no-similar/index.ts:60
-#: src/rules/layer-styles-prefer-shared/index.ts:84
-#: src/rules/text-styles-prefer-shared/index.ts:67
-msgid "Max Identical"
-msgstr "最大相似度"
 
 #: src/rules/groups-no-similar/index.ts:61
 msgid "The maximum number of identical groups allowed in the document"

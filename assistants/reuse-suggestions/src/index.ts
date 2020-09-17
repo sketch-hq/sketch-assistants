@@ -21,6 +21,10 @@ const assistant: AssistantPackage = [
             active: true,
             maxIdentical: 2,
           },
+          '@sketch-hq/sketch-core-assistant/colors-prefer-variable': {
+            active: true,
+            maxIdentical: 2,
+          },
         },
       },
     }
