@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-22 03:12\n"
+"PO-Revision-Date: 2020-09-22 12:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -212,7 +212,7 @@ msgstr "{maxIdentical, plural, =0 {颜色应始终使用颜色变量} =1 {识别
 
 #: src/rules/colors-prefer-variable/index.ts:128
 msgid "You could simplify things by using color variables instead."
-msgstr ""
+msgstr "使用颜色变量能使您的工作变得更简单。"
 
 #: src/rules/colors-prefer-variable/index.ts:132
 #: src/rules/groups-no-similar/index.ts:60
@@ -223,7 +223,7 @@ msgstr "最大相似度"
 
 #: src/rules/colors-prefer-variable/index.ts:133
 msgid "The maximum allowed number of identical colors"
-msgstr ""
+msgstr "允许存在的雷同颜色的最大数量"
 
 #: src/rules/debug-all-options/index.ts:15
 msgid "Debug all options"
