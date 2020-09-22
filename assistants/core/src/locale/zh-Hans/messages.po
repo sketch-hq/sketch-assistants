@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-18 15:41\n"
+"PO-Revision-Date: 2020-09-22 03:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -204,11 +204,11 @@ msgstr "基于您所创建的内容，禁用的属性可能会导致不稳定。
 
 #: src/rules/colors-prefer-variable/index.ts:107
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
-msgstr ""
+msgstr "{maxIdentical, plural, =1 {颜色 \"{hex}\" 应只出现一次，但实际发现了 {count} 个用例。考虑使用颜色变量} other {颜色 \"{hex}\"出现不应超过 # 次，但实际发现了 {count} 个用例。考虑使用颜色变量}}"
 
 #: src/rules/colors-prefer-variable/index.ts:121
 msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
-msgstr ""
+msgstr "{maxIdentical, plural, =0 {颜色应始终使用颜色变量} =1 {识别应使用颜色变量的颜色} other {超过 # 个相同的颜色应使用颜色变量}}"
 
 #: src/rules/colors-prefer-variable/index.ts:128
 msgid "You could simplify things by using color variables instead."
