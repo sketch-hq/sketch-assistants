@@ -197,26 +197,30 @@ msgstr "Styles should not have disabled borders"
 msgid "Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help."
 msgstr "Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help."
 
-#: src/rules/colors-prefer-variable/index.ts:107
+#: src/rules/colors-prefer-variable/index.ts:126
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 msgstr "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 
-#: src/rules/colors-prefer-variable/index.ts:121
+#: src/rules/colors-prefer-variable/index.ts:131
+msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
+msgstr "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
+
+#: src/rules/colors-prefer-variable/index.ts:146
 msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
 msgstr "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
 
-#: src/rules/colors-prefer-variable/index.ts:128
+#: src/rules/colors-prefer-variable/index.ts:153
 msgid "You could simplify things by using color variables instead."
 msgstr "You could simplify things by using color variables instead."
 
-#: src/rules/colors-prefer-variable/index.ts:132
+#: src/rules/colors-prefer-variable/index.ts:157
 #: src/rules/groups-no-similar/index.ts:60
 #: src/rules/layer-styles-prefer-shared/index.ts:84
 #: src/rules/text-styles-prefer-shared/index.ts:67
 msgid "Max Identical"
 msgstr "Max Identical"
 
-#: src/rules/colors-prefer-variable/index.ts:133
+#: src/rules/colors-prefer-variable/index.ts:158
 msgid "The maximum allowed number of identical colors"
 msgstr "The maximum allowed number of identical colors"
 

@@ -43,6 +43,20 @@ describe('colors-prefer-variable', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
+  test('ignores disabled background colors', async (): Promise<void> => {
+    const { violations, ruleErrors } = await testCoreRule(
+      __dirname,
+      './disabled-background.sketch',
+      'colors-prefer-variable',
+      {
+        active: true,
+        maxIdentical: 0,
+      },
+    )
+    expect(violations).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
+  })
+
   test('finds colors applied to slice backgrounds', async (): Promise<void> => {
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
@@ -124,6 +138,20 @@ describe('colors-prefer-variable', () => {
       },
     )
     expect(violations).toHaveLength(1)
+    expect(ruleErrors).toHaveLength(0)
+  })
+
+  test('ignores disabled styles', async (): Promise<void> => {
+    const { violations, ruleErrors } = await testCoreRule(
+      __dirname,
+      './disabled-style.sketch',
+      'colors-prefer-variable',
+      {
+        active: true,
+        maxIdentical: 0,
+      },
+    )
+    expect(violations).toHaveLength(0)
     expect(ruleErrors).toHaveLength(0)
   })
 })
