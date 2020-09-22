@@ -25,9 +25,9 @@ const colorUsesVariable = (color: FileFormat.Color | undefined): boolean =>
   typeof color !== 'undefined' && typeof color.swatchID === 'string'
 
 /**
- * Convert a RGBA Color object to a readable hex string.
+ * Convert a Color object to a RGBA hex string.
  */
-const colorToHex = (color: FileFormat.Color): string => {
+const getRGBA = (color: FileFormat.Color): string => {
   const r = Math.round(color.red * 255)
   const g = Math.round(color.green * 255)
   const b = Math.round(color.blue * 255)
@@ -35,6 +35,13 @@ const colorToHex = (color: FileFormat.Color): string => {
   const rgb = (b | (g << 8) | (r << 16) | (1 << 24)).toString(16).slice(1)
   const alpha = (a | (1 << 8)).toString(16).slice(1)
   return `${rgb}${alpha}`.toUpperCase()
+}
+
+/**
+ * Convert a Color object to a RGB hex string.
+ */
+const getRGB = (color: FileFormat.Color): string => {
+  return getRGBA(color).substring(0, 6)
 }
 
 export const createRule: CreateRuleFunction = (i18n) => {
@@ -51,14 +58,15 @@ export const createRule: CreateRuleFunction = (i18n) => {
     assertMaxIdentical(maxIdentical)
 
     // Setup results data structure. Maps unique Color object string hash (in
-    // this case, a hex string) to an array of file objects where it sees usage.
+    // this case, a hex string) to an array of file objects and color pairs
+    // where it sees usage.
 
-    const results: Map<string, SketchFileObject[]> = new Map()
+    const results: Map<string, [FileFormat.Color, SketchFileObject][]> = new Map()
 
     const addResult = (color: FileFormat.Color, object: SketchFileObject) => {
       if (colorUsesVariable(color)) return
-      const hex = colorToHex(color)
-      results.set(hex, [...(results.get(hex) || []), object])
+      const hash = getRGBA(color)
+      results.set(hash, [...(results.get(hash) || []), [color, object]])
     }
 
     // Handle colors applied to text layers and substrings
@@ -77,19 +85,19 @@ export const createRule: CreateRuleFunction = (i18n) => {
     // Handle Artboard background colors
 
     for (const artboard of utils.objects.artboard) {
-      addResult(artboard.backgroundColor, artboard)
+      if (artboard.hasBackgroundColor) addResult(artboard.backgroundColor, artboard)
     }
 
     // Handle Slice background colors
 
     for (const slice of utils.objects.slice) {
-      addResult(slice.backgroundColor, slice)
+      if (slice.hasBackgroundColor) addResult(slice.backgroundColor, slice)
     }
 
     // Handle Symbol Master background colors
 
     for (const symbolMaster of utils.objects.symbolMaster) {
-      addResult(symbolMaster.backgroundColor, symbolMaster)
+      if (symbolMaster.hasBackgroundColor) addResult(symbolMaster.backgroundColor, symbolMaster)
     }
 
     // Handle colors in layer styles
@@ -106,35 +114,50 @@ export const createRule: CreateRuleFunction = (i18n) => {
       ...utils.objects.triangle,
     ]) {
       for (const fill of layer.style?.fills || []) {
-        addResult(fill.color, layer)
+        if (fill.isEnabled) addResult(fill.color, layer)
       }
 
       for (const border of layer.style?.borders || []) {
-        addResult(border.color, layer)
+        if (border.isEnabled) addResult(border.color, layer)
       }
 
       for (const shadow of layer.style?.shadows || []) {
-        addResult(shadow.color, layer)
+        if (shadow.isEnabled) addResult(shadow.color, layer)
       }
 
       for (const innerShadow of layer.style?.innerShadows || []) {
-        addResult(innerShadow.color, layer)
+        if (innerShadow.isEnabled) addResult(innerShadow.color, layer)
       }
     }
 
     // Report results. We want one report per unique color usage
 
-    for (const [hex, layers] of results) {
+    for (const [, objects] of results) {
+      const color = objects[0][0]
+      const hex = getRGB(color)
+      const alpha = color.alpha * 100
+      const layers = objects.map((o) => o[1])
       const count = layers.length
       if (count <= maxIdentical) continue
+      const message =
+        alpha === 100
+          ? i18n._(
+              plural({
+                value: maxIdentical,
+                1: `Expected the color "${hex}" to only appear once, but found ${count} usages. Consider a color variable instead`,
+                other: `Expected the color "${hex}" to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
+              }),
+            )
+          : i18n._(
+              plural({
+                value: maxIdentical,
+                1: `Expected the color "${hex}" with an alpha value of ${alpha}% to only appear once, but found ${count} usages. Consider a color variable instead`,
+                other: `Expected the color "${hex}" with an alpha value of ${alpha}% to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
+              }),
+            )
+
       utils.report(
-        i18n._(
-          plural({
-            value: maxIdentical,
-            1: `Expected the color "${hex}" to only appear once, but found ${count} usages. Consider a color variable instead`,
-            other: `Expected the color "${hex}" to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
-          }),
-        ),
+        message,
         ...new Set(layers), // De-dupe reported layers, handles case where the same layer may contain multiple usages of the same color
       )
     }
