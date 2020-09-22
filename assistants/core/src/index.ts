@@ -10,6 +10,7 @@ import * as artboardsGrid from './rules/artboards-grid'
 import * as artboardsLayout from './rules/artboards-layout'
 import * as artboardsMaxUngroupedLayers from './rules/artboards-max-ungrouped-layers'
 import * as bordersNoDisabled from './rules/borders-no-disabled'
+import * as colorsPreferVariable from './rules/colors-prefer-variable'
 import * as debugAllOptions from './rules/debug-all-options'
 import * as debugI18n from './rules/debug-i18n'
 import * as debugThrowsError from './rules/debug-throws-error'
@@ -73,6 +74,7 @@ const assistant: AssistantPackage = async (env) => {
       artboardsLayout,
       artboardsMaxUngroupedLayers,
       bordersNoDisabled,
+      colorsPreferVariable,
       debugAllOptions,
       debugI18n,
       debugThrowsError,

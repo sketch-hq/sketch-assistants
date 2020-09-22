@@ -1,5 +1,9 @@
 import { SketchFileObject, FileFormat } from '@sketch-hq/sketch-assistant-types'
 
+export function isDefined<T>(val: T | undefined): val is T {
+  return val !== undefined
+}
+
 function isObject(val: unknown): val is Record<string, unknown> {
   return typeof val === 'object' && val !== null
 }
