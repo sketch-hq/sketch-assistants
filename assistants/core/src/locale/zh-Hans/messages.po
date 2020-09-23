@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-22 13:38\n"
+"PO-Revision-Date: 2020-09-23 02:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -208,7 +208,7 @@ msgstr "{maxIdentical, plural, =1 {颜色 \"{hex}\" 应只出现一次，但实�
 
 #: src/rules/colors-prefer-variable/index.ts:131
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
-msgstr ""
+msgstr "{maxIdentical, plural, =1 {透明度为 {alpha}% 的颜色 \"{hex}\" 应只出现一次，但实际发现了 {count} 个用例。考虑使用颜色变量} other {透明度为 {alpha}% 的颜色 \"{hex}\" 出现不应超过 # 次， 但实际发现 {count} 个用例。考虑使用颜色变量}}"
 
 #: src/rules/colors-prefer-variable/index.ts:146
 msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
