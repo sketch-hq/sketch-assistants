@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-28 14:38\n"
+"PO-Revision-Date: 2020-09-23 02:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -204,19 +204,19 @@ msgstr "基于您所创建的内容，禁用的属性可能会导致不稳定。
 
 #: src/rules/colors-prefer-variable/index.ts:126
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
-msgstr ""
+msgstr "{maxIdentical, plural, =1 {颜色 \"{hex}\" 应只出现一次，但实际发现了 {count} 个用例。考虑使用颜色变量} other {颜色 \"{hex}\"出现不应超过 # 次，但实际发现了 {count} 个用例。考虑使用颜色变量}}"
 
 #: src/rules/colors-prefer-variable/index.ts:131
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
-msgstr ""
+msgstr "{maxIdentical, plural, =1 {透明度为 {alpha}% 的颜色 \"{hex}\" 应只出现一次，但实际发现了 {count} 个用例。考虑使用颜色变量} other {透明度为 {alpha}% 的颜色 \"{hex}\" 出现不应超过 # 次， 但实际发现 {count} 个用例。考虑使用颜色变量}}"
 
 #: src/rules/colors-prefer-variable/index.ts:146
 msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
-msgstr ""
+msgstr "{maxIdentical, plural, =0 {颜色应始终使用颜色变量} =1 {识别应使用颜色变量的颜色} other {超过 # 个相同的颜色应使用颜色变量}}"
 
 #: src/rules/colors-prefer-variable/index.ts:153
 msgid "You could simplify things by using color variables instead."
-msgstr ""
+msgstr "使用颜色变量能使您的工作变得更简单。"
 
 #: src/rules/colors-prefer-variable/index.ts:157
 #: src/rules/groups-no-similar/index.ts:60
@@ -227,7 +227,7 @@ msgstr "最大相似度"
 
 #: src/rules/colors-prefer-variable/index.ts:158
 msgid "The maximum allowed number of identical colors"
-msgstr ""
+msgstr "允许存在的雷同颜色的最大数量"
 
 #: src/rules/debug-all-options/index.ts:15
 msgid "Debug all options"
@@ -412,8 +412,7 @@ msgstr "不应存在多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:28
 msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
-msgstr ""
-"移除多余的编组，以避免文档组织性或可用性问题。\n"
+msgstr "移除多余的编组，以避免文档组织性或可用性问题。\n"
 "以下是只包含了一个图层且没有应用任何样式的编组。"
 
 #: src/rules/groups-no-similar/index.ts:38
@@ -793,3 +792,4 @@ msgstr "在相应图层上，移除雷同的字符样式并替换成一个单一
 #: src/rules/text-styles-prefer-shared/index.ts:68
 msgid "The maximum allowed number of identical text styles"
 msgstr "允许存在的雷同字符样式的最大数量"
+
