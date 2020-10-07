@@ -1,5 +1,18 @@
 # @sketch-hq/sketch-reuse-suggestions-assistant
 
+## 6.2.0
+
+### Minor Changes
+
+- 9b55837: Added new `colors-prefer-variable` rule to the Reuse Suggestions Assistant.
+
+### Patch Changes
+
+- Updated dependencies [01c1fd8]
+- Updated dependencies [9b55837]
+- Updated dependencies [01c1fd8]
+  - @sketch-hq/sketch-core-assistant@6.2.0
+
 ## 6.1.1
 
 ### Patch Changes
