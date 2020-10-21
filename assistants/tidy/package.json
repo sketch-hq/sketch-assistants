@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-tidy-assistant",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -28,7 +28,7 @@
   "files": ["dist"],
   "dependencies": {
     "@sketch-hq/sketch-assistant-types": "6.0.0",
-    "@sketch-hq/sketch-core-assistant": "6.1.0"
+    "@sketch-hq/sketch-core-assistant": "6.2.0"
   },
   "devDependencies": {
     "@sketch-hq/sketch-assistant-utils": "6.0.0"
