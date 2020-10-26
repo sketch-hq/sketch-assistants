@@ -1,5 +1,14 @@
 # @sketch-hq/sketch-assistant-cli
 
+## 6.3.0
+
+### Minor Changes
+
+- 77b71de: Fix the Sketch file JSON being mirrored into CLI results potentially causing
+  out-of-memory errors.
+- 77b71de: Removed the `--profile` flag, profiling data is now always included in the output when
+  the `--json` flag is used.
+
 ## 6.0.0
 
 ### Major Changes
