@@ -49,7 +49,9 @@ const helpText = `
 
     --json
       
-      Switch from human-readable output to JSON. Example:
+      Switch from human-readable output to JSON. The JSON output includes the
+      full result set from the Assistants as well as profiling data about how
+      quickly individual rules executed. Example:
 
         sketch-assistants --json "./path/to/file.sketch"
     
@@ -58,10 +60,6 @@ const helpText = `
       When Assistants are installed before a run, they are cached in a temporary
       folder to make future runs faster. Pass this flag to delete the cache
       folder.
-    
-    --profile
-
-      Output statistics instead of results.
 
     --workspace
 
@@ -124,15 +122,13 @@ const helpText = `
  */
 type CliResults = Array<
   | { filepath: string; code: 'error'; message: string }
-  | { filepath: string; code: 'success'; output: RunOutput }
+  | {
+      filepath: string
+      code: 'success'
+      output: Omit<RunOutput, 'input'>
+      profile: RunOutputProfile
+    }
 >
-
-/**
- * Profile output from the CLI.
- */
-type CliProfile = {
-  [filePath: string]: RunOutputProfile | string
-}
 
 /**
  * Describe a custom Assistant using JSON. This defines the shape of the JSON
@@ -252,15 +248,6 @@ const makeAssistant = async (
     ],
   }
 }
-
-const makeCliProfile = (cliResults: CliResults): CliProfile =>
-  cliResults.reduce(
-    (acc, result) => ({
-      ...acc,
-      [result.filepath]: result.code === 'error' ? result.message : makeProfile(result.output),
-    }),
-    {},
-  )
 
 /**
  * Format results as a human readable string.
@@ -454,10 +441,12 @@ const main = async () => {
 
   for (const filepath of paths) {
     try {
+      const output = await runFile(filepath, tmpDir)
       results.push({
         filepath,
         code: 'success',
-        output: await runFile(filepath, tmpDir),
+        output: { ignore: output.ignore, assistants: output.assistants },
+        profile: makeProfile(output),
       })
     } catch (err) {
       results.push({
@@ -470,8 +459,6 @@ const main = async () => {
 
   if (cli.flags.json) {
     console.log(JSON.stringify(results, null, 2))
-  } else if (cli.flags.profile) {
-    console.log(JSON.stringify(makeCliProfile(results), null, 2))
   } else {
     console.log(formatResults(results))
   }
