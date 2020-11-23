@@ -82,10 +82,15 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const artboard of utils.objects.artboard) {
       const { layout } = artboard
-      if (!layout || !layout.isEnabled) {
-        invalid.push(artboard) // Treat artboards without grid settings as invalid
+      if (!layout) {
+        invalid.push(artboard) // Treat artboards without layout as invalid
         continue
       }
+
+      if (!layout.isEnabled) {
+        continue
+      }
+
       // The artboard's layout much match one of the layouts defined in the options
       const columnsValid = specs
         .map((spec) => {
