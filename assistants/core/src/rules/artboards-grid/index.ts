@@ -27,10 +27,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const artboard of utils.objects.artboard) {
       const { grid } = artboard
+
       if (!grid) {
         invalid.push(artboard) // Treat artboards without grid settings as invalid
         continue
       }
+
+      if (!grid.isEnabled) {
+        continue
+      }
+
       // The artboard's grid much precisely match one of the grids defined in the
       // options
       const gridValid = specs
