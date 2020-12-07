@@ -19,8 +19,8 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@schemastore/package": "0.0.5",
-    "@sketch-hq/sketch-file-format-ts": "5.1.1",
-    "@types/json-schema": "7.0.4"
+    "@schemastore/package": "0.0.6",
+    "@sketch-hq/sketch-file-format-ts": "5.2.1",
+    "@types/json-schema": "7.0.6"
   }
 }
