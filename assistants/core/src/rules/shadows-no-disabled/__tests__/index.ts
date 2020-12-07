@@ -26,9 +26,7 @@ describe('shadows-no-disabled', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('finds violations for disabled shadows in shared styles while enabled on the layer', async (): Promise<
-    void
-  > => {
+  test('finds violations for disabled shadows in shared styles while enabled on the layer', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,

@@ -13,9 +13,7 @@ describe('text-styles-prefer-shared', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('no violations when maxIdentical option is increased to allow up to 2 identical text styles', async (): Promise<
-    void
-  > => {
+  test('no violations when maxIdentical option is increased to allow up to 2 identical text styles', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
@@ -66,9 +64,7 @@ describe('text-styles-prefer-shared', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('only generate violations for duplicate text styles inside symbol masters, not instances', async (): Promise<
-    void
-  > => {
+  test('only generate violations for duplicate text styles inside symbol masters, not instances', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,

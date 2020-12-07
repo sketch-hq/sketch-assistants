@@ -1,9 +1,7 @@
 import { testCoreRule } from '../../../test-helpers'
 
 describe('layer-styles-no-dirty', () => {
-  test('outputs no violations for layers that do not differ from their shared style', async (): Promise<
-    void
-  > => {
+  test('outputs no violations for layers that do not differ from their shared style', async (): Promise<void> => {
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './all_good.sketch',
@@ -16,9 +14,7 @@ describe('layer-styles-no-dirty', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('finds violations for layer styles that differ from their shared styles', async (): Promise<
-    void
-  > => {
+  test('finds violations for layer styles that differ from their shared styles', async (): Promise<void> => {
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './rectangles.sketch',
@@ -57,9 +53,7 @@ describe('layer-styles-no-dirty', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('finds violations for groups that differ from their shared style', async (): Promise<
-    void
-  > => {
+  test('finds violations for groups that differ from their shared style', async (): Promise<void> => {
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './groups_bad.sketch',
