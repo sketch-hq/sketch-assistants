@@ -16,9 +16,7 @@ describe('artboards-max-ungrouped-layers', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('finds violations when configured to allow max 4 ungrouped layers', async (): Promise<
-    void
-  > => {
+  test('finds violations when configured to allow max 4 ungrouped layers', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,

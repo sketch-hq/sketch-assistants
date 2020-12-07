@@ -22,11 +22,11 @@
   "dependencies": {
     "@sketch-hq/sketch-assistant-types": "6.0.0",
     "@sketch-hq/sketch-assistant-utils": "6.0.0",
-    "chalk": "4.0.0",
-    "conf": "6.2.4",
-    "globby": "11.0.0",
-    "meow": "7.0.1",
-    "ora": "4.0.4",
+    "chalk": "4.1.0",
+    "conf": "7.1.2",
+    "globby": "11.0.1",
+    "meow": "8.0.0",
+    "ora": "5.1.0",
     "os-locale": "5.0.0"
   },
   "devDependencies": {}

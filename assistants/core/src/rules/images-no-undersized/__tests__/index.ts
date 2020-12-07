@@ -31,9 +31,7 @@ describe('images-no-undersized', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('finds violations for undersized bitmap use under a given ratio', async (): Promise<
-    void
-  > => {
+  test('finds violations for undersized bitmap use under a given ratio', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
@@ -48,9 +46,7 @@ describe('images-no-undersized', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('finds no violations for undersized bitmap use above a given ratio', async (): Promise<
-    void
-  > => {
+  test('finds no violations for undersized bitmap use above a given ratio', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,

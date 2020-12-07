@@ -71,9 +71,7 @@ describe('layers-subpixel-positioning', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('no violations for rotated layers or layers with rotated parents', async (): Promise<
-    void
-  > => {
+  test('no violations for rotated layers or layers with rotated parents', async (): Promise<void> => {
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,
       './rotated-layers.sketch',
