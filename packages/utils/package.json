@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-assistant-utils",
-  "version": "6.0.0",
+  "version": "6.3.1",
   "module": "dist/esm/index",
   "main": "dist/cjs/index",
   "types": "dist/cjs/index",
@@ -18,10 +18,12 @@
     "build": "tsc --build tsconfig.json tsconfig.esm.json",
     "test": "jest"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@json-schema-spec/json-pointer": "0.1.2",
-    "@sketch-hq/sketch-assistant-types": "6.0.0",
+    "@sketch-hq/sketch-assistant-types": "6.3.1",
     "ajv": "6.12.6",
     "humps": "2.0.1",
     "mem": "8.0.0",

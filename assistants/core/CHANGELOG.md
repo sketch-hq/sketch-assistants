@@ -1,5 +1,13 @@
 # @sketch-hq/sketch-core-assistant
 
+## 6.3.1
+
+### Patch Changes
+
+- d58e849: Updated various package dependencies.
+- Updated dependencies [d58e849]
+  - @sketch-hq/sketch-assistant-types@6.3.1
+
 ## 6.2.0
 
 ### Minor Changes
