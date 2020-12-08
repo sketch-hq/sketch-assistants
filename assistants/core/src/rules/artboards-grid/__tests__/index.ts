@@ -18,7 +18,7 @@ describe('artboards-grid', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('no violations for hidden grids', async (): Promise<void> => {
+  test('finds violations for artboards with missing grids', async (): Promise<void> => {
     expect.assertions(2)
 
     const { ruleErrors, violations } = await testCoreRule(
@@ -31,7 +31,7 @@ describe('artboards-grid', () => {
       },
     )
 
-    expect(violations).toHaveLength(0)
+    expect(violations).toHaveLength(1)
     expect(ruleErrors).toHaveLength(0)
   })
 

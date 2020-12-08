@@ -82,12 +82,11 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const artboard of utils.objects.artboard) {
       const { layout } = artboard
-      if (!layout) {
-        invalid.push(artboard) // Treat artboards without layout as invalid
-        continue
-      }
-
-      if (!layout.isEnabled) {
+      // Null layouts and disabled layouts are both treated as invalid.
+      // Note there is no way in the UI to remove a layout and reset it to null
+      // once enabled for the first time.
+      if (!layout || !layout.isEnabled) {
+        invalid.push(artboard)
         continue
       }
 
