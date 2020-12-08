@@ -5,4 +5,4 @@
 '@sketch-hq/sketch-assistant-utils': patch
 ---
 
-Updated dependencies
+Updated various package dependencies.

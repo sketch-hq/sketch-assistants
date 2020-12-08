@@ -28,17 +28,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (const artboard of utils.objects.artboard) {
       const { grid } = artboard
 
+      // Treat artboards with null grid settings as invalid.
+      // Note there is no way in the UI to remove a grid and reset it to null
+      // once enabled for the first time.
       if (!grid) {
-        invalid.push(artboard) // Treat artboards without grid settings as invalid
+        invalid.push(artboard)
         continue
       }
 
-      if (!grid.isEnabled) {
-        continue
-      }
-
-      // The artboard's grid much precisely match one of the grids defined in the
-      // options
+      // The artboard's grid much precisely match one of the grids defined in the options.
+      // Whether the grid is enabled (toggled visually) or not is ignored.
       const gridValid = specs
         .map(
           (spec) =>
