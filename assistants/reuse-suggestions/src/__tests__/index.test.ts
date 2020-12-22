@@ -31,6 +31,24 @@ describe('text-styles-prefer-shared', () => {
 })
 
 describe('layer-styles-prefer-shared', () => {
+  test('no violation for shared layer styles with bitmaps', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './shared-layer-styles-bitmaps.sketch',
+      'layer-styles-prefer-shared',
+    )
+    expect(violations).toHaveLength(0)
+    expect(ruleErrors).toHaveLength(0)
+  })
+
+  test('violations for unshared layer styles with bitmaps', async () => {
+    const { violations, ruleErrors } = await testCoreRule(
+      './unshared-layer-styles-bitmaps.sketch',
+      'layer-styles-prefer-shared',
+    )
+    expect(violations).toHaveLength(6)
+    expect(ruleErrors).toHaveLength(0)
+  })
+
   test('no violation for shared layer styles', async () => {
     const { violations, ruleErrors } = await testCoreRule(
       './shared-layer-styles.sketch',
