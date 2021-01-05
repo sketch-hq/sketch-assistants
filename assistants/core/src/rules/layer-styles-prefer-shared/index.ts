@@ -24,6 +24,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (IGNORE_CLASSES.includes(layer._class)) continue
       if (isCombinedShapeChildLayer(layer, utils)) continue // Ignore layers in combined shapes
       if (layer._class === 'group' && !layer.style?.shadows?.length) continue // Ignore groups with default styles (i.e. no shadows)
+      if (
+        layer._class === 'bitmap' &&
+        !layer.style?.fills?.length &&
+        !layer.style?.borders?.length &&
+        !layer.style?.shadows?.length &&
+        !layer.style?.innerShadows?.length &&
+        !layer.style?.blur?.isEnabled &&
+        !layer.style?.colorControls.isEnabled
+      )
+        continue // Ignore images (bitmaps) with default styles (no fills, border, shadows, innerShadows, blur or color adjust)
       if (typeof layer.sharedStyleID === 'string') continue // Ignore layers using a shared style
 
       // Determine whether we're inside a symbol instance, if so return early since
