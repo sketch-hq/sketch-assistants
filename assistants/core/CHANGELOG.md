@@ -1,5 +1,12 @@
 # @sketch-hq/sketch-core-assistant
 
+## 6.3.2
+
+### Patch Changes
+
+- 217953f: No longer report violation of `layer-styles-prefer-shared` rule for images with default
+  layer style
+
 ## 6.3.1
 
 ### Patch Changes
