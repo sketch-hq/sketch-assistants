@@ -1,5 +1,13 @@
 # @sketch-hq/sketch-tidy-assistant
 
+## 6.3.2
+
+### Patch Changes
+
+- 1a76a80: Updated dependencies
+- Updated dependencies [217953f]
+  - @sketch-hq/sketch-core-assistant@6.3.2
+
 ## 6.3.1
 
 ### Patch Changes
