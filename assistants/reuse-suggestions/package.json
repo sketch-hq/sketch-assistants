@@ -38,7 +38,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc --build && yarn build:sketch",
-    "build:sketch": "webpack --output-library _sketch --output-library assistants --output-library `node -p \"require('./package.json').name\"`",
+    "build:sketch": "webpack --config ../../webpack.config.js --output-library _sketch --output-library assistants --output-library `node -p \"require('./package.json').name\"`",
     "package-tarball": "yarn build && yarn pack"
   }
 }
