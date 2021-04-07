@@ -5,8 +5,8 @@ on:
       - main
       - rc
 jobs:
-  handle_changesets:
-    name: Handle Changesets
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -19,11 +19,11 @@ jobs:
           node-version: '12.6.0'
       - name: Yarn Install
         run: yarn --frozen-lockfile
-      - name: Update PR or Publish
+      - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@master
         with:
           publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SKETCH_RELEASES_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
