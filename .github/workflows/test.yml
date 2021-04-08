@@ -12,7 +12,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: '12.6.0'
+          node-version: '14.16.0'
       - name: Yarn Install
         run: yarn install --frozen-lockfile
       - name: Build Packages
