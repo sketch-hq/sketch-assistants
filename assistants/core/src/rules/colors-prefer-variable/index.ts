@@ -142,15 +142,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const message =
         alpha === 100
           ? i18n._(
-              plural({
-                value: maxIdentical,
+              plural(maxIdentical, {
                 1: `Expected the color "${hex}" to only appear once, but found ${count} usages. Consider a color variable instead`,
                 other: `Expected the color "${hex}" to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
               }),
             )
           : i18n._(
-              plural({
-                value: maxIdentical,
+              plural(maxIdentical, {
                 1: `Expected the color "${hex}" with an alpha value of ${alpha}% to only appear once, but found ${count} usages. Consider a color variable instead`,
                 other: `Expected the color "${hex}" with an alpha value of ${alpha}% to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
               }),
@@ -170,8 +168,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
       return i18n._(
-        plural({
-          value: maxIdentical,
+        plural(maxIdentical, {
           0: 'Colors should always use color variables',
           1: 'Identical colors should use color variables',
           other: 'More than # identical colors should use color variables',

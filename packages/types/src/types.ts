@@ -1,4 +1,4 @@
-import { FileFormat3 } from '@sketch-hq/sketch-file-format-ts'
+import FileFormat from '@sketch-hq/sketch-file-format-ts'
 import { JSONSchema7 } from 'json-schema'
 import { CoreProperties as PackageJson } from '@schemastore/package'
 
@@ -9,7 +9,7 @@ import { CoreProperties as PackageJson } from '@schemastore/package'
 /**
  * Re-export the specific version of the file format supported by this package.
  */
-export { FileFormat3 as FileFormat }
+export { FileFormat as FileFormat }
 
 /**
  * Optional value.
@@ -77,19 +77,19 @@ export type JsonPointer = string
  */
 export type SketchFile = {
   filepath: string
-  contents: FileFormat3.Contents
+  contents: FileFormat.Contents
 }
 
 /**
  * The root document object with `_class` `document` in a parsed Sketch file.
  */
-export type DocumentObject = FileFormat3.Contents['document']
+export type DocumentObject = FileFormat.Contents['document']
 
 /**
  * Union of all possible objects in a parsed Sketch file that have a `_class` property, including
  * the root document object.
  */
-export type SketchFileObject = FileFormat3.AnyObject | DocumentObject
+export type SketchFileObject = FileFormat.AnyObject | DocumentObject
 
 /**
  * Look-up a pointer value using a Sketch file object reference.
@@ -107,10 +107,10 @@ export type ObjectIdSet = Set<string>
  * `_class` values.
  */
 export type ObjectCache = {
-  [key in keyof FileFormat3.ClassMap]: FileFormat3.ClassMap[key][]
+  [key in keyof FileFormat.ClassMap]: FileFormat.ClassMap[key][]
 } & {
-  anyGroup: FileFormat3.AnyGroup[]
-  anyLayer: FileFormat3.AnyLayer[]
+  anyGroup: FileFormat.AnyGroup[]
+  anyLayer: FileFormat.AnyLayer[]
   document: DocumentObject[]
 }
 
@@ -489,19 +489,19 @@ export type RuleUtils = {
   /**
    * Compares two style objects for equality.
    */
-  styleEq: (s1: FileFormat3.Style | undefined, s2: FileFormat3.Style | undefined) => boolean
+  styleEq: (s1: FileFormat.Style | undefined, s2: FileFormat.Style | undefined) => boolean
   /**
    * Compares two text style objects for equality.
    */
-  textStyleEq: (s1: FileFormat3.Style | undefined, s2: FileFormat3.Style | undefined) => boolean
+  textStyleEq: (s1: FileFormat.Style | undefined, s2: FileFormat.Style | undefined) => boolean
   /**
    * Reduces a text style object into a string hash and returns it.
    */
-  textStyleHash: (style: Partial<FileFormat3.Style> | undefined) => string
+  textStyleHash: (style: Partial<FileFormat.Style> | undefined) => string
   /**
    * Reduces a style object into a string hash and returns it.
    */
-  styleHash: (style: Partial<FileFormat3.Style> | undefined) => string
+  styleHash: (style: Partial<FileFormat.Style> | undefined) => string
 }
 
 /**

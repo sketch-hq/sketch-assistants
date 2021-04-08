@@ -20,8 +20,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (numLayers > maxLayers) {
         utils.report(
           i18n._(
-            plural({
-              value: numLayers,
+            plural(numLayers, {
               one: 'There is one layer in this group',
               other: 'There are # layers in this group',
             }),
@@ -39,8 +38,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const { maxLayers } = ruleConfig
       if (typeof maxLayers !== 'number') return ''
       return i18n._(
-        plural({
-          value: maxLayers,
+        plural(maxLayers, {
           one: 'Groups should only have one layer',
           other: 'Groups should have no more than # layers',
         }),

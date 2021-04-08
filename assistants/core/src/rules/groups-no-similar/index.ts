@@ -46,8 +46,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
       return i18n._(
-        plural({
-          value: maxIdentical,
+        plural(maxIdentical, {
           one: 'Similar groups should be a symbol',
           other: 'More than # similar groups should be a symbol',
         }),
