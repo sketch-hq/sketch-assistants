@@ -1325,13 +1325,13 @@
   integrity sha512-BYY7IavBjwsWWSmVcMz2A9mKiDD9RvacnsItgmy1xV8cmgbtxFfKmKMtkVpD7pYtkx4mIW4800yZBXueVFIWPw==
 
 "@lingui/babel-plugin-extract-messages@^3.8.4":
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-extract-messages/-/babel-plugin-extract-messages-3.8.4.tgz#f816a1a6a9a8a1287c123c3bcb627030d2e51b24"
-  integrity sha512-ujJsIKTpCZ+it1naNv5+P77431Dmv0uqufQ96xkikZU14HVIScPki4S27u378zvaer72Wqc9VljK0yFxdKxmpQ==
+  version "3.8.5"
+  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-extract-messages/-/babel-plugin-extract-messages-3.8.5.tgz#495460af50d4f9f9aa68e927392a952d84154fe0"
+  integrity sha512-WOVBKk3pdCyjkTeOQiv1xvLKkkgwr24NU84VTHpfKCZ5gkptCC2DTXK5l8uB34C+XCUsLQ2IlPmpsta4AntMUw==
   dependencies:
     "@babel/generator" "^7.11.6"
     "@babel/runtime" "^7.11.2"
-    "@lingui/conf" "^3.8.4"
+    "@lingui/conf" "^3.8.5"
     mkdirp "^1.0.4"
 
 "@lingui/cli@3.8.4":
@@ -1371,10 +1371,10 @@
     pseudolocale "^1.1.0"
     ramda "^0.27.1"
 
-"@lingui/conf@^3.8.4":
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/@lingui/conf/-/conf-3.8.4.tgz#a440ed8e6fead5951dce15078464380462b99f08"
-  integrity sha512-QtumDBtqSvUsB1eHZMVueBimhLk+p3etAVn5psNypB/zQfUxn8Yoj+zz5J7U1N7v7P+zfI4tlgGnoEj7s2k4Vg==
+"@lingui/conf@^3.8.4", "@lingui/conf@^3.8.5":
+  version "3.8.5"
+  resolved "https://registry.yarnpkg.com/@lingui/conf/-/conf-3.8.5.tgz#230c6c245e7a4cc60fb69188ece3f496dfb5ddfa"
+  integrity sha512-tkxwJG2dMAV+x1EEG0hEXhx0TjxzPbjibrtNjEa8Ym9Uy91ZQ1cctzEqgAiNPX+zFgxaIqW5QtMG5bZISSV0WQ==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@endemolshinegroup/cosmiconfig-typescript-loader" "^3.0.2"
@@ -5285,10 +5285,10 @@ p-map@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-2.1.0.tgz#310928feef9c9ecc65b68b17693018a665cea175"
   integrity sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw==
 
-p-timeout@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-5.0.0.tgz#0f5dc08422e7243f8317669c461734cd1257a8dc"
-  integrity sha512-z+bU/N7L1SABsqKnQzvAnINgPX7NHdzwUV+gHyJE7VGNDZSr03rhcPODCZSWiiT9k+gf74QPmzcZzqJRvxYZow==
+p-timeout@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-4.1.0.tgz#788253c0452ab0ffecf18a62dff94ff1bd09ca0a"
+  integrity sha512-+/wmHtzJuWii1sXn3HCuH/FTwGhrp4tmJTxSKJbfS+vkipci6osxXM5mY0jUiRzWKMTgUT8l7HFbeSwZAynqHw==
 
 p-try@^2.0.0:
   version "2.2.0"
