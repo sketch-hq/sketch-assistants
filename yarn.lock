@@ -1479,31 +1479,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sketch-hq/sketch-file-format-1@npm:@sketch-hq/sketch-file-format@1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format/-/sketch-file-format-1.1.7.tgz#7de3cdfda10c97d21bbe261e0544ca581d27366e"
-  integrity sha512-tEQxuWgXIFn2fNgAiGDszrEGF/sR16O2kOjkB49PJcI7NWq+rwghr6Fx6nSL8dPNXOpYeSQOHGqTvGlVuo9YEA==
-
-"@sketch-hq/sketch-file-format-2@npm:@sketch-hq/sketch-file-format@2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format/-/sketch-file-format-2.0.3.tgz#ed3077b6e146c947b4fe144ef0cacfc67b7e507e"
-  integrity sha512-l/sLUhHayJEair70vQEGBAldpR3K8Xb+WqZGlrVtJT3aZVGGnEAT8i8n8qNMECWBdEojTxC3gKqgiJu9U98nDw==
-
-"@sketch-hq/sketch-file-format-ts@5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-5.2.4.tgz#e6591a8492d3057310bbf66779f7c6603dfaaede"
-  integrity sha512-Q50R+cxrCWAJu7tHRomvGpCa9vdj591t2Rii+6LgsWDjmg/ur+R2+9mz590ysKMsalU7HVRp3/h9zzC38Z5now==
-  dependencies:
-    "@sketch-hq/sketch-file-format" "5.2.3"
-    "@sketch-hq/sketch-file-format-1" "npm:@sketch-hq/sketch-file-format@1.1.7"
-    "@sketch-hq/sketch-file-format-2" "npm:@sketch-hq/sketch-file-format@2.0.3"
-
-"@sketch-hq/sketch-file-format@5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format/-/sketch-file-format-5.2.3.tgz#eb4a8693072b1a8f938aebef3976199addda6d7e"
-  integrity sha512-S+MQJAR9NN1+3R/ne1XKI+8i35t5ILT0n2Z01gqF2PIOx8Lk0GJRcSK2oespuSTlC26jAQhMoFRa2JOcRorY3g==
-  dependencies:
-    "@types/json-schema" "7.0.7"
+"@sketch-hq/sketch-file-format-ts@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-6.0.0.tgz#8acd50ebb8fdf3ec10c73469c544c10fbe2bc800"
+  integrity sha512-pJuWEyn4w996Xv28iHvD0jJH77R1VCQ9v77gzUUW0er/sG9i+cJTHwbmALl7QEOSmAEQzWkaSj4MdKtJQjQDXg==
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.14"
