@@ -37,12 +37,12 @@ Sketch you can safely ignore this section.
 
 These scripts operate globally across every package in the monorepo.
 
-| Script                | Description                                   |
-| --------------------- | --------------------------------------------- |
-| `yarn build`          | Builds all packages                           |
-| `yarn test`           | Test all packages                             |
-| `yarn prettier-check` | Check the format for all code in the monorepo |
-| `yarn release`        | Build and release all packages to npm         |
+| Script              | Description                                   |
+| ------------------- | --------------------------------------------- |
+| `yarn build`        | Builds all packages                           |
+| `yarn test`         | Test all packages                             |
+| `yarn format-check` | Check the format for all code in the monorepo |
+| `yarn release`      | Build and release all packages to npm         |
 
 ### Release process
 

@@ -20,4 +20,4 @@ jobs:
       - name: Test Packages
         run: yarn test --ci
       - name: Prettier Check
-        run: yarn prettier-check
+        run: yarn format-check
