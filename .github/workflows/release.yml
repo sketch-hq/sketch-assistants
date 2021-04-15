@@ -1,0 +1,29 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+      - rc
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@main
+        with:
+          node-version: '14.16.0'
+      - name: Yarn Install
+        run: yarn --frozen-lockfile
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@master
+        with:
+          publish: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.SKETCH_RELEASES_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

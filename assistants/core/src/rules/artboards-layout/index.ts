@@ -82,10 +82,14 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const artboard of utils.objects.artboard) {
       const { layout } = artboard
+      // Null layouts and disabled layouts are both treated as invalid.
+      // Note there is no way in the UI to remove a layout and reset it to null
+      // once enabled for the first time.
       if (!layout || !layout.isEnabled) {
-        invalid.push(artboard) // Treat artboards without grid settings as invalid
+        invalid.push(artboard)
         continue
       }
+
       // The artboard's layout much match one of the layouts defined in the options
       const columnsValid = specs
         .map((spec) => {

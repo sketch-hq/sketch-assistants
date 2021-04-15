@@ -31,9 +31,7 @@ describe('groups-no-similar', () => {
     expect(ruleErrors).toHaveLength(0)
   })
 
-  test('reports no violations for a number of similar groups bellow the `maxIdentical` value', async (): Promise<
-    void
-  > => {
+  test('reports no violations for a number of similar groups bellow the `maxIdentical` value', async (): Promise<void> => {
     expect.assertions(2)
     const { violations, ruleErrors } = await testCoreRule(
       __dirname,

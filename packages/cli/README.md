@@ -78,10 +78,6 @@ sketch-assistants --json "./path/to/file.sketch"
 When Assistants are installed before a run, they are cached in a temporary folder to make future
 runs faster. Pass this flag to delete the cache folder.
 
-#### `--profile`
-
-Output statistics instead of results.
-
 #### `--workspace`
 
 Optionally supply and overwrite the Assistant workspace configuration within the Sketch file(s) with

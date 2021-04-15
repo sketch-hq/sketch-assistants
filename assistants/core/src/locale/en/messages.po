@@ -21,143 +21,143 @@ msgstr "Layer name matches one of the forbidden patterns"
 msgid "Layer name does not match any of the allowed patterns"
 msgstr "Layer name does not match any of the allowed patterns"
 
-#: src/rules/artboards-grid/index.ts:45
+#: src/rules/artboards-grid/index.ts:48
 msgid "Unexpected Artboard grid settings"
 msgstr "Unexpected Artboard grid settings"
 
-#: src/rules/artboards-grid/index.ts:51
+#: src/rules/artboards-grid/index.ts:54
 msgid "Artboard grid settings should match the conventions"
 msgstr "Artboard grid settings should match the conventions"
 
-#: src/rules/artboards-grid/index.ts:52
+#: src/rules/artboards-grid/index.ts:55
 msgid "Keep your specific grid settings consistent across a document, team or project."
 msgstr "Keep your specific grid settings consistent across a document, team or project."
 
-#: src/rules/artboards-grid/index.ts:57
+#: src/rules/artboards-grid/index.ts:60
 msgid "Grids"
 msgstr "Grids"
 
-#: src/rules/artboards-grid/index.ts:58
+#: src/rules/artboards-grid/index.ts:61
 msgid "List of valid grids"
 msgstr "List of valid grids"
 
-#: src/rules/artboards-grid/index.ts:62
+#: src/rules/artboards-grid/index.ts:65
 msgid "Grid Block Size"
 msgstr "Grid Block Size"
 
-#: src/rules/artboards-grid/index.ts:63
+#: src/rules/artboards-grid/index.ts:66
 msgid "Grid block size in pixels"
 msgstr "Grid block size in pixels"
 
-#: src/rules/artboards-grid/index.ts:67
+#: src/rules/artboards-grid/index.ts:70
 msgid "Thick Lines Every"
 msgstr "Thick Lines Every"
 
-#: src/rules/artboards-grid/index.ts:68
+#: src/rules/artboards-grid/index.ts:71
 msgid "Number of blocks between thick grid lines"
 msgstr "Number of blocks between thick grid lines"
 
-#: src/rules/artboards-layout/index.ts:101
+#: src/rules/artboards-layout/index.ts:104
 msgid "Unexpected Artboard layout settings"
 msgstr "Unexpected Artboard layout settings"
 
-#: src/rules/artboards-layout/index.ts:107
+#: src/rules/artboards-layout/index.ts:110
 msgid "Artboard layout settings should match the conventions"
 msgstr "Artboard layout settings should match the conventions"
 
-#: src/rules/artboards-layout/index.ts:108
+#: src/rules/artboards-layout/index.ts:111
 msgid "Keep your specific layout settings consistent across a document, team or project."
 msgstr "Keep your specific layout settings consistent across a document, team or project."
 
-#: src/rules/artboards-layout/index.ts:113
+#: src/rules/artboards-layout/index.ts:116
 msgid "Layouts"
 msgstr "Layouts"
 
-#: src/rules/artboards-layout/index.ts:114
+#: src/rules/artboards-layout/index.ts:117
 msgid "A list of valid layouts. Each object will use Sketch's Layout Settings options"
 msgstr "A list of valid layouts. Each object will use Sketch's Layout Settings options"
 
-#: src/rules/artboards-layout/index.ts:118
+#: src/rules/artboards-layout/index.ts:121
 msgid "Draw Vertical"
 msgstr "Draw Vertical"
 
-#: src/rules/artboards-layout/index.ts:119
+#: src/rules/artboards-layout/index.ts:122
 msgid "Enables drawing columns"
 msgstr "Enables drawing columns"
 
-#: src/rules/artboards-layout/index.ts:123
+#: src/rules/artboards-layout/index.ts:126
 msgid "Total Width"
 msgstr "Total Width"
 
-#: src/rules/artboards-layout/index.ts:124
+#: src/rules/artboards-layout/index.ts:127
 msgid "Total width of layout"
 msgstr "Total width of layout"
 
-#: src/rules/artboards-layout/index.ts:128
+#: src/rules/artboards-layout/index.ts:131
 msgid "Horizontal Offset"
 msgstr "Horizontal Offset"
 
-#: src/rules/artboards-layout/index.ts:129
+#: src/rules/artboards-layout/index.ts:132
 msgid "Horizontal offset of layout"
 msgstr "Horizontal offset of layout"
 
-#: src/rules/artboards-layout/index.ts:133
+#: src/rules/artboards-layout/index.ts:136
 msgid "Number of Columns"
 msgstr "Number of Columns"
 
-#: src/rules/artboards-layout/index.ts:134
+#: src/rules/artboards-layout/index.ts:137
 msgid "Number of columns in the layout"
 msgstr "Number of columns in the layout"
 
-#: src/rules/artboards-layout/index.ts:138
+#: src/rules/artboards-layout/index.ts:141
 msgid "Gutters Outside"
 msgstr "Gutters Outside"
 
-#: src/rules/artboards-layout/index.ts:139
+#: src/rules/artboards-layout/index.ts:142
 msgid "Draw gutters on the outside"
 msgstr "Draw gutters on the outside"
 
-#: src/rules/artboards-layout/index.ts:143
+#: src/rules/artboards-layout/index.ts:146
 msgid "Gutter Width"
 msgstr "Gutter Width"
 
-#: src/rules/artboards-layout/index.ts:144
+#: src/rules/artboards-layout/index.ts:147
 msgid "Gutter width in layout"
 msgstr "Gutter width in layout"
 
-#: src/rules/artboards-layout/index.ts:148
+#: src/rules/artboards-layout/index.ts:151
 msgid "Column Width"
 msgstr "Column Width"
 
-#: src/rules/artboards-layout/index.ts:149
+#: src/rules/artboards-layout/index.ts:152
 msgid "Layout column widths"
 msgstr "Layout column widths"
 
-#: src/rules/artboards-layout/index.ts:153
+#: src/rules/artboards-layout/index.ts:156
 msgid "Draw Horizontal"
 msgstr "Draw Horizontal"
 
-#: src/rules/artboards-layout/index.ts:154
+#: src/rules/artboards-layout/index.ts:157
 msgid "Enables drawing rows"
 msgstr "Enables drawing rows"
 
-#: src/rules/artboards-layout/index.ts:158
+#: src/rules/artboards-layout/index.ts:161
 msgid "Gutter Height"
 msgstr "Gutter Height"
 
-#: src/rules/artboards-layout/index.ts:159
+#: src/rules/artboards-layout/index.ts:162
 msgid "Layout gutter height"
 msgstr "Layout gutter height"
 
-#: src/rules/artboards-layout/index.ts:163
+#: src/rules/artboards-layout/index.ts:166
 msgid "Row Height Multiplication"
 msgstr "Row Height Multiplication"
 
-#: src/rules/artboards-layout/index.ts:168
+#: src/rules/artboards-layout/index.ts:171
 msgid "Draw Horizontal Lines"
 msgstr "Draw Horizontal Lines"
 
-#: src/rules/artboards-layout/index.ts:169
+#: src/rules/artboards-layout/index.ts:172
 msgid "Draw all horizontal lines"
 msgstr "Draw all horizontal lines"
 
@@ -165,19 +165,19 @@ msgstr "Draw all horizontal lines"
 msgid "{nonGroupLayers, plural, one {There is one ungrouped layer within this Artboard} other {There are # ungrouped layers within this Artboard}}"
 msgstr "{nonGroupLayers, plural, one {There is one ungrouped layer within this Artboard} other {There are # ungrouped layers within this Artboard}}"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:38
+#: src/rules/artboards-max-ungrouped-layers/index.ts:37
 msgid "{maxUngroupedLayers, plural, one {Artboards should only have one ungrouped layers} other {Artboards should have less than # ungrouped layers}}"
 msgstr "{maxUngroupedLayers, plural, one {Artboards should only have one ungrouped layers} other {Artboards should have less than # ungrouped layers}}"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:44
+#: src/rules/artboards-max-ungrouped-layers/index.ts:42
 msgid "Grouping layers within your Artboards will help you stay organized."
 msgstr "Grouping layers within your Artboards will help you stay organized."
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:49
+#: src/rules/artboards-max-ungrouped-layers/index.ts:47
 msgid "Maximum Ungrouped Layers"
 msgstr "Maximum Ungrouped Layers"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:51
+#: src/rules/artboards-max-ungrouped-layers/index.ts:49
 msgid "The maximum number of ungrouped layers"
 msgstr "The maximum number of ungrouped layers"
 
@@ -201,26 +201,26 @@ msgstr "Depending on what you're creating, disabled properties may cause uncerta
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 msgstr "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 
-#: src/rules/colors-prefer-variable/index.ts:131
+#: src/rules/colors-prefer-variable/index.ts:130
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 msgstr "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 
-#: src/rules/colors-prefer-variable/index.ts:146
+#: src/rules/colors-prefer-variable/index.ts:144
 msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
 msgstr "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
 
-#: src/rules/colors-prefer-variable/index.ts:153
+#: src/rules/colors-prefer-variable/index.ts:150
 msgid "You could simplify things by using color variables instead."
 msgstr "You could simplify things by using color variables instead."
 
-#: src/rules/colors-prefer-variable/index.ts:157
-#: src/rules/groups-no-similar/index.ts:60
-#: src/rules/layer-styles-prefer-shared/index.ts:84
-#: src/rules/text-styles-prefer-shared/index.ts:67
+#: src/rules/colors-prefer-variable/index.ts:154
+#: src/rules/groups-no-similar/index.ts:59
+#: src/rules/layer-styles-prefer-shared/index.ts:90
+#: src/rules/text-styles-prefer-shared/index.ts:65
 msgid "Max Identical"
 msgstr "Max Identical"
 
-#: src/rules/colors-prefer-variable/index.ts:158
+#: src/rules/colors-prefer-variable/index.ts:155
 msgid "The maximum allowed number of identical colors"
 msgstr "The maximum allowed number of identical colors"
 
@@ -361,27 +361,27 @@ msgstr "Styles should not have disabled fills"
 msgid "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
 msgstr "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
 
-#: src/rules/groups-max-layers/index.ts:39
+#: src/rules/groups-max-layers/index.ts:38
 msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
 msgstr "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
 
-#: src/rules/groups-max-layers/index.ts:45
+#: src/rules/groups-max-layers/index.ts:43
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
 msgstr "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
 
-#: src/rules/groups-max-layers/index.ts:50
+#: src/rules/groups-max-layers/index.ts:48
 msgid "Maximum Layers"
 msgstr "Maximum Layers"
 
-#: src/rules/groups-max-layers/index.ts:52
+#: src/rules/groups-max-layers/index.ts:50
 msgid "Maximum layers in a group"
 msgstr "Maximum layers in a group"
 
-#: src/rules/groups-max-layers/index.ts:57
+#: src/rules/groups-max-layers/index.ts:55
 msgid "Skip Classes"
 msgstr "Skip Classes"
 
-#: src/rules/groups-max-layers/index.ts:58
+#: src/rules/groups-max-layers/index.ts:56
 msgid "An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group"
 msgstr "An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group"
 
@@ -417,11 +417,11 @@ msgstr "Group is similar to other groups: {identicalGroupNames}"
 msgid "{maxIdentical, plural, one {Similar groups should be a symbol} other {More than # similar groups should be a symbol}}"
 msgstr "{maxIdentical, plural, one {Similar groups should be a symbol} other {More than # similar groups should be a symbol}}"
 
-#: src/rules/groups-no-similar/index.ts:56
+#: src/rules/groups-no-similar/index.ts:55
 msgid "Don't allow groups that are too similar. Consider using a Symbol instead."
 msgstr "Don't allow groups that are too similar. Consider using a Symbol instead."
 
-#: src/rules/groups-no-similar/index.ts:61
+#: src/rules/groups-no-similar/index.ts:60
 msgid "The maximum number of identical groups allowed in the document"
 msgstr "The maximum number of identical groups allowed in the document"
 
@@ -494,19 +494,19 @@ msgstr "Layers Styles should be the same as their Shared Style"
 msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 msgstr "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 
-#: src/rules/layer-styles-prefer-shared/index.ts:59
+#: src/rules/layer-styles-prefer-shared/index.ts:67
 msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
 msgstr "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
 
-#: src/rules/layer-styles-prefer-shared/index.ts:74
+#: src/rules/layer-styles-prefer-shared/index.ts:81
 msgid "{maxIdentical, plural, one {Layer Styles should not be identical} other {No more than # Layer Styles should be identical}}"
 msgstr "{maxIdentical, plural, one {Layer Styles should not be identical} other {No more than # Layer Styles should be identical}}"
 
-#: src/rules/layer-styles-prefer-shared/index.ts:80
+#: src/rules/layer-styles-prefer-shared/index.ts:86
 msgid "You could simplify things by removing identical shared styles and applying a single Style to all the affected layers."
 msgstr "You could simplify things by removing identical shared styles and applying a single Style to all the affected layers."
 
-#: src/rules/layer-styles-prefer-shared/index.ts:85
+#: src/rules/layer-styles-prefer-shared/index.ts:91
 msgid "The maximum allowed number of identical Layer Styles"
 msgstr "The maximum allowed number of identical Layer Styles"
 
@@ -775,14 +775,14 @@ msgstr "If your team wants to strictly use shared text styles, you should either
 msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
 msgstr "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
 
-#: src/rules/text-styles-prefer-shared/index.ts:57
+#: src/rules/text-styles-prefer-shared/index.ts:56
 msgid "{maxIdentical, plural, one {Text styles should not be identical} other {No more than # text styles should be identical}}"
 msgstr "{maxIdentical, plural, one {Text styles should not be identical} other {No more than # text styles should be identical}}"
 
-#: src/rules/text-styles-prefer-shared/index.ts:63
+#: src/rules/text-styles-prefer-shared/index.ts:61
 msgid "You could simplify things by removing identical text styles and applying a single style to all affected text."
 msgstr "You could simplify things by removing identical text styles and applying a single style to all affected text."
 
-#: src/rules/text-styles-prefer-shared/index.ts:68
+#: src/rules/text-styles-prefer-shared/index.ts:66
 msgid "The maximum allowed number of identical text styles"
 msgstr "The maximum allowed number of identical text styles"

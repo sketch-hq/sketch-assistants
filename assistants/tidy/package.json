@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-tidy-assistant",
-  "version": "6.1.1",
+  "version": "6.3.2",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -25,18 +25,20 @@
     "assistant",
     "design ops"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "6.0.0",
-    "@sketch-hq/sketch-core-assistant": "6.1.0"
+    "@sketch-hq/sketch-assistant-types": "6.3.1",
+    "@sketch-hq/sketch-core-assistant": "6.3.2"
   },
   "devDependencies": {
-    "@sketch-hq/sketch-assistant-utils": "6.0.0"
+    "@sketch-hq/sketch-assistant-utils": "6.3.1"
   },
   "scripts": {
     "test": "jest",
     "build": "tsc --build && yarn build:sketch",
-    "build:sketch": "webpack --output-library _sketch --output-library assistants --output-library `node -p \"require('./package.json').name\"`",
+    "build:sketch": "webpack --config ../../webpack.config.js --output-library _sketch --output-library assistants --output-library `node -p \"require('./package.json').name\"`",
     "package-tarball": "yarn build && yarn pack"
   }
 }

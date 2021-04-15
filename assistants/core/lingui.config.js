@@ -1,7 +1,12 @@
 module.exports = {
+  catalogs: [
+    {
+      path: '<rootDir>/src/locale/{locale}/messages',
+      include: ['<rootDir>/src'],
+    },
+  ],
   sourceLocale: 'en',
-  srcPathDirs: ['<rootDir>/src'],
+  locales: ['en', 'zh-Hans'],
   format: 'po',
-  sorting: 'origin',
-  localeDir: '<rootDir>/src/locale',
+  orderBy: 'origin',
 }

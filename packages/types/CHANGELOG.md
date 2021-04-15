@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 6.3.1
+
+### Patch Changes
+
+- d58e849: Updated various package dependencies.
+
 ## 6.0.0
 
 ### Major Changes

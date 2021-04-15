@@ -1,5 +1,31 @@
 # @sketch-hq/sketch-core-assistant
 
+## 6.3.2
+
+### Patch Changes
+
+- 217953f: No longer report violation of `layer-styles-prefer-shared` rule for images with default
+  layer style
+
+## 6.3.1
+
+### Patch Changes
+
+- d58e849: Updated various package dependencies.
+- Updated dependencies [d58e849]
+  - @sketch-hq/sketch-assistant-types@6.3.1
+
+## 6.2.0
+
+### Minor Changes
+
+- 9b55837: Added rule `colors-prefer-variable` to the Core Assistant.
+
+### Patch Changes
+
+- 01c1fd8: Do not count disabled background colors and styles in `colors-prefer-variable` rule.
+- 01c1fd8: Improve display of alpha values in `color-prefer-variable` rule.
+
 ## 6.1.0
 
 ### Minor Changes
