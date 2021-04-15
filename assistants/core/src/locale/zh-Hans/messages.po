@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-23 02:19\n"
+"PO-Revision-Date: 2021-04-15 15:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -26,143 +26,143 @@ msgstr "图层命名使用了一种禁用格式。"
 msgid "Layer name does not match any of the allowed patterns"
 msgstr "图层命名不符合任何一种可用格式。"
 
-#: src/rules/artboards-grid/index.ts:45
+#: src/rules/artboards-grid/index.ts:48
 msgid "Unexpected Artboard grid settings"
 msgstr "画板网格设置出现意外"
 
-#: src/rules/artboards-grid/index.ts:51
+#: src/rules/artboards-grid/index.ts:54
 msgid "Artboard grid settings should match the conventions"
 msgstr "画板网格设置应符合规范"
 
-#: src/rules/artboards-grid/index.ts:52
+#: src/rules/artboards-grid/index.ts:55
 msgid "Keep your specific grid settings consistent across a document, team or project."
 msgstr "在文档，团队或项目中，使特定的网格设置始终保持一致。"
 
-#: src/rules/artboards-grid/index.ts:57
+#: src/rules/artboards-grid/index.ts:60
 msgid "Grids"
 msgstr "网格"
 
-#: src/rules/artboards-grid/index.ts:58
+#: src/rules/artboards-grid/index.ts:61
 msgid "List of valid grids"
 msgstr "有效网格列表"
 
-#: src/rules/artboards-grid/index.ts:62
+#: src/rules/artboards-grid/index.ts:65
 msgid "Grid Block Size"
 msgstr "网格模块尺寸"
 
-#: src/rules/artboards-grid/index.ts:63
+#: src/rules/artboards-grid/index.ts:66
 msgid "Grid block size in pixels"
 msgstr "基于像素的网格模块尺寸"
 
-#: src/rules/artboards-grid/index.ts:67
+#: src/rules/artboards-grid/index.ts:70
 msgid "Thick Lines Every"
 msgstr "粗线每隔"
 
-#: src/rules/artboards-grid/index.ts:68
+#: src/rules/artboards-grid/index.ts:71
 msgid "Number of blocks between thick grid lines"
 msgstr "网格粗线之间的模块数"
 
-#: src/rules/artboards-layout/index.ts:101
+#: src/rules/artboards-layout/index.ts:104
 msgid "Unexpected Artboard layout settings"
 msgstr "画板布局设置出现意外"
 
-#: src/rules/artboards-layout/index.ts:107
+#: src/rules/artboards-layout/index.ts:110
 msgid "Artboard layout settings should match the conventions"
 msgstr "画板布局设置应符合规范"
 
-#: src/rules/artboards-layout/index.ts:108
+#: src/rules/artboards-layout/index.ts:111
 msgid "Keep your specific layout settings consistent across a document, team or project."
 msgstr "在文档，团队或项目中，使特定的布局设置始终保持一致。"
 
-#: src/rules/artboards-layout/index.ts:113
+#: src/rules/artboards-layout/index.ts:116
 msgid "Layouts"
 msgstr "布局"
 
-#: src/rules/artboards-layout/index.ts:114
+#: src/rules/artboards-layout/index.ts:117
 msgid "A list of valid layouts. Each object will use Sketch's Layout Settings options"
 msgstr "有效布局列表。相应对象将使用 Sketch 布局设置中的选项。"
 
-#: src/rules/artboards-layout/index.ts:118
+#: src/rules/artboards-layout/index.ts:121
 msgid "Draw Vertical"
 msgstr "垂直绘制"
 
-#: src/rules/artboards-layout/index.ts:119
+#: src/rules/artboards-layout/index.ts:122
 msgid "Enables drawing columns"
 msgstr "启用绘制列"
 
-#: src/rules/artboards-layout/index.ts:123
+#: src/rules/artboards-layout/index.ts:126
 msgid "Total Width"
 msgstr "总宽"
 
-#: src/rules/artboards-layout/index.ts:124
+#: src/rules/artboards-layout/index.ts:127
 msgid "Total width of layout"
 msgstr "布局总宽"
 
-#: src/rules/artboards-layout/index.ts:128
+#: src/rules/artboards-layout/index.ts:131
 msgid "Horizontal Offset"
 msgstr "水平偏置"
 
-#: src/rules/artboards-layout/index.ts:129
+#: src/rules/artboards-layout/index.ts:132
 msgid "Horizontal offset of layout"
 msgstr "布局水平偏置"
 
-#: src/rules/artboards-layout/index.ts:133
+#: src/rules/artboards-layout/index.ts:136
 msgid "Number of Columns"
 msgstr "列数"
 
-#: src/rules/artboards-layout/index.ts:134
+#: src/rules/artboards-layout/index.ts:137
 msgid "Number of columns in the layout"
 msgstr "布局列数"
 
-#: src/rules/artboards-layout/index.ts:138
+#: src/rules/artboards-layout/index.ts:141
 msgid "Gutters Outside"
 msgstr "外围间距"
 
-#: src/rules/artboards-layout/index.ts:139
+#: src/rules/artboards-layout/index.ts:142
 msgid "Draw gutters on the outside"
 msgstr "外侧描边"
 
-#: src/rules/artboards-layout/index.ts:143
+#: src/rules/artboards-layout/index.ts:146
 msgid "Gutter Width"
 msgstr "间距宽度"
 
-#: src/rules/artboards-layout/index.ts:144
+#: src/rules/artboards-layout/index.ts:147
 msgid "Gutter width in layout"
 msgstr "布局中的间距宽度"
 
-#: src/rules/artboards-layout/index.ts:148
+#: src/rules/artboards-layout/index.ts:151
 msgid "Column Width"
 msgstr "列宽"
 
-#: src/rules/artboards-layout/index.ts:149
+#: src/rules/artboards-layout/index.ts:152
 msgid "Layout column widths"
 msgstr "布局列宽"
 
-#: src/rules/artboards-layout/index.ts:153
+#: src/rules/artboards-layout/index.ts:156
 msgid "Draw Horizontal"
 msgstr "水平绘制"
 
-#: src/rules/artboards-layout/index.ts:154
+#: src/rules/artboards-layout/index.ts:157
 msgid "Enables drawing rows"
 msgstr "启用绘制行"
 
-#: src/rules/artboards-layout/index.ts:158
+#: src/rules/artboards-layout/index.ts:161
 msgid "Gutter Height"
 msgstr "间距高度"
 
-#: src/rules/artboards-layout/index.ts:159
+#: src/rules/artboards-layout/index.ts:162
 msgid "Layout gutter height"
 msgstr "布局间距高度"
 
-#: src/rules/artboards-layout/index.ts:163
+#: src/rules/artboards-layout/index.ts:166
 msgid "Row Height Multiplication"
 msgstr "行高复用"
 
-#: src/rules/artboards-layout/index.ts:168
+#: src/rules/artboards-layout/index.ts:171
 msgid "Draw Horizontal Lines"
 msgstr "绘制水平线"
 
-#: src/rules/artboards-layout/index.ts:169
+#: src/rules/artboards-layout/index.ts:172
 msgid "Draw all horizontal lines"
 msgstr "绘制垂直线"
 
@@ -170,19 +170,19 @@ msgstr "绘制垂直线"
 msgid "{nonGroupLayers, plural, one {There is one ungrouped layer within this Artboard} other {There are # ungrouped layers within this Artboard}}"
 msgstr "{nonGroupLayers, plural, one {这是画板中一个未被编组的图层} other {该画板中有#个未被编组的图层}}"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:38
+#: src/rules/artboards-max-ungrouped-layers/index.ts:37
 msgid "{maxUngroupedLayers, plural, one {Artboards should only have one ungrouped layers} other {Artboards should have less than # ungrouped layers}}"
 msgstr "{maxUngroupedLayers, plural, one {只有一个图层未编组的画板} other {画板中未编组的图层不应多于#个}}"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:44
+#: src/rules/artboards-max-ungrouped-layers/index.ts:42
 msgid "Grouping layers within your Artboards will help you stay organized."
 msgstr "将画板中的图层编组，以保持规范有条理。"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:49
+#: src/rules/artboards-max-ungrouped-layers/index.ts:47
 msgid "Maximum Ungrouped Layers"
 msgstr "至多未编组的图层"
 
-#: src/rules/artboards-max-ungrouped-layers/index.ts:51
+#: src/rules/artboards-max-ungrouped-layers/index.ts:49
 msgid "The maximum number of ungrouped layers"
 msgstr "未编组图层的最大数量"
 
@@ -206,26 +206,26 @@ msgstr "基于您所创建的内容，禁用的属性可能会导致不稳定。
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 msgstr "{maxIdentical, plural, =1 {颜色 \"{hex}\" 应只出现一次，但实际发现了 {count} 个用例。考虑使用颜色变量} other {颜色 \"{hex}\"出现不应超过 # 次，但实际发现了 {count} 个用例。考虑使用颜色变量}}"
 
-#: src/rules/colors-prefer-variable/index.ts:131
+#: src/rules/colors-prefer-variable/index.ts:130
 msgid "{maxIdentical, plural, =1 {Expected the color \"{hex}\" with an alpha value of {alpha}% to only appear once, but found {count} usages. Consider a color variable instead} other {Expected the color \"{hex}\" with an alpha value of {alpha}% to appear no more than # times, but found {count} usages. Consider a color variable instead}}"
 msgstr "{maxIdentical, plural, =1 {透明度为 {alpha}% 的颜色 \"{hex}\" 应只出现一次，但实际发现了 {count} 个用例。考虑使用颜色变量} other {透明度为 {alpha}% 的颜色 \"{hex}\" 出现不应超过 # 次， 但实际发现 {count} 个用例。考虑使用颜色变量}}"
 
-#: src/rules/colors-prefer-variable/index.ts:146
+#: src/rules/colors-prefer-variable/index.ts:144
 msgid "{maxIdentical, plural, =0 {Colors should always use color variables} =1 {Identical colors should use color variables} other {More than # identical colors should use color variables}}"
 msgstr "{maxIdentical, plural, =0 {颜色应始终使用颜色变量} =1 {识别应使用颜色变量的颜色} other {超过 # 个相同的颜色应使用颜色变量}}"
 
-#: src/rules/colors-prefer-variable/index.ts:153
+#: src/rules/colors-prefer-variable/index.ts:150
 msgid "You could simplify things by using color variables instead."
 msgstr "使用颜色变量能使您的工作变得更简单。"
 
-#: src/rules/colors-prefer-variable/index.ts:157
-#: src/rules/groups-no-similar/index.ts:60
-#: src/rules/layer-styles-prefer-shared/index.ts:84
-#: src/rules/text-styles-prefer-shared/index.ts:67
+#: src/rules/colors-prefer-variable/index.ts:154
+#: src/rules/groups-no-similar/index.ts:59
+#: src/rules/layer-styles-prefer-shared/index.ts:90
+#: src/rules/text-styles-prefer-shared/index.ts:65
 msgid "Max Identical"
 msgstr "最大相似度"
 
-#: src/rules/colors-prefer-variable/index.ts:158
+#: src/rules/colors-prefer-variable/index.ts:155
 msgid "The maximum allowed number of identical colors"
 msgstr "允许存在的雷同颜色的最大数量"
 
@@ -366,27 +366,27 @@ msgstr "样式中不应包含禁用的填充项"
 msgid "{numLayers, plural, one {There is one layer in this group} other {There are # layers in this group}}"
 msgstr "{numLayers, plural, one {编组中的一个图层} other {该编组中有#个图层}}"
 
-#: src/rules/groups-max-layers/index.ts:39
+#: src/rules/groups-max-layers/index.ts:38
 msgid "{maxLayers, plural, one {Groups should only have one layer} other {Groups should have no more than # layers}}"
 msgstr "{maxLayers, plural, one {编组中仅包含一个图层} other {编组中包含至多 # 个图层}}"
 
-#: src/rules/groups-max-layers/index.ts:45
+#: src/rules/groups-max-layers/index.ts:43
 msgid "Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count."
 msgstr "一些编组包含的图层数量很大，有的团队可能会对此抱有文档规范性或可用性方面的顾虑。"
 
-#: src/rules/groups-max-layers/index.ts:50
+#: src/rules/groups-max-layers/index.ts:48
 msgid "Maximum Layers"
 msgstr "至多图层数"
 
-#: src/rules/groups-max-layers/index.ts:52
+#: src/rules/groups-max-layers/index.ts:50
 msgid "Maximum layers in a group"
 msgstr "编组中的至多图层数"
 
-#: src/rules/groups-max-layers/index.ts:57
+#: src/rules/groups-max-layers/index.ts:55
 msgid "Skip Classes"
 msgstr "跳过类名"
 
-#: src/rules/groups-max-layers/index.ts:58
+#: src/rules/groups-max-layers/index.ts:56
 msgid "An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group"
 msgstr "一个 Sketch 文件的类名数组值，用以代表在统计编组中的子图层数量时，应被跳过的图层。"
 
@@ -423,11 +423,11 @@ msgstr "相类似的编组： {identicalGroupNames}"
 msgid "{maxIdentical, plural, one {Similar groups should be a symbol} other {More than # similar groups should be a symbol}}"
 msgstr "{maxIdentical, plural, one {相似的编组应设为控件} other {超过#个相似的编组应直接设为控件}}"
 
-#: src/rules/groups-no-similar/index.ts:56
+#: src/rules/groups-no-similar/index.ts:55
 msgid "Don't allow groups that are too similar. Consider using a Symbol instead."
 msgstr "尽量避免相似性太高的编组，做成控件可能更合适。"
 
-#: src/rules/groups-no-similar/index.ts:61
+#: src/rules/groups-no-similar/index.ts:60
 msgid "The maximum number of identical groups allowed in the document"
 msgstr "文档中允许存在的雷同编组的最大数量"
 
@@ -500,19 +500,19 @@ msgstr "图层样式应与共享的样式保持一致"
 msgid "If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles."
 msgstr "如果您所属的团队希望恪守共享样式的使用规范，建议您要么新建一个共享样式，要么直接使用已有的样式。"
 
-#: src/rules/layer-styles-prefer-shared/index.ts:59
+#: src/rules/layer-styles-prefer-shared/index.ts:67
 msgid "{maxIdentical, plural, one {Expected no identical layer styles in the document, but found {numIdentical} matching this layer's style. Consider a shared style instead} other {Expected a maximum of # identical layer styles in the document, but found {numIdentical} instances of this layer's style. Consider a shared style instead}}"
 msgstr "{maxIdentical, plural, one {期望文档中没有雷同的图层样式，实际发现{numIdentical}个雷同样式，建议直接使用同一个图层样式} other {期望文档中雷同的图层样式至多为#个，实际发现{numIdentical}个使用相同样式的实例，建议直接使用共享样式}}"
 
-#: src/rules/layer-styles-prefer-shared/index.ts:74
+#: src/rules/layer-styles-prefer-shared/index.ts:81
 msgid "{maxIdentical, plural, one {Layer Styles should not be identical} other {No more than # Layer Styles should be identical}}"
 msgstr "{maxIdentical, plural, one {图层样式不可雷同} other {不超过#个雷同的图层样式}}"
 
-#: src/rules/layer-styles-prefer-shared/index.ts:80
+#: src/rules/layer-styles-prefer-shared/index.ts:86
 msgid "You could simplify things by removing identical shared styles and applying a single Style to all the affected layers."
 msgstr "在相应图层上，移除雷同共享样式并替换成一个单一样式，可以让之后的工作更加简单。"
 
-#: src/rules/layer-styles-prefer-shared/index.ts:85
+#: src/rules/layer-styles-prefer-shared/index.ts:91
 msgid "The maximum allowed number of identical Layer Styles"
 msgstr "允许存在的雷同图层样式的最大数量"
 
@@ -781,15 +781,15 @@ msgstr "如果您所属的团队希望恪守共享字符样式的使用规范，
 msgid "{maxIdentical, plural, one {Expected no identical text styles in the document, but found {numIdentical} matching this layer's text style. Consider a shared text style instead} other {Expected a maximum of # identical text styles in the document, but found {numIdentical} instances of this layer's text style. Consider a shared text style instead}}"
 msgstr "{maxIdentical, plural, one {期望文档中没有雷同的字符样式，实际发现 {numIdentical} 个雷同样式，建议直接使用同一个字符样式} other {期望文档中雷同的字符样式至多为#个，实际发现 {numIdentical} 个使用相同样式的实例，建议直接使用共享的字符样式}}"
 
-#: src/rules/text-styles-prefer-shared/index.ts:57
+#: src/rules/text-styles-prefer-shared/index.ts:56
 msgid "{maxIdentical, plural, one {Text styles should not be identical} other {No more than # text styles should be identical}}"
 msgstr "{maxIdentical, plural, one {字符样式不可雷同} other {不超过#个雷同的字符样式}}"
 
-#: src/rules/text-styles-prefer-shared/index.ts:63
+#: src/rules/text-styles-prefer-shared/index.ts:61
 msgid "You could simplify things by removing identical text styles and applying a single style to all affected text."
 msgstr "在相应图层上，移除雷同的字符样式并替换成一个单一样式，可以让之后的工作更加简单。"
 
-#: src/rules/text-styles-prefer-shared/index.ts:68
+#: src/rules/text-styles-prefer-shared/index.ts:66
 msgid "The maximum allowed number of identical text styles"
 msgstr "允许存在的雷同字符样式的最大数量"
 
