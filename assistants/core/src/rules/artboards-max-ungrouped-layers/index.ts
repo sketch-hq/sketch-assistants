@@ -17,8 +17,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (nonGroupLayers > maxUngroupedLayers) {
         utils.report(
           i18n._(
-            plural({
-              value: nonGroupLayers,
+            plural(nonGroupLayers, {
               one: `There is one ungrouped layer within this Artboard`,
               other: `There are # ungrouped layers within this Artboard`,
             }),
@@ -36,8 +35,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const { maxUngroupedLayers } = ruleConfig
       if (typeof maxUngroupedLayers !== 'number') return ''
       return i18n._(
-        plural({
-          value: maxUngroupedLayers,
+        plural(maxUngroupedLayers, {
           one: 'Artboards should only have one ungrouped layers',
           other: 'Artboards should have less than # ungrouped layers',
         }),

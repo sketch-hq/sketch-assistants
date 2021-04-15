@@ -3,7 +3,10 @@
   "include": ["./src"],
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "paths": {
+      "@lingui/macro": ["../../node_modules/@lingui/macro/global"]
+    }
   },
   "references": [{ "path": "../../packages/utils" }]
 }

@@ -295,6 +295,7 @@ export const createIterableObjectCache = (
       t,
       i,
     ),
+    [CV.MSImmutablePatchInfo]: cI<CM[CV.MSImmutablePatchInfo]>(o[CV.MSImmutablePatchInfo], r, t, i),
     [CV.Artboard]: cI<CM[CV.Artboard]>(o[CV.Artboard], r, t, i),
     [CV.AssetCollection]: cI<CM[CV.AssetCollection]>(o[CV.AssetCollection], r, t, i),
     [CV.AttributedString]: cI<CM[CV.AttributedString]>(o[CV.AttributedString], r, t, i),

@@ -36,8 +36,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (numIdentical > maxIdentical) {
         utils.report(
           i18n._(
-            plural({
-              value: maxIdentical,
+            plural(maxIdentical, {
               one: `Expected no identical text styles in the document, but found ${numIdentical} matching this layer's text style. Consider a shared text style instead`,
               other: `Expected a maximum of # identical text styles in the document, but found ${numIdentical} instances of this layer's text style. Consider a shared text style instead`,
             }),
@@ -55,8 +54,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
       return i18n._(
-        plural({
-          value: maxIdentical,
+        plural(maxIdentical, {
           one: 'Text styles should not be identical',
           other: 'No more than # text styles should be identical',
         }),

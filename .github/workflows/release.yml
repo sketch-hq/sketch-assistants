@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@main
         with:
-          node-version: '12.6.0'
+          node-version: '14.16.0'
       - name: Yarn Install
         run: yarn --frozen-lockfile
       - name: Create Release Pull Request or Publish to npm
