@@ -1,6 +1,5 @@
+import { fromFile } from '@sketch-hq/sketch-file'
 import { resolve } from 'path'
-
-import { fromFile } from '../../files'
 import { process } from '..'
 
 describe('process', () => {

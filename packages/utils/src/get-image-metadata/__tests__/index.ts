@@ -1,6 +1,6 @@
+import { fromFile } from '@sketch-hq/sketch-file'
 import { resolve } from 'path'
 import { getImageMetadata } from '../'
-import { fromFile } from '../../files'
 
 describe('getImageMetadata', () => {
   test('extracts image metadata', async (): Promise<void> => {

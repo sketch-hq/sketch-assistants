@@ -1,24 +1,23 @@
-import { resolve } from 'path'
 import {
-  Violation,
   AssistantDefinition,
-  RuleUtils,
-  ProcessedSketchFile,
   FileFormat,
   IgnoreConfig,
+  ProcessedSketchFile,
+  RuleUtils,
   TimeoutToken,
+  Violation,
 } from '@sketch-hq/sketch-assistant-types'
-
-import { createRuleUtilsCreator, createIterable, createIterableObjectCache } from '..'
-import { process, createEmptyObjectCache } from '../../process'
-import { fromFile } from '../../files'
+import { fromFile } from '@sketch-hq/sketch-file'
+import { resolve } from 'path'
+import { createIterable, createIterableObjectCache, createRuleUtilsCreator } from '..'
 import { getImageMetadata } from '../../get-image-metadata'
+import { createEmptyObjectCache, process } from '../../process'
 import {
-  createDummyRect,
-  createAssistantDefinition,
   createAssistantConfig,
-  createRule,
+  createAssistantDefinition,
+  createDummyRect,
   createDummySwatch,
+  createRule,
 } from '../../test-helpers'
 
 /**

@@ -1,10 +1,9 @@
-import { IgnoreConfig, AssistantPackageMap } from '@sketch-hq/sketch-assistant-types'
-
-import { prunePages, pruneAssistants, pruneRules, pruneObjects } from '../'
+import { AssistantPackageMap, IgnoreConfig } from '@sketch-hq/sketch-assistant-types'
+import { fromFile } from '@sketch-hq/sketch-file'
 import { resolve } from 'path'
-import { fromFile } from '../../../files'
-import { createAssistantDefinition, createRule } from '../../../test-helpers'
+import { pruneAssistants, pruneObjects, prunePages, pruneRules } from '../'
 import { process } from '../../../process'
+import { createAssistantDefinition, createRule } from '../../../test-helpers'
 
 describe('prunePages', () => {
   test('should prune pages not present in the file ', async () => {

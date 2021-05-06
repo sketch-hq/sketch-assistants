@@ -1,18 +1,17 @@
-import { resolve } from 'path'
 import {
-  RunInput,
-  RunOutput,
-  ViolationSeverity,
   Assistant,
   AssistantDefinition,
   AssistantRuntime,
+  RunInput,
+  RunOutput,
+  ViolationSeverity,
 } from '@sketch-hq/sketch-assistant-types'
-
+import { fromFile } from '@sketch-hq/sketch-file'
+import { resolve } from 'path'
 import { runMultipleAssistants } from '..'
-import { createAssistant, createRule, createAssistantConfig } from '../../../test-helpers'
 import { getImageMetadata as getImageMetadataNode } from '../../../get-image-metadata'
 import { process } from '../../../process'
-import { fromFile } from '../../../files'
+import { createAssistant, createAssistantConfig, createRule } from '../../../test-helpers'
 
 /**
  * Test helper.
