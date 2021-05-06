@@ -1,7 +1,7 @@
-import { resolve } from 'path'
-
-import { fromFile, filterPages } from '..'
 import { SketchFile } from '@sketch-hq/sketch-assistant-types'
+import { fromFile } from '@sketch-hq/sketch-file'
+import { resolve } from 'path'
+import { filterPages } from '..'
 
 describe('fromFile', () => {
   test('parses document entry', async (): Promise<void> => {

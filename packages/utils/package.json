@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@types/humps": "2.0.0",
-    "@types/object-hash": "1.3.4"
+    "@types/object-hash": "1.3.4",
+    "@sketch-hq/sketch-file": "1.0.2"
   }
 }

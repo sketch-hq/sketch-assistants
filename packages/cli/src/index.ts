@@ -1,34 +1,34 @@
-import meow from 'meow'
-import { resolve, basename } from 'path'
-import { promisify } from 'util'
-import * as cp from 'child_process'
-import chalk from 'chalk'
-import globby from 'globby'
-import * as fs from 'fs'
-import os from 'os'
-import ora from 'ora'
-import Conf from 'conf'
 import {
-  fromFile,
-  runMultipleAssistants,
-  getImageMetadata,
-  process as processFile,
-  makeProfile,
-  filterPages,
-  prunePages,
-} from '@sketch-hq/sketch-assistant-utils'
-import {
+  AssistantConfig,
+  AssistantPackageMap,
   AssistantRuntime,
   RunOutput,
-  AssistantPackageMap,
-  ViolationSeverity,
-  SketchFile,
-  AssistantConfig,
   RunOutputProfile,
+  SketchFile,
+  ViolationSeverity,
   Workspace,
 } from '@sketch-hq/sketch-assistant-types'
+import {
+  filterPages,
+  getImageMetadata,
+  makeProfile,
+  process as processFile,
+  prunePages,
+  runMultipleAssistants,
+} from '@sketch-hq/sketch-assistant-utils'
+import { fromFile } from '@sketch-hq/sketch-file'
+import chalk from 'chalk'
+import * as cp from 'child_process'
+import Conf from 'conf'
 import crypto from 'crypto'
+import * as fs from 'fs'
+import globby from 'globby'
+import meow from 'meow'
+import ora from 'ora'
+import os from 'os'
 import osLocale from 'os-locale'
+import { basename, resolve } from 'path'
+import { promisify } from 'util'
 
 const helpText = `
   Usage

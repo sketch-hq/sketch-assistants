@@ -1,18 +1,17 @@
-import { resolve } from 'path'
-
 import {
-  AssistantEnv,
-  RuleDefinition,
-  AssistantSuccessResult,
   AssistantConfig,
+  AssistantEnv,
   AssistantRuntime,
+  AssistantSuccessResult,
   IgnoreConfig,
+  RuleDefinition,
 } from '@sketch-hq/sketch-assistant-types'
+import { fromFile } from '@sketch-hq/sketch-file'
+import { resolve } from 'path'
 import { runAssistant } from '..'
-import { fromFile } from '../../../files'
-import { process } from '../../../process'
-import { createAssistantDefinition, createRule, createAssistantConfig } from '../../../test-helpers'
 import { getImageMetadata } from '../../../get-image-metadata'
+import { process } from '../../../process'
+import { createAssistantConfig, createAssistantDefinition, createRule } from '../../../test-helpers'
 
 const testRunAssistant = async (
   config: AssistantConfig,

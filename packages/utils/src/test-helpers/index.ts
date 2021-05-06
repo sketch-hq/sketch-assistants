@@ -1,24 +1,24 @@
 import {
-  FileFormat,
   Assistant,
-  RuleOptionsCreator,
-  RuleFunction,
-  RuleDefinition,
-  AssistantDefinition,
   AssistantConfig,
-  ViolationSeverity,
-  RuleConfigGroup,
+  AssistantDefinition,
   AssistantEnv,
-  AssistantSuccessResult,
-  RuleConfig,
   AssistantPackage,
   AssistantRuntime,
+  AssistantSuccessResult,
+  FileFormat,
+  RuleConfig,
+  RuleConfigGroup,
+  RuleDefinition,
+  RuleFunction,
+  RuleOptionsCreator,
+  ViolationSeverity,
 } from '@sketch-hq/sketch-assistant-types'
-import { fromFile } from '../files'
-import { process } from '../process'
-import { prepare, getRuleDefinition } from '../assistant'
-import { runAssistant } from '../run/run-assistant'
+import { fromFile } from '@sketch-hq/sketch-file'
+import { getRuleDefinition, prepare } from '../assistant'
 import { getImageMetadata } from '../get-image-metadata'
+import { process } from '../process'
+import { runAssistant } from '../run/run-assistant'
 
 /**
  * Create a dummy rule definition.
