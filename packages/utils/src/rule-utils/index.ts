@@ -162,10 +162,10 @@ const createOptionGetter = (assistant: AssistantDefinition, rule: RuleDefinition
   if (result !== true) {
     const details = result
       .map((error) => {
-        if (error.dataPath === '') {
+        if (error.instancePath === '') {
           return error.message
         } else {
-          return `"${error.dataPath}" ${error.message}`
+          return `"${error.instancePath}" ${error.message}`
         }
       })
       .join('. ')
