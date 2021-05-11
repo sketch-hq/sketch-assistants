@@ -4,7 +4,7 @@ import {
   AssistantDefinition,
   AssistantEnv,
 } from '@sketch-hq/sketch-assistant-types'
-import { I18n, setupI18n } from '@lingui/core'
+import { I18n, AllMessages, i18n } from '@lingui/core'
 
 import * as artboardsGrid from './rules/artboards-grid'
 import * as artboardsLayout from './rules/artboards-layout'
@@ -47,21 +47,26 @@ import * as symbolsNoUnused from './rules/symbols-no-unused'
 import * as textStylesNoDirty from './rules/text-styles-no-dirty'
 import * as textStylesPreferShared from './rules/text-styles-prefer-shared'
 
-import enMessages from './locale/en/messages'
-import zhHansMessages from './locale/zh-Hans/messages'
+import { messages as enMessages } from './locale/en/messages'
+import { messages as zhHansMessages } from './locale/zh-Hans/messages'
+import { en, zh } from 'make-plural/plurals'
 
 export type CreateRuleFunction = (i18n: I18n) => RuleDefinition
 
 export const createI18NObject = (env: AssistantEnv): I18n => {
-  const SUPPORTED_LOCALES = ['en', 'zh-Hans']
-  const FALLBACK_LOCALE = 'en'
-  return setupI18n({
-    language: SUPPORTED_LOCALES.includes(env.locale!) ? env.locale : FALLBACK_LOCALE,
-    catalogs: {
-      en: enMessages,
-      'zh-Hans': zhHansMessages,
-    },
+  const DEFAULT_LOCALE = 'en'
+  const messages: AllMessages = { en: enMessages, 'zh-Hans': zhHansMessages }
+
+  i18n.loadLocaleData({
+    en: { plurals: en },
+    'zh-Hans': { plurals: zh },
   })
+  i18n.load({ en: messages.en, 'zh-Hans': messages['zh-Hans'] })
+
+  const locale: string = Object.keys(messages).find((l) => l == env.locale) || DEFAULT_LOCALE
+  i18n.activate(locale)
+
+  return i18n
 }
 
 const assistant: AssistantPackage = async (env) => {
