@@ -7,8 +7,8 @@ export const createRule: CreateRuleFunction = (i18n) => {
       throw new Error('Test error message')
     },
     name: 'debug-throws-error',
-    title: t`Debug throws error`,
-    description: t`Internal debug rule that always throws a rule error`,
+    title: i18n._(t`Debug throws error`),
+    description: i18n._(t`Internal debug rule that always throws a rule error`),
     debug: true,
-  };
+  }
 }

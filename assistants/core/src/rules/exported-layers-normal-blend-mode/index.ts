@@ -28,7 +28,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (fileFormats.filter((fmt) => NON_BMP_FORMATS.includes(fmt)).length === 0) continue // If layer is only exported as bitmap formats then skip
       if (layer.style?.contextSettings?.blendMode !== FileFormat.BlendMode.Normal) {
         utils.report(
-          t`This exportable layer has a blend mode. Try flattening it for more consistent results.`,
+          i18n._(
+            t`This exportable layer has a blend mode. Try flattening it for more consistent results.`,
+          ),
           layer,
         )
         continue
@@ -40,7 +42,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
         isBlended(layer.style?.innerShadows)
       ) {
         utils.report(
-          t`This exportable layer has blend modes. Try flattening them for more consistent results.`,
+          i18n._(
+            t`This exportable layer has blend modes. Try flattening them for more consistent results.`,
+          ),
           layer,
         )
       }
@@ -50,7 +54,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'exported-layers-normal-blend-mode',
-    title: t`Avoid blend modes on exportable layers`,
-    description: t`Blend mode effects depend on what's behind the layer, so exporting layers might not give you the results you want. Some teams might want to flag this to avoid mistakes.`,
-  };
+    title: i18n._(t`Avoid blend modes on exportable layers`),
+    description: i18n._(
+      t`Blend mode effects depend on what's behind the layer, so exporting layers might not give you the results you want. Some teams might want to flag this to avoid mistakes.`,
+    ),
+  }
 }

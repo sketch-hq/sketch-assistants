@@ -141,14 +141,18 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (count <= maxIdentical) continue
       const message =
         alpha === 100
-          ? plural(maxIdentical, {
-          1: `Expected the color "${hex}" to only appear once, but found ${count} usages. Consider a color variable instead`,
-          other: `Expected the color "${hex}" to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
-        })
-          : plural(maxIdentical, {
-          1: `Expected the color "${hex}" with an alpha value of ${alpha}% to only appear once, but found ${count} usages. Consider a color variable instead`,
-          other: `Expected the color "${hex}" with an alpha value of ${alpha}% to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
-        })
+          ? i18n._(
+              plural(maxIdentical, {
+                1: `Expected the color "${hex}" to only appear once, but found ${count} usages. Consider a color variable instead`,
+                other: `Expected the color "${hex}" to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
+              }),
+            )
+          : i18n._(
+              plural(maxIdentical, {
+                1: `Expected the color "${hex}" with an alpha value of ${alpha}% to only appear once, but found ${count} usages. Consider a color variable instead`,
+                other: `Expected the color "${hex}" with an alpha value of ${alpha}% to appear no more than # times, but found ${count} usages. Consider a color variable instead`,
+              }),
+            )
 
       utils.report(
         message,
@@ -163,21 +167,23 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
-      return plural(maxIdentical, {
-        0: 'Colors should always use color variables',
-        1: 'Identical colors should use color variables',
-        other: 'More than # identical colors should use color variables',
-      });
+      return i18n._(
+        plural(maxIdentical, {
+          0: 'Colors should always use color variables',
+          1: 'Identical colors should use color variables',
+          other: 'More than # identical colors should use color variables',
+        }),
+      )
     },
-    description: t`You could simplify things by using color variables instead.`,
+    description: i18n._(t`You could simplify things by using color variables instead.`),
     getOptions: (helpers) => [
       helpers.integerOption({
         name: 'maxIdentical',
-        title: t`Max Identical`,
-        description: t`The maximum allowed number of identical colors`,
+        title: i18n._(t`Max Identical`),
+        description: i18n._(t`The maximum allowed number of identical colors`),
         minimum: 0,
         defaultValue: 1,
       }),
     ],
-  };
+  }
 }

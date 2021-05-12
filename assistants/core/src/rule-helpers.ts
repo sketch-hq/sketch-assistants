@@ -138,16 +138,16 @@ const createNamePatternRuleFunction = (
         const isForbidden = forbiddenPatterns.map((regex) => regex.test(object.name)).includes(true)
 
         if (isForbidden) {
-          utils.report(t`Layer name matches one of the forbidden patterns`, object)
+          utils.report(i18n._(t`Layer name matches one of the forbidden patterns`), object)
           continue // Contine after reporting name as forbidden, i.e. once a name is forbidden we don't care about the allowed status
         }
 
         if (!isAllowed) {
-          utils.report(t`Layer name does not match any of the allowed patterns`, object)
+          utils.report(i18n._(t`Layer name does not match any of the allowed patterns`), object)
         }
       }
     }
-  };
+  }
 }
 
 /**

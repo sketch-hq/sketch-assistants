@@ -37,14 +37,18 @@ export const createRule: CreateRuleFunction = (i18n) => {
           let message
           switch (usage.type) {
             case 'bitmap':
-              message = t`There's an undersized image in this layer. Images must fill at least ${
-                minRatio * 100
-              }% of the layer frame's width or height.`
+              message = i18n._(
+                t`There's an undersized image in this layer. Images must fill at least ${
+                  minRatio * 100
+                }% of the layer frame's width or height.`,
+              )
               break
             case 'fill':
-              message = t`There's an undersized image in this Layer Style image fill. Images must fill at least ${
-                minRatio * 100
-              }% of the layer frame's width or height.`
+              message = i18n._(
+                t`There's an undersized image in this Layer Style image fill. Images must fill at least ${
+                  minRatio * 100
+                }% of the layer frame's width or height.`,
+              )
               break
           }
           utils.report(message, usage.object)
@@ -58,20 +62,24 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'images-no-undersized',
     title: (ruleConfig) => {
       const { minRatio } = ruleConfig
-      return t`Images shouldn't be less than ${minRatio}x bigger than their frame`;
+      return i18n._(t`Images shouldn't be less than ${minRatio}x bigger than their frame`)
     },
-    description: t`Images that are smaller than their layer might result in low-quality exported assets, so some teams might want to limit this.`,
+    description: i18n._(
+      t`Images that are smaller than their layer might result in low-quality exported assets, so some teams might want to limit this.`,
+    ),
     getOptions(helpers) {
       return [
         helpers.numberOption({
           name: 'minRatio',
-          title: t`Minium Allowed Ratio`,
+          title: i18n._(t`Minium Allowed Ratio`),
           defaultValue: 1,
-          description: t`How much smaller an image can be in relation to its frame and still be considered valid`,
+          description: i18n._(
+            t`How much smaller an image can be in relation to its frame and still be considered valid`,
+          ),
           minimum: 0,
           maximum: 1,
         }),
-      ];
+      ]
     },
-  };
+  }
 }

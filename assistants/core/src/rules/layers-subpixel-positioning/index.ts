@@ -51,7 +51,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const xValid = increments.includes(Math.abs(x % 1).toFixed(2))
       const yValid = increments.includes(Math.abs(y % 1).toFixed(2))
       if (!xValid || !yValid) {
-        utils.report(t`Unexpected sub-pixel positioning (${x}, ${y})`, layer)
+        utils.report(i18n._(t`Unexpected sub-pixel positioning (${x}, ${y})`), layer)
       }
     }
   }
@@ -61,20 +61,24 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'layers-subpixel-positioning',
     title: (ruleConfig) => {
       const increments = parseIncrements(ruleConfig.scaleFactors as string[]).join(', ')
-      return t`Layers must be placed on ${increments} sub-pixel increments`;
+      return i18n._(t`Layers must be placed on ${increments} sub-pixel increments`)
     },
-    description: t`Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments.`,
+    description: i18n._(
+      t`Some teams may consider layers place on sub-pixel values a document organization issue. The exception is if you're designing for devices with @2x and @3x pixel density. In this case, you can use 0.5 and 0.33/0.67 increments.`,
+    ),
     getOptions(helpers) {
       return [
         helpers.stringArrayOption({
           name: 'scaleFactors',
-          title: t`Scale Factors`,
-          description: t`Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively`,
+          title: i18n._(t`Scale Factors`),
+          description: i18n._(
+            t`Choose the scale factors that the document supports. Accepted values are @1x, @2x and @3x, which allow whole pixel positions, 0.5 increments and 0.33 increments respectively`,
+          ),
           minLength: 1,
           maxLength: 3,
           pattern: '^@[1-3]x$',
         }),
-      ];
+      ]
     },
-  };
+  }
 }

@@ -16,10 +16,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const nonGroupLayers = artboard.layers.filter((layer) => layer._class !== 'group').length
       if (nonGroupLayers > maxUngroupedLayers) {
         utils.report(
-          plural(nonGroupLayers, {
-            one: `There is one ungrouped layer within this Artboard`,
-            other: `There are # ungrouped layers within this Artboard`,
-          }),
+          i18n._(
+            plural(nonGroupLayers, {
+              one: `There is one ungrouped layer within this Artboard`,
+              other: `There are # ungrouped layers within this Artboard`,
+            }),
+          ),
           artboard,
         )
       }
@@ -32,22 +34,24 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const { maxUngroupedLayers } = ruleConfig
       if (typeof maxUngroupedLayers !== 'number') return ''
-      return plural(maxUngroupedLayers, {
-        one: 'Artboards should only have one ungrouped layers',
-        other: 'Artboards should have less than # ungrouped layers',
-      });
+      return i18n._(
+        plural(maxUngroupedLayers, {
+          one: 'Artboards should only have one ungrouped layers',
+          other: 'Artboards should have less than # ungrouped layers',
+        }),
+      )
     },
-    description: t`Grouping layers within your Artboards will help you stay organized.`,
+    description: i18n._(t`Grouping layers within your Artboards will help you stay organized.`),
     getOptions(helpers) {
       return [
         helpers.numberOption({
           name: 'maxUngroupedLayers',
-          title: t`Maximum Ungrouped Layers`,
+          title: i18n._(t`Maximum Ungrouped Layers`),
           defaultValue: 5,
-          description: t`The maximum number of ungrouped layers`,
+          description: i18n._(t`The maximum number of ungrouped layers`),
           minimum: 1,
         }),
-      ];
+      ]
     },
-  };
+  }
 }

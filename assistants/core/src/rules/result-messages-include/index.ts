@@ -22,16 +22,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'result-messages-include',
-    title: t`Messages`,
-    description: t`Define a list of messages to check for`,
+    title: i18n._(t`Messages`),
+    description: i18n._(t`Define a list of messages to check for`),
     getOptions(helpers) {
       return [
         helpers.stringArrayOption({
           name: 'messages',
-          title: t`Messages`,
-          description: t`A range of messages to check for`,
+          title: i18n._(t`Messages`),
+          description: i18n._(t`A range of messages to check for`),
         }),
-      ];
+      ]
     },
-  };
+  }
 }

@@ -59,10 +59,12 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const numIdentical = objects.length
       if (numIdentical > maxIdentical) {
         utils.report(
-          plural(maxIdentical, {
-            one: `Expected no identical layer styles in the document, but found ${numIdentical} matching this layer's style. Consider a shared style instead`,
-            other: `Expected a maximum of # identical layer styles in the document, but found ${numIdentical} instances of this layer's style. Consider a shared style instead`,
-          }),
+          i18n._(
+            plural(maxIdentical, {
+              one: `Expected no identical layer styles in the document, but found ${numIdentical} matching this layer's style. Consider a shared style instead`,
+              other: `Expected a maximum of # identical layer styles in the document, but found ${numIdentical} instances of this layer's style. Consider a shared style instead`,
+            }),
+          ),
           ...objects,
         )
       }
@@ -75,20 +77,24 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
-      return plural(maxIdentical, {
-        one: 'Layer Styles should not be identical',
-        other: 'No more than # Layer Styles should be identical',
-      });
+      return i18n._(
+        plural(maxIdentical, {
+          one: 'Layer Styles should not be identical',
+          other: 'No more than # Layer Styles should be identical',
+        }),
+      )
     },
-    description: t`You could simplify things by removing identical shared styles and applying a single Style to all the affected layers.`,
+    description: i18n._(
+      t`You could simplify things by removing identical shared styles and applying a single Style to all the affected layers.`,
+    ),
     getOptions: (helpers) => [
       helpers.integerOption({
         name: 'maxIdentical',
-        title: t`Max Identical`,
-        description: t`The maximum allowed number of identical Layer Styles`,
+        title: i18n._(t`Max Identical`),
+        description: i18n._(t`The maximum allowed number of identical Layer Styles`),
         minimum: 1,
         defaultValue: 1,
       }),
     ],
-  };
+  }
 }

@@ -12,7 +12,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     for (const page of utils.objects.page) {
       for (const layer of page.layers) {
         if (isLooseLayer(layer) && !utils.isObjectIgnored(layer)) {
-          utils.report(t`This layer is not inside an Artboard`, layer)
+          utils.report(i18n._(t`This layer is not inside an Artboard`), layer)
         }
       }
     }
@@ -21,7 +21,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'layers-no-loose',
-    title: t`Layers should not be outside artboards`,
-    description: t`Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards.`,
-  };
+    title: i18n._(t`Layers should not be outside artboards`),
+    description: i18n._(
+      t`Layers outside of Artboards aren't visible on Cloud, so some teams may want to keep all layers inside Artboards.`,
+    ),
+  }
 }

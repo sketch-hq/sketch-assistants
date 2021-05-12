@@ -26,14 +26,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
     )
 
     invalid.forEach((object) => {
-      utils.report(t`This shared style is unused`, object)
+      utils.report(i18n._(t`This shared style is unused`), object)
     })
   }
 
   return {
     rule,
     name: 'shared-styles-no-unused',
-    title: t`All Shared Styles should be used`,
-    description: t`Some teams may consider unused Shared Styles a document organization issue.`,
-  };
+    title: i18n._(t`All Shared Styles should be used`),
+    description: i18n._(
+      t`Some teams may consider unused Shared Styles a document organization issue.`,
+    ),
+  }
 }

@@ -17,13 +17,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (!layer.style) continue // Narrow type to truthy `style` prop
       if (typeof layer.sharedStyleID === 'string') continue // Ignore layers using a shared style
       if (styleHasDisabledShadow(layer.style)) {
-        utils.report(t`There's a disabled shadow on this Layer Style`, layer)
+        utils.report(i18n._(t`There's a disabled shadow on this Layer Style`), layer)
       }
     }
 
     for (const sharedStyle of utils.objects.sharedStyle) {
       if (styleHasDisabledShadow(sharedStyle.value)) {
-        utils.report(t`There's a disabled shadow on this Shared Style`, sharedStyle)
+        utils.report(i18n._(t`There's a disabled shadow on this Shared Style`), sharedStyle)
       }
     }
   }
@@ -31,7 +31,9 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'shadows-no-disabled',
-    title: t`Styles should not have disabled shadows`,
-    description: t`Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help.`,
-  };
+    title: i18n._(t`Styles should not have disabled shadows`),
+    description: i18n._(
+      t`Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help.`,
+    ),
+  }
 }
