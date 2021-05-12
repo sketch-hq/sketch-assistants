@@ -20,13 +20,13 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (typeof layer.sharedStyleID === 'string') continue // Ignore layers using a shared style
       if (isCombinedShapeChildLayer(layer, utils)) continue // Ignore layers in combined shapes
       if (styleHasDisabledBorder(layer.style)) {
-        utils.report(i18n._(t`There's a disabled border in this Style`), layer)
+        utils.report(t`There's a disabled border in this Style`, layer)
       }
     }
 
     for (const sharedStyle of utils.objects.sharedStyle) {
       if (styleHasDisabledBorder(sharedStyle.value)) {
-        utils.report(i18n._(t`There's a disabled border in this Style`), sharedStyle)
+        utils.report(t`There's a disabled border in this Style`, sharedStyle)
       }
     }
   }
@@ -34,9 +34,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'borders-no-disabled',
-    title: i18n._(t`Styles should not have disabled borders`),
-    description: i18n._(
-      t`Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help.`,
-    ),
-  }
+    title: t`Styles should not have disabled borders`,
+    description: t`Depending on what you're creating, disabled properties may cause uncertainty within your team. Removing them can help.`,
+  };
 }

@@ -35,9 +35,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         const libraryName = foreignSymbols.get(override.value)
         if (!libraries.includes(libraryName!)) {
           utils.report(
-            i18n._(
-              t`Symbol Override is using a Library Symbol from the library "${libraryName}". If using a Library Symbol it must come from one of the authorized libraries: ${authorizedLibraries}`,
-            ),
+            t`Symbol Override is using a Library Symbol from the library "${libraryName}". If using a Library Symbol it must come from one of the authorized libraries: ${authorizedLibraries}`,
             instance,
           )
         }
@@ -50,9 +48,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const libraryName = foreignSymbols.get(instance.symbolID)
       if (!libraries.includes(libraryName)) {
         utils.report(
-          i18n._(
-            t`Symbol is from the library "${libraryName}". If using a Library Symbol it must come from one of the authorized libraries: ${authorizedLibraries}`,
-          ),
+          t`Symbol is from the library "${libraryName}". If using a Library Symbol it must come from one of the authorized libraries: ${authorizedLibraries}`,
           instance,
         )
       }
@@ -65,20 +61,16 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const libraries = Array.isArray(ruleConfig.libraries) ? ruleConfig.libraries : []
       const authorizedLibraries = libraries.join(', ')
-      return i18n._(t`Library Symbols must come from the Libraries ${authorizedLibraries}`)
+      return t`Library Symbols must come from the Libraries ${authorizedLibraries}`;
     },
-    description: i18n._(
-      t`When standardization is important teams may wish to enforce that Library Symbols come from a list of authorized libraries.`,
-    ),
+    description: t`When standardization is important teams may wish to enforce that Library Symbols come from a list of authorized libraries.`,
     getOptions: (helpers) => [
       helpers.stringArrayOption({
         name: 'libraries',
-        title: i18n._(t`Authorized libraries`),
-        description: i18n._(
-          t`Libraries that are valid to use. An error is shown if a library that does not belong to this list is used.`,
-        ),
+        title: t`Authorized libraries`,
+        description: t`Libraries that are valid to use. An error is shown if a library that does not belong to this list is used.`,
         minLength: 1,
       }),
     ],
-  }
+  };
 }

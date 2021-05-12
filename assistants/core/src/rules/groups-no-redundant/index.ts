@@ -12,7 +12,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const hasOneChild = group.layers.length === 1
       const onlyChildIsGroup = hasOneChild && group.layers[0]._class === 'group'
       if (!usesSharedStyle && !isStyled && hasOneChild && onlyChildIsGroup) {
-        utils.report(i18n._(t`This group is redundant`), group)
+        utils.report(t`This group is redundant`, group)
       }
     }
   }
@@ -20,9 +20,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'groups-no-redundant',
-    title: i18n._(t`Groups should not be redundant`),
-    description: i18n._(
-      t`Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer.`,
-    ),
-  }
+    title: t`Groups should not be redundant`,
+    description: t`Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer.`,
+  };
 }

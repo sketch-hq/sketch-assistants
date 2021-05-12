@@ -18,7 +18,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       if (symbols.has(detachedSymbolID)) {
         const symbolName = symbols.get(detachedSymbolID)
         utils.report(
-          i18n._(t`This group was detached from the symbol named "${symbolName}"`),
+          t`This group was detached from the symbol named "${symbolName}"`,
           group,
         )
       }
@@ -28,9 +28,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'symbols-no-detached',
-    title: i18n._(t`Symbols should not be detached`),
-    description: i18n._(
-      t`Detached symbols could indicate an unwanted divergence from a style guide or library.`,
-    ),
-  }
+    title: t`Symbols should not be detached`,
+    description: t`Detached symbols could indicate an unwanted divergence from a style guide or library.`,
+  };
 }

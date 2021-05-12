@@ -8,7 +8,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { utils } = context
     for (const group of utils.objects.group) {
       if (group.layers.length === 0) {
-        utils.report(i18n._(t`This group is empty`), group)
+        utils.report(t`This group is empty`, group)
       }
     }
   }
@@ -16,7 +16,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'groups-no-empty',
-    title: i18n._(t`Groups should not be empty`),
-    description: i18n._(t`Remove empty groups to avoid document organization or usability issues.`),
-  }
+    title: t`Groups should not be empty`,
+    description: t`Remove empty groups to avoid document organization or usability issues.`,
+  };
 }

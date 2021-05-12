@@ -23,7 +23,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const sharedStyle = sharedStyles.get(text.sharedStyleID)
       if (!sharedStyle) continue
       if (!utils.textStyleEq(text.style, sharedStyle.value)) {
-        utils.report(i18n._(t`This text style is different from its shared style`), text)
+        utils.report(t`This text style is different from its shared style`, text)
       }
     }
   }
@@ -31,9 +31,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'text-styles-no-dirty',
-    title: i18n._(t`Text Styles should be the same as their Shared Styles`),
-    description: i18n._(
-      t`If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles.`,
-    ),
-  }
+    title: t`Text Styles should be the same as their Shared Styles`,
+    description: t`If your team wants to strictly use shared text styles, you should either create a new shared style or set the text styles to one of the existing styles.`,
+  };
 }

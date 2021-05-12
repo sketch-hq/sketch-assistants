@@ -36,9 +36,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
         const libraryName = foreignStyles.get(override.value)
         if (!libraries.includes(libraryName!)) {
           utils.report(
-            i18n._(
-              t`Symbol Text Style Override is using a Library Text Style from the library "${libraryName}". If using a Library Text Style it must come from one of the authorized libraries: ${authorizedLibraries}`,
-            ),
+            t`Symbol Text Style Override is using a Library Text Style from the library "${libraryName}". If using a Library Text Style it must come from one of the authorized libraries: ${authorizedLibraries}`,
             instance,
           )
         }
@@ -62,9 +60,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
 
     for (const [libraryName, textLayers] of results) {
       utils.report(
-        i18n._(
-          t`Layer is using a Library Text Style from the library "${libraryName}". If using a Library Text Style it must come from one of the authorized libraries: ${authorizedLibraries}`,
-        ),
+        t`Layer is using a Library Text Style from the library "${libraryName}". If using a Library Text Style it must come from one of the authorized libraries: ${authorizedLibraries}`,
         ...textLayers,
       )
     }
@@ -76,21 +72,17 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const libraries = Array.isArray(ruleConfig.libraries) ? ruleConfig.libraries : []
       const authorizedLibraries = libraries.join(', ')
-      return i18n._(t`Library Text Styles must come from the Libraries ${authorizedLibraries}`)
+      return t`Library Text Styles must come from the Libraries ${authorizedLibraries}`;
     },
-    description: i18n._(
-      t`When standardization is important teams may wish to enforce that Library Text Styles come from a list of authorized libraries.`,
-    ),
+    description: t`When standardization is important teams may wish to enforce that Library Text Styles come from a list of authorized libraries.`,
     getOptions: (helpers) => [
       helpers.stringArrayOption({
         name: 'libraries',
-        title: i18n._(t`Authorized Libraries`),
-        description: i18n._(
-          t`Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error.`,
-        ),
+        title: t`Authorized Libraries`,
+        description: t`Libraries that people can use. If someone uses a Library that isn't in this list, they'll see an error.`,
         defaultValue: [],
         minLength: 1,
       }),
     ],
-  }
+  };
 }

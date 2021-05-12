@@ -33,7 +33,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
             .filter((n) => n !== group) // new array without current node...
             .map((n) => n.name) // ...and lists only the node names...
             .join() // ...converted to a single string
-          utils.report(i18n._(t`Group is similar to other groups: ${identicalGroupNames}`), group)
+          utils.report(t`Group is similar to other groups: ${identicalGroupNames}`, group)
         })
       }
     }
@@ -45,24 +45,20 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
-      return i18n._(
-        plural(maxIdentical, {
-          one: 'Similar groups should be a symbol',
-          other: 'More than # similar groups should be a symbol',
-        }),
-      )
+      return plural(maxIdentical, {
+        one: 'Similar groups should be a symbol',
+        other: 'More than # similar groups should be a symbol',
+      });
     },
-    description: i18n._(
-      t`Don't allow groups that are too similar. Consider using a Symbol instead.`,
-    ),
+    description: t`Don't allow groups that are too similar. Consider using a Symbol instead.`,
     getOptions: (helpers) => [
       helpers.integerOption({
         name: 'maxIdentical',
-        title: i18n._(t`Max Identical`),
-        description: i18n._(t`The maximum number of identical groups allowed in the document`),
+        title: t`Max Identical`,
+        description: t`The maximum number of identical groups allowed in the document`,
         minimum: 1,
         defaultValue: 1,
       }),
     ],
-  }
+  };
 }

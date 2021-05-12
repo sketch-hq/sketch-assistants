@@ -49,14 +49,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
         let message
         switch (usage.type) {
           case 'bitmap':
-            message = i18n._(
-              t`There's an oversized image in this layer. Images can't be more than ${maxRatio}x bigger than the layer frame's width or height.`,
-            )
+            message = t`There's an oversized image in this layer. Images can't be more than ${maxRatio}x bigger than the layer frame's width or height.`
             break
           case 'fill':
-            message = i18n._(
-              t`There's an oversized image in this layer style image fill. Images can't be more than ${maxRatio}x bigger than the layer frame's width or height.`,
-            )
+            message = t`There's an oversized image in this layer style image fill. Images can't be more than ${maxRatio}x bigger than the layer frame's width or height.`
             break
         }
         utils.report(message, usage.object)
@@ -69,23 +65,19 @@ export const createRule: CreateRuleFunction = (i18n) => {
     name: 'images-no-outsized',
     title: (ruleConfig) => {
       const { maxRatio } = ruleConfig
-      return i18n._(t`Images shouldn't be more than ${maxRatio}x bigger than their frame`)
+      return t`Images shouldn't be more than ${maxRatio}x bigger than their frame`;
     },
-    description: i18n._(
-      t`Images that are bigger than they need to be swell the document size and could slow things down, so some teams might want to limit this.`,
-    ),
+    description: t`Images that are bigger than they need to be swell the document size and could slow things down, so some teams might want to limit this.`,
     getOptions(helpers) {
       return [
         helpers.numberOption({
           name: 'maxRatio',
-          title: i18n._(t`Maximum Ratio`),
+          title: t`Maximum Ratio`,
           defaultValue: 1,
-          description: i18n._(
-            t`How much larger an image can be than its frame and still be considered valid`,
-          ),
+          description: t`How much larger an image can be than its frame and still be considered valid`,
           minimum: 1,
         }),
-      ]
+      ];
     },
-  }
+  };
 }

@@ -27,7 +27,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const sharedStyle = sharedStyles.get(layer.sharedStyleID)
       if (!sharedStyle) continue // Ignore if shared style not found
       if (!layer.style || !utils.styleEq(layer.style, sharedStyle.value)) {
-        utils.report(i18n._(t`This Layers Style is different from its Shared Style`), layer)
+        utils.report(t`This Layers Style is different from its Shared Style`, layer)
       }
     }
   }
@@ -35,9 +35,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'layer-styles-no-dirty',
-    title: i18n._(t`Layers Styles should be the same as their Shared Style`),
-    description: i18n._(
-      t`If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles.`,
-    ),
-  }
+    title: t`Layers Styles should be the same as their Shared Style`,
+    description: t`If your team wants to strictly use shared styles, you should either create a new shared style or set the layer styles to one of the existing styles.`,
+  };
 }

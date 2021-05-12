@@ -35,12 +35,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const numIdentical = objects.length
       if (numIdentical > maxIdentical) {
         utils.report(
-          i18n._(
-            plural(maxIdentical, {
-              one: `Expected no identical text styles in the document, but found ${numIdentical} matching this layer's text style. Consider a shared text style instead`,
-              other: `Expected a maximum of # identical text styles in the document, but found ${numIdentical} instances of this layer's text style. Consider a shared text style instead`,
-            }),
-          ),
+          plural(maxIdentical, {
+            one: `Expected no identical text styles in the document, but found ${numIdentical} matching this layer's text style. Consider a shared text style instead`,
+            other: `Expected a maximum of # identical text styles in the document, but found ${numIdentical} instances of this layer's text style. Consider a shared text style instead`,
+          }),
           ...objects,
         )
       }
@@ -53,24 +51,20 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const { maxIdentical } = ruleConfig
       if (typeof maxIdentical !== 'number') return ''
-      return i18n._(
-        plural(maxIdentical, {
-          one: 'Text styles should not be identical',
-          other: 'No more than # text styles should be identical',
-        }),
-      )
+      return plural(maxIdentical, {
+        one: 'Text styles should not be identical',
+        other: 'No more than # text styles should be identical',
+      });
     },
-    description: i18n._(
-      t`You could simplify things by removing identical text styles and applying a single style to all affected text.`,
-    ),
+    description: t`You could simplify things by removing identical text styles and applying a single style to all affected text.`,
     getOptions: (helpers) => [
       helpers.integerOption({
         name: 'maxIdentical',
-        title: i18n._(t`Max Identical`),
-        description: i18n._(t`The maximum allowed number of identical text styles`),
+        title: t`Max Identical`,
+        description: t`The maximum allowed number of identical text styles`,
         minimum: 1,
         defaultValue: 1,
       }),
     ],
-  }
+  };
 }

@@ -131,84 +131,80 @@ export const createRule: CreateRuleFunction = (i18n) => {
       }
     }
     invalid.forEach((object) => {
-      utils.report(i18n._(t`Unexpected Artboard layout settings`), object)
+      utils.report(t`Unexpected Artboard layout settings`, object)
     })
   }
 
   return {
     rule,
     name: 'artboards-layout',
-    title: i18n._(t`Artboard layout settings should match the conventions`),
-    description: i18n._(
-      t`Keep your specific layout settings consistent across a document, team or project.`,
-    ),
+    title: t`Artboard layout settings should match the conventions`,
+    description: t`Keep your specific layout settings consistent across a document, team or project.`,
     getOptions(helpers) {
       return [
         helpers.objectArrayOption({
           name: 'layouts',
-          title: i18n._(t`Layouts`),
-          description: i18n._(
-            t`A list of valid layouts. Each object will use Sketch's Layout Settings options`,
-          ),
+          title: t`Layouts`,
+          description: t`A list of valid layouts. Each object will use Sketch's Layout Settings options`,
           props: [
             helpers.booleanOption({
               name: 'drawVertical',
-              title: i18n._(t`Draw Vertical`),
-              description: i18n._(t`Enables drawing columns`),
+              title: t`Draw Vertical`,
+              description: t`Enables drawing columns`,
             }),
             helpers.numberOption({
               name: 'totalWidth',
-              title: i18n._(t`Total Width`),
-              description: i18n._(t`Total width of layout`),
+              title: t`Total Width`,
+              description: t`Total width of layout`,
             }),
             helpers.numberOption({
               name: 'horizontalOffset',
-              title: i18n._(t`Horizontal Offset`),
-              description: i18n._(t`Horizontal offset of layout`),
+              title: t`Horizontal Offset`,
+              description: t`Horizontal offset of layout`,
             }),
             helpers.numberOption({
               name: 'numberOfColumns',
-              title: i18n._(t`Number of Columns`),
-              description: i18n._(t`Number of columns in the layout`),
+              title: t`Number of Columns`,
+              description: t`Number of columns in the layout`,
             }),
             helpers.booleanOption({
               name: 'guttersOutside',
-              title: i18n._(t`Gutters Outside`),
-              description: i18n._(t`Draw gutters on the outside`),
+              title: t`Gutters Outside`,
+              description: t`Draw gutters on the outside`,
             }),
             helpers.numberOption({
               name: 'gutterWidth',
-              title: i18n._(t`Gutter Width`),
-              description: i18n._(t`Gutter width in layout`),
+              title: t`Gutter Width`,
+              description: t`Gutter width in layout`,
             }),
             helpers.numberOption({
               name: 'columnWidth',
-              title: i18n._(t`Column Width`),
-              description: i18n._(t`Layout column widths`),
+              title: t`Column Width`,
+              description: t`Layout column widths`,
             }),
             helpers.booleanOption({
               name: 'drawHorizontal',
-              title: i18n._(t`Draw Horizontal`),
-              description: i18n._(t`Enables drawing rows`),
+              title: t`Draw Horizontal`,
+              description: t`Enables drawing rows`,
             }),
             helpers.numberOption({
               name: 'gutterHeight',
-              title: i18n._(t`Gutter Height`),
-              description: i18n._(t`Layout gutter height`),
+              title: t`Gutter Height`,
+              description: t`Layout gutter height`,
             }),
             helpers.numberOption({
               name: 'rowHeightMultiplication',
-              title: i18n._(t`Row Height Multiplication`),
+              title: t`Row Height Multiplication`,
               description: 'Row height multiplication',
             }),
             helpers.booleanOption({
               name: 'drawHorizontalLines',
-              title: i18n._(t`Draw Horizontal Lines`),
-              description: i18n._(t`Draw all horizontal lines`),
+              title: t`Draw Horizontal Lines`,
+              description: t`Draw all horizontal lines`,
             }),
           ],
         }),
-      ]
+      ];
     },
-  }
+  };
 }

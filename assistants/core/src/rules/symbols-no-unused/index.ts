@@ -20,14 +20,14 @@ export const createRule: CreateRuleFunction = (i18n) => {
     })
 
     invalid.forEach((object) => {
-      utils.report(i18n._(t`This symbol is unused`), object)
+      utils.report(t`This symbol is unused`, object)
     })
   }
 
   return {
     rule,
     name: 'symbols-no-unused',
-    title: i18n._(t`All symbols should be in-use`),
-    description: i18n._(t`Some teams may consider unused symbols a document organization issue.`),
-  }
+    title: t`All symbols should be in-use`,
+    description: t`Some teams may consider unused symbols a document organization issue.`,
+  };
 }

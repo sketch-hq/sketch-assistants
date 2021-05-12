@@ -19,12 +19,10 @@ export const createRule: CreateRuleFunction = (i18n) => {
       const numLayers = group.layers.filter((layer) => !skipClasses.includes(layer._class)).length
       if (numLayers > maxLayers) {
         utils.report(
-          i18n._(
-            plural(numLayers, {
-              one: 'There is one layer in this group',
-              other: 'There are # layers in this group',
-            }),
-          ),
+          plural(numLayers, {
+            one: 'There is one layer in this group',
+            other: 'There are # layers in this group',
+          }),
           group,
         )
       }
@@ -37,33 +35,27 @@ export const createRule: CreateRuleFunction = (i18n) => {
     title: (ruleConfig) => {
       const { maxLayers } = ruleConfig
       if (typeof maxLayers !== 'number') return ''
-      return i18n._(
-        plural(maxLayers, {
-          one: 'Groups should only have one layer',
-          other: 'Groups should have no more than # layers',
-        }),
-      )
+      return plural(maxLayers, {
+        one: 'Groups should only have one layer',
+        other: 'Groups should have no more than # layers',
+      });
     },
-    description: i18n._(
-      t`Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count.`,
-    ),
+    description: t`Groups with large layer counts could be considered a document hygiene or usability concern by some teams who may wish to limit the count.`,
     getOptions(helpers) {
       return [
         helpers.numberOption({
           name: 'maxLayers',
-          title: i18n._(t`Maximum Layers`),
+          title: t`Maximum Layers`,
           defaultValue: 50,
-          description: i18n._(t`Maximum layers in a group`),
+          description: t`Maximum layers in a group`,
           minimum: 1,
         }),
         helpers.stringArrayOption({
           name: 'skipClasses',
-          title: i18n._(t`Skip Classes`),
-          description: i18n._(
-            t`An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group`,
-          ),
+          title: t`Skip Classes`,
+          description: t`An array of Sketch file class values for layers that should be skipped and not counted when calculating the number of child layers in a group`,
         }),
-      ]
+      ];
     },
-  }
+  };
 }

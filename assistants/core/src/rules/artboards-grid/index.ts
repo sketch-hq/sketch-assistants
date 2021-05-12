@@ -50,37 +50,35 @@ export const createRule: CreateRuleFunction = (i18n) => {
     }
 
     invalid.forEach((object) => {
-      utils.report(i18n._(t`Unexpected Artboard grid settings`), object)
+      utils.report(t`Unexpected Artboard grid settings`, object)
     })
   }
 
   return {
     rule,
     name: 'artboards-grid',
-    title: i18n._(t`Artboard grid settings should match the conventions`),
-    description: i18n._(
-      t`Keep your specific grid settings consistent across a document, team or project.`,
-    ),
+    title: t`Artboard grid settings should match the conventions`,
+    description: t`Keep your specific grid settings consistent across a document, team or project.`,
     getOptions(helpers) {
       return [
         helpers.objectArrayOption({
           name: 'grids',
-          title: i18n._(t`Grids`),
-          description: i18n._(t`List of valid grids`),
+          title: t`Grids`,
+          description: t`List of valid grids`,
           props: [
             helpers.integerOption({
               name: 'gridBlockSize',
-              title: i18n._(t`Grid Block Size`),
-              description: i18n._(t`Grid block size in pixels`),
+              title: t`Grid Block Size`,
+              description: t`Grid block size in pixels`,
             }),
             helpers.integerOption({
               name: 'thickLinesEvery',
-              title: i18n._(t`Thick Lines Every`),
-              description: i18n._(t`Number of blocks between thick grid lines`),
+              title: t`Thick Lines Every`,
+              description: t`Number of blocks between thick grid lines`,
             }),
           ],
         }),
-      ]
+      ];
     },
-  }
+  };
 }

@@ -8,7 +8,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
     const { utils } = context
     for (const layer of utils.objects.anyLayer) {
       if (layer.isVisible === false) {
-        utils.report(i18n._(t`This layer is hidden`), layer)
+        utils.report(t`This layer is hidden`, layer)
       }
     }
   }
@@ -16,9 +16,7 @@ export const createRule: CreateRuleFunction = (i18n) => {
   return {
     rule,
     name: 'layers-no-hidden',
-    title: i18n._(t`There should be no hidden layers`),
-    description: i18n._(
-      t`Hidden layers may cause uncertainty. Some teams may want to remove them.`,
-    ),
-  }
+    title: t`There should be no hidden layers`,
+    description: t`Hidden layers may cause uncertainty. Some teams may want to remove them.`,
+  };
 }
