@@ -10,5 +10,9 @@
     "@sketch-hq/sketch-assistant-types": "6.3.1",
     "@sketch-hq/sketch-assistant-utils": "6.3.1"
   },
-  "changesets": []
+  "changesets": [
+    "dull-rockets-rush",
+    "famous-pens-glow",
+    "orange-hornets-search"
+  ]
 }
