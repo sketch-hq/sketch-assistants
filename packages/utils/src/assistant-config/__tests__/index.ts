@@ -203,9 +203,9 @@ describe('isRuleConfigValid', () => {
     ).toMatchInlineSnapshot(`
       Array [
         Object {
-          "dataPath": ".option",
+          "instancePath": "/option",
           "keyword": "type",
-          "message": "should be string",
+          "message": "must be string",
           "params": Object {
             "type": "string",
           },

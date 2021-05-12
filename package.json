@@ -10,15 +10,15 @@
   ],
   "devDependencies": {},
   "dependencies": {
-    "@changesets/cli": "2.15.0",
-    "@types/jest": "26.0.22",
+    "@changesets/cli": "2.16.0",
+    "@types/jest": "26.0.23",
     "@types/node": "14.14.37",
     "jest": "26.6.3",
-    "prettier": "2.2.1",
-    "ts-jest": "26.5.4",
+    "prettier": "2.3.0",
+    "ts-jest": "26.5.6",
     "typescript": "4.2.4",
-    "webpack": "5.31.0",
-    "webpack-cli": "4.6.0"
+    "webpack": "5.37.0",
+    "webpack-cli": "4.7.0"
   },
   "scripts": {
     "test": "yarn workspaces run test --ci",

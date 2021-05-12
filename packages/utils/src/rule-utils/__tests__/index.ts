@@ -196,7 +196,7 @@ describe('getOption', () => {
       utils.getOption('custom')
     } catch (error) {
       expect(error).toMatchInlineSnapshot(
-        `[InvalidRuleConfigError: Invalid configuration found for rule "foo" on assistant "dummy-assistant": ".custom" should be number]`,
+        `[InvalidRuleConfigError: Invalid configuration found for rule "foo" on assistant "dummy-assistant": "/custom" must be number]`,
       )
     }
   })

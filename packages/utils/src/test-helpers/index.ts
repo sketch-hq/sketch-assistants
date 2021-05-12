@@ -85,20 +85,22 @@ const createAssistantDefinition = ({
 /**
  * Create a dummy assistant function.
  */
-const createAssistant = ({
-  title,
-  description,
-  name,
-  config,
-  rules,
-}: {
-  title?: string
-  description?: string
-  name?: string
-  config?: AssistantConfig
-  rules?: RuleDefinition[]
-} = {}): Assistant => async (): Promise<AssistantDefinition> =>
-  createAssistantDefinition({ title, description, name, config, rules })
+const createAssistant =
+  ({
+    title,
+    description,
+    name,
+    config,
+    rules,
+  }: {
+    title?: string
+    description?: string
+    name?: string
+    config?: AssistantConfig
+    rules?: RuleDefinition[]
+  } = {}): Assistant =>
+  async (): Promise<AssistantDefinition> =>
+    createAssistantDefinition({ title, description, name, config, rules })
 
 const createDummyRect = (): FileFormat.Rect => ({
   _class: 'rect',

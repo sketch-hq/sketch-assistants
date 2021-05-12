@@ -155,32 +155,32 @@ const addViolation = (
  * is thrown if rules attempt to access missing options, or options that are invalid according to
  * the rule's self-declared option schema.
  */
-const createOptionGetter = (assistant: AssistantDefinition, rule: RuleDefinition) => <T>(
-  optionKey: string,
-): T => {
-  const result = isRuleConfigValid(assistant.config, rule)
-  if (result !== true) {
-    const details = result
-      .map((error) => {
-        if (error.dataPath === '') {
-          return error.message
-        } else {
-          return `"${error.dataPath}" ${error.message}`
-        }
-      })
-      .join('. ')
-    throw new InvalidRuleConfigError(assistant, rule, details)
+const createOptionGetter =
+  (assistant: AssistantDefinition, rule: RuleDefinition) =>
+  <T>(optionKey: string): T => {
+    const result = isRuleConfigValid(assistant.config, rule)
+    if (result !== true) {
+      const details = result
+        .map((error) => {
+          if (error.instancePath === '') {
+            return error.message
+          } else {
+            return `"${error.instancePath}" ${error.message}`
+          }
+        })
+        .join('. ')
+      throw new InvalidRuleConfigError(assistant, rule, details)
+    }
+    const value = getRuleOption(assistant.config, rule.name, optionKey)
+    if (value === null) {
+      throw new InvalidRuleConfigError(
+        assistant,
+        rule,
+        `Option "${optionKey}" not found in assistant configuration`,
+      )
+    }
+    return value as unknown as T
   }
-  const value = getRuleOption(assistant.config, rule.name, optionKey)
-  if (value === null) {
-    throw new InvalidRuleConfigError(
-      assistant,
-      rule,
-      `Option "${optionKey}" not found in assistant configuration`,
-    )
-  }
-  return (value as unknown) as T
-}
 
 /**
  * Returns a generator based iterable that can be cancelled by a RunOperation.

@@ -24,25 +24,25 @@
     "dist"
   ],
   "dependencies": {
-    "@lingui/core": "2.9.1",
+    "@lingui/core": "3.8.10",
     "@sketch-hq/sketch-assistant-types": "6.3.1",
-    "@types/lingui__core": "2.7.0",
-    "@types/lingui__macro": "2.7.3"
+    "@types/lingui__core": "2.7.1",
+    "@types/lingui__macro": "2.7.4"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "@babel/cli": "7.13.14",
-    "@babel/core": "7.13.14",
+    "@babel/cli": "7.13.16",
+    "@babel/core": "7.14.0",
     "@babel/plugin-proposal-class-properties": "7.13.0",
     "@babel/plugin-proposal-object-rest-spread": "7.13.8",
-    "@babel/preset-env": "7.13.12",
+    "@babel/preset-env": "7.14.1",
     "@babel/preset-typescript": "7.13.0",
-    "@lingui/cli": "3.8.4",
-    "@lingui/macro": "3.8.4",
+    "@lingui/cli": "3.8.10",
+    "@lingui/macro": "3.8.10",
     "@sketch-hq/sketch-assistant-utils": "6.3.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "26.6.3",
     "babel-loader": "8.2.2",
-    "babel-plugin-macros": "3.0.1"
+    "babel-plugin-macros": "3.1.0"
   }
 }
