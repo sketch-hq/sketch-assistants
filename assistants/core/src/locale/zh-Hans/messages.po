@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh\n"
 "Project-Id-Version: sketch-assistants\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-15 15:51\n"
+"PO-Revision-Date: 2021-05-19 12:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -412,8 +412,7 @@ msgstr "不应存在多余的编组"
 
 #: src/rules/groups-no-redundant/index.ts:28
 msgid "Remove redundant groups to avoid document organization or usability issues. These are groups that aren't styled and only contain one layer."
-msgstr ""
-"移除多余的编组，以避免文档组织性或可用性问题。\n"
+msgstr "移除多余的编组，以避免文档组织性或可用性问题。\n"
 "以下是只包含了一个图层且没有应用任何样式的编组。"
 
 #: src/rules/groups-no-similar/index.ts:38
@@ -793,3 +792,4 @@ msgstr "在相应图层上，移除雷同的字符样式并替换成一个单一
 #: src/rules/text-styles-prefer-shared/index.ts:66
 msgid "The maximum allowed number of identical text styles"
 msgstr "允许存在的雷同字符样式的最大数量"
+
