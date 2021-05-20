@@ -1,5 +1,20 @@
 # @sketch-hq/sketch-core-assistant
 
+## 6.4.0
+
+### Minor Changes
+
+- dd91ad8: Updated dependencies
+- c857d5c: Updated dependencies
+
+### Patch Changes
+
+- 99636c6: Update Chinese localisation
+- Updated dependencies [dd91ad8]
+- Updated dependencies [80e6f01]
+- Updated dependencies [c857d5c]
+  - @sketch-hq/sketch-assistant-types@6.4.0
+
 ## 6.4.0-rc.0
 
 ### Minor Changes

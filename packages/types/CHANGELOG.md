@@ -1,5 +1,16 @@
 # @sketch-hq/sketch-assistant-types
 
+## 6.4.0
+
+### Minor Changes
+
+- dd91ad8: Updated dependencies
+- c857d5c: Updated dependencies
+
+### Patch Changes
+
+- 80e6f01: Updated dependencies, including migration to `@sketch-hq/sketch-file`
+
 ## 6.4.0-rc.0
 
 ### Minor Changes
