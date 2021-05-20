@@ -1,5 +1,21 @@
 # @sketch-hq/sketch-assistant-cli
 
+## 6.4.0
+
+### Minor Changes
+
+- dd91ad8: Updated dependencies
+- c857d5c: Updated dependencies
+
+### Patch Changes
+
+- 80e6f01: Updated dependencies, including migration to `@sketch-hq/sketch-file`
+- Updated dependencies [dd91ad8]
+- Updated dependencies [80e6f01]
+- Updated dependencies [c857d5c]
+  - @sketch-hq/sketch-assistant-types@6.4.0
+  - @sketch-hq/sketch-assistant-utils@6.4.0
+
 ## 6.4.0-rc.0
 
 ### Minor Changes
