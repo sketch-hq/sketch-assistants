@@ -24,6 +24,7 @@
   "dependencies": {
     "@json-schema-spec/json-pointer": "0.1.2",
     "@sketch-hq/sketch-assistant-types": "6.4.0",
+    "@sketch-hq/sketch-file": "1.0.3",
     "ajv": "8.3.0",
     "humps": "2.0.1",
     "mem": "8.1.1",
@@ -35,7 +36,6 @@
   },
   "devDependencies": {
     "@types/humps": "2.0.0",
-    "@types/object-hash": "1.3.4",
-    "@sketch-hq/sketch-file": "1.0.3"
+    "@types/object-hash": "1.3.4"
   }
 }
