@@ -33,7 +33,7 @@
     "@sketch-hq/sketch-core-assistant": "6.4.0"
   },
   "devDependencies": {
-    "@sketch-hq/sketch-assistant-utils": "6.4.0"
+    "@sketch-hq/sketch-assistant-utils": "6.4.1"
   },
   "scripts": {
     "test": "jest",
