@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 6.4.1
+
+### Patch Changes
+
+- f7396f2: Fix sketch-file dependency
+
 ## 6.4.0
 
 ### Minor Changes
