@@ -54,10 +54,12 @@ const assign = (...sources: AssistantDefinition[]): AssistantDefinition => {
         ...(typeof acc.config.defaultSeverity === 'undefined'
           ? {}
           : { defaultSeverity: acc.config.defaultSeverity }),
-        rules: {
-          ...curr.config.rules,
-          ...acc.config.rules,
-        },
+        rules: Object.entries(curr.config.rules).reduceRight(
+          (a: { [key: string]: any }, [name, opts]) => {
+            return { ...a, [name]: { ...opts, ...a[name] } }
+          },
+          acc.config.rules,
+        ),
       },
       rules: [...curr.rules, ...acc.rules],
     }
