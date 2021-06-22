@@ -27,9 +27,9 @@
     "@sketch-hq/sketch-file": "1.0.3",
     "chalk": "4.1.1",
     "conf": "10.0.1",
-    "globby": "11.0.3",
+    "globby": "11.0.4",
     "meow": "9.0.0",
-    "ora": "5.4.0",
+    "ora": "5.4.1",
     "os-locale": "5.0.0"
   },
   "devDependencies": {}
