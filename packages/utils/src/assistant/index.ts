@@ -4,6 +4,8 @@ import {
   AssistantEnv,
   Maybe,
   RuleDefinition,
+  ReservedRuleOptionNames,
+  RuleConfigGroup,
 } from '@sketch-hq/sketch-assistant-types'
 
 /**
@@ -54,12 +56,19 @@ const assign = (...sources: AssistantDefinition[]): AssistantDefinition => {
         ...(typeof acc.config.defaultSeverity === 'undefined'
           ? {}
           : { defaultSeverity: acc.config.defaultSeverity }),
-        rules: Object.entries(curr.config.rules).reduceRight(
-          (a: { [key: string]: any }, [name, opts]) => {
-            return { ...a, [name]: { ...opts, ...a[name] } }
-          },
-          acc.config.rules,
-        ),
+        rules: Object.entries(curr.config.rules).reduceRight((a: RuleConfigGroup, [name, opts]) => {
+          return {
+            ...a,
+            [name]: {
+              ...opts,
+              ...a[name],
+              active:
+                a[name]?.[ReservedRuleOptionNames.active] ??
+                opts?.[ReservedRuleOptionNames.active] ??
+                false,
+            },
+          }
+        }, acc.config.rules),
       },
       rules: [...curr.rules, ...acc.rules],
     }
