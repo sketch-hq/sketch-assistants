@@ -725,6 +725,11 @@ export type AssistantConfig = {
 }
 
 /**
+ * Creates the configuration JSON Schema for the given assistant definition.
+ */
+export type AssistantConfigSchemaCreator = (assistant: AssistantDefinition) => JSONSchema7
+
+/**
  * User-defined rule options with these names are forbidden.
  */
 export enum ReservedRuleOptionNames {
