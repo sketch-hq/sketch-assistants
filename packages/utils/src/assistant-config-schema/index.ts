@@ -4,7 +4,6 @@ import {
   ReservedRuleOptionNames,
   RuleConfig,
   RuleDefinition,
-  RuleOption,
 } from '@sketch-hq/sketch-assistant-types'
 import { JSONSchema7Type } from 'json-schema'
 import { buildRuleOptionSchema, helpers } from '../rule-option-schemas'
