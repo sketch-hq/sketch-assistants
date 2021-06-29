@@ -773,7 +773,7 @@ export type RuleOption =
   | number
   | boolean
   | string[]
-  | { [key: string]: Maybe<string | number | boolean | string[]> }[]
+  | { [key: string]: string | number | boolean | string[] }[]
 
 /**
  * Async function that is expected to perform the core rule logic using the values and helper

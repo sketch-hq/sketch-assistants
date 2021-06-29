@@ -5,7 +5,6 @@ import {
   RuleConfig,
   RuleDefinition,
 } from '@sketch-hq/sketch-assistant-types'
-import { JSONSchema7Type } from 'json-schema'
 import { buildRuleOptionSchema, helpers } from '../rule-option-schemas'
 
 const getReservedRuleOptions = (config: RuleConfig): JSONSchemaProps => {
@@ -22,16 +21,8 @@ const getReservedRuleOptions = (config: RuleConfig): JSONSchemaProps => {
 }
 
 const applyRuleConfig = (ops: JSONSchemaProps, config: RuleConfig): JSONSchemaProps => {
-  type DefaultValueMap = {
-    [key: string]: { default: JSONSchema7Type | undefined }
-  }
-
-  return Object.entries(ops).reduce((acc: DefaultValueMap, [key, schema]) => {
-    const val = config[key]
-    if (typeof val === 'undefined') return acc
-    if (typeof val !== 'boolean' && typeof val !== 'number' && typeof val !== 'string') return acc
-
-    return { ...acc, [key]: { ...schema, default: val } }
+  return Object.entries(ops).reduce((acc, [key, schema]) => {
+    return { ...acc, [key]: { ...schema, default: config[key] } }
   }, {})
 }
 
