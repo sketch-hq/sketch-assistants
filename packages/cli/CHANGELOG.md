@@ -1,5 +1,12 @@
 # @sketch-hq/sketch-assistant-cli
 
+## 6.5.1
+
+### Patch Changes
+
+- Updated dependencies [8e8536f]
+  - @sketch-hq/sketch-assistant-utils@6.5.1
+
 ## 6.5.0
 
 ### Patch Changes

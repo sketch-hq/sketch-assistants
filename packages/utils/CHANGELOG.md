@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 6.5.1
+
+### Patch Changes
+
+- 8e8536f: Export `buildAssistantConfigSchema` from utils package
+
 ## 6.5.0
 
 ### Minor Changes
