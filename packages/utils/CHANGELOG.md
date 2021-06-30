@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 6.5.2
+
+### Patch Changes
+
+- f8d0463: Add documentation for buildAssistantConfigSchema
+
 ## 6.5.1
 
 ### Patch Changes
