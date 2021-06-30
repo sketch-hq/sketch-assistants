@@ -1,5 +1,12 @@
 # @sketch-hq/sketch-assistant-types
 
+## 6.5.0
+
+### Minor Changes
+
+- 54a3ab9: Add `buildAssistantConfigurationSchema` to get JSON Schema describing entire Assistant
+  configuration shape.
+
 ## 6.4.0
 
 ### Minor Changes
