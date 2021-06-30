@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-assistant-types",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "main": "dist/types",
   "types": "dist/types",
   "sideEffects": false,

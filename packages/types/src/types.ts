@@ -725,6 +725,11 @@ export type AssistantConfig = {
 }
 
 /**
+ * Creates the configuration JSON Schema for the given assistant definition.
+ */
+export type AssistantConfigSchemaCreator = (assistant: AssistantDefinition) => JSONSchema7
+
+/**
  * User-defined rule options with these names are forbidden.
  */
 export enum ReservedRuleOptionNames {
@@ -768,7 +773,7 @@ export type RuleOption =
   | number
   | boolean
   | string[]
-  | { [key: string]: Maybe<string | number | boolean | string[]> }[]
+  | { [key: string]: string | number | boolean | string[] }[]
 
 /**
  * Async function that is expected to perform the core rule logic using the values and helper

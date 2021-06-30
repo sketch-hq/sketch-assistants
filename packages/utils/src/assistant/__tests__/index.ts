@@ -78,6 +78,37 @@ describe('assign', () => {
     `)
   })
 
+  test('rule config is merged right to left', () => {
+    expect(
+      assign(
+        createAssistantDefinition({
+          config: {
+            rules: {
+              foo: { active: true, foo: 1, bar: 'hello world!' },
+            },
+          },
+        }),
+        createAssistantDefinition({
+          config: {
+            rules: {
+              foo: { active: true, bar: 'hello everyone!' },
+            },
+          },
+        }),
+      ).config,
+    ).toMatchInlineSnapshot(`
+      Object {
+        "rules": Object {
+          "foo": Object {
+            "active": true,
+            "bar": "hello everyone!",
+            "foo": 1,
+          },
+        },
+      }
+    `)
+  })
+
   test('rules are concatenated', () => {
     expect(
       assign(

@@ -1,6 +1,6 @@
 {
   "name": "@sketch-hq/sketch-assistant-cli",
-  "version": "6.4.1",
+  "version": "6.5.0",
   "bin": {
     "sketch-assistants": "bin/cli.js"
   },
@@ -22,14 +22,14 @@
     "dist"
   ],
   "dependencies": {
-    "@sketch-hq/sketch-assistant-types": "6.4.0",
-    "@sketch-hq/sketch-assistant-utils": "6.4.1",
+    "@sketch-hq/sketch-assistant-types": "6.5.0",
+    "@sketch-hq/sketch-assistant-utils": "6.5.0",
     "@sketch-hq/sketch-file": "1.0.3",
     "chalk": "4.1.1",
     "conf": "10.0.1",
-    "globby": "11.0.3",
+    "globby": "11.0.4",
     "meow": "9.0.0",
-    "ora": "5.4.0",
+    "ora": "5.4.1",
     "os-locale": "5.0.0"
   },
   "devDependencies": {}

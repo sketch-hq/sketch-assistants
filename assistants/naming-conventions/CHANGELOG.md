@@ -1,5 +1,14 @@
 # @sketch-hq/sketch-naming-conventions-assistant
 
+## 6.5.0
+
+### Patch Changes
+
+- Updated dependencies [9ee7d59]
+- Updated dependencies [54a3ab9]
+  - @sketch-hq/sketch-core-assistant@6.5.0
+  - @sketch-hq/sketch-assistant-types@6.5.0
+
 ## 6.4.0
 
 ### Patch Changes

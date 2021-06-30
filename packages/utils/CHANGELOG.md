@@ -1,5 +1,20 @@
 # @sketch-hq/sketch-assistant-utils
 
+## 6.5.0
+
+### Minor Changes
+
+- 54a3ab9: Add `buildAssistantConfigurationSchema` to get JSON Schema describing entire Assistant
+  configuration shape.
+- d034e3b: Change rule config merge behaviour. Instead of overwriting the entire rule config,
+  options are overwritten individually.
+
+### Patch Changes
+
+- 9ee7d59: Updated dependencies
+- Updated dependencies [54a3ab9]
+  - @sketch-hq/sketch-assistant-types@6.5.0
+
 ## 6.4.1
 
 ### Patch Changes
