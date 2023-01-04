@@ -1,4 +1,4 @@
-# layer-subpixel-positioning
+# layers-subpixel-positioning
 
 Layers placed on x/y coordinates with fractional subpixel values that don't match the rules options
 are considered violations.
